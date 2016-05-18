@@ -43,7 +43,7 @@ namespace Labyrinth
 				FindPath (row - 1, col, 'U'); // up
 				FindPath (row, col + 1, 'R'); // right
 				FindPath (row + 1, col, 'D'); // down
-//				lab [row, col] = ' ';
+// ???				lab [row, col] = ' ';
 			}
 			position--;
 		}
