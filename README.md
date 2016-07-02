@@ -1,2 +1,2 @@
-# Learning-CSharp
+Learning CSharp
 SoftUni
