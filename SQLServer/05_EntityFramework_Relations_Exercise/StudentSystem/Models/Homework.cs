@@ -10,10 +10,7 @@
         public int Id { get; set; }
 
         [NotMapped]
-        public byte[] Content { get; set; }
-
-        [Required]
-        public string ContentName { get; set; }
+        public string Content { get; set; }
 
         [Required]
         public ContentType ContentType { get; set; }

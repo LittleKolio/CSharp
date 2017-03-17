@@ -12,7 +12,7 @@
         public string Name { get; set; }
 
         [Required]
-        public ResourceType TypeOfResource { get; set; }
+        public ResourceType ResourceType { get; set; }
 
         [Required]
         public string Url { get; set; }

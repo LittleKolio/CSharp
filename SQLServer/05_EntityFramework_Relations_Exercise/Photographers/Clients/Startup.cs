@@ -3,12 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Data;
     using Models;
     using Util;
-    using System.Data.Entity.Validation;
 
     class Startup
     {
@@ -16,9 +13,6 @@
         {
             var context = new PhotographerContext();
             context.Database.Initialize(true);
-
-
-            //Console.WriteLine(context.Tags.Count());
 
             //AddDataPhot(context);
         }

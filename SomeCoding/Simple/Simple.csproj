@@ -46,6 +46,7 @@
     <None Include="PrimeNumber.cs" />
     <None Include="Factorial.cs" />
     <None Include="PascalTriangle.cs" />
+    <None Include="MatrixConsoleReadLine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

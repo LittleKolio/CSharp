@@ -2,10 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity; // nego zabraviai
+    using System.Data.Entity;
     using System.Linq;
     using Models;
     using Util;
+    using System.Data.Entity.Migrations;
 
     public class StudentSystemInitializer : DropCreateDatabaseAlways<StudentSystemContext>
     {
@@ -13,7 +14,7 @@
         {
             #region Courses
             var courses = new List<Course>();
-            courses.Add(new Course()
+            courses.Add(new Course
             {
                 Name = "Data",
                 Description = "Database",
@@ -21,7 +22,7 @@
                 EndDate = new DateTime(2010, 6, 1),
                 Price = 123.34m,
             });
-            courses.Add(new Course()
+            courses.Add(new Course
             {
                 Name = "Bank",
                 Description = "Bank System",
@@ -29,6 +30,15 @@
                 EndDate = new DateTime(2020, 6, 1),
                 Price = 456.09m,
             });
+            courses.Add(new Course
+            {
+                Name = "Shop",
+                Description = "Sell Scrap Machine",
+                StartDate = new DateTime(2030, 1, 1),
+                EndDate = new DateTime(2030, 6, 1),
+                Price = 456.09m,
+            });
+
             context.Courses.AddRange(courses);
             context.SaveChanges();
             #endregion
@@ -48,6 +58,20 @@
                 //PhoneNumber = "(4) 86702",
                 RegistratiOn = new DateTime(2001, 1, 1),
                 BirthDay = new DateTime(1901, 1, 1)
+            });
+            students.Add(new Student()
+            {
+                Name = "C",
+                //PhoneNumber = "(4) 86702",
+                RegistratiOn = new DateTime(1991, 1, 1),
+                BirthDay = new DateTime(1891, 1, 1)
+            });
+            students.Add(new Student()
+            {
+                Name = "D",
+                PhoneNumber = "(454352) 45675634",
+                RegistratiOn = new DateTime(2011, 1, 1),
+                BirthDay = new DateTime(1991, 1, 1)
             });
             context.Students.AddRange(students);
             context.SaveChanges();

@@ -107,9 +107,7 @@ namespace StudentSystem.Migrations
             homeworks.Add(
                 new Homework()
                 {
-                    //Id = 1,
-                    Content = Util.insertFile("../../Files/celsius h720.pdf"),
-                    ContentName = "celsius h720",
+                    Content = "celsius h720",
                     ContentType = ContentType.pdf,
                     SubmissionDate = new DateTime(2020, 5, 1),
                     CourseId = context.Courses.Where(c => c.Name == "Data").FirstOrDefault().Id,
@@ -119,9 +117,7 @@ namespace StudentSystem.Migrations
             homeworks.Add(
                 new Homework()
                 {
-                    //Id = homeworks.Count + 1,
-                    Content = Util.insertFile("../../Files/thinkpad w520.pdf"),
-                    ContentName = "thinkpad w520",
+                    Content = "thinkpad w520",
                     ContentType = ContentType.pdf,
                     SubmissionDate = new DateTime(2010, 5, 1),
                     CourseId = context.Courses.Where(c => c.Name == "Bank").FirstOrDefault().Id,
@@ -130,7 +126,7 @@ namespace StudentSystem.Migrations
             );
             foreach (var h in homeworks)
             {
-                context.Homeworks.AddOrUpdate(a => a.ContentName, h);
+                context.Homeworks.AddOrUpdate(a => a.Content, h);
             }
             context.SaveChanges();
             #endregion
