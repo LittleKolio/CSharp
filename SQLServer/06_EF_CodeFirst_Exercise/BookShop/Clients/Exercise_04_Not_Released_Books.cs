@@ -15,9 +15,11 @@
         {
             var input = int.Parse(Console.ReadLine());
 
-            var context = new BookShopContext();
             var books = Load();
+
+            //var context = new BookShopContext();
             //books.ForEach(b => Console.WriteLine(context.Entry(b).State));
+
             books.Where(b => b.ReleaseDate.Value.Year != input)
                 .OrderBy(b => b.Id)
                 .ToList()
@@ -26,12 +28,10 @@
 
         private static List<Book> Load()
         {
-            var list = new List<Book>();
             using (var context = new BookShopContext())
             {
-                list.AddRange(context.Books.ToList());
+                return context.Books.ToList();
             }
-            return list;
         }
     }
 }

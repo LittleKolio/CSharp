@@ -16,14 +16,16 @@
             var input = Console.ReadLine();
             var date = DateTime.ParseExact(input, "dd-MM-yyyy", CultureInfo.InvariantCulture);
 
-            var context = new BookShopContext();
-            var books = context.Books
-                .Where(b => b.ReleaseDate < date)
-                .Select(b => new { b.Title, b.Price, b.EditionType })
-                .ToList();
-            foreach (var b in books)
+            using (var context = new BookShopContext())
             {
-                Console.WriteLine($"{b.Title} - {b.EditionType.ToString()} - {b.Price}");
+                var books = context.Books
+                    .Where(b => b.ReleaseDate < date)
+                    .Select(b => new { b.Title, b.Price, b.EditionType })
+                    .ToList();
+                foreach (var b in books)
+                {
+                    Console.WriteLine($"{b.Title} - {b.EditionType.ToString()} - {b.Price}");
+                }
             }
         }
     }

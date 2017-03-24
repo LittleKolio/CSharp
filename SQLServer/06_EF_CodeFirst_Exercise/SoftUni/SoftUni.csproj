@@ -54,9 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Clients\Exercise_17_Call_Stored_Procedure.cs" />
-    <None Include="Clients\Startup.cs" />
-    <Compile Include="Clients\Exercise_18_Employees_Maximum_Salaries.cs" />
+    <Compile Include="Clients\Exercise_17_Call_Stored_Procedure.cs" />
+    <None Include="Clients\Exercise_18_Employees_Maximum_Salaries.cs" />
     <Compile Include="Data\Models\Address.cs" />
     <Compile Include="Data\Models\Department.cs" />
     <Compile Include="Data\Models\Employee.cs" />
@@ -76,6 +75,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Clients\Exercise_17_Call_Stored_Procedure.sql" />
     <Content Include="Clients\Exercise_18_Employees_Maximum_Salaries.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

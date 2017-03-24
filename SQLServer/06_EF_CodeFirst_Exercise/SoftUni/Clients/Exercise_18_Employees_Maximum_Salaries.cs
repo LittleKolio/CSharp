@@ -16,44 +16,60 @@
         {
             var lowSalary = new SqlParameter("@lowSalary", 30000);
             var highSalary = new SqlParameter("@highSalary", 70000);
-
-            var context = new SoftUniContext();
-
             var query = File.ReadAllText(
-                @"..\..\Clients\Exercise_18_Employees_Maximum_Salaries.sql");
-            context.Database
-                .SqlQuery<Bahmamamu>(query, lowSalary, highSalary)
-                .ToList()
-                .ForEach(r => Console.WriteLine($"{r.Name} - {r.Salary}"));
+                    @"..\..\Clients\Exercise_18_Employees_Maximum_Salaries.sql");
 
+            using (var context = new SoftUniContext())
+            {
+                var result = context.Database
+                .SqlQuery<Emp>(query, lowSalary, highSalary)
+                .ToList();
+                result.ForEach(r => Console.WriteLine($"{r.Name} - {r.Salary}"));
+            }
+                
+            #region for()
+            /*
+            var employees = context.Employees
+                .OrderBy(e => e.DepartmentID)
+                .ThenByDescending(e => e.Salary)
+                .ToList();
 
-            //var employees = context.Employees
-            //    .OrderBy(e => e.DepartmentID)
-            //    .ThenByDescending(e => e.Salary)
-            //    .ToList();
+            var list = new List<Employee>();
+            list.Add(employees[0]);
+            for (var i = 0; i < employees.Count; i++)
+            {
+                if (list[list.Count - 1].DepartmentID !=
+                    employees[i].DepartmentID)
+                {
+                    list.Add(employees[i]);
+                }
+            }
+            foreach (var e in list)
+            {
+                if (e.Salary < 30000 || e.Salary > 70000)
+                {
+                    Console.WriteLine($"{e.Department.Name} - {e.Salary}");
+                }
+            }
+            */
+            #endregion
 
-            //var list = new List<Employee>();
-            //list.Add(employees[0]);
-            //for (var i = 0; i < employees.Count; i++)
-            //{
-            //    if (list[list.Count - 1].DepartmentID !=
-            //        employees[i].DepartmentID)
-            //    {
-            //        list.Add(employees[i]);
-            //    }
-            //}
-
-            //foreach (var e in list)
-            //{
-            //    if (e.Salary < 30000 || e.Salary > 70000)
-            //    {
-            //        Console.WriteLine($"{e.Department.Name} - {e.Salary}");
-            //    }
-            //}
-
+            #region linq
+            /*
+            var employees = context.Employees
+                .GroupBy(e => e.DepartmentID)
+                .Select(e => new { Salary = e.Max(d => d.Salary), e.LastOrDefault().Department })
+                .Where(e => e.Salary < 30000 || e.Salary > 70000)
+                .ToList();
+            foreach (var e in employees)
+            {
+                Console.WriteLine($"{e.Department.Name} - {e.Salary}");
+            }
+            */
+            #endregion
         }
     }
-    class Bahmamamu
+    class Emp
     {
         public int Rank { get; set; }
         public string Name { get; set; }

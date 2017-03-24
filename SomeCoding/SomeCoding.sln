@@ -5,7 +5,13 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple", "Simple\Simple.csproj", "{F0F46248-92C9-4D67-8DFD-4C574C9C5543}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFServiceLocator", "EFServiceLocator\EFServiceLocator.csproj", "{4735D687-48CB-48A6-B597-25B1F9FE69DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCommandPattern", "EFCommandPattern\EFCommandPattern.csproj", "{3EE48889-BE89-4470-B1D9-7CAF22F8AC76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCommandPatternExtended", "EFCommandPatternExtended\EFCommandPatternExtended.csproj", "{43B11785-EAB9-43A8-A7EB-4380107AE572}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCommandPatternReflection", "EFCommandPatternReflection\EFCommandPatternReflection.csproj", "{12380AA9-764B-4FC4-B5C4-86C798970D87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFSingleton", "EFSingleton\EFSingleton.csproj", "{4735D687-48CB-48A6-B597-25B1F9FE69DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +23,18 @@ Global
 		{F0F46248-92C9-4D67-8DFD-4C574C9C5543}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0F46248-92C9-4D67-8DFD-4C574C9C5543}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0F46248-92C9-4D67-8DFD-4C574C9C5543}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EE48889-BE89-4470-B1D9-7CAF22F8AC76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EE48889-BE89-4470-B1D9-7CAF22F8AC76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EE48889-BE89-4470-B1D9-7CAF22F8AC76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EE48889-BE89-4470-B1D9-7CAF22F8AC76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43B11785-EAB9-43A8-A7EB-4380107AE572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43B11785-EAB9-43A8-A7EB-4380107AE572}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43B11785-EAB9-43A8-A7EB-4380107AE572}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43B11785-EAB9-43A8-A7EB-4380107AE572}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12380AA9-764B-4FC4-B5C4-86C798970D87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12380AA9-764B-4FC4-B5C4-86C798970D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12380AA9-764B-4FC4-B5C4-86C798970D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12380AA9-764B-4FC4-B5C4-86C798970D87}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4735D687-48CB-48A6-B597-25B1F9FE69DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4735D687-48CB-48A6-B597-25B1F9FE69DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4735D687-48CB-48A6-B597-25B1F9FE69DB}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -18,9 +18,11 @@
                 .Split(new char[] { ' ' },
                     StringSplitOptions.RemoveEmptyEntries);
 
-            var context = new BookShopContext();
-
-            var books = context.Books.Include(b => b.Categories).ToList();
+            var books = new List<Book>();
+            using (var context = new BookShopContext())
+            {
+                books = context.Books.Include(b => b.Categories).ToList();
+            }
 
             books.Where(b =>
             {
@@ -34,7 +36,6 @@
             .OrderBy(b => b.Id)
             .ToList()
             .ForEach(b => Console.WriteLine(b.Title));
-
         }
     }
 }

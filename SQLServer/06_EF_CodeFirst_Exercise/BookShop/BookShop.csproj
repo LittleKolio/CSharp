@@ -70,6 +70,7 @@
     <None Include="Clients\Exercise_09_Book_Titles_Search.cs" />
     <None Include="Clients\Exercise_16_Stored_Procedure.cs" />
     <None Include="Clients\Exercise_14_Increase_Book_Copies.cs" />
+    <None Include="Clients\Exercise_11_Total_Book_Copies.cs" />
     <Compile Include="Data\BookShopContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Author.cs" />
@@ -84,7 +85,10 @@
     <None Include="Import\categories.csv" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Clients\Exercise_11_Total_Book_Copies.sql" />
+    <Content Include="Clients\Exercise_16_Stored_Procedure.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

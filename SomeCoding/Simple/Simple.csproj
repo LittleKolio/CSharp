@@ -47,6 +47,7 @@
     <None Include="Factorial.cs" />
     <None Include="PascalTriangle.cs" />
     <None Include="MatrixConsoleReadLine.cs" />
+    <Compile Include="Labyrinth.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -14,11 +14,13 @@
         {
             var input = Console.ReadLine();
 
-            var context = new BookShopContext();
-            var authors = context.Authors
-                .Where(a => a.FirstName.Substring(a.FirstName.Length - input.Length) == input)
-                .ToList();
-            authors.ForEach(a => Console.WriteLine($"{a.FirstName} {a.LastName}"));
+            using (var context = new BookShopContext())
+            {
+                var authors = context.Authors
+                    .Where(a => a.FirstName.Substring(a.FirstName.Length - input.Length) == input)
+                    .ToList();
+                authors.ForEach(a => Console.WriteLine($"{a.FirstName} {a.LastName}"));
+            }
         }
     }
 }

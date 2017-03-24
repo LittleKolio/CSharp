@@ -80,18 +80,5 @@ namespace SoftUni.Data
                 .Property(e => e.Name)
                 .IsUnicode(false);
         }
-
-        public virtual List<Project> AllProjects(string firstName, string lastName)
-        {
-            var firstParam = new SqlParameter("@firstName", firstName);
-            var lastParam = new SqlParameter("@lastName", lastName);
-
-            var context = new SoftUniContext();
-
-            return context.Database
-                .SqlQuery<Project>("AllProjects @firstName, @lastName",
-                    firstParam, lastParam)
-                .ToList();
-        }
     }
 }

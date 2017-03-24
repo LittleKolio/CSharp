@@ -1,8 +1,13 @@
 ﻿CREATE PROCEDURE AllProjects 
-	@firstName varchar(100),
-	@lastName varchar(100)
+	@firstName varchar(50),
+	@lastName varchar(50)
 AS BEGIN
-SELECT p.Description, p.EndDate, p.Name, p.ProjectID, p.StartDate
+SELECT 
+	p.Description, 
+	p.EndDate, 
+	p.Name, 
+	p.ProjectID, 
+	p.StartDate
 FROM Employees AS e
 JOIN EmployeesProjects AS ep
 	ON ep.EmployeeID = e.EmployeeID
