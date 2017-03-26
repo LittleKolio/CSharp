@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace Labyrinth
+﻿namespace Labyrinth
 {
-	class MainClass
+    using System;
+
+    class MainClass
 	{
 //		static char[,] lab = {
 //			{' ', ' ', ' ', '*', ' ', ' ', ' '},

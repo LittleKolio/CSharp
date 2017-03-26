@@ -37,6 +37,7 @@
                     .ForMember(dto => dto.ManagerLastname, 
                         opt => opt.MapFrom(e => e.Manager.Lastname));
             });
+            Mapper.Configuration.AssertConfigurationIsValid();
         }
     }
 }

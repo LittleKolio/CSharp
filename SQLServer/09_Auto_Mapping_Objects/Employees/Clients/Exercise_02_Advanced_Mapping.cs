@@ -15,7 +15,6 @@
         static void Main()
         {
             MapperInitialize();
-            Mapper.Configuration.AssertConfigurationIsValid();
 
             using (var context = new EmployeesContext())
             {
@@ -53,6 +52,7 @@
                         dto => dto.SubCount,
                         opt => opt.MapFrom(src => src.Subordinates.Count));
             });
+            Mapper.Configuration.AssertConfigurationIsValid();
         }
     }
 }

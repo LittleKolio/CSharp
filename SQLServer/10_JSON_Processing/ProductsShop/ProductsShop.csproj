@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{07D95763-C33D-45D1-BCAD-7DB0584C42C8}</ProjectGuid>
+    <ProjectGuid>{AA45EDDA-6F8F-4D24-8FEF-CC2E5D5BBEB5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Employees</RootNamespace>
-    <AssemblyName>Employees</AssemblyName>
+    <RootNamespace>ProductsShop</RootNamespace>
+    <AssemblyName>ProductsShop</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,11 +45,16 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,29 +63,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clients\Exercise_02_Advanced_Mapping.cs" />
-    <None Include="Clients\Exercise_03_Projection.cs" />
-    <None Include="Clients\Test_Custom_Type_Converters.cs" />
-    <Compile Include="Data\EmployeesContext.cs" />
-    <Compile Include="Migrations\201703231034365_x.cs" />
-    <Compile Include="Migrations\201703231034365_x.Designer.cs">
-      <DependentUpon>201703231034365_x.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Dto\ManagerDto.cs" />
-    <Compile Include="Models\Employee.cs" />
-    <Compile Include="Models\Dto\EmployeeDto.cs" />
+    <None Include="Clients\Query_01_Products_In_Range.cs" />
+    <None Include="Clients\Query_02_Successfully_Sold_Products.cs" />
+    <None Include="Clients\Query_03_Categories_By_Products_Count.cs" />
+    <Compile Include="Clients\Query_04_Users_And_Products.cs" />
+    <Compile Include="Data\ProductsShopContext.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Configuration\ProductConfig.cs" />
+    <Compile Include="Models\Configuration\UserConfig.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\User.cs" />
+    <None Include="Clients\Starup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Clients\Exercise_01_Simple_Mapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Import\cars.json" />
+    <None Include="Import\categories.json" />
+    <None Include="Import\customers.json" />
+    <None Include="Import\parts.json" />
+    <None Include="Import\products.json" />
+    <None Include="Import\suppliers.json" />
+    <None Include="Import\users.json" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703231034365_x.resx">
-      <DependentUpon>201703231034365_x.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
