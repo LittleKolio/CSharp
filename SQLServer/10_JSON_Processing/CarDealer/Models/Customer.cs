@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Customer can buy many cars
@@ -17,7 +18,7 @@
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         public bool IsYoungDriver { get; set; }
-
+        [JsonIgnore]
         public virtual ICollection<Sale> Sales
         {
             get { return this.sales; }

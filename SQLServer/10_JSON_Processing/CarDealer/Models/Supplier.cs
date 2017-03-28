@@ -16,7 +16,7 @@
         }
         public int Id { get; set; }
         public string Name { get; set; }
-        public bool IsImported { get; set; }
+        public bool isImporter { get; set; }
 
         public virtual ICollection<Part> Parts
         {

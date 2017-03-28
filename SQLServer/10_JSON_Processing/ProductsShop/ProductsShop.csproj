@@ -78,12 +78,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Import\cars.json" />
     <None Include="Import\categories.json" />
-    <None Include="Import\customers.json" />
-    <None Include="Import\parts.json" />
     <None Include="Import\products.json" />
-    <None Include="Import\suppliers.json" />
     <None Include="Import\users.json" />
     <None Include="packages.config" />
   </ItemGroup>
