@@ -9,8 +9,8 @@
         private static ServiceLocator instance;
         private Dictionary<string, Something> services;
 
-				// constructor is 'private' that
-				// means we can call him only from Instance{ get }
+		// constructor is 'private' that
+		// means we can call him only from Instance { get }
         private ServiceLocator()
         {
             this.services = new Dictionary<string, Something>();
@@ -20,7 +20,7 @@
         {
             get
             {
-								// instance is 'static' so ... without 'this'
+				// instance is 'static' so ... without 'this'
                 if (instance == null) { instance = new ServiceLocator(); }
                 return instance;
             }

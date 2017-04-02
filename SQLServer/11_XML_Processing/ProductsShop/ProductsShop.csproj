@@ -1,17 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EBBA618C-0E90-4E7D-9957-29EC8DD6766B}</ProjectGuid>
+    <ProjectGuid>{AA45EDDA-6F8F-4D24-8FEF-CC2E5D5BBEB5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Introduction_DB_Apps_Exercises</RootNamespace>
-    <AssemblyName>Introduction_DB_Apps_Exercises</AssemblyName>
+    <RootNamespace>ProductsShop</RootNamespace>
+    <AssemblyName>ProductsShop</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -36,8 +33,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,42 +63,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Exercise_01\Exercise_01_Initial_Setup.cs" />
-    <None Include="Exercise_02\Exercise_02_Get_Villains.cs" />
-    <None Include="Exercise_03\Exercise_03_Get_Minion_Names.cs" />
-    <Compile Include="Exercise_04\Exercise_04_Add_Minion.cs" />
-    <None Include="Exercise_05\Exercise_05_Change_Town_Names_Casing.cs" />
-    <None Include="Exercise_06\Exercise_06_Remove_Villain.cs" />
-    <None Include="Lab\Intro_Insert.cs" />
-    <None Include="Lab\Intro_Select.cs" />
-    <None Include="Lab\Project_Menager.cs" />
+    <None Include="Clients\Query_01_Products_In_Range.cs" />
+    <Compile Include="Data\Init.cs" />
+    <Compile Include="Data\ProductsShopContext.cs" />
+    <Compile Include="Data\ProductsShopInitializer.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Configuration\ProductConfig.cs" />
+    <Compile Include="Models\Configuration\UserConfig.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Clients\Starup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="Exercise_01\Exercise_01_CreateTables.sql" />
-    <Content Include="Exercise_04\Exercise_04_InsertMinionVillain.sql" />
-    <Content Include="Exercise_04\Exercise_04_InsertMinion.sql" />
-    <Content Include="Exercise_04\Exercise_04_InsertTown.sql" />
-    <Content Include="Exercise_01\Exercise_01_InsertValues.sql" />
-    <Content Include="Exercise_04\Exercise_04_InsertVillain.sql" />
-    <Content Include="Exercise_02\Exercise_02_SelectVillains.sql" />
-    <Content Include="Exercise_06\Exercise_06_trigger_DeleteVillains.sql" />
-    <Content Include="Exercise_04\Exercise_04_trigger_InsertMinionVillain.sql" />
-    <Content Include="Exercise_04\Exercise_04_trigger_InsertMinion.sql" />
-    <Content Include="Exercise_04\Exercise_04_trigger_InsertTowns.sql" />
-    <Content Include="Exercise_04\Exercise_04_trigger_InsertVillains.sql" />
-    <Content Include="Exercise_03\Exercise_03_VillainInfo.sql" />
-    <Content Include="Exercise_06\Exercise_06_VillainInfo.sql" />
+    <Content Include="Import\categories.xml" />
+    <Content Include="Import\products.xml" />
+    <Content Include="Import\users.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(SQLDBExtensionsRefPath)' != ''" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(SQLDBExtensionsRefPath)' == ''" />
-  <PropertyGroup>
-    <SsdtUnitTestVersion>2.0</SsdtUnitTestVersion>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
