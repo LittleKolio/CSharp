@@ -8,7 +8,7 @@
         public string Execute(string[] cmdParam)
         {
             Check.CheckLength(0, cmdParam);
-            //Environment.Exit(0);
+            Environment.Exit(0);
             return "Bye";
         }
     }

@@ -24,6 +24,11 @@
                     result = exit.Execute(cmdParam);
                     break;
 
+                case "RegisterUser":
+                    var registerUser = new CmdRegisterUser();
+                    result = registerUser.Executer(cmdParam);
+                    break;
+
                 default: throw new NotSupportedException(
                   $"Command {cmd} not valid!");
             }

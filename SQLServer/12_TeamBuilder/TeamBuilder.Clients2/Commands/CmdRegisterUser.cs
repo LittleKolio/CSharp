@@ -1,5 +1,6 @@
 ﻿namespace TeamBuilder.Clients2.Commands
 {
+    using Data;
     using Models;
     using System;
     using System.Linq;
@@ -20,7 +21,7 @@
             Check.CheckLength(7, cmdParam);
             var username = cmdParam[0];
             if (username.Length < Constans.MinLength_Username ||
-                username.Length < Constans.MaxLength_Username)
+                username.Length > Constans.MaxLength_Username)
             {
                 throw new ArgumentException(string.Format(
                     Constans.ErrorMessages.UsernameNotValid,
@@ -57,15 +58,61 @@
             var isNumber = int.TryParse(cmdParam[5], out age);
             if (!isNumber || age <= 0)
             {
-                throw new ArgumentException(string.Format(
-                    Constans.ErrorMessages.AgeNotValid,
-                    password
-                    ));
+                throw new ArgumentException(
+                    Constans.ErrorMessages.AgeNotValid);
             }
 
             Gender gender;
             var isGender = Enum.TryParse(cmdParam[6], out gender);
-            return "";
+            if (!isGender)
+            {
+                throw new ArgumentException(
+                    Constans.ErrorMessages.GenderNotValid);
+            }
+
+            if (DBServices.IsUserExisting(username))
+            {
+                throw new InvalidOperationException(string.Format(
+                    Constans.ErrorMessages.UsernameIsTaken,
+                    username
+                    ));
+            }
+
+            this.RegisterUser(
+                username,
+                password,
+                firstname,
+                lastname,
+                age,
+                gender
+                );
+
+            return $"User {username} was registered successfully!";
+        }
+
+        private void RegisterUser(
+            string username,
+            string password,
+            string firstname,
+            string lastname,
+            int age,
+            Gender gender
+            )
+        {
+            var context = new TeamBuilderContext();
+            using (context)
+            {
+                context.Users.Add(new User
+                {
+                    Username = username,
+                    Password = password,
+                    FirstName = firstname,
+                    LastName = lastname,
+                    Age = age,
+                    Gender = gender
+                });
+                context.SaveChanges();
+            }
         }
     }
 }
