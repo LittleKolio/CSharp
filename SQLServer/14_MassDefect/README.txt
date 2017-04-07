@@ -5,7 +5,6 @@
 		├─ Config - Fluent API
 		├─ Dto - Import / Export models
 		├─ Store - calls(input / output) to DB and data validation
-		├─┬─────────────────────────────────────────────────────────────────┤
 		
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│ MassDefect.Export/Import
