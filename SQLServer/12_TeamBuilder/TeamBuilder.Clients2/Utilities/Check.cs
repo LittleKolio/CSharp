@@ -9,7 +9,7 @@
             if (length != array.Length)
             {
                 throw new FormatException(
-                    Constans.ErrorMessages.InvalidArgumentsCount);
+                    Constants.ErrorMessages.InvalidArgumentsCount);
             }
         }
     }

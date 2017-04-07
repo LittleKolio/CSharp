@@ -11,9 +11,6 @@
 
     public class Event
     {
-        private DateTime startDate;
-        private DateTime endDate;
-
         public Event()
         {
             this.Teams = new HashSet<Team>();
@@ -27,29 +24,11 @@
 
         [DisplayFormat(ApplyFormatInEditMode = true, 
             DataFormatString = "DD/MM/YYYY HH:mm")]
-        public DateTime StartDate
-        {
-            get { return this.startDate; }
-            set
-            {
-                if (this.endDate != null && 
-                    this.endDate > value)
-                { this.startDate = value; }
-            }
-        }
+        public DateTime StartDate { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, 
             DataFormatString = "DD/MM/YYYY HH:mm")]
-        public DateTime EndDate
-        {
-            get { return this.endDate; }
-            set
-            {
-                if (this.startDate != null && 
-                    this.startDate < value)
-                { this.endDate = value; }
-            }
-        }
+        public DateTime EndDate { get; set; }
 
         public int CreatorId { get; set; }
         public virtual User Creator { get; set; }

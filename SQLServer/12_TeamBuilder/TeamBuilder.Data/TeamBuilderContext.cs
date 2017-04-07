@@ -11,9 +11,9 @@ namespace TeamBuilder.Data
         public TeamBuilderContext()
             : base("name=TeamBuilderContext")
         {
-            Database.SetInitializer(
-                new DropCreateDatabaseAlways<TeamBuilderContext>()
-                );
+            //Database.SetInitializer(
+            //    new DropCreateDatabaseAlways<TeamBuilderContext>()
+            //    );
         }
 
         public virtual DbSet<User> Users { get; set; }

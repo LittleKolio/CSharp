@@ -1,6 +1,6 @@
 ﻿namespace TeamBuilder.Clients2.Utilities
 {
-    public class Constans
+    public class Constants
     {
         public const int MinLength_Username = 3;
         public const int MaxLength_Username = 25;
@@ -43,7 +43,7 @@
             public const string UserOrPasswordIsInvalid = "Invalid username or password!";
 
             public const string InvalidDateFormat =
-                                      "Please insert the dates in format: [dd/MM/yyyy HH:mm]!";
+                "Please insert the dates in format: [dd/MM/yyyy HH:mm]!";
 
             // Team error messages.
             public const string InvalidAcronym = "Acronym {0} not valid!";

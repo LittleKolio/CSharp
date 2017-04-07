@@ -6,56 +6,99 @@
 
     public class DBServices
     {
-        public static bool IsTeamExisting(string teamName)
+        #region User
+        public static User GetUser(string username)
         {
             var context = new TeamBuilderContext();
             using (context)
             {
-                return context.Teams
-                    .Any(t => t.Name == teamName);
+                return context.Users
+                    .FirstOrDefault(t => 
+                        t.Username == username &&
+                        t.IsDeleted == false);
             }
         }
+
         public static bool IsUserExisting(string username)
         {
             var context = new TeamBuilderContext();
             using (context)
             {
                 return context.Users
-                    .Any(t => t.Username == username);
+                    .Any(t => 
+                        t.Username == username &&
+                        t.IsDeleted == false);
             }
         }
-        public static bool IsInviteExisting(string teamName, User user)
+        public static User GetUserByCredentials(string username, string password)
         {
             var context = new TeamBuilderContext();
             using (context)
             {
-                return context.Invitations
-                    .Any(i => 
-                        i.Team.Name == teamName && 
-                        i.InvitedUserId == user.Id &&
-                        i.IsActive);
+                return context.Users
+                    .FirstOrDefault(t => 
+                        t.Username == username && 
+                        t.Password == password &&
+                        t.IsDeleted == false);
             }
         }
-        public static bool IsUserCreatorOfTeam(string teamName, User user)
+        public static void DeleteUser(User user)
+        {
+            var context = new TeamBuilderContext();
+            using (context)
+            {
+                context.Users.Attach(user);
+                user.IsDeleted = true;
+                context.SaveChanges();
+            }
+        }
+        public static bool IsUserInTeam(string teamname, User user)
+        {
+            var context = new TeamBuilderContext();
+            using (context)
+            {
+                return context.Teams.Any(t =>
+                    t.Name == teamname &&
+                    (t.Users.Any(u => u.Id == user.Id) || t.CreatorId == user.Id));
+            }
+        }
+        public static void AddCurrentUserToTeam(string teamname, User user)
+        {
+            var context = new TeamBuilderContext();
+            using (context)
+            {
+                context.Users.Attach(user);
+                var team = context.Teams.First(t => t.Name == teamname);
+                team.Users.Add(user);
+                context.Invitations
+                    .First(i => 
+                        i.TeamId == team.Id && 
+                        i.InvitedUserId == user.Id)
+                    .IsActive = false;
+                context.SaveChanges();
+            }
+        }
+        #endregion
+
+        #region Team
+        public static bool IsTeamExisting(string teamname)
+        {
+            var context = new TeamBuilderContext();
+            using (context)
+            {
+                return context.Teams
+                    .Any(t => t.Name == teamname);
+            }
+        }
+        public static bool IsUserCreatorOfTeam(string teamname, User user)
         {
             var context = new TeamBuilderContext();
             using (context)
             {
                 return context.Teams
                     .Any(t => 
-                        t.Name == teamName && 
+                        t.Name == teamname && 
                         t.CreatorId == user.Id);
-            }
-        }
-        public static bool IsUserCreatorOfEvent(string eventName, User user)
-        {
-            var context = new TeamBuilderContext();
-            using (context)
-            {
-                return context.Events
-                    .Any(e =>
-                        e.Name == eventName &&
-                        e.CreatorId == user.Id);
             }
         }
         public static bool IsMemberOfTeam(string teamName, string username)
@@ -69,14 +112,83 @@
                         t.Users.Any(u => u.Username == username));
             }
         }
-        public static bool IsEventExisting(string eventName)
+        public static void CreateTeam(Team team, User user)
+        {
+            var context = new TeamBuilderContext();
+            using (context)
+            {
+                context.Users.Attach(user);
+                team.Creator = user;
+                context.Teams.Add(team);
+                context.SaveChanges();
+            }
+        }
+        #endregion
+
+        #region Event
+        public static bool IsEventExisting(string eventname)
         {
             var context = new TeamBuilderContext();
             using (context)
             {
                 return context.Events
-                    .Any(e => e.Name == eventName);
+                    .Any(e => e.Name == eventname);
             }
         }
+        public static bool IsUserCreatorOfEvent(string eventname, User user)
+        {
+            var context = new TeamBuilderContext();
+            using (context)
+            {
+                return context.Events
+                    .Any(e =>
+                        e.Name == eventname &&
+                        e.CreatorId == user.Id);
+            }
+        }
+        public static void CreateEvent(Event newEvent, User user)
+        {
+            var context = new TeamBuilderContext();
+            using (context)
+            {
+                context.Users.Attach(user);
+                newEvent.Creator = user;
+                context.Events.Add(newEvent);
+                context.SaveChanges();
+            }
+        }
+        #endregion
+
+        #region Invitation
+        public static bool IsInviteExisting(string teamname, string username)
+        {
+            var context = new TeamBuilderContext();
+            using (context)
+            {
+                var getUserId = context.Users.First(u => u.Username == username).Id;
+                return context.Invitations
+                    .Any(i => 
+                        i.Team.Name == teamname && 
+                        i.InvitedUserId == getUserId &&
+                        i.IsActive);
+            }
+        }
+        public static void CreateInvitation(string teamname, string username)
+        {
+            var context = new TeamBuilderContext();
+            using (context)
+            {
+                var team = context.Teams.First(t => t.Name == teamname);
+                var user = context.Users.First(u => u.Username == username);
+                context.Invitations.Add(new Invitation
+                {
+                    InvitedUser = user,
+                    Team = team,
+                    IsActive = true
+                });
+                context.SaveChanges();
+            }
+        }
+        #endregion
     }
 }

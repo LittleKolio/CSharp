@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DD25EB86-0F9B-451B-9A7B-77C8B24DDD8C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{53FE9690-25A4-49A7-B548-50D16B12E881}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TeamBuilder.Clients2</RootNamespace>
-    <AssemblyName>TeamBuilder.Clients2</AssemblyName>
+    <RootNamespace>MassDefect.Data</RootNamespace>
+    <AssemblyName>MassDefect.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -44,6 +41,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,40 +51,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application.cs" />
-    <Compile Include="Commands\CmdAcceptInvite.cs" />
-    <Compile Include="Commands\CmdCreateEvent.cs" />
-    <Compile Include="Commands\CmdCreateTeam.cs" />
-    <Compile Include="Commands\CmdDeleteUser.cs" />
-    <Compile Include="Commands\CmdInviteToTeam.cs" />
-    <Compile Include="Commands\CmdTest.cs" />
-    <Compile Include="Utilities\Authentication.cs" />
-    <Compile Include="Commands\CmdExit.cs" />
-    <Compile Include="Commands\CmdLogin.cs" />
-    <Compile Include="Commands\CmdLogout.cs" />
-    <Compile Include="Commands\CmdRegisterUser.cs" />
+    <Compile Include="Config\AnomalyConfig.cs" />
+    <Compile Include="Config\PlanetConfig.cs" />
+    <Compile Include="Dto\AnomalyDto.cs" />
+    <Compile Include="Dto\AnomalyVictimDto.cs" />
+    <Compile Include="Dto\AnomalyListVictimDto.cs" />
+    <Compile Include="Dto\ExportPlanetDto.cs" />
+    <Compile Include="Dto\PersonDto.cs" />
+    <Compile Include="Dto\PlanetDto.cs" />
+    <Compile Include="Dto\SolarSystemDto.cs" />
+    <Compile Include="Dto\StarDto.cs" />
+    <Compile Include="Init.cs" />
+    <Compile Include="MassDefectContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\Check.cs" />
-    <Compile Include="Utilities\Constants.cs" />
-    <Compile Include="Utilities\Controller.cs" />
-    <Compile Include="Utilities\DBServices.cs" />
-    <Compile Include="Utilities\Switcher.cs" />
+    <Compile Include="Store\AnomalyStore.cs" />
+    <Compile Include="Store\PersonStore.cs" />
+    <Compile Include="Store\PlanetStore.cs" />
+    <Compile Include="Store\SolarSystemStore.cs" />
+    <Compile Include="Store\StarStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\TeamBuilder.Data\TeamBuilder.Data.csproj">
-      <Project>{ad837e3a-4118-4dca-ad13-156fe4368b3c}</Project>
-      <Name>TeamBuilder.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TeamBuilder.Models\TeamBuilder.Models.csproj">
-      <Project>{ee9f9a86-3978-47a2-8f4d-2597034c89f1}</Project>
-      <Name>TeamBuilder.Models</Name>
+    <ProjectReference Include="..\MassDefect.Models\MassDefect.Models.csproj">
+      <Project>{5b0bd019-d4cb-4603-81e1-43113a878372}</Project>
+      <Name>MassDefect.Models</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -21,7 +21,8 @@
         {
             if (string.IsNullOrWhiteSpace(wrongTag))
             {
-                throw new InvalidOperationException("Cannot convert empty string to a valid tag");
+                throw new InvalidOperationException(
+                    "Cannot convert empty string to a valid tag");
             }
 
             string transformedTag = wrongTag;

@@ -20,11 +20,11 @@
 
             Check.CheckLength(7, cmdParam);
             var username = cmdParam[0];
-            if (username.Length < Constans.MinLength_Username ||
-                username.Length > Constans.MaxLength_Username)
+            if (username.Length < Constants.MinLength_Username ||
+                username.Length > Constants.MaxLength_Username)
             {
                 throw new ArgumentException(string.Format(
-                    Constans.ErrorMessages.UsernameNotValid,
+                    Constants.ErrorMessages.UsernameNotValid,
                     username
                     ));
             }
@@ -37,7 +37,7 @@
                 !password.Any(char.IsUpper))
             {
                 throw new ArgumentException(string.Format(
-                    Constans.ErrorMessages.PasswordNotValid,
+                    Constants.ErrorMessages.PasswordNotValid,
                     password
                     ));
             }
@@ -46,7 +46,7 @@
             if (password != repPassword)
             {
                 throw new ArgumentException(string.Format(
-                    Constans.ErrorMessages.PasswordDoesNotMatch,
+                    Constants.ErrorMessages.PasswordDoesNotMatch,
                     password
                     ));
             }
@@ -59,7 +59,7 @@
             if (!isNumber || age <= 0)
             {
                 throw new ArgumentException(
-                    Constans.ErrorMessages.AgeNotValid);
+                    Constants.ErrorMessages.AgeNotValid);
             }
 
             Gender gender;
@@ -67,13 +67,13 @@
             if (!isGender)
             {
                 throw new ArgumentException(
-                    Constans.ErrorMessages.GenderNotValid);
+                    Constants.ErrorMessages.GenderNotValid);
             }
 
             if (DBServices.IsUserExisting(username))
             {
                 throw new InvalidOperationException(string.Format(
-                    Constans.ErrorMessages.UsernameIsTaken,
+                    Constants.ErrorMessages.UsernameIsTaken,
                     username
                     ));
             }

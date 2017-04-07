@@ -16,7 +16,7 @@
             //Init.InitDB();
 
             //2. test Import from Logic
-            //var books = Import.XmlImpotr(@"../../../books.xml");
+            //var books = Import.XmlImpotr(@"../../../resources/books.xml");
 
             //3. test Controller from Data
             //var id = Controller.GetGenreId("Fantasy");
@@ -26,7 +26,7 @@
             //var id = Controller.GetAuthorId("Gambardella, Matthew");
             //Console.WriteLine(id);
 
-            var books = Import.XmlImpotr(@"../../../books.xml");
+            var books = Import.XmlImpotr(@"../../../resources/books.xml");
             foreach (var book in books)
             {
                 Controller.AddBook(book);

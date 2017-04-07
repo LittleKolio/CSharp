@@ -19,7 +19,42 @@
 
             switch (cmd)
             {
-                case "exit":
+                case "test":
+                    var test = new CmdTest();
+                    result = test.Execute(cmdParam);
+                    break;
+
+                case "InviteToTeam":
+                    var inviteUser = new CmdInviteToTeam();
+                    result = inviteUser.Execute(cmdParam);
+                    break;
+
+                case "CreateTeam":
+                    var createTeam = new CmdCreateTeam();
+                    result = createTeam.Execute(cmdParam);
+                    break;
+
+                case "CreateEvent":
+                    var createEvent = new CmdCreateEvent();
+                    result = createEvent.Execute(cmdParam);
+                    break;
+
+                case "DeleteUser":
+                    var deleteUser = new CmdDeleteUser();
+                    result = deleteUser.Execute(cmdParam);
+                    break;
+
+                case "Logout":
+                    var logoutUser = new CmdLogout();
+                    result = logoutUser.Execute(cmdParam);
+                    break;
+
+                case "Login":
+                    var loginUser = new CmdLogin();
+                    result = loginUser.Execute(cmdParam);
+                    break;
+
+                case "Exit":
                     var exit = new CmdExit();
                     result = exit.Execute(cmdParam);
                     break;
