@@ -30,8 +30,16 @@
                     Constants.ErrorMessages.InviteIsAlreadySent);
             }
 
-            if (!DBServices.IsUserInTeam(
-                teamname, Authentication.GetCurrentUser()))
+            var isCurrentUserInTeam = DBServices.IsUserInTeam(
+                teamname, Authentication.GetCurrentUser());
+            var isCurrentUserCreatorOfTeam = DBServices.IsUserCreatorOfTeam(
+                teamname, Authentication.GetCurrentUser());
+            var isUserAlreadyInTeam = DBServices.IsUserInTeam(
+                teamname, DBServices.GetUser(username));
+
+            if (!isCurrentUserInTeam || 
+                !isCurrentUserCreatorOfTeam || 
+                isUserAlreadyInTeam)
             {
                 throw new InvalidOperationException(
                     Constants.ErrorMessages.NotAllowed);

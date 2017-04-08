@@ -57,6 +57,7 @@
     <Compile Include="Commands\CmdCreateEvent.cs" />
     <Compile Include="Commands\CmdCreateTeam.cs" />
     <Compile Include="Commands\CmdDeleteUser.cs" />
+    <Compile Include="Commands\CmdDisband.cs" />
     <Compile Include="Commands\CmdInviteToTeam.cs" />
     <Compile Include="Commands\CmdTest.cs" />
     <Compile Include="Utilities\Authentication.cs" />

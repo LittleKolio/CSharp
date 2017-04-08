@@ -8,7 +8,7 @@
 
     public class CmdRegisterUser
     {
-        public string Executer(string[] cmdParam)
+        public string Execute(string[] cmdParam)
         {
             //0. <username> 
             //1. <password> 

@@ -5,7 +5,7 @@
 		├─ Data - CarDealerInitializer
 		├─┬─────────────────────────────────────────────────────────────────┤
 			├─ custom initializer
-			├─ override seed XML
+			├─ override Seed() - XML
 
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│ ProductsShop
@@ -14,4 +14,4 @@
 		├─ Data - ProductsShopInitializer
 		├─┬─────────────────────────────────────────────────────────────────┤
 			├─ custom initializer
-			├─ override seed XML
+			├─ override Seed() - XML

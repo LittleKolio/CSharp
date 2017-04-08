@@ -7,26 +7,41 @@
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│TeamBuilder.Clients2
 	├─┬───────────────────────────────────────────────────────────────────┘
-		├─ Switch Case - call command
+		├─ /* Switch Case - call command */
+		├─██ Reflection
 		├─ Utilities
 		├─┬─────────────────────────────────────────────────────────────────┤
 			├─ Constants - contants and error message string
 			├─ Check - input parameter length
-			├─ Authentication - save current user
+			├─ Authentication - saves current user
+			├─ Controller
+			├─ DBServices
+			├─ Switcher
 			
 ╟─┬─────────────────────────────────────────────────────────────────────┐
-	│TeamBuilder.Data
+	│ TeamBuilder.Data
 	├─┬───────────────────────────────────────────────────────────────────┘
 		├─ Config - Fluent API
-		
+		├─┬─────────────────────────────────────────────────────────────────┤
+			├─ Init
+			├─ TeamBuilderContext
+			
 ╟─┬─────────────────────────────────────────────────────────────────────┐
-	│TeamBuilder.Models
+	│ TeamBuilder.Models
 	├─┬───────────────────────────────────────────────────────────────────┘
-		├─ Attributes - PasswordAttribute
+		├─ Attributes - not needed
+		├─┬─────────────────────────────────────────────────────────────────┤
+			├─ PasswordAttribute
+			├─ ExactLengthAttribute
 		
-
+╟─├─┬───────────────────────────────────────────────────────────────────┤
+		├─ Event
+		├─ Invitation
+		├─ Team
+		├─ User
+		
 ╟─┬─────────────────────────────────────────────────────────────────────┐
-	│DateTime.TryParseExact
+	│ DateTime.TryParseExact
 	├─┬───────────────────────────────────────────────────────────────────┘	
 		DateTime startDateTime;
 		var tryParse_startDateTime = DateTime.TryParseExact(
@@ -47,4 +62,39 @@
 		{
 			throw new ArgumentException(
 				Constants.ErrorMessages.GenderNotValid);
+		}
+	
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Reflection
+	├─┬───────────────────────────────────────────────────────────────────┘
+	
+		public string GetCommand(string input)
+		{
+			var result = string.Empty;
+
+			var inputParam = input.Split(
+				new char[] { ' ', '\t' },
+				StringSplitOptions.RemoveEmptyEntries);
+			var cmdString = inputParam.Length > 0 ? inputParam[0] : string.Empty;
+			var cmdParam = inputParam.Skip(1).ToArray();
+
+			Type commandType = Type.GetType(
+				$"TeamBuilder.Clients2.Commands.Cmd{cmdString}");
+
+			if (commandType == null)
+			{
+				throw new NotSupportedException(
+					$"Command {cmdString} not supported!");
+			}
+
+			object command = Activator.CreateInstance(commandType);
+
+			MethodInfo executeMethod = command.GetType()
+				.GetMethod("Execute");
+
+			result = executeMethod.Invoke(
+				command, new object[] { cmdParam }
+				) as string;
+				
+			return result;
 		}

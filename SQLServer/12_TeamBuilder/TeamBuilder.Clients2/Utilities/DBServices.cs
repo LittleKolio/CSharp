@@ -3,6 +3,7 @@
     using Data;
     using System.Linq;
     using TeamBuilder.Models;
+    using System;
 
     public class DBServices
     {
@@ -30,6 +31,38 @@
                         t.IsDeleted == false);
             }
         }
+
+        public static void DisbandTeam(string teamname)
+        {
+            var context = new TeamBuilderContext();
+            using (context)
+            {
+                var team = context.Teams.First(t => t.Name == teamname);
+                context.Teams.Remove(team);
+                context.SaveChanges();
+            }
+        }
+
+        public static void AcceptInvite(string teamname, User user)
+        {
+            var context = new TeamBuilderContext();
+            using (context)
+            {
+                context.Users.Attach(user);
+                var team = context.Teams.First(t => t.Name == teamname);
+                user.InTeams.Add(team);
+
+                var invitation = context.Invitations
+                    .First(i => 
+                        i.InvitedUserId == user.Id &&
+                        i.TeamId == team.Id &&
+                        i.IsActive);
+                invitation.IsActive = false;
+
+                context.SaveChanges();
+            }
+        }
+
         public static User GetUserByCredentials(string username, string password)
         {
             var context = new TeamBuilderContext();
