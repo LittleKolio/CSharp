@@ -19,7 +19,7 @@
             //ImportPeople();
             //ImportAnomalies();
             //ImportAnomalyVictims();
-            ImportMoreAnomalies();
+            //ImportMoreAnomalies();
         }
 
         public static void ImportSolarSystems()
@@ -46,7 +46,7 @@
                 @"../../../datasets/planets.json");
             var planetsCollection = JsonConvert
                 .DeserializeObject<IEnumerable<PlanetDto>>(planetsJson);
-            PlanetStore.AddPlanets(planetsCollection);
+            PersonStore.AddPlanets(planetsCollection);
         }
 
         public static void ImportPeople()
@@ -54,7 +54,7 @@
             var peopleJson = File.ReadAllText(
                 @"../../../datasets/persons.json");
             var peopleCollection = JsonConvert
-                .DeserializeObject<IEnumerable<PersonDto>>(peopleJson);
+                .DeserializeObject<IEnumerable<Data.Dto.PersonDto>>(peopleJson);
             PersonStore.AddPeople(peopleCollection);
         }
 

@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetHunters.Data", "PlanetHunters.Data\PlanetHunters.Data.csproj", "{435EC825-2005-4500-9691-9DB5637B6581}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetHunters.Models", "PlanetHunters.Models\PlanetHunters.Models.csproj", "{E6B4B894-B422-4C9C-914A-D8954659E553}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetHunters.App", "PlanetHunters.App\PlanetHunters.App.csproj", "{52A38FA4-EBD4-4F21-AF91-E89DAEFCD68F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetHunters.Dto", "PlanetHunters.Dto\PlanetHunters.Dto.csproj", "{D57962B3-4E3B-493B-94B8-CF155C9CEDB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetHunters.Import", "PlanetHunters.Import\PlanetHunters.Import.csproj", "{65BD344D-AFAF-4346-BEFD-FDB4E794FB81}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "import", "import", "{6CDA8BAE-CD93-4881-B4DC-D7F907B186C2}"
+	ProjectSection(SolutionItems) = preProject
+		import\astronomers.json = import\astronomers.json
+		import\discoveries.xml = import\discoveries.xml
+		import\planets.json = import\planets.json
+		import\stars.xml = import\stars.xml
+		import\telescopes.json = import\telescopes.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetHunters.Export", "PlanetHunters.Export\PlanetHunters.Export.csproj", "{E4DED2A1-0A8F-43CD-A6D2-70462C097E4A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{435EC825-2005-4500-9691-9DB5637B6581}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{435EC825-2005-4500-9691-9DB5637B6581}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{435EC825-2005-4500-9691-9DB5637B6581}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{435EC825-2005-4500-9691-9DB5637B6581}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6B4B894-B422-4C9C-914A-D8954659E553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6B4B894-B422-4C9C-914A-D8954659E553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6B4B894-B422-4C9C-914A-D8954659E553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6B4B894-B422-4C9C-914A-D8954659E553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52A38FA4-EBD4-4F21-AF91-E89DAEFCD68F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52A38FA4-EBD4-4F21-AF91-E89DAEFCD68F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52A38FA4-EBD4-4F21-AF91-E89DAEFCD68F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52A38FA4-EBD4-4F21-AF91-E89DAEFCD68F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D57962B3-4E3B-493B-94B8-CF155C9CEDB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D57962B3-4E3B-493B-94B8-CF155C9CEDB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D57962B3-4E3B-493B-94B8-CF155C9CEDB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D57962B3-4E3B-493B-94B8-CF155C9CEDB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65BD344D-AFAF-4346-BEFD-FDB4E794FB81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65BD344D-AFAF-4346-BEFD-FDB4E794FB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65BD344D-AFAF-4346-BEFD-FDB4E794FB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65BD344D-AFAF-4346-BEFD-FDB4E794FB81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4DED2A1-0A8F-43CD-A6D2-70462C097E4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4DED2A1-0A8F-43CD-A6D2-70462C097E4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4DED2A1-0A8F-43CD-A6D2-70462C097E4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4DED2A1-0A8F-43CD-A6D2-70462C097E4A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

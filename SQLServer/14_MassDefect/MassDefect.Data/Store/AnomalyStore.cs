@@ -1,10 +1,15 @@
 ﻿namespace MassDefect.Data.Store
 {
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
     using Dto;
     using Models;
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
+    using System.Xml.Linq;
 
     public class AnomalyStore
     {
@@ -45,6 +50,102 @@
                     }
                 }
                 context.SaveChanges();
+            }
+        }
+
+        public static List<anomaly> ThirdGalaxySolarSystems()
+        {
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Anomaly, anomaly>()
+                   
+                    .ForMember(
+                    dto => dto.OriginPlanet,
+                    opt => opt.MapFrom(src => src.OriginPlanet.Name))
+
+                    .ForMember(
+                    dto => dto.TeleportPlanet,
+                    opt => opt.MapFrom(src => src.TeleportPlanet.Name));
+
+                cfg.CreateMap<Person, victim>();
+            });
+
+            var context = new MassDefectContext();
+            using (context)
+            {
+                return context.Anomalies
+                    .ProjectTo<anomaly>()
+                    .ToList();
+            }
+            /*
+            var anomaliesXml = new XDocument();
+            anomaliesXml.Add(new XElement("anomalies"));
+
+            var context = new MassDefectContext();
+            using (context)
+            {
+                var anomalies = context.Anomalies
+                    .Select(a => new
+                    {
+                        id = a.Id,
+                        originPlanetName = a.OriginPlanet.Name,
+                        teleportPlanetName = a.TeleportPlanet.Name,
+                        victims = a.Victims
+                            .OrderBy(v => v.Id)
+                            .Select(v => v.Name)
+                            .ToList()
+                    });
+
+                foreach (var anomaly in anomalies)
+                {
+                    var anomalyElement = new XElement("anomaly",
+                        new XAttribute("id", anomaly.id),
+                        new XAttribute("origin-planet", anomaly.originPlanetName),
+                        new XAttribute("teleport-planet", anomaly.teleportPlanetName));
+
+                    var victimsElement = new XElement("victims");
+                    foreach (var victim in anomaly.victims)
+                    {
+                        victimsElement.Add(
+                            new XElement("victim", 
+                                new XAttribute("name", victim)));
+                    }
+                    anomalyElement.Add(victimsElement);
+                    anomaliesXml.Root.Add(anomalyElement);
+                }
+            }
+
+            anomaliesXml.Save("../../../export/anomaliesForThirdGalaxy.xml");
+            */
+        }
+
+        public static void AnomalyAffectedMostPeople()
+        {
+            var settings = new JsonSerializerSettings
+            {
+                //ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                //PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+                //PreserveReferencesHandling = PreserveReferencesHandling.All,
+                Formatting = Formatting.Indented
+            };
+
+            var context = new MassDefectContext();
+            using (context)
+            {
+                var anomaly = context.Anomalies
+                    .OrderByDescending(a => a.Victims.Count)
+                    .Select(a => new
+                    {
+                        id = a.Id,
+                        originPlanet = new { name = a.OriginPlanet.Name },
+                        teleportPlanet = new { name = a.TeleportPlanet.Name },
+                        victimsCount = a.Victims.Count
+                    })
+                    .FirstOrDefault();
+
+                var result = JsonConvert.SerializeObject(anomaly, settings);
+                File.WriteAllText(@"../../../export/mostPeople.json", result);
+                Console.WriteLine(result);
             }
         }
 

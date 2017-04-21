@@ -1,5 +1,7 @@
 ﻿namespace MassDefect.Data.Store
 {
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
     using Dto;
     using Models;
     using System;
@@ -50,6 +52,24 @@
         {
             return context.People
                 .FirstOrDefault(p => p.Name == name);
+        }
+
+        public static List<ExportPersonDto> PeopleNotBeenVictims()
+        {
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Person, ExportPersonDto>();
+                cfg.CreateMap<Planet, ExportHomePlanetDto>();
+            });
+
+            var context = new MassDefectContext();
+            using (context)
+            {
+                return context.People
+                    .Where(p => p.Anomalies.Count == 0)
+                    .ProjectTo<ExportPersonDto>()
+                    .ToList();
+            }
         }
     }
 }
