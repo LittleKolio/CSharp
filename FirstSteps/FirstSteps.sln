@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Step2", "Step2\Step2.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Step1", "Step1\Step1.csproj", "{4CE7AA33-B22B-4934-ABF5-07BE9B99D1BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpAdvanced", "CSharpAdvanced\CSharpAdvanced.csproj", "{2FDBA345-0A25-47CA-A802-E7884DF20BC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4CE7AA33-B22B-4934-ABF5-07BE9B99D1BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CE7AA33-B22B-4934-ABF5-07BE9B99D1BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CE7AA33-B22B-4934-ABF5-07BE9B99D1BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FDBA345-0A25-47CA-A802-E7884DF20BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FDBA345-0A25-47CA-A802-E7884DF20BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FDBA345-0A25-47CA-A802-E7884DF20BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FDBA345-0A25-47CA-A802-E7884DF20BC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

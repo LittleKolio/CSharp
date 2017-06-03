@@ -43,9 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="TreeOfNumbers.cs" />
+    <None Include="Test.cs" />
     <None Include="CollectResources.cs" />
-    <Compile Include="BunkerBuster.cs" />
+    <None Include="BunkerBuster.cs" />
     <None Include="ParkingSystem.cs" />
+    <None Include="CustomArrayList.cs" />
+    <None Include="DynamicList.cs" />
+    <None Include="DirectoryTraverser.cs" />
+    <Compile Include="BinaryTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
