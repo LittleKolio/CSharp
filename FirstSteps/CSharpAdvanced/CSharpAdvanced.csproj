@@ -43,14 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Streams\SimpleWebServer.cs" />
     <None Include="Sets\Exercises03PeriodicTable.cs" />
     <None Include="Sets\Exercises02SetsOfElements.cs" />
     <None Include="Sets\Exercises01UniqueUsernames.cs" />
     <None Include="Sets\Lab02SoftUniParty.cs" />
     <None Include="Sets\Lab01ParkingLot.cs" />
-    <None Include="Exercises06TruckTour.cs" />
+    <None Include="Other\Exercises06TruckTour.cs" />
     <None Include="Stacks\Exercises09StackFibonacci.cs" />
-    <None Include="Exercises08RecursiveFibonacci.cs" />
+    <None Include="Other\Exercises08RecursiveFibonacci.cs" />
     <None Include="Stacks\Exercises07BalancedParentheses.cs" />
     <None Include="Queues\Exercises04BasicQueueOperations.cs" />
     <None Include="Stacks\Exercises03MaximumElement.cs" />
@@ -83,14 +84,16 @@
     <None Include="Matrices\Exercises05RubiksMatrix.cs" />
     <None Include="Matrices\Exercises06TargetPractice.cs" />
     <None Include="Matrices\Exercises07LegoBlocks.cs" />
-    <Compile Include="Matrices\Exercises08RadioactiveMutantVampireBunnies.cs" />
+    <None Include="Matrices\Exercises08RadioactiveMutantVampireBunnies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Stacks\Lab02SimpleCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="WorkingOnIt\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
