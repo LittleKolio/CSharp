@@ -10,8 +10,8 @@ namespace CSharpAdvanced.Streams
     class LabFileCopy
     {
         const string sourceImagePath 
-            = "../../Files/240_F_73070034_kwp7lLXkOB2Mv0gMGy578A2DAcX4lA2L.jpg";
-        const string newImagePath = "../../Files/result.jpg";
+            = "../../Files/ostrich.jpg";
+        const string newImagePath = "../../Files/ostrichCopy.jpg";
         static void Main()
         {
             using (FileStream reader = new FileStream(sourceImagePath, FileMode.Open))

@@ -11,7 +11,7 @@ namespace CSharpAdvanced.Streams
     class LabCryptoStream
     {
         const string encryptionKey = "ABCDEFGH";
-        const string filePath = "../../Files/encrypted.txt";
+        const string filePath = "../../Files/encryptedText.txt";
 
         static void Main()
         {
