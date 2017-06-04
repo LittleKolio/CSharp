@@ -43,7 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Streams\SimpleWebServer.cs" />
+    <None Include="Streams\LabGzipStream.cs" />
+    <None Include="Streams\LabCryptoStream.cs" />
+    <None Include="Streams\LabBufferedWriter.cs" />
+    <None Include="Streams\LabMemoryStream.cs" />
+    <None Include="Streams\LabFileCopy.cs" />
+    <None Include="Streams\LabWritingToFiles.cs" />
+    <None Include="Streams\LabStreamWriter.cs" />
+    <None Include="Streams\LabStreamReader.cs" />
+    <None Include="Streams\LabSimpleWebServer.cs" />
     <None Include="Sets\Exercises03PeriodicTable.cs" />
     <None Include="Sets\Exercises02SetsOfElements.cs" />
     <None Include="Sets\Exercises01UniqueUsernames.cs" />

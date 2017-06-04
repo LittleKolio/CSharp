@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CSharpAdvanced.Streams
 {
-    class SimpleWebServer
+    class LabSimpleWebServer
     {
         private const int PortNumber = 1227;
         static void Main()

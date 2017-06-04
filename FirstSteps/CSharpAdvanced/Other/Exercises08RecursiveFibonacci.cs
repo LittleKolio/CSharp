@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpAdvanced
+namespace CSharpAdvanced.Other
 {
     class Exercises08RecursiveFibonacci
     {
