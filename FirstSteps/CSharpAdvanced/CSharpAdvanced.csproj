@@ -99,6 +99,7 @@
     <None Include="Matrices\Exercises06TargetPractice.cs" />
     <None Include="Matrices\Exercises07LegoBlocks.cs" />
     <None Include="Matrices\Exercises08RadioactiveMutantVampireBunnies.cs" />
+    <Compile Include="Matrices\Exercises09Crossfire.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Stacks\Lab02SimpleCalculator.cs" />
   </ItemGroup>
