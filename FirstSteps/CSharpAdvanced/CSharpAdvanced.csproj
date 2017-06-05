@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Streams\Exercises06ZippingSlicedFiles.cs" />
+    <None Include="Streams\Exercises05SlicingFile.cs" />
+    <None Include="Streams\Exercises04CopyBinaryFile.cs" />
+    <None Include="Streams\Exercises03WordCount.cs" />
+    <None Include="Streams\Exercises02LineNumbers.cs" />
+    <None Include="Streams\Exercises01OddLines.cs" />
     <None Include="Streams\LabGzipStream.cs" />
     <None Include="Streams\LabCryptoStream.cs" />
     <None Include="Streams\LabBufferedWriter.cs" />

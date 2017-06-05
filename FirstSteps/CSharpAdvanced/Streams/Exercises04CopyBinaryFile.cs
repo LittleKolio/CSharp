@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CSharpAdvanced.Streams
 {
-    class LabFileCopy
+    class Exercises04CopyBinaryFile
     {
         const string sourceImagePath = "../../Files/ostrich.jpg";
         const string newImagePath = "../../Files/ostrichCopy.jpg";
@@ -19,7 +19,6 @@ namespace CSharpAdvanced.Streams
                 using (FileStream writer = new FileStream(
                     newImagePath, FileMode.Create))
                 {
-                    double fileLength = reader.Length;
                     byte[] buffer = new byte[4096];
                     while (true)
                     {
@@ -27,7 +26,6 @@ namespace CSharpAdvanced.Streams
                         if (readBytes == 0) { break; }
 
                         writer.Write(buffer, 0, readBytes);
-                        Console.WriteLine("{0:P}", Math.Min(reader.Position / fileLength, 1));
                     }
                 }
             }

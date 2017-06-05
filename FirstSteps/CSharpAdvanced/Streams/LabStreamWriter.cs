@@ -7,6 +7,17 @@ using System.Threading.Tasks;
 
 namespace CSharpAdvanced.Streams
 {
+    /// <summary>
+    /// StreamReader
+    /// This reads text files.
+    /// It is found in the System.IO namespace.
+    /// It provides good performance and is easy to add to programs.
+    /// 
+    /// Using
+    /// StreamReader is often used with the using-statement.
+    /// This construct helps dispose of the system resources.
+    /// We often place a loop inside using()
+    /// </summary>
     class LabStreamWriter
     {
         static void Main()
