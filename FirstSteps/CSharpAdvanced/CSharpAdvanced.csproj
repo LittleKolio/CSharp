@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="String\Lab02ParseURLs.cs" />
+    <None Include="String\Lab01StudentsResults.cs" />
     <None Include="Streams\Exercises06ZippingSlicedFiles.cs" />
     <None Include="Streams\Exercises05SlicingFile.cs" />
     <None Include="Streams\Exercises04CopyBinaryFile.cs" />
@@ -99,7 +101,8 @@
     <None Include="Matrices\Exercises06TargetPractice.cs" />
     <None Include="Matrices\Exercises07LegoBlocks.cs" />
     <None Include="Matrices\Exercises08RadioactiveMutantVampireBunnies.cs" />
-    <Compile Include="Matrices\Exercises09Crossfire.cs" />
+    <None Include="Matrices\Exercises09Crossfire.cs" />
+    <None Include="Matrices\Exercises10TheHeiganDance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Stacks\Lab02SimpleCalculator.cs" />
   </ItemGroup>
