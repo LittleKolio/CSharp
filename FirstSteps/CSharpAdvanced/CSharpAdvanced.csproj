@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="String\Lab05ConcatenateStrings.cs" />
+    <None Include="String\Lab04SpecialWords.cs" />
+    <None Include="String\Lab03ParseTags.cs" />
     <None Include="String\Lab02ParseURLs.cs" />
     <None Include="String\Lab01StudentsResults.cs" />
     <None Include="Streams\Exercises06ZippingSlicedFiles.cs" />
