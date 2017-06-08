@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Stopwatch.cs" />
+    <None Include="Stopwatch.cs" />
     <None Include="UnionAndItersect.cs" />
     <None Include="RandomNumber.cs" />
     <None Include="PrimeNumber.cs" />
@@ -51,6 +51,7 @@
     <None Include="PascalTriangle.cs" />
     <None Include="MatrixConsoleReadLine.cs" />
     <None Include="Labyrinth.cs" />
+    <Compile Include="Base10NumberToAnyBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

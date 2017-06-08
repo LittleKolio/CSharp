@@ -10,13 +10,27 @@ namespace CSharpAdvanced.String
     {
         static void Main()
         {
-            double[] num = Console.ReadLine()
-                .Split(' ')
-                .Select(double.Parse)
-                .ToArray();
+            string[] input = Console.ReadLine()
+                .Split(new[] { ' ', '\t' }, 
+                    StringSplitOptions.RemoveEmptyEntries);
 
-            string format = "{0,10:X}|{0}";
-            string textLine = string.Format(format, (int)num[0], Convert.ToString((int)num[0], 8));
+            string binary = Convert.ToString(int.Parse(input[0]), 2);
+            if (binary.Length >= 10)
+            {
+                binary = binary.Substring(0, 10);
+            }
+            else
+            {
+                binary = binary.PadLeft(10, '0');
+            }
+
+            string format = "|{0,-10:X}|{1}|{2,10:F2}|{3,-10:F3}|";
+            string textLine = string.Format(
+                format, 
+                int.Parse(input[0]), 
+                binary, 
+                double.Parse(input[1]), 
+                double.Parse(input[2]));
 
             Console.WriteLine(textLine);
         }
