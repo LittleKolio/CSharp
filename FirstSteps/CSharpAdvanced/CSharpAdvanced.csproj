@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="String\Exercises01ReverseString.cs" />
+    <Compile Include="String\Exercises03FormattingNumbers.cs" />
+    <None Include="String\Exercises02StringLength.cs" />
+    <None Include="String\Exercises01ReverseString.cs" />
     <None Include="String\Lab05ConcatenateStrings.cs" />
     <None Include="String\Lab04SpecialWords.cs" />
     <None Include="String\Lab03ParseTags.cs" />
