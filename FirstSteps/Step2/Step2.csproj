@@ -51,7 +51,7 @@
     <None Include="CustomArrayList.cs" />
     <None Include="DynamicList.cs" />
     <None Include="DirectoryTraverser.cs" />
-    <Compile Include="BinaryTree.cs" />
+    <None Include="BinaryTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

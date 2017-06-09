@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="String\Exercises05ConvertFromBase-NToBase-10.cs" />
+    <Compile Include="String\Exercises07SumBigNumbers.cs" />
+    <None Include="String\Exercises05ConvertFromBase-NToBase-10.cs" />
+    <None Include="String\Exercises06CountSubstringOccurrences.cs" />
     <None Include="String\Exercises04ConvertFromBase-10ToBase-N.cs" />
     <None Include="String\Exercises03FormattingNumbers.cs" />
     <None Include="String\Exercises02StringLength.cs" />
