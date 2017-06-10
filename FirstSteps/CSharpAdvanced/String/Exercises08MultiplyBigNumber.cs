@@ -6,34 +6,32 @@ using System.Threading.Tasks;
 
 namespace CSharpAdvanced.String
 {
-    class Exercises07SumBigNumbers
+    class Exercises08MultiplyBigNumber
     {
         private static Stack<char> num1;
-        private static Stack<char> num2;
+        private static int num2;
         private static Stack<char> result;
 
         static void Main()
         {
             num1 = new Stack<char>(
                 Console.ReadLine().TrimStart(new[] { '0' }));
-            num2 = new Stack<char>(
-                Console.ReadLine().TrimStart(new[] { '0' }));
+            num2 = int.Parse(Console.ReadLine());
             result = new Stack<char>();
 
-            int one = 0;
+            int num = 0;
             while (true)
             {
                 int tempNum1 = 0;
-                int tempNum2 = 0;
-                if (num1.Count > 0) { tempNum1 = num1.Pop() - '0'; }
-                if (num2.Count > 0) { tempNum2 = num2.Pop() - '0'; }
 
-                int tempNum = one + tempNum1 + tempNum2;
+                if (num1.Count > 0) { tempNum1 = num1.Pop() - '0'; }
+
+                int tempNum = num + tempNum1 * num2;
                 result.Push("0123456789"[tempNum % 10]);
 
-                one = tempNum / 10;
+                num = tempNum / 10;
 
-                if (num1.Count == 0 && num2.Count == 0 && one == 0) { break; }
+                if (num1.Count == 0 && num == 0) { break; }
             }
 
             while (result.Count > 0)

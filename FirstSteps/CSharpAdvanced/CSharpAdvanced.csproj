@@ -43,7 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="String\Exercises07SumBigNumbers.cs" />
+    <Compile Include="String\Exercises11Palindromes.cs" />
+    <None Include="String\Exercises10UnicodeCharacters.cs" />
+    <None Include="String\Exercises09TextFilter.cs" />
+    <None Include="String\Exercises07SumBigNumbers.cs" />
+    <None Include="String\Exercises08MultiplyBigNumber.cs" />
     <None Include="String\Exercises05ConvertFromBase-NToBase-10.cs" />
     <None Include="String\Exercises06CountSubstringOccurrences.cs" />
     <None Include="String\Exercises04ConvertFromBase-10ToBase-N.cs" />
