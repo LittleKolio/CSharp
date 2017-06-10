@@ -14,7 +14,7 @@ namespace CSharpAdvanced.String
                 .Split(" ,.?!".ToCharArray(),
                     StringSplitOptions.RemoveEmptyEntries);
 
-            Stack<string> listPalindromes = new Stack<string>();
+            List<string> listPalindromes = new List<string>();
 
             foreach (string word in input)
             {
@@ -28,20 +28,10 @@ namespace CSharpAdvanced.String
                         break;
                     }
                 }
-                if (palindrom) { listPalindromes.Push(word); }
+                if (palindrom) { listPalindromes.Add(word); }
             }
 
-            Console.Write("[");
-            while (listPalindromes.Count > 0)
-            {
-                string delimiter = ", ";
-                if (listPalindromes.Count == 1)
-                {
-                    delimiter = string.Empty;
-                }
-                Console.Write(listPalindromes.Pop() + delimiter);
-            }
-            Console.WriteLine("]");
+            Console.WriteLine("[" + string.Join(", ", listPalindromes.OrderBy(w => w)) + "]");
         }
     }
 }

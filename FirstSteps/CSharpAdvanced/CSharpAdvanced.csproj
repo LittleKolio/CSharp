@@ -43,7 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="String\Exercises11Palindromes.cs" />
+    <None Include="RegularExpression\Lab08ExtractQuotations.cs" />
+    <None Include="RegularExpression\Lab07ValidTime.cs" />
+    <None Include="RegularExpression\Lab06ValidUsernames.cs" />
+    <None Include="RegularExpression\Lab05ExtractTags.cs" />
+    <None Include="RegularExpression\Lab04ExtractIntegerNumbers.cs" />
+    <None Include="RegularExpression\Lab03NonDigitCount.cs" />
+    <None Include="RegularExpression\Lab02VowelCount.cs" />
+    <None Include="RegularExpression\Lab01MatchCount.cs" />
+    <None Include="String\Exercises15MelrahShake.cs" />
+    <None Include="String\Exercises11Palindromes.cs" />
     <None Include="String\Exercises10UnicodeCharacters.cs" />
     <None Include="String\Exercises09TextFilter.cs" />
     <None Include="String\Exercises07SumBigNumbers.cs" />
@@ -100,7 +109,6 @@
     <None Include="Dictionaries\Exercises06AMinertask.cs" />
     <None Include="Dictionaries\Exercises07FixEmails.cs" />
     <None Include="Dictionaries\Exercises08HandsOfCards.cs" />
-    <None Include="Dictionaries\Test.cs" />
     <None Include="Dictionaries\Exercises09UserLogs.cs" />
     <None Include="Dictionaries\Exercises14DragonArmy.cs" />
     <None Include="Matrices\Lab01SumMatrixElements.cs" />
