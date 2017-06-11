@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="RegularExpression\Exercises06SentenceExtractor.cs" />
+    <Compile Include="RegularExpression\Exercises05ExtractEmails.cs" />
+    <None Include="RegularExpression\Exercises04ReplaceTag.cs" />
+    <None Include="RegularExpression\Exercises03SeriesOfLetters.cs" />
+    <None Include="RegularExpression\Exercises01MatchFullName.cs" />
+    <None Include="RegularExpression\Exercises02MatchPhoneNumber.cs" />
     <None Include="RegularExpression\Lab08ExtractQuotations.cs" />
     <None Include="RegularExpression\Lab07ValidTime.cs" />
     <None Include="RegularExpression\Lab06ValidUsernames.cs" />
