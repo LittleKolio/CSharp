@@ -15,7 +15,9 @@ namespace CSharpAdvanced.RegularExpression
         {
             string input = Console.ReadLine();
 
-            string result = Regex.Replace(input, pattern, m => m.Groups[1].Value);
+            //string result = Regex.Replace(input, pattern, 
+            //    m => m.Groups[1].Value);
+            string result = Regex.Replace(input, pattern, "$1");
 
             Console.WriteLine(result);
         }

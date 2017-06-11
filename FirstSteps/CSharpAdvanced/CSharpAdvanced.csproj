@@ -43,8 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="RegularExpression\Exercises10UseYourChainsBuddy.cs" />
+    <Compile Include="RegularExpression\Exercises09QueryMess.cs" />
+    <None Include="RegularExpression\Exercises08ExtractHyperlinks.cs" />
+    <None Include="RegularExpression\Exercises07ValidUsernames.cs" />
     <None Include="RegularExpression\Exercises06SentenceExtractor.cs" />
-    <Compile Include="RegularExpression\Exercises05ExtractEmails.cs" />
+    <None Include="RegularExpression\Exercises05ExtractEmails.cs" />
     <None Include="RegularExpression\Exercises04ReplaceTag.cs" />
     <None Include="RegularExpression\Exercises03SeriesOfLetters.cs" />
     <None Include="RegularExpression\Exercises01MatchFullName.cs" />
