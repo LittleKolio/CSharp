@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Functional_Programming_Lab
 {
-    class Lab_01_Sort_Even_Numbers
+    class Lab_02_Sum_Numbers
     {
         static void Main()
         {
@@ -14,11 +14,10 @@ namespace Functional_Programming_Lab
                 .Split(new[] { ", " }, 
                 StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
-                .Where(n => n % 2 == 0)
-                .OrderBy(n => n)
                 .ToArray();
 
-            Console.WriteLine(string.Join(", ", input));
+            Console.WriteLine(input.Count());
+            Console.WriteLine(input.Sum());
         }
     }
 }
