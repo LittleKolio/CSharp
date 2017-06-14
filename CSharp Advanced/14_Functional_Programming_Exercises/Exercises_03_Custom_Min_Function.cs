@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Functional_Programming_Exercises
+{
+    class Exercises_03_Custom_Min_Function
+    {
+        static void Main()
+        {
+            Func<int, int, int> fff = (a, b) => Math.Max(a, b);
+
+            int[] input = Console.ReadLine()
+                .Split(new[] { ' ' },
+                StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse)
+                .ToArray();
+
+        }
+    }
+}

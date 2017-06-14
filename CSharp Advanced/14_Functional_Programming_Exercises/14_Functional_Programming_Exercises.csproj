@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Exercises_01_Action_Print.cs" />
+    <None Include="Exercises_02_Knights_Of_Honor.cs" />
+    <Compile Include="Exercises_03_Custom_Min_Function.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
