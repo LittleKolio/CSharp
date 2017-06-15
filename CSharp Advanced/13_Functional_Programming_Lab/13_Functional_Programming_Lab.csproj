@@ -47,7 +47,7 @@
     <None Include="Lab_02_Sum_Numbers.cs" />
     <None Include="Lab_03_Count_Uppercase_Words.cs" />
     <None Include="Lab_04_Add_VAT.cs" />
-    <Compile Include="Lab_05_Filter_By_Age.cs" />
+    <None Include="Lab_05_Filter_By_Age.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

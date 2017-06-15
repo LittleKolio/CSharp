@@ -10,14 +10,25 @@ namespace Functional_Programming_Exercises
     {
         static void Main()
         {
-            Func<int, int, int> fff = (a, b) => Math.Max(a, b);
+            Func<int, int, int> minNum = (a, b) => a > b ? b : a;
 
-            int[] input = Console.ReadLine()
+            int[] numbers = Console.ReadLine()
                 .Split(new[] { ' ' },
                 StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToArray();
 
+            Console.WriteLine(CustomSort(numbers, minNum));
+        }
+
+        private static int CustomSort(int[] numbers, Func<int, int, int> minNum)
+        {
+            int temp = int.MaxValue;
+            foreach (var num in numbers)
+            {
+                temp = minNum(num, temp);
+            }
+            return temp;
         }
     }
 }
