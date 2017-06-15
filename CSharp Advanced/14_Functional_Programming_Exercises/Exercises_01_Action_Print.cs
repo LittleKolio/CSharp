@@ -10,13 +10,29 @@ namespace Functional_Programming_Exercises
     {
         static void Main()
         {
-            Action<string> printAction = name => Console.WriteLine(name);
+            //Action<string> printAction = name => Console.WriteLine(name);
 
-            Console.ReadLine()
+            //Console.ReadLine()
+            //    .Split(new[] { ' ' },
+            //    StringSplitOptions.RemoveEmptyEntries)
+            //    .ToList()
+            //    .ForEach(printAction);
+
+            string[] names = Console.ReadLine()
                 .Split(new[] { ' ' },
-                StringSplitOptions.RemoveEmptyEntries)
-                .ToList()
-                .ForEach(printAction);
+                StringSplitOptions.RemoveEmptyEntries);
+
+            Action <string> act = name => Console.WriteLine(name);
+
+            PrintNames(names, act);
+        }
+
+        private static void PrintNames(string[] names, Action<string> act)
+        {
+            foreach (var name in names)
+            {
+                act(name);
+            }
         }
     }
 }

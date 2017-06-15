@@ -45,7 +45,8 @@
   <ItemGroup>
     <None Include="Exercises_01_Action_Print.cs" />
     <None Include="Exercises_02_Knights_Of_Honor.cs" />
-    <Compile Include="Exercises_03_Custom_Min_Function.cs" />
+    <None Include="Exercises_03_Custom_Min_Function.cs" />
+    <None Include="Exercises_04_Find_Evens_Or_Odds.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
