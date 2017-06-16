@@ -18,24 +18,31 @@ namespace Functional_Programming_Exercises
 
             Array.Sort(numbers, (a, b) =>
             {
-                if (a % 2 == 0 && b % 2 != 0)
+                int comp = (a % 2).CompareTo(b % 2);
+                if (comp == 0)
                 {
-                    return -1;
-                }
-                if (a % 2 != 0 && b % 2 == 0)
-                {
-                    return 1;
-                }
-                if (a > b)
-                {
-                    return 1;
-                }
-                if (a < b)
-                {
-                    return -1;
+                    return a.CompareTo(b);
                 }
 
-                return 0;
+                return comp;
+
+                //if (a % 2 == 0 && b % 2 != 0)
+                //{
+                //    return -1;
+                //}
+                //if (a % 2 != 0 && b % 2 == 0)
+                //{
+                //    return 1;
+                //}
+                //if (a > b)
+                //{
+                //    return 1;
+                //}
+                //if (a < b)
+                //{
+                //    return -1;
+                //}
+                //return 0;
             });
 
             Console.WriteLine(string.Join(" ", numbers));
