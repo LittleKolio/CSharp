@@ -50,7 +50,9 @@
     <None Include="Exercises_05_Applied_Arithmetics.cs" />
     <None Include="Exercises_06_Reverse_And_Exclude.cs" />
     <None Include="Exercises_07_Predicate_For_Names.cs" />
-    <Compile Include="Exercises_08_Custom_Comparator.cs" />
+    <None Include="Exercises_08_Custom_Comparator.cs" />
+    <None Include="Exercises_09_List_Of_Predicates.cs" />
+    <None Include="Exercises_10_Predicate_Party.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
