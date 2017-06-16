@@ -51,8 +51,16 @@
     <None Include="Exercises_06_Reverse_And_Exclude.cs" />
     <None Include="Exercises_07_Predicate_For_Names.cs" />
     <None Include="Exercises_08_Custom_Comparator.cs" />
+<<<<<<< HEAD
     <None Include="Exercises_09_List_Of_Predicates.cs" />
     <None Include="Exercises_10_Predicate_Party.cs" />
+=======
+<<<<<<< HEAD
+    <Compile Include="Exercises_09_List_Of_Predicates.cs" />
+=======
+    <Compile Include="Exercises_10_Predicate_Party.cs" />
+>>>>>>> be86c6764002105ec511509fc4a4e75e46c133b7
+>>>>>>> origin/master
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
