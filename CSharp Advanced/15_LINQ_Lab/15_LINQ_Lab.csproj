@@ -45,11 +45,12 @@
   <ItemGroup>
     <None Include="Lab_01_Take_Two.cs" />
     <None Include="Lab_02_Upper_Strings.cs" />
-    <None Include="Lab_03_First_Name.cs" />
+    <Compile Include="Lab_03_First_Name.cs" />
     <None Include="Lab_04_Average_Of_Doubles.cs" />
     <None Include="Lab_05_Min_Even_Number.cs" />
     <None Include="Lab_06_Find_And_Sum_Integers.cs" />
-    <Compile Include="Lab_07_Bounded_Numbers.cs" />
+    <None Include="Lab_07_Bounded_Numbers.cs" />
+    <None Include="Lab_08_Map_Districts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -20,6 +20,7 @@ namespace LINQ_Lab
 
             HashSet<char> chars = new HashSet<char>(
                 Console.ReadLine()
+                .ToLower()
                 .Replace(" ", string.Empty));
 
             string result = names.Where(name => 
