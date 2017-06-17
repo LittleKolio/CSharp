@@ -10,23 +10,23 @@ namespace LINQ_Lab
     {
         static void Main()
         {
-            int temp;
-            
-            List<string> number = Console.ReadLine()
+            double temp;
+
+            double number = Console.ReadLine()
                 .Split(new[] { ' ' },
                     StringSplitOptions.RemoveEmptyEntries)
-                .Where(str => int.TryParse(str, out temp))
-                .ToList();
+                .Where(str => double.TryParse(str, out temp))
+                .Select(double.Parse)
+                .Sum();
 
-
-            //if (number == 0)
-            //{
-            //    Console.WriteLine("No match");
-            //}
-            //else
-            //{
-            //    Console.WriteLine($"{number:F2}");
-            //}
+            if (number == 0)
+            {
+                Console.WriteLine("No match");
+            }
+            else
+            {
+                Console.WriteLine(number);
+            }
         }
     }
 }

@@ -48,7 +48,8 @@
     <None Include="Lab_03_First_Name.cs" />
     <None Include="Lab_04_Average_Of_Doubles.cs" />
     <None Include="Lab_05_Min_Even_Number.cs" />
-    <Compile Include="Lab_06_Find_And_Sum_Integers.cs" />
+    <None Include="Lab_06_Find_And_Sum_Integers.cs" />
+    <Compile Include="Lab_07_Bounded_Numbers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
