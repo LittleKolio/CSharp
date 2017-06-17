@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "13_Functional_Programming_L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "14_Functional_Programming_Exercises", "14_Functional_Programming_Exercises\14_Functional_Programming_Exercises.csproj", "{121E50D2-118D-4471-8FBF-B0B0A3CA0B53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "15_LINQ_Lab", "15_LINQ_Lab\15_LINQ_Lab.csproj", "{15B4E9DF-159B-422E-BF1D-6A3A00DCABF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{121E50D2-118D-4471-8FBF-B0B0A3CA0B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{121E50D2-118D-4471-8FBF-B0B0A3CA0B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{121E50D2-118D-4471-8FBF-B0B0A3CA0B53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15B4E9DF-159B-422E-BF1D-6A3A00DCABF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15B4E9DF-159B-422E-BF1D-6A3A00DCABF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15B4E9DF-159B-422E-BF1D-6A3A00DCABF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15B4E9DF-159B-422E-BF1D-6A3A00DCABF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
