@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12_Regular_Expressions_Exer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "13_Functional_Programming_Lab", "13_Functional_Programming_Lab\13_Functional_Programming_Lab.csproj", "{32D2F9E9-68E4-448D-90B7-1C5D9D88349B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "14_Functional_Programming_Exercises", "14_Functional_Programming_Exercises\14_Functional_Programming_Exercises.csproj", "{121E50D2-118D-4471-8FBF-B0B0A3CA0B53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{32D2F9E9-68E4-448D-90B7-1C5D9D88349B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32D2F9E9-68E4-448D-90B7-1C5D9D88349B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32D2F9E9-68E4-448D-90B7-1C5D9D88349B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{121E50D2-118D-4471-8FBF-B0B0A3CA0B53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{121E50D2-118D-4471-8FBF-B0B0A3CA0B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{121E50D2-118D-4471-8FBF-B0B0A3CA0B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{121E50D2-118D-4471-8FBF-B0B0A3CA0B53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
