@@ -10,7 +10,7 @@ namespace Functional_Programming_Exercises
     {
         static void Main()
         {
-            List<string> names = Console.ReadLine()
+            List<string> listNames = Console.ReadLine()
                 .Split(new[] { ' ' },
                     StringSplitOptions.RemoveEmptyEntries)
                 .ToList();
@@ -24,17 +24,24 @@ namespace Functional_Programming_Exercises
 
                 Predicate<string> pred = CorectName(command[1], command[2]);
 
-                if (command[0] == "Remove") { RemovePerson(ref names, pred); }
-                if (command[0] == "Double") { DoublePerson(ref names, pred); }
+                List<string> processingNames = listNames.Where(name => pred(name)).ToList();
+
+                WathToDo(ref listNames, processingNames, command[0]);
             }
 
-            PrintPartyMember(names);
+            PrintPartyMember(listNames);
         }
 
-        private static void RemovePerson(ref List<string> names, Predicate<string> name)
+        private static void WathToDo(ref List<string> listNames, List<string> processingNames, string command)
         {
-            List<string> temp = new List<string>();
-            temp.CopyTo
+            switch (command)
+            {
+                case "Double":
+                    listNames = listNames.Concat(processingNames).ToList(); break;
+                case "Remove":
+                    listNames = listNames.Except(processingNames).ToList(); break;
+                default: break;
+            }
         }
 
         private static Predicate<string> CorectName(string criteria, string str)
@@ -48,11 +55,11 @@ namespace Functional_Programming_Exercises
             }
         }
 
-        private static void PrintPartyMember(List<string> names)
+        private static void PrintPartyMember(List<string> listNames)
         {
-            if (names.Count > 0)
+            if (listNames.Count > 0)
             {
-                Console.WriteLine(string.Join(", ", names) +
+                Console.WriteLine(string.Join(", ", listNames) +
                     " are going to the party!");
             }
             else
