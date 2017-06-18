@@ -1,0 +1,939 @@
+﻿
+DateTime Formats
+
+DateTime date = DateTime.Now;
+Console.WriteLine (date);                                             // 6/16/2016 3:22:35 PM
+Console.WriteLine (date.ToLongTimeString ());                         // 3:22:35 PM
+Console.WriteLine (date.AddMinutes (200).ToShortTimeString ());       // 6:42 PM
+Console.WriteLine (date.AddDays (-5).ToLongDateString ());            // Saturday, June 11, 2016
+Console.WriteLine (DateTime.Today.AddDays (-1).ToShortDateString ()); // 6/15/2016 (yesterday)
+
+DateTime input = new DateTime (2009,10,23,15,30,22);
+
+Console.WriteLine ("{0:dd/MM/yyyy HH:mm:ss}", input); // 23/10/2009 15:30:22
+Console.WriteLine ("{0:d.MM.yy \\y.}", input);        // 23.10.09 y.
+Console.WriteLine ("{0:G}",input.DayOfWeek);          // Friday
+Console.WriteLine ("{0:D}",input.DayOfWeek);          // 5
+Console.WriteLine ("{0:X}",input.DayOfWeek);          // 00000005
+
+Console.WriteLine ("{0:d}",input);                    // 10/23/2009
+Console.WriteLine ("{0:D}",input);                    // Friday, October 23, 2009
+Console.WriteLine ("{0:t}",input);                    // 3:30 PM
+Console.WriteLine ("{0:T}",input);                    // 3:30:22 PM
+Console.WriteLine ("{0:y}",input);                    // October 2009
+
+// create date time 2008-03-09 16:05:07.123
+DateTime dt = new DateTime(2008, 3, 9, 16, 5, 7, 123);
+
+String.Format("{0:y yy yyy yyyy}",      dt);  // "8 08 008 2008"   year
+String.Format("{0:M MM MMM MMMM}",      dt);  // "3 03 Mar March"  month
+String.Format("{0:d dd ddd dddd}",      dt);  // "9 09 Sun Sunday" day
+String.Format("{0:h hh H HH}",          dt);  // "4 04 16 16"      hour 12/24
+String.Format("{0:m mm}",               dt);  // "5 05"            minute
+String.Format("{0:s ss}",               dt);  // "7 07"            second
+String.Format("{0:f ff fff ffff}",      dt);  // "1 12 123 1230"   sec.fraction
+String.Format("{0:F FF FFF FFFF}",      dt);  // "1 12 123 123"    without zeroes
+String.Format("{0:t tt}",               dt);  // "P PM"            A.M. or P.M.
+String.Format("{0:z zz zzz}",           dt);  // "-6 -06 -06:00"   time zone
+
+// month/day numbers without/with leading zeroes
+String.Format("{0:M/d/yyyy}",           dt);  // "3/9/2008"
+String.Format("{0:MM/dd/yyyy}",         dt);  // "03/09/2008"
+
+// day/month names
+String.Format("{0:ddd, MMM d, yyyy}",   dt);  // "Sun, Mar 9, 2008"
+String.Format("{0:dddd, MMMM d, yyyy}", dt);  // "Sunday, March 9, 2008"
+
+// two/four digit year
+String.Format("{0:MM/dd/yy}",           dt);  // "03/09/08"
+String.Format("{0:MM/dd/yyyy}",         dt);  // "03/09/2008"
+
+String.Format("{0:t}", dt);  // "4:05 PM"                           ShortTime
+String.Format("{0:d}", dt);  // "3/9/2008"                          ShortDate
+String.Format("{0:T}", dt);  // "4:05:07 PM"                        LongTime
+String.Format("{0:D}", dt);  // "Sunday, March 09, 2008"            LongDate
+String.Format("{0:f}", dt);  // "Sunday, March 09, 2008 4:05 PM"    LongDate+ShortTime
+String.Format("{0:F}", dt);  // "Sunday, March 09, 2008 4:05:07 PM" FullDateTime
+String.Format("{0:g}", dt);  // "3/9/2008 4:05 PM"                  ShortDate+ShortTime
+String.Format("{0:G}", dt);  // "3/9/2008 4:05:07 PM"               ShortDate+LongTime
+String.Format("{0:m}", dt);  // "March 09"                          MonthDay
+String.Format("{0:y}", dt);  // "March, 2008"                       YearMonth
+String.Format("{0:r}", dt);  // "Sun, 09 Mar 2008 16:05:07 GMT"     RFC1123
+String.Format("{0:s}", dt);  // "2008-03-09T16:05:07"               SortableDateTime
+String.Format("{0:u}", dt);  // "2008-03-09 16:05:07Z"              UniversalSortableDateTime
+
+Specifier   DateTimeFormatInfo property     Pattern value (for en-US culture)
+    t           ShortTimePattern                    h:mm tt
+    d           ShortDatePattern                    M/d/yyyy
+    T           LongTimePattern                     h:mm:ss tt
+    D           LongDatePattern                     dddd, MMMM dd, yyyy
+    f           (combination of D and t)            dddd, MMMM dd, yyyy h:mm tt
+    F           FullDateTimePattern                 dddd, MMMM dd, yyyy h:mm:ss tt
+    g           (combination of d and t)            M/d/yyyy h:mm tt
+    G           (combination of d and T)            M/d/yyyy h:mm:ss tt
+    m, M        MonthDayPattern                     MMMM dd
+    y, Y        YearMonthPattern                    MMMM, yyyy
+    r, R        RFC1123Pattern                      ddd, dd MMM yyyy HH':'mm':'ss 'GMT' (*)
+    s           SortableDateTi­mePattern             yyyy'-'MM'-'dd'T'HH':'mm':'ss (*)
+    u           UniversalSorta­bleDateTimePat­tern    yyyy'-'MM'-'dd HH':'mm':'ss'Z' (*)
+                                                    (*) = culture independent  
+-------------------------------------------------------------------------
+
+using System;
+using System.Threading;
+using System.Globalization;
+
+Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+Console.WriteLine("{0:N}", 1234.56); // 1,234.56
+Console.WriteLine("{0:D}", input);   // Friday, October 23, 2009
+
+Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("bg-BG");
+Console.WriteLine("{0:N}", 1234.56); // 1 234,56
+Console.WriteLine("{0:D}", input);   // 23 октомври 2009 г.
+
+Formats------------------------------------------------srting.PadRight / PadLeft
+
+string[] a = new string[]
+{
+	"cat",
+	"poodle",
+	"lizard",
+	"frog",
+	"photon"
+};
+
+// Output the header.
+Console.Write("Key".PadRight(15));
+Console.WriteLine("Value");
+
+// Output array.
+foreach (string s in a)
+{
+	Console.Write(s.PadRight(15));
+	Console.WriteLine("noun");
+}
+
+Output
+
+Key            Value
+cat            noun
+poodle         noun
+lizard         noun
+frog           noun
+photon         noun
+
+Formats-------------------------------------------------srting.PadRight / PadLeft
+
+Console.Write("Sam".PadRight(10, '.'));
+Console.WriteLine("535".PadLeft(4, '.'));
+
+Console.Write("Jason".PadRight(10, '.'));
+Console.WriteLine("1".PadLeft(4, '.'));
+
+Output
+
+Sam........535
+Jason........1
+
+Lambda Functions----------------------------------------------------
+
+int[] nums = { 11, 99, 33, 55, 77, 44, 66, 22, 88 };
+
+var smallNums = nums.Where(x => x < 50);
+Console.WriteLine("Nums < 50: " +
+string.Join(" ", smallNums));
+// 11 33 44 22
+
+Console.WriteLine("Odd numbers count: " +
+nums.Where(x => x % 2 == 1).Count());
+// 5 {11, 99, 33, 55, 77}
+
+Console.WriteLine("Odd positions: " +
+string.Join(" ", nums.Where((x, pos) => pos % 2 == 1)));
+  // 99 55 44 22
+  
+Console.WriteLine("Smallest 3 nums: " +
+string.Join(" ", nums.OrderBy(x => x).Take(3)));
+// 11 22 33
+
+Console.WriteLine("First 5 nums * 2: " +
+string.Join(" ", nums.Select(x => x * 2).Take(5)));
+// 22 198 66 110 154
+========================================================================
+
+-----------------------------------------------------------do-while-{ if }
+int codeRead = 0;
+do
+{
+	codeRead = Console.Read();
+	if (codeRead != 0)
+	{
+		Console.Write((char)codeRead);
+	}
+} while (codeRead != 10);
+// [Enter] = carriage return (ASCII 13) + linefeed (ASCII 10)
+
+-----------------------------------------------------------------do-while
+var n = int.Parse(Console.ReadLine());
+decimal factorial = 1;
+do
+{
+	factorial *= n;
+	n--;
+} while (n > 0);
+Console.WriteLine("n! = " + factorial);
+
+-----------------------------------------------------------------do-while
+var n = int.Parse(Console.ReadLine());
+var m = int.Parse(Console.ReadLine());
+var num = n;
+long product = 1;
+do
+{
+	product *= num;
+	num++;
+}
+while (num <= m);
+Console.WriteLine("product[n..m] = " + product);
+
+-----------------------------------------------------while-{ if { break } }
+var n = int.Parse(Console.ReadLine());
+decimal factorial = 1;
+while (true)
+{
+	if (n <= 1)
+	{
+		break;
+	}
+	factorial *= n;
+	n--;
+}
+Console.WriteLine("n! = " + factorial);
+
+-----------------------------------------------------while-{ if { break } }
+var n = int.Parse(Console.ReadLine());
+decimal factorial = 1;
+while (true)
+{
+	if (n <= 1)
+	{
+		break;
+	}
+	factorial *= n;
+	n--;
+}
+Console.WriteLine("n! = " + factorial);
+
+-----------------------------------------------for/foreach-{ if { break } }
+// Array
+int[] array = { 5, 10, 15, 20, 25 };
+
+// Loop through indexes in the array.
+for (int i = 0; i < array.Length; i++) {
+	Console.WriteLine (array[i]);
+	if (array[i] == 15) {
+		Console.WriteLine ("Value found");
+		break;
+	}
+}
+
+// Loop through indexes in the array.
+foreach (int value in array) {
+	if (value == 15) {
+		Console.WriteLine ("Value found");
+		break;
+	}
+}
+--------------------------------------------------for-{ if { countinue } }
+var n = int.Parse(Console.ReadLine());
+var sum = 0;
+for (int i = 1; i <= n; i += 2)
+{
+	if (i % 7 == 0)
+	{
+		continue;
+	}
+	sum += i;
+}
+Console.WriteLine("sum = " + sum);
+
+
+------------------------------------------------------------continue-return
+The C# language also includes the 
+continue and return keywords that transfer instruction 
+control flow. You can think of the break keyword as a 
+local loop return statement.
+
+-------------------------------------------------------------------continue
+The continue keyword stops the current iteration 
+and progresses to the next iteration of the loop. After it 
+is encountered, the loop will execute no more remaining 
+statements in that iteration. It will continue to the next 
+as normal. The continue statement complicates certain loop 
+structures. In loops, as in methods, having one entry and 
+one exit has advantages.
+
+----------------------------------------------------------------------yield
+The C# language also includes a yield break statement. 
+This is a way to specify that the compiler generate code that 
+terminates the method from being called again after it returns.
+
+------------------------------------------------------------------do-while
+Console.Write("n = ");
+int n = int.Parse(Console.ReadLine());
+Console.Write("m = ");
+int m = int.Parse(Console.ReadLine());
+
+int numSmall = n < m ? n : m;
+int numBig = n > m ? n : m;
+int numSmall2 = numSmall;
+
+long product = 1;
+
+do
+{
+	product *= numSmall;
+	numSmall++;
+}
+while (numSmall <= numBig);
+Console.WriteLine("product[{0}...{1}] = {2}", numSmall2, numBig, product);
+
+========================================================================
+
+Parse
+
+string str = Console.ReadLine();
+int intValue;
+bool parseSuccess = int.TryParse(str, out intValue);
+Console.WriteLine(parseSuccess ?
+				  "The square of the number is {0}." :
+				  "Invalid number!",
+				  intValue * intValue);
+				  
+========================================================================
+
+Array
+				  
+int[] array = { 1, 2, 3, 4, 5 };
+int length = array.Length;
+int[] reversed = new int[length];
+for (int index = 0; index < length; index++)
+{
+	reversed[length - index - 1] = array[index];
+}
+for (int index = 0; index < length; index++)
+{
+	Console.Write(reversed[index] + " ");
+}
+
+------------------------------------------------------------------foreach
+int[] numbers = { 2, 3, 5, 7, 11, 13, 17, 19 };
+foreach (int i in numbers)
+{
+	Console.Write(" " + i);
+}
+Console.WriteLine();
+
+string[] towns = { "Sofia", "Plovdiv", "Varna", "Bourgas" };
+foreach (string town in towns)
+{
+	Console.Write(" " + town);
+}
+
+----------------------------------------------------------------------for
+int h = int.Parse(Console.ReadLine());
+//int x = int.Parse(Console.ReadLine());
+//int y = int.Parse(Console.ReadLine());
+
+int[,] origin =
+{
+	{0,1,2,1,1,1,}, // x
+	{0,0,0,1,2,3,}, // y
+};
+
+for (int row = 0; row < origin.GetLength(0); row++)
+{
+	for (int col = 0; col < origin.GetLength(1); col++)
+	{
+		origin[row, col] *= h;
+		Console.Write("{0,3}", origin[row, col]);
+	}
+	Console.WriteLine();
+}
+
+========================================================================
+
+String
+
+string x = d.ToString("0.00");
+string x = d.ToString("F2");
+
+------------------------------------------------------------------Compare
+string s1 = "sdfsadfaads";
+string s2 = "bmmgjh";
+
+int a = string.Compare(s2, s1);
+Console.WriteLine(a); // -1
+
+int b = string.CompareOrdinal(s1, s2);
+Console.WriteLine(b); // 17
+
+int c = s1.CompareTo(s2);
+Console.WriteLine(c); // 1
+
+int d = s2.CompareTo(s1);
+Console.WriteLine(d); // -1
+
+-------------------------------------------------for--foreach--switch--if
+Console.WriteLine("Each line you enter will be added to a " +
+"sentence until you enter EXIT or QUIT");
+string sentence = "";
+string line = "";
+
+for (; ; )
+{
+	Console.WriteLine("\nEnter a string : ");
+	line = Console.ReadLine();
+
+	//bool quitting = false;
+	//string[] terms = { "EXIT", "QUIT", "exit", "quit" };
+	//foreach (string term in terms)
+	//{
+	//    if (string.Compare(line, term) == 0)
+	//    {
+	//        quitting = true;
+	//    }
+	//}
+	//if (quitting)
+	//{
+	//    break;
+	//}
+
+	bool quitting = false;
+	switch (line)
+	{
+		case "EXIT":
+		case "exit":
+		case "QUIT":
+		case "quit":
+			quitting = true; break;
+	}
+	if (quitting)
+	{
+		break;
+	}                
+
+	//if (string.Compare("exit", line, true) == 0 ||
+	//    string.Compare("quit", line, true) == 0)
+	//{
+	//    break;
+	//}
+
+	sentence = string.Concat(sentence, line);
+	Console.WriteLine("\nYou've entered : " + sentence);
+}
+Console.WriteLine("\nTotal sentence : \n" + sentence);
+Console.Read();
+
+------------------------------------------------------------------foraech
+string food = "CHEESEBURGERS";
+bool foodUpCase = true;
+Console.WriteLine("in {0}", food);
+foreach (char c in food)
+{
+	if (!char.IsUpper(c)) // 
+	{
+		foodUpCase = false;
+		break;
+	}
+	Console.WriteLine("{0} {1}", c, foodUpCase);
+}
+
+------------------------------------------------------------------foraech
+string[] numbers1 = {"zero","one","two","three","four","five",
+"six","seven","eight","nine"};
+
+string[] numbers2 = {"X","eleven","twelve","thirteen","fourteen",
+"fifteen","sixteen","seventeen","eighteen","nineteen"};
+
+string[] numbers3 = {"X","ten","twenty","thirty","fourty","fifty",
+"sixty","seventy","eighty","ninety","one hundred"};
+
+int inNum = int.Parse(Console.ReadLine());
+int tens = inNum / 10;
+int ones = inNum % 10;
+
+if (inNum >= 0 && inNum <= 100)
+{
+	if (inNum < 10)
+	{
+		Console.WriteLine(numbers1[inNum]);
+	}
+	else if (tens == 1 && ones > 0)
+	{
+		Console.WriteLine(numbers2[ones]);
+	}
+	else if (tens > 0 && ones == 0)
+	{
+		Console.WriteLine(numbers3[tens]);
+	}
+	else if (tens > 0 && ones > 0)
+	{
+		Console.WriteLine(numbers3[tens] + " " + numbers1[ones]);
+	}
+}
+else
+{
+	Console.WriteLine("Invalid number");
+}
+
+========================================================================
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ DateTime
+╠═══════════════════════════════════════════════════════════════════════╝
+
+int d = int.Parse(Console.ReadLine());
+int m = int.Parse(Console.ReadLine());
+
+DateTime inputDate = new DateTime(1, m, d);
+DateTime newDate = inputDate.AddDays(5);
+Console.WriteLine("{0}.{1:D2}", newDate.Day, newDate.Month);
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Try & Catch
+╠═══════════════════════════════════════════════════════════════════════╝
+
+Catch, when. In catch we handle exceptions. An alternative flow, 
+the try-catch pattern traps errors, separating them in a clear way. 
+Programs become easier to read.
+
+Catch features. The catch block allows an optional variable. 
+Multiple catch blocks can be stacked to provide more control. 
+And "when" can filter exceptions.
+
+An example. This program shows three patterns of using try-catch blocks. 
+Please notice the syntaxes used in the catch blocks. We catch exceptions 
+in different ways.
+
+Variable:
+After the catch keyword, we use parentheses to declare an exception 
+variable. This variable can optionally be named.
+
+Note:
+In the third example, we have more than one catch block in a row. 
+The most general catch comes last.
+
+Based on: .NET 4.6
+
+C# program that uses catch blocks
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+		// You can use an empty catch block.
+		try	{
+			DivideByZero();
+		} catch	{
+			Console.WriteLine("0");
+		}
+		// You can specify a variable in the catch.
+		try	{
+			DivideByZero();
+		} catch (Exception ex) {
+			Console.WriteLine("1");
+		}
+		// You can use multiple catch blocks.
+		try	{
+			DivideByZero();
+		} catch (DivideByZeroException)	{
+			Console.WriteLine("2");
+		} catch	{
+			Console.WriteLine("3");
+		}
+    }
+
+    static int DivideByZero()
+    {
+		int value1 = 1;
+		int value2 = int.Parse("0");
+		return value1 / value2;
+    }
+}
+
+Output
+
+0
+1
+2
+
+
+Program notes. The program throws an exception three times. 
+Calls to DivideByZero cause exceptions to be raised. 
+We use int.Parse to prevent the compiler from spotting the error.
+DivideByZeroException
+Parse
+Compile-Time Error
+
+Then:
+Three lines are written to screen. These numbers indicate what 
+catch blocks were executed in the control flow.
+Console.WriteLine
+
+Filter, when. With the when-keyword, we filter exceptions. 
+A condition (like one found in an if-statement) is the argument 
+to when. This reduces complex logic in exception catch blocks.
+
+Tip:
+We can stack "when" catch clauses. In this program we catch the 
+ArgumentException in multiple ways.
+
+C# program that uses catch, when, filters exceptions
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+		try	{
+			throw new ArgumentException("Invalid x argument");
+		} catch (ArgumentException ex) when (ex.Message == "Invalid x argument") {
+			// This is reached.
+			Console.WriteLine("X");
+		} catch (ArgumentException ex) when (ex.Message == "Invalid y argument") {
+			// This is not reached.
+			// ... Change the string to have "y" and it will be reached.
+			Console.WriteLine("Y");
+		}
+    }
+}
+
+Output
+
+X
+
+
+In complex programs, exception handling is helpful. 
+Catch is a key part of exception handling. By going outside 
+of the control flow, we more easily trap unexpected conditions.
+
+
+
+
+
+
+list1.GroupBy(item => new { Counter = item.Counter, SrvID = item.SrvID })
+     .Select(group => new { 
+        ID = group.First().ID, 
+        Counter = group.Key.Counter,
+        SrvID = group.Key.SrvID,
+        FirstName = group.First().FirstName})
+     .OrderBy(item => item.ID);
+
+
+//var employees = context.Employees
+//    .OrderBy(e => e.DepartmentID)
+//    .ThenByDescending(e => e.Salary)
+//    .ToList();
+
+						//var employees = context.Employees
+//    .GroupBy(e => e.DepartmentID)
+//    .Select(e => new { Salary = e.Max(d => d.Salary), e.LastOrDefault().Department })
+//    .Where(e => e.Salary < 30000 || e.Salary > 70000)
+//    .ToList();
+
+
+
+IEnumerable<T> mySequence;
+using (var sequenceEnum = mySequence.GetEnumerator())
+{
+    while (sequenceEnum.MoveNext())
+    {
+        // Do something with sequenceEnum.Current.
+    }
+}
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Array
+╠═══════════════════════════════════════════════════════════════════════╝
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ get only part of array
+	├─┬───────────────────────────────────────────────────────────────────┘
+		│ LINQ
+		├─┬─────────────────────────────────────────────────────────────────┘
+			var newArray = array.Skip(3).Take(5).ToArray();
+			
+		├───────────────────────────────────────────────────────────────────┐
+		│ Copy
+		├─┬─────────────────────────────────────────────────────────────────┘
+			string[] strTarget = new string[strSource.Length - 1];
+			Array.Copy(strSource, 1, strTarget, 0, strSource.Length - 1);
+
+			├─ If either array is too short, there will be an ArgumentException. Check your arguments.
+			
+		├───────────────────────────────────────────────────────────────────┐
+		│ ArraySegment<T>
+		├─┬─────────────────────────────────────────────────────────────────┘
+			ArraySegment<T> target = new ArraySegment<T>(
+				array, start, length);
+			
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Console
+╠═══════════════════════════════════════════════════════════════════════╝
+
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Key
+	├─┬───────────────────────────────────────────────────────────────────┘
+		Console.ReadKey();
+		
+		ConsoleKeyInfo keyPressName = Console.ReadKey();
+
+		Console.WriteLine("Key pressed : {0}",
+			keyPressName.KeyChar.ToString())
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ true / false
+╠═══════════════════════════════════════════════════════════════════════╝
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ is
+	├─┬───────────────────────────────────────────────────────────────────┘
+		enum Days { Mon, Tue, Wed, Thu, Fri, Sat, Sun }
+
+		Console.WriteLine(Days.Mon is Days);
+
+
+
+
+
+
+		
+╔═══════════════════════════════════════════════════════════════════════╗
+║ LINQ
+╠═══════════════════════════════════════════════════════════════════════╝
+
+
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ OrderBy()
+	├─┬───────────────────────────────────────────────────────────────────┘
+		.OrderBy(a => new string(a.ToCharArray().Reverse().ToArray()));
+
+
+
+
+
+
+
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ General
+╠═══════════════════════════════════════════════════════════════════════╝
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Passing Parameters
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ In C#, arguments can be passed to parameters either by value or by reference. Passing by reference enables function members, methods, properties, indexers, operators, and constructors to change the value of the parameters and have that change persist in the calling environment. To pass a parameter by reference, use the "ref" or "out" keyword.
+
+	├─┬───────────────────────────────────────────────────────────────────┐
+		│ ref
+		├───────────────────────────────────────────────────────────────────┘
+		├─ A ref parameter must be definitely assigned by the caller. And ref parameter may be altered as a result of the call. 
+		├─┬─────────────────────────────────────────────────────────────────┐
+			class TestRef
+			{
+				static void FillArray(ref int[] arr)
+				{
+					// Create the array on demand:
+					if (arr == null)
+					{
+						arr = new int[10];
+					}
+					
+					// Fill the array:
+					arr[0] = 1111;
+					arr[4] = 5555;
+				}
+
+				static void Main()
+				{
+					// Initialize the array:
+					int[] theArray = { 1, 2, 3, 4, 5 };
+
+					// Pass the array using ref:
+					FillArray(ref theArray);
+
+					// Display the updated array:
+					System.Console.WriteLine("Array elements are:");
+					for (int i = 0; i < theArray.Length; i++)
+					{
+						System.Console.Write(theArray[i] + " ");
+					}
+
+					// Keep the console window open in debug mode.
+					System.Console.WriteLine("Press any key to exit.");
+					System.Console.ReadKey();
+				}
+			}
+			/* Output:
+				Array elements are:
+				1111 2 3 4 5555
+			*/
+			
+			
+	├─┬───────────────────────────────────────────────────────────────────┐
+		│ out
+		├───────────────────────────────────────────────────────────────────┘
+		├─  A out parameter must be assigned before it is used by the callee.
+		├─┬─────────────────────────────────────────────────────────────────┐
+			class TestOut
+			{
+				static void FillArray(out int[] arr)
+				{
+					// Initialize the array:
+					arr = new int[5] { 1, 2, 3, 4, 5 };
+				}
+
+				static void Main()
+				{
+					int[] theArray; // Initialization is not required
+
+					// Pass the array to the callee using out
+					FillArray(out theArray);
+
+					// Display the array elements:
+					System.Console.WriteLine("Array elements are:");
+					for (int i = 0; i < theArray.Length; i++)
+					{
+					 System.Console.Write(theArray[i] + " ");
+					}
+
+					// Keep the console window open in debug mode.
+					System.Console.WriteLine("Press any key to exit.");
+					System.Console.ReadKey();
+				}
+			}
+			
+			/* Output:
+				Array elements are:
+				1 2 3 4 5        
+			*/
+
+
+
+
+
+
+
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Algorithms
+╠═══════════════════════════════════════════════════════════════════════╝
+
+
+https://visualgo.net/en
+
+
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Streams
+╠═══════════════════════════════════════════════════════════════════════╝
+
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ buffer size
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ A quick benchmark based on the document referenced shows no increase in performance on my system greater than 128KB buffer size. Your mileage may vary, feel free to use the below.
+	├─┬───────────────────────────────────────────────────────────────────┐
+		Stopwatch sw = new Stopwatch();
+		
+		// seed a random number generator
+		Random rand = new Random();
+		
+		//8,192KB File
+		int numberOfBytes = 2 << 22;
+		byte nextByte;
+		
+		//Limited loop to 28 to prevent out of memory
+		for (int i = 1; i <= 28; i++) 
+		{
+			sw.Start();
+			
+			using (FileStream fs = new FileStream(
+				String.Format(@"C:\TEMP\TEST{0}.DAT", i),  // name of file
+				FileMode.Create,    // create or overwrite existing file
+				FileAccess.Write,   // write-only access
+				FileShare.None,     // no sharing
+				2 << i,             // block transfer of i=18 -> size = 256 KB
+				FileOptions.None))
+			{
+				for (int j = 0; j < numberOfBytes; j++)
+				{
+					nextByte = (byte)(rand.Next() % 256); // generate a random byte
+					fs.WriteByte(nextByte);               // write it
+				} 
+			}
+			
+			sw.Stop();
+			
+			Console.WriteLine(
+				String.Format(
+					"Buffer is 2 << {0} Elapsed: {1}", i, sw.Elapsed));
+			
+			sw.Reset();
+		}
+
+
+
+
+
+
+
+
+
+		
+─ │ ═ ║
+
+┌ ┐ └ ┘ ┬ ┴ ├ ┤ ┼
+
+╔ ╗ ╚ ╝ ╦ ╩ ╠ ╣ ╬
+
+╒ ╕ ╘ ╛ ╤ ╧ ╞ ╡ ╪
+
+╓ ╖ ╙ ╜ ╥ ╨ ╟ ╢ ╫
+
+▀ ▄ █ ▌ ▐ ░ ▒ ▓ ■ □ ▪ ▫ ▬ ▲ ► ▼ ◄ ◊ ○ ☺ ☻
+██
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─
+╟─┐
+╟─┬─────────────────────────────────────────────────────────────────────┐
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│
+	├─────────────────────────────────────────────────────────────────────┘
+	├─
+	├─┐
+	├─┬───────────────────────────────────────────────────────────────────┐
+	├─┬───────────────────────────────────────────────────────────────────┐
+		│
+		├───────────────────────────────────────────────────────────────────┘
+		├─┬─────────────────────────────────────────────────────────────────┐
+			├─┬───────────────────────────────────────────────────────────────┐
+				│
+				├───────────────────────────────────────────────────────────────┘
+				├─┬─────────────────────────────────────────────────────────────┐

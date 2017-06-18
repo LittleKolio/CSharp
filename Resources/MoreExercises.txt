@@ -1,0 +1,676 @@
+﻿var n = int.Parse(Console.ReadLine());
+var fib0 = 1;
+var fib1 = 1;
+if (n > 0)
+{
+	for (int i = 1; i <= n - 1; i++)
+	{
+		var sum = fib0 + fib1;
+		fib0 = fib1;
+		fib1 = sum;
+	}
+	Console.WriteLine(fib1);
+}
+else if (n == 0)
+{
+	Console.WriteLine(fib0);
+}
+-------------------------------------------------------------------------
+
+int rec1x1 = 2;
+int rec1x2 = 12;
+int rec1y1 = 1;
+int rec1y2 = -3;
+
+int rec2x1 = 4;
+int rec2x2 = 10;
+int rec2y1 = 3;
+int rec2y2 = -5;
+
+int x = int.Parse(Console.ReadLine());
+int y = int.Parse(Console.ReadLine());
+
+if ((x >= rec1x1 && x <= rec1x2 && y <= rec1y1 && y >= rec1y2) ||
+	(x >= rec2x1 && x <= rec2x2 && y <= rec2y1 && y >= rec2y2))
+{
+	Console.WriteLine("in");
+}
+else
+{
+	Console.WriteLine("out");
+}
+-------------------------------------------------------------------------
+
+double vol = double.Parse(Console.ReadLine());
+double p1 = double.Parse(Console.ReadLine());
+double p2 = double.Parse(Console.ReadLine());
+double hours = double.Parse(Console.ReadLine());
+double sumVol = (p1 + p2) * hours;
+
+if (sumVol <= vol)
+{
+	double p1Perc = (p1 / (p2 + p1)) * 100;
+	double p2Perc = (p2 / (p1 + p2)) * 100;
+	double volPrec = (sumVol / vol) * 100;
+	Console.WriteLine("The pool is {0}% full. Pipe 1: {1}%. Pipe 2: {2}%.",
+					  (int)volPrec, (int)p1Perc, (int)p2Perc);
+}
+else if (sumVol > vol)
+{
+	Console.WriteLine("For {0} hours the pool overflows with {1} liters.",
+					  hours, (int)(sumVol - vol));
+}
+-------------------------------------------------------------------------
+
+var n = long.Parse(Console.ReadLine());
+var prime =  (n > 1);
+
+for (var i = 2 ; i <= Math.Sqrt(n); i++)
+{
+	if (n % i == 0)
+	{
+		prime = false;
+		break;
+	}
+}
+if (prime)
+{
+	Console.WriteLine("Prime");
+}
+else
+{
+	Console.WriteLine("Not Prime");
+}
+-------------------------------------------------------------------------
+
+var n = int.Parse(Console.ReadLine());
+var count = 0;
+
+for (int row = 0; true; row++)
+{
+	for (int col = 0; col <= row; col++)
+	{
+		count++;
+		Console.Write("{0} ", count);
+		if (count == n)
+		{
+			break;
+		}
+	}
+	Console.WriteLine();
+	if (count == n)
+	{
+		break;
+	}
+}
+-------------------------------------------------------------------------
+
+int a = int.Parse(Console.ReadLine());
+int b = int.Parse(Console.ReadLine());
+
+while (b != 0)
+{
+	int oldB = b;
+	b = a % b;
+	a = oldB;
+}
+Console.WriteLine(a);
+
+-------------------------------------------------------------------------
+
+
+2 Task / January 17
+
+var resBeers = int.Parse(Console.ReadLine());
+var input = Console.ReadLine();
+var beers = 0L;
+
+while (input != "Exam Over") {
+	string[] ship = input.Split(' ');
+	switch (ship[1]) {
+	case "beers":
+		beers += long.Parse(ship[0]);
+		break;
+	case "sixpacks":
+		beers += 6 * long.Parse(ship[0]);
+		break;
+	case "cases":
+		beers += 24 * long.Parse(ship[0]);
+		break;
+	default:
+		break;
+	}
+	input = Console.ReadLine();
+}
+beers -= beers / 100;
+if (beers >= resBeers) {
+	Console.WriteLine("Cheers! Beer left: {0} cases, " +
+		"{1} sixpacks and {2} beers.",
+		(beers - resBeers)/ 24,
+		((beers - resBeers) % 24) / 6,
+		((beers - resBeers) % 24) % 6);
+} else {
+	Console.WriteLine("Not enough beer. Beer needed: " +
+		"{0} cases, {1} sixpacks and {2} beers.",
+		(resBeers - beers) / 24,
+		((resBeers - beers) % 24) / 6,
+		((resBeers - beers) % 24) % 6);
+}
+-------------------------------------------------------------------------
+
+3 Task / January 17
+
+var n = int.Parse (Console.ReadLine());
+
+var outside = n;
+var inside = -2;
+var core = n - 2;
+
+var side = new String ('.', n);
+var middle = new String ('#', n);
+Console.WriteLine ("{0}{1}{0}", side, middle);
+for (int row1 = 0; row1 < n / 2; row1++) {
+	outside -= 2;
+	inside += 2;
+	Console.Write ("{0}##{1}#{2}#{1}##{0}",
+		new String ('.', outside),
+		new String ('.', inside),
+		new String ('.', core));
+	Console.WriteLine ();
+}
+for (int row2 = 0; row2 < n / 2; row2++) {
+	Console.Write ("{0}##{1}#{2}#{1}##{0}",
+		new String ('.', outside),
+		new String ('.', inside),
+		new String ('.', core));
+	outside += 2;
+	inside -= 2;
+	Console.WriteLine ();
+}
+Console.WriteLine ("{0}{1}{0}", side, middle);
+-------------------------------------------------------------------------
+
+4 Task / January 17
+
+int dailyExpenses = int.Parse(Console.ReadLine());
+string line = Console.ReadLine();
+int totalMoney = 0;
+int days = 0;
+while (line != "Season Over")
+{
+	days++;
+	string[] parameters = line.Split();
+	int hours = int.Parse(parameters[0]);
+	string path = parameters[1];
+	int price = int.Parse(parameters[2]);
+	int herbs = 0;
+	for (int i = 0; i < hours; i++)
+	{
+		if (path[i % path.Length] == 'H')
+		{
+			herbs++;
+		}
+	}
+	totalMoney += herbs * price;
+	line = Console.ReadLine();
+}
+decimal averageEarnings = (decimal)totalMoney / days;
+if (averageEarnings >= dailyExpenses)
+{
+	Console.WriteLine("Times are good. Extra money per day: {0:F2}.", averageEarnings - dailyExpenses);
+}
+else
+{
+	int totalExpenses = dailyExpenses * days;
+	Console.WriteLine("We are in the red. Money needed: {0}.", totalExpenses - totalMoney);
+}
+
+
+-------------------------------------------------------------------------
+
+
+
+1 Task / February 21
+
+var money = decimal.Parse (Console.ReadLine());
+var exRate = decimal.Parse (Console.ReadLine());
+var pizzaP = decimal.Parse (Console.ReadLine()) / exRate;
+var lasagnaP = decimal.Parse (Console.ReadLine()) / exRate;
+var sandwichP = decimal.Parse (Console.ReadLine()) / exRate;
+var pizzaQ = int.Parse (Console.ReadLine());
+var lasagnaQ = int.Parse (Console.ReadLine());
+var sandwichQ = int.Parse (Console.ReadLine());
+
+var sum = pizzaP * pizzaQ +
+		  lasagnaP * lasagnaQ +
+		  sandwichP * sandwichQ;
+
+if (sum <= money) {
+	Console.WriteLine ("Garfield is well fed, John is awesome. " +
+	"Money left: ${0:F2}.", money - sum);
+} else {
+	Console.WriteLine ("Garfield is hungry. John is a badass. " +
+	"Money needed: ${0:F2}.", sum - money);
+}
+
+-------------------------------------------------------------------------
+
+2 Task / February 21
+
+var n = int.Parse (Console.ReadLine());
+char[] answers = new char[n]; 
+var a = 0;
+var b = 0;
+var c = 0;
+var d = 0;
+
+for (int i = 0; i < n; i++) {
+	var task = uint.Parse (Console.ReadLine());
+	if (task % 4 == 0) {
+		++a;
+		answers[i] = 'a';
+	}
+	else if (task % 4 == 1) {
+		++b;
+		answers[i] = 'b';
+	}
+	else if (task % 4 == 2) {
+		++c;
+		answers[i] = 'c';
+	}
+	else if (task % 4 == 3) {
+		++d;
+		answers[i] = 'd';
+	}
+}
+foreach (var item in answers) {
+	Console.Write (item + " ");
+}
+Console.WriteLine ();
+Console.WriteLine ("Answer A: " + a);
+Console.WriteLine ("Answer B: " + b);
+Console.WriteLine ("Answer C: " + c);
+Console.WriteLine ("Answer D: " + d);
+
+-------------------------------------------------------------------------
+
+2 Task / February 21
+
+var n = int.Parse (Console.ReadLine());
+string result = string.Empty;
+var a = 0;
+var b = 0;
+var c = 0;
+var d = 0;
+
+for (int i = 0; i < n; i++) {
+	var task = uint.Parse (Console.ReadLine());
+	string answers = string.Empty;
+	if (task % 4 == 0) {
+		++a;
+		answers = "a";
+	}
+	else if (task % 4 == 1) {
+		++b;
+		answers = "b";
+	}
+	else if (task % 4 == 2) {
+		++c;
+		answers = "c";
+	}
+	else if (task % 4 == 3) {
+		++d;
+		answers = "d";
+	}
+	result += answers + ' ';
+}
+Console.WriteLine (result);
+Console.WriteLine ("Answer A: " + a);
+Console.WriteLine ("Answer B: " + b);
+Console.WriteLine ("Answer C: " + c);
+Console.WriteLine ("Answer D: " + d);
+
+-------------------------------------------------------------------------
+
+3 Task / February 21
+
+var n = int.Parse (Console.ReadLine());
+
+for (int i = 0; i < n; i++) {
+	Console.WriteLine ("#{0}#{1}#{2}#{1}#{0}#",
+		new string ('~', i),
+		new string ('.', 2 * n - 2 * i),
+		new string ('.', 2 * i));
+}
+for (int i = 0; i <= n; i++) {
+	Console.WriteLine ("{0}#{1}#{2}#{1}#{0}",
+		new string ('.', 2 * i + 1),
+		new string ('~', n - i),
+		new string ('.',2 * n - 2 * i));
+}
+for (int i = 0; i < n; i++) {
+	Console.WriteLine ("{0}##{0}", new string ('.', 2 * n + 2));
+}
+
+-------------------------------------------------------------------------
+
+3 Task / February 21
+
+var n = int.Parse (Console.ReadLine());
+
+int leafSpace = 0;
+int insideSpace = 2 * n;
+int middleSpace = 0;
+
+for (int i = 0; i < n; i++) {
+	Console.WriteLine ("#{0}#{1}#{2}#{1}#{0}#",
+		new string ('~', leafSpace),
+		new string ('.', insideSpace),
+		new string ('.', middleSpace));
+	leafSpace++;
+	insideSpace -= 2;
+	middleSpace += 2;
+}
+
+int outsideSpace = 1;
+
+for (int i = 0; i <= n; i++) {
+	Console.WriteLine ("{0}#{1}#{2}#{1}#{0}",
+		new string ('.', outsideSpace),
+		new string ('~', leafSpace),
+		new string ('.', middleSpace));
+	outsideSpace += 2;
+	leafSpace--;
+	middleSpace -= 2;
+}
+for (int i = 0; i < n; i++) {
+	Console.WriteLine ("{0}##{0}", new string ('.', 2 * n + 2));
+}
+
+-------------------------------------------------------------------------
+
+4 Task / February 21
+
+var money = decimal.Parse (Console.ReadLine());
+var count = 0;
+var input = string.Empty;
+do {
+	input = Console.ReadLine();
+} while (input != "mall.Enter");
+while (true) {
+	input = Console.ReadLine();
+	if (input == "mall.Exit") {
+		break;
+	}
+	foreach (char item in input) {
+		var price = 0m;
+		if (item == '%') {
+			if (money = 0)
+				continue;
+			money /= 2m;
+			count++;
+		} else if (item == '*') {
+			money += 10;
+		} else if (item >= 'A' && item <= 'Z') {
+			price = (decimal)item * 0.5m;
+			if (money < price)
+				continue;
+			money -= price;
+			count++;
+		} else if (item >= 'a' && item <= 'z') {
+			price = (decimal)item * 0.3m;
+			if (money < price)
+				continue;
+			money -= price;
+			count++;
+		} else {
+			price = (decimal)item;
+			if (money < price)
+				continue;
+			money -= price;
+			count++;
+		}
+	}
+}
+if (count > 0) {
+	Console.WriteLine ("{0} purchases. Money left: {1:F2} lv.",
+		count, money);
+} else {
+	Console.WriteLine ("No purchases. Money left: {0:F2} lv.", money);
+}
+
+
+-------------------------------------------------------------------------
+
+
+
+3 Task / March 6
+
+var examH = int.Parse (Console.ReadLine());
+var examM = int.Parse (Console.ReadLine());
+var stuH = int.Parse (Console.ReadLine());
+var stuM = int.Parse (Console.ReadLine());
+
+var duration = (examH - stuH) * 60 + examM - stuM;
+
+if (duration > 30) {
+	Console.WriteLine ("Early");
+} else if (duration >= 0) {
+	Console.WriteLine ("On time");
+	if (duration == 0) {
+		return; // return will exit the current method
+	}
+} else {
+	Console.WriteLine ("Late");
+}
+Console.Write (Math.Abs(duration) < 60 ? "{1} minutes" : "{0}:{1:00} hours",
+	Math.Abs(duration) / 60, Math.Abs(duration) % 60);
+Console.Write (duration > 0 ? " before the start" : " after the start");
+Console.WriteLine ();
+-------------------------------------------------------------------------
+
+4 Task / March 6
+				  
+var n = int.Parse(Console.ReadLine());
+var p1 = 0.0;
+var p2 = 0.0;
+var p3 = 0.0;
+var p4 = 0.0;
+var p5 = 0.0;
+
+if (n == 0) {
+	var count = 0;
+	while (count < 4) {
+		Console.WriteLine ("0.00%");
+		count++;
+	}
+} else {
+	for (int i = 0; i < n; i++) {
+		var num = int.Parse (Console.ReadLine ());
+		if (num < 200)
+			++p1;
+		else if (num < 400)
+			++p2;
+		else if (num < 600)
+			++p3;
+		else if (num < 800)
+			++p4;
+		else
+			++p5;
+	}
+	Console.WriteLine ("{0:.00%}\n{1:.00%}\n{2:.00%}\n{3:.00%}\n{4:.00%}",
+		p1 / n, p2 / n, p3 / n, p4 / n, p5 / n);
+}
+-------------------------------------------------------------------------
+
+5 Task / March 6
+
+var n = int.Parse(Console.ReadLine());
+
+Console.WriteLine ("/{0}\\{1}/{0}\\",
+	new String ('^', n / 2),
+	new String ('_', 2 * n - (n / 2 + 2) * 2));
+for (int i = 0; i < n - 2; i++) {
+	char mid = ' ';
+	if (i == n - 3) {
+		mid = '_';
+	}
+	Console.WriteLine ("|{0}{1}{0}|",
+		new String (' ', n / 2 + 1),
+		new String (mid, 2 * n - (n / 2 + 2) * 2));
+}
+Console.WriteLine ("\\{0}/{1}\\{0}/",
+	new String ('_', n / 2),
+	new String (' ', 2 * n - (n / 2 + 2) * 2));
+-------------------------------------------------------------------------
+
+6 Task / March 6
+
+var n = int.Parse (Console.ReadLine());
+var l = int.Parse (Console.ReadLine ());
+
+for (int i1 = 1; i1 <= n; i1++) {
+	for (int i2 = 1; i2 <= n; i2++) {
+		for (int c1 = 0; c1 < l; c1++) {
+			for (int c2 = 0; c2 < l; c2++) {
+				for (int i3 = (Math.Max(i1, i2) + 1); i3 <= n; i3++) {
+					Console.Write ("{0}{1}{2}{3}{4} ",
+						i1, 
+						i2, 
+						(char)(c1 + 'a'), 
+						(char)(c2 + 'a'), 
+						i3);
+				}
+			}
+		}
+	}
+}
+
+
+-------------------------------------------------------------------------
+
+
+
+
+2 Task / March 26
+
+var vol = int.Parse (Console.ReadLine());
+var flow1 = int.Parse (Console.ReadLine ());
+var flow2 = int.Parse (Console.ReadLine ());
+var hours = double.Parse (Console.ReadLine ());
+
+var pipeVol = (flow1 + flow2) * hours;
+
+if (pipeVol <= vol) {
+	Console.WriteLine (
+		"The pool is {0}% full. Pipe 1: {1}%. Pipe 2: {2}%.",
+		Math.Truncate (pipeVol / vol * 100),
+		Math.Truncate (flow1 * hours / pipeVol * 100),
+		Math.Truncate (flow2 * hours / pipeVol * 100));
+} else {
+	Console.WriteLine ("For {0} hours the pool overflows with {1} liters.",
+		hours, pipeVol - vol);
+}
+-------------------------------------------------------------------------
+
+3 Task / March 26
+
+var budget = double.Parse (Console.ReadLine());
+var season = Console.ReadLine ();
+
+var spend = 0.0;
+var place = string.Empty;
+
+if (budget <= 100) {
+	switch (season) {
+	case "summer":
+		spend = 0.3;
+		place = "Camp";
+		break;
+	case "winter":
+		spend = 0.7;
+		place = "Hotel";
+		break;
+	default:
+		break;
+	}
+	Console.WriteLine ("Somewhere in Bulgaria");
+}
+else if (budget <= 1000) {
+	switch (season) {
+	case "summer":
+		spend = 0.4;
+		place = "Camp";
+		break;
+	case "winter":
+		spend = 0.8;
+		place = "Hotel";
+		break;
+	default:
+		break;
+	}
+	Console.WriteLine ("Somewhere in Balkans");
+} else {
+	spend = 0.9;
+	place = "Hotel";
+	Console.WriteLine ("Somewhere in Europe");
+}
+Console.WriteLine ("{0} - {1:.00}", place, budget * spend);
+-------------------------------------------------------------------------
+
+4 Task / March 26
+
+var n = double.Parse (Console.ReadLine());
+var p1 = 0;
+var p2 = 0;
+var p3 = 0;
+
+for (int count = 0; count < n; count++) {
+	var num = int.Parse (Console.ReadLine());
+	if (num % 2 == 0)
+		++p1;
+	if (num % 3 == 0)
+		++p2;
+	if (num % 4 == 0)
+		++p3;
+}
+Console.WriteLine ("{0:0.00%}\n{1:0.00%}\n{2:0.00%}",
+	p1 / n, p2 / n, p3 / n);
+-------------------------------------------------------------------------
+
+5 Task / March 26
+
+var n = int.Parse (Console.ReadLine());
+for (int row = 1; row <= n - 2; row++) {
+	char rowChar = row % 2 == 0 ? '-' : '*';
+	Console.WriteLine ("{0}\\ /{0}", new string (rowChar, n - 2));
+}
+Console.WriteLine (new string (' ', n - 1) + "@");
+for (int row = 1; row <= n - 2; row++) {
+	char rowChar = row % 2 == 0 ? '-' : '*';
+	Console.WriteLine ("{0}/ \\{0}", new string (rowChar, n - 2));
+}
+-------------------------------------------------------------------------
+
+6 Task / March 26
+
+var n = int.Parse (Console.ReadLine());
+
+for (int i1 = 1; i1 <= 9; i1++) {
+	for (int i2 = 1; i2 <= 9; i2++) {
+		for (int i3 = 1; i3 <= 9; i3++) {
+			for (int i4 = 1; i4 <= 9; i4++) {
+				for (int i5 = 1; i5 <= 9; i5++) {
+					for (int i6 = 1; i6 <= 9; i6++) {
+						var magic = i1 * i2 * i3 * i4 * i5 * i6;
+						if (magic == n) {
+							Console.Write ("{0}{1}{2}{3}{4}{5} ",
+								i1, i2, i3, i4, i5, i6);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+Console.WriteLine ();

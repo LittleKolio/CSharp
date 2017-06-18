@@ -1,0 +1,992 @@
+
+─ │ ═ ║
+
+┌ ┐ └ ┘ ┬ ┴ ├ ┤ ┼
+
+╔ ╗ ╚ ╝ ╦ ╩ ╠ ╣ ╬
+
+╒ ╕ ╘ ╛ ╤ ╧ ╞ ╡ ╪
+
+╓ ╖ ╙ ╜ ╥ ╨ ╟ ╢ ╫
+
+▀ ▄ █ ▌ ▐ ░ ▒ ▓ ■ □ ▪ ▫ ▬ ▲ ► ▼ ◄ ◊ ○ ☺ ☻
+██
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─
+╟─┐
+╟─┬─────────────────────────────────────────────────────────────────────┐
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│
+	├─┬───────────────────────────────────────────────────────────────────┘
+	├─
+	├─┐
+	├─┬───────────────────────────────────────────────────────────────────┤
+	├─┬───────────────────────────────────────────────────────────────────┐
+		│
+		├───────────────────────────────────────────────────────────────────┘
+		├─┬─────────────────────────────────────────────────────────────────┐
+			├─┬───────────────────────────────────────────────────────────────┐
+				│
+				├───────────────────────────────────────────────────────────────┘
+				├─┬─────────────────────────────────────────────────────────────┐
+
+
+SELECT *
+FROM table;
+* = всичко
+
+SELECT * FROM table ORDER BY column;
+подрежда по азбучен ред дадена колона
+
+SELECT column1, column2 FROM table ORDER BY column;
+изважда съдържанието само на двете колони
+
+SELECT column1, column2 AS 'column name' FROM table ORDER BY column;
+AS задава име на колоната в '' (може да се пропусне)
+
+SELECT COUNT(*) FROM table;
+ще върне броя редове
+COUNT(*) - функция
+
+SELECT column1, column2 FROM table WHERE column = 'something' LIMIT num;
+ще върне редовете които изпълняват условието (израз) column = 'something'
+LIMIT 5 първите 5
+
+SELECT COUNT(*) FROM table WHERE column > num AND column = 'sothing';
+
+INSERT INTO table (column1, column2, column3) VALUES ('something', 'something', 'something');
+
+UPDATE table SET column1 = 'something', column2 = 'something' WHERE column = num;
+
+UPDATE table
+SET column1 = NULL, column2 = NULL
+WHERE column = num;
+
+DELETE FROM table
+WHERE column = num;
+
+'-- ' коментар (новред)
+/*
+	коментар
+*/
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│expressions
+	├─────────────────────────────────────────────────────────────────────┘
+	├─┐
+		SELECT column1, column2 / num AS 'some name'
+			FROM table
+			WHERE column >= num
+			ORDER BY column DESC;
+			
+		├─┬─────────────────────────────────────────────────────────────────┐
+			column2 / num
+			column >= num
+			
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│CREATE
+	├─────────────────────────────────────────────────────────────────────┘
+	├─┐
+		CREATE DATABASE name;
+
+	
+		CREATE TABLE name (
+			name1 int NOT NULL PRIMARY KEY,
+			name2 nvarchar(255)
+		);
+		
+		INSERT INTO table VALUES (1, 'a');
+		INSERT INTO table VALUES (2, 'b');
+		INSERT INTO table VALUES (3, 'c');
+		
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│INSERT
+	├─────────────────────────────────────────────────────────────────────┘
+	├─┐
+		INSERT INTO table (
+		column1, 
+		column2, 
+		column3
+		) VALUES (
+		'something', 
+		'something', 
+		'something'
+		);
+		
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Migration
+	├─┬───────────────────────────────────────────────────────────────────┘
+		enable-migrations
+		add-migration <name> -ignorechanges
+		update-database –targetmigration: <name>
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Annotations
+	├─┬───────────────────────────────────────────────────────────────────┘
+		using System.ComponentModel.DataAnnotations;
+
+		[SqlDefaultValue(DefaultValue = "getutcdate()")]
+		
+		[Column(TypeName = "name")]
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ custom annotation
+		├─┬─────────────────────────────────────────────────────────────────┘
+			[Tag]
+		
+			public class TagAttribute
+				: ValidationAttribute
+			{
+				public override bool IsValid(object value)
+				{
+					string tag = (string)value;
+					bool isValid = Regex.IsMatch(tag, @"^#(\w{1,19})(?=[^\s\t]*)$");
+					if (!isValid) { return false; }
+					return true;
+				}
+			}
+			
+		├─┬─────────────────────────────────────────────────────────────────┘
+			[CustomMinLength(MinLength = 20)]
+			
+			public class CustomMinLengthAttribute
+				: ValidationAttribute
+			{
+				public int MinLength { get; set; }
+
+				public override bool IsValid(object value)
+				{
+					string tag = (string)value;
+					if (tag.Length > this.MinLength) { return false; }
+					return true;
+					//return base.IsValid(value);
+				}
+			}
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ DbEntityValidationException
+		├─┬─────────────────────────────────────────────────────────────────┘
+		
+			try
+			{
+				context.SaveChanges();
+			}
+			catch (DbEntityValidationException ex)
+			{
+				foreach (var eve in ex.EntityValidationErrors)
+				{
+					Console.WriteLine(
+						"Entity of type {0} in state {1} has the following validation errors:",
+						eve.Entry.Entity.GetType().Name, // annotation name
+						eve.Entry.State);
+						
+					foreach (var ve in eve.ValidationErrors)
+					{
+						Console.WriteLine(
+							"- Property: {0}, Error: {1}",
+							ve.PropertyName, // prop name
+							ve.ErrorMessage);
+					}
+				}
+			}
+
+
+
+
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Fluent API (Model Builder)
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ CodeFirst maps your classes to tables using a set of conventions. Classes can be customized using annotations and the Fluent API. Custom names of objects (columns, tables, etc.) in the DB. Validation and data types. Fix complicated entity relationships.
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ unique index (Model Builder)
+		├─┬─────────────────────────────────────────────────────────────────┘
+			using System.Data.Entity.ModelConfiguration;
+			using System.Data.Entity.Infrastructure.Annotations;
+			using System.ComponentModel.DataAnnotations.Schema;
+			
+			public class ModelNameConfig
+				: EntityTypeConfiguration<ModelName>
+			{
+				modelBuilder.Entity<ModelName>() 
+					.Property(m => m.PropName)
+					.HasColumnAnnotation(
+							IndexAnnotation.AnnotationName, 
+							new IndexAnnotation(
+									new IndexAttribute("IX_ModelName_PropName", 1) { IsUnique = true }));
+			}
+			
+			
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ unique index (Model Builder)
+		├─┬─────────────────────────────────────────────────────────────────┘
+			using System.Data.Entity.ModelConfiguration;
+
+			public class UserConfig
+				: EntityTypeConfiguration
+			{
+				public 
+			}
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ unique index (Model Builder)
+		├─┬─────────────────────────────────────────────────────────────────┘
+			using System.Data.Entity.ModelConfiguration;
+			
+			public class UserConfig
+				: EntityTypeConfiguration<User>
+			{
+				public UserConfig()
+				{
+					// тази връзка е едностранна
+					// userA има приятел userB но той нама проятел userA
+					this.HasMany(u => u.Friends)
+						.WithMany();
+						.Map(u =>
+						{
+							u.ToTable("Friends");
+							u.MapLeftKey("UserId");
+							u.MapRightKey("FriendId");
+						});
+				}
+			}
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Executing Native SQL Queries
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ context.Database.SqlQuery<return-type>(native-SQL-query);
+	├─┬───────────────────────────────────────────────────────────────────┐
+		var context = new SoftUniEntities();
+		string query = @"
+		SELECT COUNT(*) FROM dbo.Employees
+		";
+		var queryResult = context.Database.SqlQuery<int>(query);
+		int count = queryResult.FirstOrDefault();
+		
+	├─┬───────────────────────────────────────────────────────────────────┐
+		string query = @"
+		SELECT FirstName + " " + LastName
+		FROM dbo.Employees
+		WHERE JobTitle = {0}
+		";
+		var employees = context.Database
+			.SqlQuery<string>(query, "Marketing Specialist");
+			
+		foreach (var emp in employees) { Console.WriteLine(emp); }
+		
+	├─┬───────────────────────────────────────────────────────────────────┐
+		string query = @"
+		SELECT FirstName + " " + LastName
+		FROM dbo.Employees
+		WHERE JobTitle = @parameterName
+		";
+		var parameterName = new SqlParameter("@parameterName", "Marketing Specialist");
+		var employees = context.Database.SqlQuery<string>(query);
+		
+		foreach (var emp in employees) { Console.WriteLine(emp); }
+		
+		
+	├─ context.Database
+	.ExecuteSqlCommand(File.ReadAllText("../../file-name.sql"));
+	
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Attaching and Detaching Objects
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ In Entity Framework, objects can be attached to the object context (tracked object) or detached from an object context (untracked object)
+	├─ Attached objects are tracked and managed by the DbContext. SaveChanges() persists all changes in DB.
+	├─ Detached objects are not referenced by the DbContext. Behave like a normal objects, which are not related to EF.
+	├─ When a query is executed inside an DbContext, the returned objects are automatically attached to it. When a context is destroyed, all objects in it are automatically detached.
+	
+	├─██ You might later on attach to a new context objects that have been previously detached.
+
+
+	├─┬───────────────────────────────────────────────────────────────────┐
+		Employee GetEmployeeById(int id)
+		{
+			 using (var context = new SoftUniContext())
+			 {
+					return context.Employees
+						 .First(p => p.EmployeeID == id);
+			 }
+		}
+		└─┬─────────────────────────────────────────────────────────────────┘
+			├─██ когато using(){} приключи context изчезва и всички entity-та на тази инстанция стават detached
+		
+		├─┬─────────────────────────────────────────────────────────────────┐
+			static void Main()
+			{
+					var context1 = new SoftUniContext();
+					var employee = LoadAndDetach();
+					
+					Console.WriteLine(context1.Entry(employee).State);
+					// Detached
+					
+					context1.Entry(employee).State = System.Data.Entity.EntityState.Modified;
+					// това го attach-ва към context1 и Modified ни позволява да го променяме
+					// context1.Employees.Attach(employee);
+					context.SaveChanges();
+					
+			}
+
+			static Employee LoadAndDetach()
+			{
+					using (var context2 = new SoftUniContext())
+					{
+							var employee = context2.Employees.FirstOrDefault();
+							return employee;
+					}
+			}
+			
+		├─┬─────────────────────────────────────────────────────────────────┐
+			void UpdateName(Employee employee, string newName)
+			{
+				 using (var softUniEntities = new SoftUniEntities())
+				 {
+						var entry = softUniEntities.Entry(employee);
+						entry.State = EntityState.Added;
+						employee.FirstName = newName;
+						softUniEntities.SaveChanges();
+				 } 
+			}
+	
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│EntityFramework.Extended
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ Install-Package EntityFramework.Extended
+	├─ Multiple Update and Delete in Single Query. EF.Extended gives you the ability to perform bulk deletion of rows/entities by given criteria.
+	
+	├─┬───────────────────────────────────────────────────────────────────┐
+		context.Users.Delete(u => u.FirstName == "Pesho");
+		context.Employees.Update(
+			t => t.Name == "Nasko",
+			t => new Employee() {Name = "Plamen"}
+		);
+		└─┬─────────────────────────────────────────────────────────────────┘
+			├─ Update all Employees with Name "Nasko" to "Plamen"
+
+	├─┬───────────────────────────────────────────────────────────────────┐
+		IQueryable<Employee> employees = context.Employees
+			.Where(e => e.Name == "Plamen");
+		context.Employees.Update(
+			employee, e => new Employee() { Age = 99; }
+		);
+		└─┬─────────────────────────────────────────────────────────────────┘
+			├─ Update all Employees Age to 99 who have a name "Plamen"
+			
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│Stored Procedures
+	├─────────────────────────────────────────────────────────────────────┘
+	├─┐
+		CREATE PROCEDURE UpdateAge @param int
+		AS BEGIN
+		UPDATE Employees
+		SET Age = Age + @param;
+		END
+		└─┬─────────────────────────────────────────────────────────────────┘
+			SqlParameter param = new SqlParameter("@age", SqlDbType.Int);
+			param.Value = 2;
+			context.Database.ExecuteSqlCommand(
+				"UpdateAge @age", param
+			);
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│Concurrency Control in EF
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ EF runs in optimistic concurrency mode (no locking). By default the conflict resolution strategy in EF is "last wins". The last change overwrites all previous concurrent changes.
+	├─ Enabling "first wins" strategy for certain property in EF
+	└─┬───────────────────────────────────────────────────────────────────┘
+		oncurrencyMode=Fixed // in DBfirst project
+		
+		[ConcurrencyCheck]
+		└─┬─────────────────────────────────────────────────────────────────┘
+			├─ annotation in codefirst. На втория опит за запис хвърлягрешка.
+			├─ 
+				using (var context = new DBContext()) {	}
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│Cascade Operations
+	├─────────────────────────────────────────────────────────────────────┘
+	
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Project Organization
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─ Application code can be split into sections. Create separate projects for each layer of your app.
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Data Layer – database connection.
+	└─┬───────────────────────────────────────────────────────────────────┘
+		├─ Class library with "ProjectName.Data".
+		└─┬─────────────────────────────────────────────────────────────────┘
+			├─ Add a new ADO.NET item from the context menu.
+			├─ Add a reference to the "ProjectName.Models".
+		
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Domain Models – entity classes.
+	└─┬───────────────────────────────────────────────────────────────────┘
+		├─ Class library with "ProjectName.Models".
+		└─┬─────────────────────────────────────────────────────────────────┘
+			├─ Model size affects query performance
+			├─ Split model to only serve the operation performed – don't initialize entire database.
+			├─ Always include foreign key property along with navigation properties
+			├─ using System.ComponentModel.DataAnnotations; requires EF 
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Client – user-interaction and app logic
+	└─┬───────────────────────────────────────────────────────────────────┘
+		├─ Console, WPF, ASP.NET, etc. (your choice) with "ProjectName.Client".
+		└─┬─────────────────────────────────────────────────────────────────┘
+			├─ Add a reference to the "ProjectName.Models" and "ProjectName.Data".
+			├─ Copy and replace App.config from ProjectName.Data
+			├─ Copy EntityFramework.SqlServer.dll from ProjectName.Data/bin/debug after running if once to populate folder debug (or mmm ... Install Entity Framework from the NuGet Package Manager)
+
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Service
+	└─┬───────────────────────────────────────────────────────────────────┘
+		├─ Class library with "ProjectName.Service".
+		└─┬─────────────────────────────────────────────────────────────────┘
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Business Logic (optional) – data validation, transformations
+	└─────────────────────────────────────────────────────────────────────┘
+
+╟─ Reasons
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Easier to locate files when maintaining
+	├─────────────────────────────────────────────────────────────────────┤
+	│ Don't have to rebuild entire codebase after changes (DLLs)
+	└─────────────────────────────────────────────────────────────────────┘
+	
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Optimization
+	└─┬───────────────────────────────────────────────────────────────────┘
+		├─ LINQ queries 
+		└─┬────────────────────────────────────────────────────────────LINQ─┘
+			├─ LINQ queries are executed each time the data is accessed. Try to delay execution (materialization) until you actually need the results.
+			└─┬───────────────────────────────────────────────────────────────┤
+				├─ ToList() ... , Count(), Average(), First()
+				├─ When a property is accessed
+				
+╟─├─├─┬─────────────────────────────────────────────────────────────────┐
+			├─ Execute your query before using it in a loop
+			├─────────────────────────────────────────────────────────────────┤
+			├─ Monitor query execution using Express Profiler
+			└─┬───────────────────────────────────────────────────────────────┘
+				Console.WriteLine(context.Employees); // ще покаже sql заявка
+				
+╟─├─├─┬─────────────────────────────────────────────────────────────────┐
+			├─ Only fetch required data by filtering and projecting your queries.
+			└─┬───────────────────────────────────────────────────────────────┘
+				.Where(e => e ...)
+				.Select(e => new { e... , e... , ...});
+				// new {} е анонимен обект затова неможе да го променяме
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ EF will cache queries and compare for changes
+		└─┬─────────────────────────────────────────────────────────────────┘
+			├─ Disable change detection
+			└─┬───────────────────────────────────────────────────────────────┘
+				try {
+						context.Configuration.AutoDetectChangesEnabled = false;
+						var product = context.Products.Find(productId);
+						...
+				// } catch() {
+				} finally {
+						context.Configuration.AutoDetectChangesEnabled = true;
+				}
+				
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ When adding or updating a record, EF call DetectChanges().
+		└─┬─────────────────────────────────────────────────────────────────┘
+			├─ Use AddRange() and RemoveRange() to reduce calls.
+			└─┬───────────────────────────────────────────────────────────────┘
+				List<Product> products = new List<Product>()
+					{ product1, product2, product3 };
+				context.Products.AddRange(products);
+				
+			├─┬───────────────────────────────────────────────────────────────┘
+				context.Products.AddRange(new Product[] {...});
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ EF tracks every loaded entity. If we only want to display data, this process is redundant.
+		└─┬─────────────────────────────────────────────────────────────────┘
+			├─ Disable tracking
+			└─┬───────────────────────────────────────────────────────────────┘
+				context.Products
+					.AsNoTracking()
+					.Where(p => p...)
+					.ToList();
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Loading Methods
+	└─┬───────────────────────────────────────────────────────────────────┘
+		├─██ Do you need to access many navigation properties from the fetched entities?
+		└─┬─────────────────────────────────────────────────────────────────┘
+			│No ├─ Lazy for large payloads
+			│		├─ Eager for small payloads
+			├─────────────────────────────────────────────────────────────────┤
+			│Yes├─ Eager loading for up three entities
+			│   ├─ Lazy for more
+			└─────────────────────────────────────────────────────────────────┘
+			
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		├─██ Do you know exactly what data will be needed at run time?
+		└─┬─────────────────────────────────────────────────────────────────┘
+			│No ├─ Lazy
+			├─────────────────────────────────────────────────────────────────┤
+			│Yes├─ Eager at first
+			│   ├─ Lazy if loading lots of data
+			└─────────────────────────────────────────────────────────────────┘
+			
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		├─██ Is your code executing far from your database? (network latency). Don’t take database proximity for granted.
+		└─┬─────────────────────────────────────────────────────────────────┘
+			│No ├─ Lazy will simplify your code
+			├─────────────────────────────────────────────────────────────────┤
+			│Yes├─ Depending on scenario
+			│   ├─ Eager will require fewer round trips
+			└─────────────────────────────────────────────────────────────────┘
+			
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		├─ Eager Loading (less queries)
+		├───────────────────────────────────────────────────────────────────┘
+		├─ Eager loading is the process whereby a query for one type of entity also loads related entities as part of the query. Eager loading is achieved by the use of the Include method.
+		└─┬─────────────────────────────────────────────────────────────────┘
+			context.Towns.Include(town => town.Employees);
+			└─┬───────────────────────────────────────────────────────────────┘
+				├─ The Include is found in the System.Data.Entity
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		├─ Lazy Loading (more queries)
+		├───────────────────────────────────────────────────────────────────┘
+		├─ Active by default, can be turned off via configuration
+		└─┬─────────────────────────────────────────────────────────────────┘
+			public CompanyContext()
+				: base("name=CompanyContext")
+			{ Configuration.LazyLoadingEnabled = false; }
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		├─ Explicit Loading
+		└─┬─────────────────────────────────────────────────────────────────┘
+			var person = context.People.FirstOrDefault();
+			context.Entry<>(person)
+       .Collection(b => b.Posts)
+       .Query()
+       .Where(p => p.Tags.Contains("entity-framework")
+       .Load();
+			 
+╟─├─├─┬─────────────────────────────────────────────────────────────────┐
+			├─ Local cache can be accessed without sending a query
+			└─┬───────────────────────────────────────────────────────────────┘
+				var localPosts = context.Posts.Local; 
+				localPosts.Add(new Post { Name = "What's New in EF" }); 
+				localPosts.Remove(context.Posts.Find(1));
+				
+				
+				
+╔═══════════════════════════════════════════════════════════════════════╗
+║ LINQ
+╠═══════════════════════════════════════════════════════════════════════╝
+
+contex.Users.SingleOrDefault(u => u.FirstName == name);
+Returns the only element of a sequence, or a default value if the sequence is empty; this method throws an exception if there is more than one element in the sequence.What is the difference between Single and SingleOrDefault? The difference is what happens when zero matching elements are found. With Single, an exception is thrown in this case. But with SingleOrDefault, the default value is returned. 
+
+contex.Users.Any(u => u.Username == username);
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ AutoMapper
+╠═══════════════════════════════════════════════════════════════════════╝
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Data Transfer Object DTO
+	├─┬───────────────────────────────────────────────────────────────────┘
+		├─ Storage of values, object that carries data between the server and client
+		├─┬─────────────────────────────────────────────────────────────────┘		
+			public class NameDTO
+			{
+				prop { get; set; }
+				prop { get; set; }
+			}
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Add mappings
+	├─┬───────────────────────────────────────────────────────────────────┘
+		using AutoMapper;
+		
+		Mapper.Initialize(cfg =>
+			cfg.CreateMap<NameSource, NameDTO>());
+			
+		var nameProp = context.NameSources.FirstOrDefault();
+		
+		NameDTO dto = Mapper.Map<NameDTO>(nameProp);
+		
+╟─├─┬───────────────────────────────────────────────────────────────────┘
+		Mapper.Initialize(cfg => 
+		{
+			cfg.CreateMap<NameSource1, Name1DTO>();
+			cfg.CreateMap<NameSource2, Name2DTO>();
+			...;
+		});
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ Map properties that don't match naming convention
+		├─┬─────────────────────────────────────────────────────────────────┘
+			Mapper.Initialize(cfg =>
+				cfg.CreateMap<NameSource, NameDTO>()
+					 .ForMember(dto => dto.propNameDTO,
+											opt => opt.MapFrom(src => 
+												src.propNameSource.Sum(p => p.Something))));
+			├─┬───────────────────────────────────────────────────────────────┘
+				Mapper.Initialize(=>
+					.CreateMap<,>()
+						.ForMember(
+							=>.prop,
+							=>.MapFrom(=>.prop.Sum(=>.prop))));
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ Collection Mapping
+		├─┬─────────────────────────────────────────────────────────────────┘
+			List<NameDTO> nameDTOs = Mapper.Map<NameProp[],List<NameDTO>>(nameListProp);
+			
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ LINQ query using ProjectTo()
+	├─┬───────────────────────────────────────────────────────────────────┘
+		using AutoMapper.QueryableExtensions;
+		
+		context.Products
+			.Where(p => p.Id == 18)
+			.ProjectTo<ProductDTO>()
+			.ToList();
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Conditional mapping
+	├─┬───────────────────────────────────────────────────────────────────┘
+		├─ AutoMapper allows you to add conditions to properties that must be met before that property will be mapped.
+		
+	├─┬───────────────────────────────────────────────────────────────────┘
+		class Foo { int baz; }
+		class Bar { uint baz; }
+		
+		Mapper.Initialize(cfg =>
+		{
+			cfg.CreateMap<Foo,Bar>()
+				.ForMember(
+					dest => dest.baz,
+					opt => opt.Condition(src => (src.baz >= 0))); 
+		});
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Configuration validation
+	├─┬───────────────────────────────────────────────────────────────────┘
+		├─ AutoMapper provides configuration testing in the form of the AssertConfigurationIsValid method.
+		
+	├─┬───────────────────────────────────────────────────────────────────┘
+		├─ Mapper.Configuration.AssertConfigurationIsValid();
+		├─┬─────────────────────────────────────────────────────────────────┘
+			├─ AutoMapper checks to make sure that every single Destination type member has a corresponding type member on the source type.
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Custom type converters
+	├─┬───────────────────────────────────────────────────────────────────┘
+
+    public class Source
+    {
+        public string Value1 { get; set; }
+        public string Value2 { get; set; }
+    }
+				
+    public class Destination
+    {
+        public int Value1 { get; set; }
+        public DateTime Value2 { get; set; }
+    }
+				
+    public void Example()
+    {
+        Mapper.Initialize(cfg => {
+          cfg.CreateMap<string, int>()
+						//.ConvertUsing(Convert.ToInt32);
+						.ConvertUsing(x => int.Parse(x));
+						
+          cfg.CreateMap<string, DateTime>()
+						//.ConvertUsing(new DateTimeTypeConverter());
+						.ConvertUsing(x => Convert.ToDateTime(x));
+						
+          cfg.CreateMap<Source, Destination>();
+        });
+				
+        Mapper.AssertConfigurationIsValid();
+
+        var source = new Source
+        {
+            Value1 = "5",
+            Value2 = "01/01/2000",
+        };
+
+        Destination result = Mapper.Map<Source, Destination>(source);
+
+    }
+
+    public class DateTimeTypeConverter : ITypeConverter<string, DateTime>
+    {
+        public DateTime Convert(
+				string source, 
+				DateTime destination, 
+				ResolutionContext context)
+        {
+            return System.Convert.ToDateTime(source);
+        }
+    }
+
+╔═════════════════════════════════════════════════════════════════════════╗
+║ JSON Serializers (dont use)
+╠═════════════════════════════════════════════════════════════════════════╝
+╟─ Add Reference -> Framework -> System.Web.Extensions
+╟─┬───────────────────────────────────────────────────────────────────────┐
+	│ JavaScriptSerializer
+	├─┬─────────────────────────────────────────────────────────────────────┘
+		var name = new Product();
+		var serializer = new JavaScriptSerializer();
+		
+		var jsonProduct = serializer.Serialize(name);
+		var objProduct = serializer.Deserialize<Product>(jsonProduct);
+
+		var products = new Dictionary<string, Product>
+		{
+			{ "pump", firstProduct },
+			{ "filter", secondProduct }
+		};
+		
+		var jsonProducts = serializer.Serialize(products);
+		var objProducts = serializer
+			.Deserialize<Dictionary<string, Product>>(jsonProducts);
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ JSON.NET
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─ Install-Package Newtonsoft.Json
+╟─┬─────────────────────────────────────────────────────────────────────┘
+	using Newtonsoft.Json;
+	
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	├─ JSON.NET exposes a static service JsonConvert
+	├─┬───────────────────────────────────────────────────────────────────┘
+		var products = Mapper.Map<List<ProductDto>>(context.Products.ToList())
+	
+		var jsonProducts = JsonConvert.SerializeObject(products);
+		
+		var objProduct = JsonConvert.DeserializeObject<Product>(jsonProduct);
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	├─ To indent the output string use Formatting.Indented
+	├─┬───────────────────────────────────────────────────────────────────┘
+		JsonConvert.SerializeObject(products, Formatting.Indented);
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	├─ Deserializing to anonymous types
+	├─┬───────────────────────────────────────────────────────────────────┘
+		var template = new 
+		{
+			FirstName = string.Empty,
+			LastName = string.Empty,
+			Occupation = string.Empty
+		};
+
+		var json = @"{ 
+			'firstName': 'Vladimir',
+			'lastName': 'Georgiev',
+			'jobTitle': 'Technical Trainer' }";
+
+		var person = JsonConvert
+			.DeserializeAnonymousType(json, template);
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	├─ JSON.NET Attributes
+	├─┬───────────────────────────────────────────────────────────────────┘
+		public class User
+		{
+			[JsonProperty("user")]
+			public string Username { get; set; }
+			[JsonIgnore]
+			public string Password { get; set; }
+		}
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	├─ LINQ-to-JSON
+	├─┬───────────────────────────────────────────────────────────────────┘
+		├─ Create from JSON string
+		├─┬─────────────────────────────────────────────────────────────────┘
+			JObject obj = JObject.Parse(jsonProduct);
+			
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		├─ Read file into a string and deserialize JSON to a type
+		├─┬─────────────────────────────────────────────────────────────────┘
+			var usersJson = File.ReadAllText(
+				@"../../FolderName/users.json");
+			
+			var users = JsonConvert
+				.DeserializeObject<List<User>>(usersJson);
+			
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		├─ Deserialize JSON directly from a file
+		├─┬─────────────────────────────────────────────────────────────────┘
+			using (StreamReader file = File.OpenText(
+				@"../../FolderName/users.json"))
+			{
+				 var serializer = new JsonSerializer();
+				 User movie2 = (User)serializer.Deserialize(file, typeof(User));
+			}
+
+		var json = @"{
+		'products': [
+			{
+				'name': 'Fruits', 
+				'products': ['apple', 'banana', 'orange']
+			},
+			{
+				'name': 'Vegetables', 
+				'products': ['cucumber', 'potato', 'eggplant']
+			}]
+		}";
+		
+		JObject obj = JObject.Parse(json);
+		
+		int index = 1;
+
+		List<string> products = obj["products"]
+			.Select(c => string.Format(
+				"{0}. {1} ({2})",
+				index++, 
+				c["name"],
+				string.Join(", ", c["products"])
+			)
+		).toList();
+
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	├─ Circular reference detected
+	├─┬───────────────────────────────────────────────────────────────────┘
+
+
+JsonSerializerSettings settings = new JsonSerializerSettings
+{
+	//1 -> ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+	//2 -> PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+	//3 -> PreserveReferencesHandling = PreserveReferencesHandling.All,
+	Formatting = Formatting.Indented
+};
+
+var users = JsonConvert
+	.DeserializeObject<List<User>>(usersJson, settings);
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ XML
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	├─ Load XML directly from file
+	├─┬───────────────────────────────────────────────────────────────────┘
+		using System.Xml.Linq;
+		
+		XDocument xmlDoc = XDocument.Load(strPath);
+
+		
+user.Attribute("first-name").Value
+(string)user.Attribute("first-name")
+That uses the explicit conversion from XElement to string, which handles a null input by returning a null output. The same is true for all explicit conversions on XAttribute and XElement to nullable types, including nullable value types such as int? - you just need to be careful if you're using nested elements. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+password.Any(c => char.IsDigit(c))
+password.Any(char.IsDigit)
+
+Include("TableName") ako nesme slogili virtual
+
+string под defoult е nullable
+
+
+Image -> using System.Drawing -> Add Reference -> Assemblies -> Framework
+
+Newtonsoft Json CheckForCircularReference
+
+Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CheckForCircularReference(JsonWriter writer, Object value, JsonProperty property, JsonContract
+contract, JsonContainerContract containerContract, JsonProperty containerPropert
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─
+╟─┐
+╟─┬─────────────────────────────────────────────────────────────────────┐
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│
+	├─────────────────────────────────────────────────────────────────────┘
+	├─
+	├─┐
+	├─┬───────────────────────────────────────────────────────────────────┐
+	├─┬───────────────────────────────────────────────────────────────────┐
+		│
+		├───────────────────────────────────────────────────────────────────┘
+		├─┬─────────────────────────────────────────────────────────────────┐
+			├─┬───────────────────────────────────────────────────────────────┐
+				│
+				├───────────────────────────────────────────────────────────────┘
+				├─┬─────────────────────────────────────────────────────────────┐

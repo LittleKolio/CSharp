@@ -11,27 +11,25 @@ namespace LINQ_Exercises
     {
         static void Main()
         {
-            List<string[]> emails = new List<string[]>();
+            List<string[]> students = new List<string[]>();
 
             while (true)
             {
-                string[] input = Console.ReadLine()
-                    .Split(new[] { ' ' },
-                        StringSplitOptions.RemoveEmptyEntries);
+                string input = Console.ReadLine();
+                if (input.ToLower() == "end") { break; }
 
-                if (input[0].ToLower() == "end") { break; }
-
-                if (Regex.IsMatch(input[2], "6"))
+                string[] temp = Regex.Split(input, @"(?<!\d)\s");
+                if (Regex.IsMatch(temp[2], "6"))
                 {
-                    emails.Add(new string[]
+                    students.Add(new string[]
                         {
-                            input[0],
-                            input[1]
+                            temp[0],
+                            temp[1]
                         });
                 }
             }
 
-            emails.ForEach(email => Console.WriteLine(string.Join(" ", email)));
+            students.ForEach(stu => Console.WriteLine(string.Join(" ", stu)));
         }
     }
 }

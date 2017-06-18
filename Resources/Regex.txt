@@ -1,0 +1,188 @@
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Regex
+╠═══════════════════════════════════════════════════════════════════════╝
+
+using System.Text.RegularExpressions;
+
+
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+  │ Quantifiers
+  ├─┬───────────────────────────────────────────────────────────────────┘
+    ├ +
+    ├─ Matches the previous element one or more times
+    ├───────────────────────────────────────────────────────────────────┤
+    ├ *
+    ├─ Matches the previous element zero or more times
+    ├───────────────────────────────────────────────────────────────────┤
+    ├ ?
+    ├─ Matches the previous element zero or one time
+    ├───────────────────────────────────────────────────────────────────┤
+    ├ {min length, max length}
+    ├─ Exact quantifiers
+    ├───────────────────────────────────────────────────────────────────┤
+		
+ 
+    ├─ Greedy repetition
+    └─┬─────────────────────────────────────────────────────────────────┘
+      "\.+"
+ 
+    ├─ Lazy repetition
+    └─┬─────────────────────────────────────────────────────────────────┘
+      "\.+?"
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+  │ Grouping Constructs - Named group
+  ├─┬───────────────────────────────────────────────────────────────────┘
+    (?<name>regex)
+
+    ├─ non-capturing group
+    └─┬─────────────────────────────────────────────────────────────────┘
+      "(?:regex)"
+			
+    ├─ repeat match as group n
+    └─┬─────────────────────────────────────────────────────────────────┘
+      "\d{2}(-|\/)\d{2}\1\d{4}"
+			
+      \1 call (-|\/)
+			
+      \k<name> call (?<name>regex)
+ 
+╟─┬─────────────────────────────────────────────────────────────────────┐
+  │ Split
+  ├─┬───────────────────────────────────────────────────────────────────┘
+    string input = Console.ReadLine();
+    string[] str = Regex.Split(input, @",\s", RegexOptions.IgnorePatternWhitespace);
+
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+  │ Replace
+  ├─┬───────────────────────────────────────────────────────────────────┘
+    string input = "Dot Net Not Perls";
+		
+    // "N.t" -> N, any character, and t
+		
+    string output = Regex.Replace(input, "N.t", "NET");
+    // Dot NET NET Perls
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+  │ Match
+  ├─┬───────────────────────────────────────────────────────────────────┘
+    Regex regex = new Regex(@"\d+");
+    Match match = regex.Match("Dot 55 Perls");
+    if (match.Success)
+    {
+      Console.WriteLine(match.Value); // 55
+    }
+    match = match.NextMatch();
+		
+		match.Groups[index];
+		
+╟─┬─────────────────────────────────────────────────────────────────────┐
+  │ MatchCollection
+  ├─┬───────────────────────────────────────────────────────────────────┘
+    Regex regex = new Regex(pattern);
+    MatchCollection matches = regex.Matches(string);
+    foreach(Match match in matches)
+    {
+      
+    }
+		
+╟─┬─────────────────────────────────────────────────────────────────────┐
+  │ Lookahead and Lookbehind (Lookaround)
+  ├─┬───────────────────────────────────────────────────────────────────┘
+    ├─ They do not consume characters in the string, but only assert whether a match is possible or not.
+    ├─██ You can use any regular expression inside the lookahead but not  in lookbehind.
+    ├─ The fact that lookaround is zero-length automatically makes it atomic. As soon as the lookaround condition is satisfied, the regex engine forgets about everything inside the lookaround. It will not backtrack inside the lookaround to try different permutations.
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+    │ Lookahead
+    ├─┬─────────────────────────────────────────────────────────────────┘
+      ├─ The lookahead itself is not a capturing group. If you want to store the match of the regex inside a lookahead, you have to put capturing parentheses around the regex inside the lookahead.
+      ├─┬───────────────────────────────────────────────────────────────┐
+        (?=(regex))
+				
+╟─├─├─┬─────────────────────────────────────────────────────────────────┐
+      │ Negative lookahead - (?!text)
+      ├─┬───────────────────────────────────────────────────────────────┘
+        ├─ Negative lookahead is indispensable if you want to match something not followed by something else. The negative lookahead construct is the pair of parentheses, with the opening parenthesis followed by a question mark and an exclamation point.
+			
+        ├─ Match a "q" not followed by a "u"
+        └─┬─────────────────────────────────────────────────────────────┘
+          q(?!u)
+
+
+╟─├─├─┬─────────────────────────────────────────────────────────────────┐
+      │ Positive lookahead - (?=text)
+      ├─┬───────────────────────────────────────────────────────────────┘
+        ├─ The positive lookahead construct is a pair of parentheses, with the opening parenthesis followed by a question mark and an equals sign.
+			
+        ├─ Matches a "q" that is followed by a "u"
+        └─┬─────────────────────────────────────────────────────────────┘
+          q(?=u)
+
+╟─├─├─┬─────────────────────────────────────────────────────────────────┐
+      ├─ Let's apply "q(?=u)i" to "quit". The lookahead is now positive and is followed by another token "i". Again, "q" matches "q" and "u" matches "u". Again, the match from the lookahead must be discarded, so the engine steps back from "i" in the string to "u". The lookahead was successful, so the engine continues with "i". But "i" cannot match "u". So this match attempt fails. All remaining attempts fail as well, because there are no more "q"s in the string.	
+		
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+    │ Lookbehind
+    ├─┬─────────────────────────────────────────────────────────────────┘
+      ├─ you can use lookbehind anywhere in the regex, the bad news is that most regex flavors do not allow you to use just any regex inside a lookbehind, because they cannot apply a regular expression backwards.
+			
+╟─├─├─┬─────────────────────────────────────────────────────────────────┐
+      │ Negative lookbehind - (?<!text)
+      ├─┬───────────────────────────────────────────────────────────────┤
+        ├─ Match a "b" that is not preceded by an "a" (and only the "b")
+        ├─┬─────────────────────────────────────────────────────────────┘
+        (?<!a)b
+
+╟─├─├─┬─────────────────────────────────────────────────────────────────┐
+      │ Positive lookbehind - (?<=text)
+      ├─┬───────────────────────────────────────────────────────────────┘
+
+
+╟─├─├─ If you want to find a word not ending with an "s"
+    └─┬─────────────────────────────────────────────────────────────────┘
+      \b\w+(?<!s)\b
+      John's -> Match: John
+			
+      \b\w+[^s]\b
+      John's -> Match: John'
+			
+      \b\w*[^s\W]\b
+      John's -> Match: John
+
+
+─ │ ═ ║
+
+┌ ┐ └ ┘ ┬ ┴ ├ ┤ ┼
+
+╔ ╗ ╚ ╝ ╦ ╩ ╠ ╣ ╬
+
+╒ ╕ ╘ ╛ ╤ ╧ ╞ ╡ ╪
+
+╓ ╖ ╙ ╜ ╥ ╨ ╟ ╢ ╫
+
+▀ ▄ █ ▌ ▐ ░ ▒ ▓ ■ □ ▪ ▫ ▬ ▲ ► ▼ ◄ ◊ ○ ☺ ☻
+██
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─
+╟─┐
+╟─┬─────────────────────────────────────────────────────────────────────┐
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│
+	├─────────────────────────────────────────────────────────────────────┘
+	├─
+	├─┐
+	├─┬───────────────────────────────────────────────────────────────────┐
+	├─┬───────────────────────────────────────────────────────────────────┐
+		│
+		├───────────────────────────────────────────────────────────────────┘
+		├─┬─────────────────────────────────────────────────────────────────┐
+			├─┬───────────────────────────────────────────────────────────────┐
+				│
+				├───────────────────────────────────────────────────────────────┘
+				├─┬─────────────────────────────────────────────────────────────┐

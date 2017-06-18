@@ -1,0 +1,357 @@
+
+─ │ ═ ║
+
+┌ ┐ └ ┘ ┬ ┴ ├ ┤ ┼
+
+╔ ╗ ╚ ╝ ╦ ╩ ╠ ╣ ╬
+
+╒ ╕ ╘ ╛ ╤ ╧ ╞ ╡ ╪
+
+╓ ╖ ╙ ╜ ╥ ╨ ╟ ╢ ╫
+
+▀ ▄ █ ▌ ▐ ░ ▒ ▓ ■ □ ▪ ▫ ▬ ▲ ► ▼ ◄ ◊ ○ ☺ ☻
+██
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─
+╟─┐
+╟─┬─────────────────────────────────────────────────────────────────────┐
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│
+	├─────────────────────────────────────────────────────────────────────┘
+	├─
+	├─┐
+	├─┬───────────────────────────────────────────────────────────────────┐
+	├─┬───────────────────────────────────────────────────────────────────┐
+		│
+		├───────────────────────────────────────────────────────────────────┘
+		├─┬─────────────────────────────────────────────────────────────────┐
+			├─┬───────────────────────────────────────────────────────────────┐
+				│
+				├───────────────────────────────────────────────────────────────┘
+				├─┬─────────────────────────────────────────────────────────────┐
+
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Pass data to View
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	├─ Use a class(Model) to transfer the data
+	├─┬───────────────────────────────────────────────────────────────────┤
+		├─ Folder Models
+		├─┬─────────────────────────────────────────────────────────────────┤
+			public class Neznam
+			{
+				public int Id { get; set; }
+				public string Text { get; set; }
+			}
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ 1. as parameter
+		├─┬─────────────────────────────────────────────────────────────────┘
+			├─ Folder Controllers -> NameCController.cs
+			├─┬───────────────────────────────────────────────────────────────┤
+			public ActionResult NameAAction()
+			{
+				var temp = new Neznam { Text = "I had enough ..." };
+				return View(temp);
+				
+				//var viewResult = new ViewResult();
+				//viewResult.ViewData.Model
+				//View(temp) add temp to ViewData.Model
+			}
+	
+╟─├─├─┬─────────────────────────────────────────────────────────────────┤
+			├─ Folder Views -> NameC -> NameA.cshtml
+			├─┬───────────────────────────────────────────────────────────────┤
+				@model NameP_Project.Models.Neznam
+				@{
+					ViewBag.Title = "NameA";
+					Layout = "~/Views/Shared/_Layout.cshtml";
+				}
+				<h2>@Model.Text</h2>
+		
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ 2. ViewData (OLD)
+		├─┬─────────────────────────────────────────────────────────────────┘
+			├─ Folder Controllers -> NameCController.cs
+			├─┬───────────────────────────────────────────────────────────────┤
+				public ActionResult NameAAction()
+				{
+					var temp = new Neznam { Text = "I had enough ..." };
+					ViewData["data1"] = temp
+					return View();
+				}
+╟─├─├─┬─────────────────────────────────────────────────────────────────┤
+			├─ Folder Views -> NameC -> NameA.cshtml
+			├─┬───────────────────────────────────────────────────────────────┤
+				@using NameP_Project.Models
+				@{
+					ViewBag.Title = "NameA";
+					Layout = "~/Views/Shared/_Layout.cshtml";
+				}
+				<h2>@(
+					((Neznam)ViewData["data1"]).Text
+				)</h2>
+			
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ 3. View Model
+		├─┬─────────────────────────────────────────────────────────────────┘
+			├─ Create new folder ViewModels and add class(Model) for the View
+			├─┬───────────────────────────────────────────────────────────────┤
+				public class NewModelForView
+				{
+					public SomeModel Some { get; set; }
+					public List<OtherModel> List { get; set; }
+				}
+				
+╟─├─├─┬─────────────────────────────────────────────────────────────────┤
+			├─ Folder Controllers -> NameCController.cs
+			├─┬───────────────────────────────────────────────────────────────┤
+				public ActionResult NameAAction()
+				{
+					var some = new SomeModel
+					{ 
+						Text = "I had enough ..." 
+					};
+					var list = new List<string>
+					{
+						" the simplest thing to do is ...",
+						"This loop iterates over exactly the needed coordinates."
+					};
+					
+					var viewModelTest = new NewModelForView
+					{
+						Some = some,
+						List = list
+					};
+					
+					return View(viewModelTest);
+				}	
+			
+╟─├─├─┬─────────────────────────────────────────────────────────────────┤
+			├─ Folder Views -> NameC -> NameA.cshtml
+			├─┬───────────────────────────────────────────────────────────────┤
+				@model NameP_Project.ViewModels.NewModelForView
+				@{
+					ViewBag.Title = "NameA";
+					Layout = "~/Views/Shared/_Layout.cshtml";
+				}
+				<h2>@Model.Some.Text</h2>
+╔═══════════════════════════════════════════════════════════════════════╗
+║ ActionResult
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─┬────────────────────────────────────────────────────────ActionResult─┐
+	├ ViewResult - Helper View()
+	├─ Renders a specifed view to the response stream
+	├─────────────────────────────────────────────────────────────────────┤
+	├ PartialViewResult - Helper PartialView()
+	├─ Renders a specifed partial view to the response stream
+	├─────────────────────────────────────────────────────────────────────┤
+	├ EmptyResult
+	├─ An empty response is returned
+	├─────────────────────────────────────────────────────────────────────┤
+	├ RedirectResult - Helper Redirect()
+	├─ Performs an HTTP redirection to a specifed URL
+	├─────────────────────────────────────────────────────────────────────┤
+	├ RedirectToRouteResult - Helper RedirectToAction()
+	├─ Performs an HTTP redirection to a URL that is determined by the routing engine, based on given route data
+	├─────────────────────────────────────────────────────────────────────┤
+	├ JsonResult - Helper Json()
+	├─ Serializes a given ViewData object to JSON format
+	├─────────────────────────────────────────────────────────────────────┤
+	├ JavaScriptResult 
+	├─ Returns a piece of JavaScript code that can be executed on the client
+	├─────────────────────────────────────────────────────────────────────┤
+	├ ContentResult - Helper Content()
+	├─ Writes content to the response stream without requiring a view
+	├─────────────────────────────────────────────────────────────────────┤
+	├ FileResult - Helper File()
+	├─ 
+	├─────────────────────────────────────────────────────────────────────┤
+	├ FileContentResult 
+	├─ Returns a file to the client
+	├─────────────────────────────────────────────────────────────────────┤
+	├ FileStreamResult 
+	├─ Returns a file to the client, which is provided by a Stream
+	├─────────────────────────────────────────────────────────────────────┤
+	├ FilePathResult 
+	├─ Returns a file to the client
+	├─────────────────────────────────────────────────────────────────────┤
+	├ HttpNotFoundResult - Helper HttpNotFound()
+	├─ 
+	├─────────────────────────────────────────────────────────────────────┤
+	
+	
+
+╟─┬────────────────────────────────────────────────────────ActionResult─┐
+	│ ContentResult
+	├─┬───────────────────────────────────────────────────────────────────┘
+		public ActionResult NameA_Action()
+		{
+			...
+			//return View();
+			return Content("It doesn't matter");
+		}
+	├─┬───────────────────────────────────────────────────────────────────┤
+		├─ build application without open new tab in browser Ctrl + Shift + B
+		
+	├─┬───────────────────────────────────────────────────────────────────┤
+		├─ navigate to .../NameC/NameA
+
+╟─┬────────────────────────────────────────────────────────ActionResult─┐
+	│ RedirectToRouteResult
+	├─┬───────────────────────────────────────────────────────────────────┘
+		public ActionResult NameAAction()
+		{
+			...
+			//return View();
+			return RedirectToAction(
+				"NameAction",
+				"NameController",
+				new
+					{
+						arg1 = 1,
+						arg2 = "something"
+					});
+		}
+
+		//rezult is Url query string: ../?arg1=1&arg2=something
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Custom Route
+╠═══════════════════════════════════════════════════════════════════════╝
+
+╟─┬───────────────────────────────────────────────────────────────Route─┐
+	│ Add Route - with multiple parameters (OLD)
+	├─┬───────────────────────────────────────────────────────────────────┘
+		│ Folder App_Start -> RouteConfig.cs
+		├─┬─────────────────────────────────────────────────────────────────┘
+			public class RouteConfig
+			{
+				public static void RegisterRoutes(RouteCollection routes)
+				{
+					...
+					routes.MapRoute(
+					name: "ReleaseDate",
+					url: "relatedController/relatedAction/{year}/{month}",
+					defaults: new { controller = "NameC", action = "NameA"},
+					constraints: new { year = @"\d{4}", month = @"\d{2}"}
+					);
+					...
+					//if it is more complex before Default Route
+				}
+			}
+		├─┬─────────────────────────────────────────────────────────────────┐
+			│ Folder Controllers -> NameCController.cs
+			├─┬───────────────────────────────────────────────────────────────┘
+				public class NameCController : Controller
+				{
+					public ActionResult NameA(int year, int month)
+					{
+						return Content(year + "/" + month);
+					}
+				}
+
+╟─┬───────────────────────────────────────────────────────────────Route─┐
+	│ Attribute Routing
+	├─┬───────────────────────────────────────────────────────────────────┘
+		│ Folder App_Start -> RouteConfig.cs
+		├─┬─────────────────────────────────────────────────────────────────┘
+			routes.MapMvcAttributeRoutes();
+			
+		├─┬─────────────────────────────────────────────────────────────────┐
+			│ Folder Controllers -> NameCController.cs
+			├─┬───────────────────────────────────────────────────────────────┘
+				[Route("relatedController/relatedAction/" + 
+					"{year:regex(\\d{4})}/" +
+					"{month:regex(\\d{2})}")]
+				public ActionResult NameA(int year, int month)
+				{
+					return Content(year + "/" + month);
+				}
+
+		├─┬─────────────────────────────────────────────────────────────────┐
+			│ Other Constraints
+			├─┬───────────────────────────────────────────────────────────────┘
+				"...{argument:regex(...):range(...)}..."
+
+			├─┬───────────────────────────────────────────────────────────────┐
+				│ min / max / minlength / maxlength / int / float / guid ...
+				├───────────────────────────────────────────────────────────────┘
+
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Some C# in HTML
+╠═══════════════════════════════════════════════════════════════════════╝
+
+@model HexGrid.ViewModels.NewModelForView
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*
+Some coment
+on multiple
+lines
+*@
+
+@{
+	var className = Model.List.Count > 3 ? "WTF" : null;
+}
+<h2 class="@className">@Model.Some.Text</h2>
+
+@if (Model.List.Count == 0)
+{
+	<text>This is SPARTAAAAA</text>
+}
+else
+{
+	<ul>
+    @foreach (var element in Model.List)
+    {
+			<li>@element</li>
+    }
+	</ul>
+}
+
+╟─┬──────────────────────────────────────────────────────────CodeInHTML─┐
+	│ Render attributes dynamiclly
+	├─┬───────────────────────────────────────────────────────────────────┘
+		@{
+			var className = Model.List.Count > 3 ? "WTF" : null;
+		}
+		<h2 class="@className">@Model.Some.Text</h2>
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Partial Views
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─┬────────────────────────────────────────────────────────PartialViews─┐
+	│ View Name
+	├─┬───────────────────────────────────────────────────────────────────┘
+		_NamePartialView
+
+╟─┬────────────────────────────────────────────────────────PartialViews─┐
+	│ In Other View
+	├─┬───────────────────────────────────────────────────────────────────┘
+		@Html.Partial("_NamePartialView")
+
+	├─┬───────────────────────────────────────────────────────────────────┤
+		│ we can pass a ViewModel to that partial view, but if there is @model he automatically passes
+		├─┬─────────────────────────────────────────────────────────────────┘
+			@model NameP_Project.NewModelForView
+			@Html.Partial("_NamePartialView", Model.Somethig.Specific)
+
+
+
+
+
+
+
+
