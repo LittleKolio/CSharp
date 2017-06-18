@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{94E83C64-8772-4CE1-998C-FB3691316644}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LINQ_Exercises</RootNamespace>
     <AssemblyName>16_LINQ_Exercises</AssemblyName>
@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -40,7 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exercises_01_Students_By_Group.cs" />
+    <None Include="Exercises_01_Students_By_Group.cs" />
+    <None Include="Exercises_02_Students_By_First_And_Last_Name.cs" />
+    <None Include="Exercises_03_Students_By_Age.cs" />
+    <None Include="Exercises_04_Sort_Students.cs" />
+    <None Include="Exercises_05_Filter_Students_By_Email_Domain.cs" />
+    <None Include="Exercises_06_Filter_Students_By_Phone.cs" />
+    <Compile Include="Exercises_07_Excellent_Students.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

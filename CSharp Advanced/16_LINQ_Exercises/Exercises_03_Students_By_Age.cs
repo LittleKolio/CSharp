@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LINQ_Exercises
 {
-    class Exercises_01_Students_By_Group
+    class Exercises_03_Students_By_Age
     {
         static void Main()
         {
@@ -16,24 +16,25 @@ namespace LINQ_Exercises
             {
                 string[] input = Console.ReadLine()
                     .Split(new[] { ' ' },
-                    StringSplitOptions.RemoveEmptyEntries);
+                        StringSplitOptions.RemoveEmptyEntries);
+
                 if (input[0].ToLower() == "end") { break; }
 
-                if (input[2] == "2")
+                if (18 <= int.Parse(input[2]) && int.Parse(input[2]) <= 24)
                 {
                     students.Add(new string[]
-                        {
-                            input[0],
-                            input[1]
-                        });
+                    {
+                        input[0],
+                        input[1],
+                        input[2]
+                    });
                 }
             }
 
-            students
-                .OrderBy(stu => stu[0])
-                .ToList()
-                .ForEach(stu => 
-                    Console.WriteLine(string.Join(" ", stu)));
+            foreach (var student in students)
+            {
+                Console.WriteLine(string.Join(" ", student));
+            }
         }
     }
 }

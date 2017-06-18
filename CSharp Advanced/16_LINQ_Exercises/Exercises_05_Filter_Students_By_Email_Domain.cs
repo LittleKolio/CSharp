@@ -2,26 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace LINQ_Exercises
 {
-    class Exercises_01_Students_By_Group
+    class Exercises_05_Filter_Students_By_Email_Domain
     {
         static void Main()
         {
-            List<string[]> students = new List<string[]>();
+            List<string[]> emails = new List<string[]>();
 
             while (true)
             {
                 string[] input = Console.ReadLine()
                     .Split(new[] { ' ' },
-                    StringSplitOptions.RemoveEmptyEntries);
+                        StringSplitOptions.RemoveEmptyEntries);
+
                 if (input[0].ToLower() == "end") { break; }
 
-                if (input[2] == "2")
+                if (Regex.IsMatch(input[2], "@gmail.com"))
                 {
-                    students.Add(new string[]
+                    emails.Add(new string[]
                         {
                             input[0],
                             input[1]
@@ -29,11 +31,7 @@ namespace LINQ_Exercises
                 }
             }
 
-            students
-                .OrderBy(stu => stu[0])
-                .ToList()
-                .ForEach(stu => 
-                    Console.WriteLine(string.Join(" ", stu)));
+            emails.ForEach(email => Console.WriteLine(string.Join(" ", email)));
         }
     }
 }
