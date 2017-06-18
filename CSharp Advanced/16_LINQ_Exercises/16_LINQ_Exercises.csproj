@@ -51,7 +51,9 @@
     <None Include="Exercises_06_Filter_Students_By_Phone.cs" />
     <None Include="Exercises_07_Excellent_Students.cs" />
     <None Include="Exercises_08_Weak_Students.cs" />
-    <Compile Include="Exercises_09_Students_Enrolled_In_2014_Or_2015.cs" />
+    <None Include="Exercises_09_Students_Enrolled_In_2014_Or_2015.cs" />
+    <None Include="Exercises_10_Group_By_Group.cs" />
+    <Compile Include="Exercises_11_Students_Joined_To_Specialties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
