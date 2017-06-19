@@ -53,6 +53,7 @@
     <None Include="Exercises_08_Custom_Comparator.cs" />
     <None Include="Exercises_09_List_Of_Predicates.cs" />
     <None Include="Exercises_10_Predicate_Party.cs" />
+    <None Include="Exercises_12_Inferno_III.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
