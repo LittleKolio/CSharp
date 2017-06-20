@@ -19,37 +19,43 @@ namespace Sample_Exam_1_From_19June2016
                         StringSplitOptions.RemoveEmptyEntries);
                 if (input[0] == "Bunker") { break; }
 
-                Dictionary<string, List<int>> bunkers
-                    = new Dictionary<string, List<int>>();
+                Queue<KeyValuePair<string, List<int>>> bunkers
+                    = new Queue<KeyValuePair<string, List<int>>>();
                 Queue<int> weapons = new Queue<int>();
 
                 BunkersAndWeapons(input, ref bunkers, ref weapons);
 
-                
-                foreach (var b in bunkers)
+                int tempBCount = bunkers.Count;
+
+                for (int j = 1;
+                    j <= tempBCount || bunkers.Count > 1;
+                    j++)
                 {
+                    KeyValuePair<string, List<int>> tempBunker 
+                        = bunkers.Dequeue();
                     bool remove = false;
-                    int tempCount = weapons.Count;
+                    int tempWCount = weapons.Count;
 
                     for (int i = 1; 
-                        i <= weapons.Count || weapons.Count > 1;
+                        i <= tempWCount || weapons.Count > 1;
                         i++)
                     {
                         int tempWeapon = weapons.Dequeue();
-                        if (capacity - b.Value.Sum() >= tempWeapon)
+
+                        if (capacity - tempBunker.Value.Sum() >= tempWeapon)
                         {
-                            b.Value.Add(tempWeapon);
-                            if (b.Value.Sum() == capacity)
+                            tempBunker.Value.Add(tempWeapon);
+                            if (tempBunker.Value.Sum() == capacity)
                             {
-                                Console.WriteLine($"{b.Key} -> " + string.Join(", ", b.Value));
+                                Console.WriteLine($"{tempBunker.Key} -> " + string.Join(", ", b.Value));
                                 remove = true;
                             }
                         }
                     }
 
-                    if (remove)
+                    if (!remove)
                     {
-                        bunkers.Remove(b.Key);
+                        bunkers.Enqueue(tempBunker);
                     }
 
                 }
@@ -64,7 +70,7 @@ namespace Sample_Exam_1_From_19June2016
 
         private static void BunkersAndWeapons(
             string[] input, 
-            ref Dictionary<string, List<int>> bunkers, 
+            ref Queue<KeyValuePair<string, List<int>>> bunkers, 
             ref Queue<int> weapons)
         {
             string bunker;
@@ -75,7 +81,9 @@ namespace Sample_Exam_1_From_19June2016
                 if (!isWeapon)
                 {
                     bunker = input[i];
-                    bunkers.Add(bunker, new List<int>());
+                    bunkers.Enqueue(
+                        new KeyValuePair<string, List<int>>(
+                            bunker, new List<int>()));
                 }
                 else
                 {
