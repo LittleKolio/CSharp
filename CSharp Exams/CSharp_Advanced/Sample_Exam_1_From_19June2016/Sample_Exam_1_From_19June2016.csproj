@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exam_01_Cubic_Artillery.cs" />
+    <None Include="Exam_01_Cubic_Artillery.cs" />
+    <None Include="Exam_02_Cubics_Rube.cs" />
+    <Compile Include="Exam_03_Cubics_Messages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

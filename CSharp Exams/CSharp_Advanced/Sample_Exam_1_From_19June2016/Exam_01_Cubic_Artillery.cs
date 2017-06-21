@@ -8,12 +8,12 @@ namespace Sample_Exam_1_From_19June2016
 {
     class Exam_01_Cubic_Artillery
     {
-        public static Queue<KeyValuePair<string, List<int>>> bunkers;
+        public static Queue<string> bunkers;
         public static Queue<int> weapons;
 
         static void Main()
         {
-            bunkers = new Queue<KeyValuePair<string, List<int>>>();
+            bunkers = new Queue<string>();
             weapons = new Queue<int>();
 
             int capacity = int.Parse(Console.ReadLine());
@@ -25,64 +25,26 @@ namespace Sample_Exam_1_From_19June2016
                         StringSplitOptions.RemoveEmptyEntries);
                 if (input[0] == "Bunker") { break; }
 
-                BunkersAndWeapons(input);
+                BunkersAndWeapons(input, capacity);
 
-                if (bunkers.Count == 1)
+                string tempBunker;
+                Queue<int> tempWeapons;
+                int freeSpace;
+
+                while (bunkers.Count > 1)
                 {
-                    KeyValuePair<string, List<int>> tempBunker = bunkers.Dequeue();
-                    int freeSpace = capacity - tempBunker.Value.Sum();
+                    freeSpace = capacity;
+                    tempWeapons = new Queue<int>();
+                    tempBunker = bunkers.Dequeue();
 
-                    for (int i = 1; weapons.Count > 1; i++)
+                    for (int j = 1; j < weapons.Count; j++)
                     {
                         int tempWeapon = weapons.Dequeue();
-
                         if (freeSpace >= tempWeapon)
                         {
-                            tempBunker.Value.Add(tempWeapon);
-                            if (tempBunker.Value.Sum() == capacity)
-                            {
-                                Console.WriteLine($"{tempBunker.Key} -> " + string.Join(", ", tempBunker.Value));
-                            }
-                        }
-                        else if (capacity >= tempWeapon)
-                        {
-                            List<int> newList = new List<int>();
-                            int tempSum = freeSpace;
-                            int count = tempBunker.Value.Count;
-                            for (int k = 0; k < count; k++)
-                            {
-                                tempSum += tempBunker.Value[k];
-                                if (tempSum >= tempWeapon)
-                                {
-                                    newList.AddRange(weapons.Skip(k + 1));
-                                    newList.Add(tempWeapon);
-                                }
-                            }
-                            if (newList.Count > 0)
-                            {
-
-                            }
-                        }
-                    }
-                }
-
-                for (int j = 1; bunkers.Count > 1; j++)
-                {
-                    KeyValuePair<string, List<int>> tempBunker = bunkers.Dequeue();
-                    bool remove = false;
-
-                    for (int i = 1; weapons.Count > 1; i++)
-                    {
-                        int tempWeapon = weapons.Dequeue();
-
-                        if (capacity - tempBunker.Value.Sum() >= tempWeapon)
-                        {
-                            tempBunker.Value.Add(tempWeapon);
-                            if (tempBunker.Value.Sum() == capacity)
-                            {
-                                Console.WriteLine($"{tempBunker.Key} -> " + string.Join(", ", tempBunker.Value));
-                                remove = true;
-                            }
+                            tempWeapons.Enqueue(tempWeapon);
+                            freeSpace -= tempWeapon;
+                            j--;
                         }
                         else
                         {
@@ -90,36 +52,64 @@ namespace Sample_Exam_1_From_19June2016
                         }
                     }
 
-                    if (!remove)
-                    {
-                        bunkers.Enqueue(tempBunker);
-                    }
-
+                    Console.WriteLine($"{tempBunker} -> " +
+                        string.Join(", ", tempWeapons));
                 }
 
-                if (bunkers.Count == 1 && 
-                    !bunkers.FirstOrDefault().Value.Any())
+                freeSpace = capacity;
+                tempWeapons = new Queue<int>();
+                tempBunker = bunkers.Dequeue();
+
+                if (weapons.Count == 0)
                 {
-                    Console.WriteLine($"{bunkers.FirstOrDefault().Key} -> Empty");
+                    Console.WriteLine($"{tempBunker} -> Empty");
+                    break;
+                }
+                else
+                {
+                    while (weapons.Count > 0)
+                    {
+                        int tempWeapon = weapons.Dequeue();
+
+                        if (freeSpace >= tempWeapon)
+                        {
+                            tempWeapons.Enqueue(tempWeapon);
+                            freeSpace -= tempWeapon;
+                        }
+                        else
+                        {
+                            while (tempWeapons.Count > 0)
+                            {
+                                freeSpace += tempWeapons.Dequeue();
+                                if (freeSpace >= tempWeapon)
+                                {
+                                    tempWeapons.Enqueue(tempWeapon);
+                                    freeSpace -= tempWeapon;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    Console.WriteLine($"{tempBunker} -> " +
+                        string.Join(", ", tempWeapons));
                 }
             }
         }
 
-        private static void BunkersAndWeapons(string[] input)
+        private static void BunkersAndWeapons(string[] input, int capacity)
         {
             string bunker;
-            for (int i = 0; i < input.Length; i++)
+            foreach (string item in input)
             {
                 int weapon;
-                bool isWeapon = int.TryParse(input[i], out weapon);
+                bool isWeapon = int.TryParse(item, out weapon);
                 if (!isWeapon)
                 {
-                    bunker = input[i];
-                    bunkers.Enqueue(
-                        new KeyValuePair<string, List<int>>(
-                            bunker, new List<int>()));
+                    bunker = item;
+                    bunkers.Enqueue(bunker);
                 }
-                else
+                else if (capacity >= weapon)
                 {
                     weapons.Enqueue(weapon);
                 }
