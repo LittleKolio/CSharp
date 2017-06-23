@@ -77,17 +77,114 @@
 		String.IsNullOrWhiteSpace(str)
 		String.IsNullOrEmpty(str)
 
-╟─┬─────────────────────────────────────────────────────────────────────┐
-	│ Get the last n characters from a string
-	├─┬───────────────────────────────────────────────────────────────────┘
-		string str = "something";
-		str = str.Substring(str.Length - n)
-
-╟─┬─────────────────────────────────────────────────────────────────────┐
-	│ Returns the last element of a sequence
-	├─┬───────────────────────────────────────────────────────────────────┘
-		string.Last();
 		
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Element of a string / sequence
+	├─┬───────────────────────────────────────────────────────────────────┘
+	  │ Get the last n characters from a string
+	  ├─┬─────────────────────────────────────────────────────────────────┘
+		  string str = "something";
+		  str = str.Substring(str.Length - n)
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+	  │ Last
+	  ├─┬─────────────────────────────────────────────────────────────────┘
+		  string.Last();
+			
+		
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+	  │ StartsWith / EndsWith
+	  ├─┬─────────────────────────────────────────────────────────────────┘
+		  string.StartsWith("pattern");
+		  string.EndsWith("pattern");
+			
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+	  │ IndexOf
+	  ├─┬─────────────────────────────────────────────────────────────────┘
+      ├─ We use IndexOf to see if a string contains a word. It returns an index when the substring is found, but -1 if not.
+		
+	  ├─┬─────────────────────────────────────────────────────────────────┐
+			string s = "I have a cat";
+
+			// Loop through all instances of the letter 'a'.
+			int i = 0;
+			while ((i = s.IndexOf('a', i)) != -1)
+			{
+				Console.WriteLine(s.Substring(i));
+				i++;
+			}
+			
+╟─├─├─┬─────────────────────────────────────────────────────────────────┐
+			│ LastIndexOf
+			├─┬───────────────────────────────────────────────────────────────┘
+				├─ This works like IndexOf, but searches in reverse, from the right to the left part of the string. It starts with the last char.
+			
+╟─├─├─┬─────────────────────────────────────────────────────────────────┐
+			│ IndexOfAny
+			├─┬───────────────────────────────────────────────────────────────┘
+				├─ This method receives a char array argument. It searches for the first index of any of the characters provided in that array.
+			
+╟─├─├─┬─────────────────────────────────────────────────────────────────┐
+			│ LastIndexOfAny
+			├─┬───────────────────────────────────────────────────────────────┘
+			
+╟─├─├─┬─────────────────────────────────────────────────────────────██──┐
+			│ IndexOf vs for-loop
+			├─┬───────────────────────────────────────────────────────────────┘
+				Should we prefer IndexOf over for-loops when-possible? Test IndexOf against a single-character iteration for-loop and it is more efficient to scan each character individually than to use IndexOf.
+			
+			├─┬───────────────────────────────────────────────────────────────┐
+				using System;
+				using System.Diagnostics;
+
+				class Program
+				{
+					const int _max = 1000000;
+					static void Main()
+					{
+						string s = "abc.123.456.xyz";
+
+						// Version 1: use for-loop to count chars.
+						var s1 = Stopwatch.StartNew();
+						for (int i = 0; i < _max; i++)
+						{
+							int c = 0;
+							for (int e = 0; e < s.Length; e++)
+							{
+								if (s[e] == '.') { c++; }
+							}
+						}
+						s1.Stop();
+
+						// Version 2: use IndexOf to count chars.
+						var s2 = Stopwatch.StartNew();
+						for (int i = 0; i < _max; i++)
+						{
+							int c = 0, e = 0;
+							while ((e = s.IndexOf('.', e)) != -1)
+							{ e++; c++; }
+						}
+						s2.Stop();
+
+						// Result times.
+						Console.WriteLine(
+							((double)
+							(s1.Elapsed.TotalMilliseconds * 1000000) / _max)
+							.ToString("0.00 ns"));
+						Console.WriteLine(
+							((double)
+							(s2.Elapsed.TotalMilliseconds * 1000000) / _max)
+							.ToString("0.00 ns"));
+							
+						Console.Read();
+					}
+				}
+			
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+	  │ Contains
+	  ├─┬─────────────────────────────────────────────────────────────────┘		
+			├─██ This is a wrapper method. It calls IndexOf with StringComparison.Ordinal. It returns true or false, not an integer. So it is a bit simpler to use.
+
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│ Repeat a character
 	├─┬───────────────────────────────────────────────────────────────────┘

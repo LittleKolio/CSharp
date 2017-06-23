@@ -33,7 +33,30 @@ namespace Sample_Exam_2_From_22August2016
                 .Select(int.Parse)
                 .ToArray();
 
+                FormatMatrix(ref matrix, position[0], position[1]);
+            }
 
+            PrintMatrix(matrix);
+        }
+
+        private static void PrintMatrix(int[][] matrix)
+        {
+            foreach (var row in matrix)
+            {
+                Console.WriteLine(string.Join(" ", row));
+            }
+        }
+
+        private static void FormatMatrix(ref int[][] matrix, int row, int col)
+        {
+            for (int c = 0; c < matrix[row].Length; c++)
+            {
+                matrix[row][c] += 1;
+            }
+
+            for (int r = 0; r < matrix.Length; r++)
+            {
+                if (r != row) { matrix[r][col] += 1; }
             }
         }
     }

@@ -44,7 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Exam_01_Second_Nature.cs" />
-    <Compile Include="Exam_02_Natures_Prophet.cs" />
+    <None Include="Exam_02_Natures_Prophet.cs" />
+    <Compile Include="Exam_03_NMS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
