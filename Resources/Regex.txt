@@ -4,8 +4,106 @@
 
 using System.Text.RegularExpressions;
 
+╟─┬─────────────────────────────────────────────────────────────────────┐
+  │ Split
+  ├─┬───────────────────────────────────────────────────────────────────┘
+    string input = Console.ReadLine();
+    string[] str = Regex.Split(input, @",\s", RegexOptions.IgnorePatternWhitespace);
 
 
+╟─┬─────────────────────────────────────────────────────────────────────┐
+  │ Replace
+  ├─┬───────────────────────────────────────────────────────────────────┘
+    string input = "Dot Net Not Perls";
+		string pattern = "N.t"; // N, any character and t
+		string replacement = "NET";
+		
+    string result = Regex.Replace(input, pattern, replacement);
+    // Dot NET NET Perls
+		
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ MatchEvaluator
+		├─┬─────────────────────────────────────────────────────────────────┘
+			├─ This is a delegate method that the Regex.Replace method calls to modify the match. Here we use MatchEvaluator to uppercase matches.
+			
+		├─┬─────────────────────────────────────────────────────────────────┘
+			class Program
+			{
+				static void Main()
+				{
+					const string str = "marcus aurelius";
+					Console.WriteLine(TextTools.UpperFirst(srt));
+				}
+			}
+
+			public static class TextTools
+			{
+				/// <summary>
+				/// Uppercase first letters of all words in the string.
+				/// </summary>
+				public static string UpperFirst(string srt)
+				{
+					return Regex.Replace(srt, @"\b[a-z]\w+", 
+						delegate(Match match)
+						{
+							string v = match.ToString();
+							return char.ToUpper(v[0]) + v.Substring(1);
+						});
+				}
+			}
+
+		
+		
+╟─┬─────────────────────────────────────────────────────────────────────┐
+  │ Match
+  ├─┬───────────────────────────────────────────────────────────────────┘
+    Regex regex = new Regex(@"\d+");
+    Match match = regex.Match("Dot 55 Perls");
+		
+  ├─ The returned Match object has a bool property called Success. If it equals true, we found a match.
+  ├─┬───────────────────────────────────────────────────────────────────┐
+    if (match.Success)
+    {
+      Console.WriteLine(match.Value); // 55
+    }
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ NextMatch
+		├─┬─────────────────────────────────────────────────────────────────┘
+			├─ More than one match may be found. We can call the NextMatch method to search for a match that comes after the current one in the text.
+			
+		├─┬─────────────────────────────────────────────────────────────────┐
+			match = match.NextMatch();
+		
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ Groups
+		├─┬─────────────────────────────────────────────────────────────────┘
+			├─ Collection is indexed at 1, not zero-the first group is found at index 1.
+		├─┬─────────────────────────────────────────────────────────────────┐
+			match.Groups[index].Value;
+		
+╟─┬─────────────────────────────────────────────────────────────────────┐
+  │ MatchCollection
+  ├─┬───────────────────────────────────────────────────────────────────┘
+    Regex regex = new Regex(pattern);
+    MatchCollection matches = regex.Matches(string);
+    foreach(Match match in matches)
+    {
+      
+    }
+
+
+		
+╟─┬─────────────────────────────────────────────────────────────────────┐
+  │ Static method
+  ├─┬───────────────────────────────────────────────────────────────────┘		
+		
+	
+		
+		
+		
+		
+		
 ╟─┬─────────────────────────────────────────────────────────────────────┐
   │ Quantifiers
   ├─┬───────────────────────────────────────────────────────────────────┘
@@ -47,47 +145,7 @@ using System.Text.RegularExpressions;
       \1 call (-|\/)
 			
       \k<name> call (?<name>regex)
- 
-╟─┬─────────────────────────────────────────────────────────────────────┐
-  │ Split
-  ├─┬───────────────────────────────────────────────────────────────────┘
-    string input = Console.ReadLine();
-    string[] str = Regex.Split(input, @",\s", RegexOptions.IgnorePatternWhitespace);
 
-
-╟─┬─────────────────────────────────────────────────────────────────────┐
-  │ Replace
-  ├─┬───────────────────────────────────────────────────────────────────┘
-    string input = "Dot Net Not Perls";
-		
-    // "N.t" -> N, any character, and t
-		
-    string output = Regex.Replace(input, "N.t", "NET");
-    // Dot NET NET Perls
-
-╟─┬─────────────────────────────────────────────────────────────────────┐
-  │ Match
-  ├─┬───────────────────────────────────────────────────────────────────┘
-    Regex regex = new Regex(@"\d+");
-    Match match = regex.Match("Dot 55 Perls");
-    if (match.Success)
-    {
-      Console.WriteLine(match.Value); // 55
-    }
-    match = match.NextMatch();
-		
-		match.Groups[index];
-		
-╟─┬─────────────────────────────────────────────────────────────────────┐
-  │ MatchCollection
-  ├─┬───────────────────────────────────────────────────────────────────┘
-    Regex regex = new Regex(pattern);
-    MatchCollection matches = regex.Matches(string);
-    foreach(Match match in matches)
-    {
-      
-    }
-		
 ╟─┬─────────────────────────────────────────────────────────────────────┐
   │ Lookahead and Lookbehind (Lookaround)
   ├─┬───────────────────────────────────────────────────────────────────┘
@@ -100,10 +158,10 @@ using System.Text.RegularExpressions;
     ├─┬─────────────────────────────────────────────────────────────────┘
       ├─ The lookahead itself is not a capturing group. If you want to store the match of the regex inside a lookahead, you have to put capturing parentheses around the regex inside the lookahead.
       ├─┬───────────────────────────────────────────────────────────────┐
-        (?=(regex))
+        (?=regex)
 				
 ╟─├─├─┬─────────────────────────────────────────────────────────────────┐
-      │ Negative lookahead - (?!text)
+      │ Negative lookahead - (?!regex)
       ├─┬───────────────────────────────────────────────────────────────┘
         ├─ Negative lookahead is indispensable if you want to match something not followed by something else. The negative lookahead construct is the pair of parentheses, with the opening parenthesis followed by a question mark and an exclamation point.
 			
@@ -113,7 +171,7 @@ using System.Text.RegularExpressions;
 
 
 ╟─├─├─┬─────────────────────────────────────────────────────────────────┐
-      │ Positive lookahead - (?=text)
+      │ Positive lookahead - (?=regex)
       ├─┬───────────────────────────────────────────────────────────────┘
         ├─ The positive lookahead construct is a pair of parentheses, with the opening parenthesis followed by a question mark and an equals sign.
 			
@@ -125,19 +183,19 @@ using System.Text.RegularExpressions;
       ├─ Let's apply "q(?=u)i" to "quit". The lookahead is now positive and is followed by another token "i". Again, "q" matches "q" and "u" matches "u". Again, the match from the lookahead must be discarded, so the engine steps back from "i" in the string to "u". The lookahead was successful, so the engine continues with "i". But "i" cannot match "u". So this match attempt fails. All remaining attempts fail as well, because there are no more "q"s in the string.	
 		
 ╟─├─┬───────────────────────────────────────────────────────────────────┐
-    │ Lookbehind
+    │ Lookbehind (?<regex)
     ├─┬─────────────────────────────────────────────────────────────────┘
       ├─ you can use lookbehind anywhere in the regex, the bad news is that most regex flavors do not allow you to use just any regex inside a lookbehind, because they cannot apply a regular expression backwards.
 			
 ╟─├─├─┬─────────────────────────────────────────────────────────────────┐
-      │ Negative lookbehind - (?<!text)
+      │ Negative lookbehind - (?<!regex)
       ├─┬───────────────────────────────────────────────────────────────┤
         ├─ Match a "b" that is not preceded by an "a" (and only the "b")
         ├─┬─────────────────────────────────────────────────────────────┘
         (?<!a)b
 
 ╟─├─├─┬─────────────────────────────────────────────────────────────────┐
-      │ Positive lookbehind - (?<=text)
+      │ Positive lookbehind - (?<=regex)
       ├─┬───────────────────────────────────────────────────────────────┘
 
 

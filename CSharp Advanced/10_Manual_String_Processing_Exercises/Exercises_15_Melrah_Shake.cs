@@ -9,11 +9,11 @@ namespace Manual_String_Processing_Exercises
     /// <summary>
     /// You are given a string of random characters and a pattern of random characters.
     /// You need to remove all of the border occurrences of that pattern.
-    /// Remove from the pattern the character which corresponds to the index equal to the pattern’s length / 2.
+    /// Remove from the pattern the character which corresponds to the index equal to the pattern's length / 2.
     /// Then you continue to remove from the border occurrences of the new pattern until the pattern becomes empty or there is nothing to remove in the remaining string.
     /// </summary>
     /// <output>
-    /// You must print “Shaked it.” for every time you successfully do removal.
+    /// You must print "Shaked it." for every time you successfully do removal.
     /// If the removal fails, you print “No shake.”, and on the next line you print what has remained of the main string.
     /// </output>
     /// <remarks>

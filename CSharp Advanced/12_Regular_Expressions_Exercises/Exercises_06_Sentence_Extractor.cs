@@ -13,11 +13,12 @@ namespace Regular_Expressions_Exercises
 
         static void Main()
         {
-            string pattern = string.Format(format, Console.ReadLine().Trim());
+            string pattern = string.Format(
+                format, 
+                Console.ReadLine().Trim());
             string text = Console.ReadLine();
 
             Regex regex = new Regex(pattern);
-
             MatchCollection matches = regex.Matches(text);
 
             foreach (Match match in matches)

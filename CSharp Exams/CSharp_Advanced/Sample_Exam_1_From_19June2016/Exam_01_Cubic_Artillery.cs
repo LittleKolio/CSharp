@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace Sample_Exam_1_From_19June2016
 {
+    /// <summary>
+    /// You will be given n - an integer specifying the bunker's maximum capacity.
+    /// Then you will be given input lines which will contain English alphabet letters and numbers, separated by a single space.
+    /// The letters represent the bunkers and the numbers - the weapons and their capacity.
+    /// Weapons must be stored in the bunkers.
+    /// 
+    /// </summary>
     class Exam_01_Cubic_Artillery
     {
         public static Queue<string> bunkers;

@@ -81,8 +81,9 @@
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│ Element of a string / sequence
 	├─┬───────────────────────────────────────────────────────────────────┘
-	  │ Get the last n characters from a string
-	  ├─┬─────────────────────────────────────────────────────────────────┘
+
+		├─ Get the last n characters from a string
+	  ├─┬─────────────────────────────────────────────────────────────────┐
 		  string str = "something";
 		  str = str.Substring(str.Length - n)
 
@@ -103,17 +104,16 @@
 	  ├─┬─────────────────────────────────────────────────────────────────┘
       ├─ We use IndexOf to see if a string contains a word. It returns an index when the substring is found, but -1 if not.
 		
-	  ├─┬────────────────────────────────────────────────────────IndexOf──┐
-			│ Loop through all instances of the letter 'a'.
-			├─┬───────────────────────────────────────────────────────────────┘
-				string s = "I have a cat";
+		├─ Loop through all instances of the letter 'a'.
+		├─┬────────────────────────────────────────────────────────IndexOf──┐
+			string s = "I have a cat";
 
-				int i = 0;
-				while ((i = s.IndexOf('a', i)) != -1)
-				{
-					Console.WriteLine(s.Substring(i));
-					i++;
-				}
+			int i = 0;
+			while ((i = s.IndexOf('a', i)) != -1)
+			{
+				Console.WriteLine(s.Substring(i));
+				i++;
+			}
 			
 ╟─├─├─┬────────────────────────────────────────────────────────IndexOf──┐
 			│ LastIndexOf
