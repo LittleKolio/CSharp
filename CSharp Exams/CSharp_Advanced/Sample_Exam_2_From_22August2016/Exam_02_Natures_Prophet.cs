@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sample_Exam_2_From_22August2016
 {
+    /// <summary>
+    /// 
+    /// </summary>
     class Exam_02_Natures_Prophet
     {
         static void Main()
