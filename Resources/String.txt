@@ -1,4 +1,4 @@
-╔═══════════════════════════════════════════════════════════════════════╗
+﻿╔═══════════════════════════════════════════════════════════════════════╗
 ║ String
 ╠═══════════════════════════════════════════════════════════════════════╝
 
@@ -95,45 +95,46 @@
 ╟─├─┬───────────────────────────────────────────────────────────────────┐
 	  │ StartsWith / EndsWith
 	  ├─┬─────────────────────────────────────────────────────────────────┘
-		  string.StartsWith("pattern");
-		  string.EndsWith("pattern");
+		  string.StartsWith("str");
+		  string.EndsWith("str");
 			
-╟─├─┬───────────────────────────────────────────────────────────────────┐
+╟─├─┬──────────────────────────────────────────────────────────IndexOf──┐
 	  │ IndexOf
 	  ├─┬─────────────────────────────────────────────────────────────────┘
       ├─ We use IndexOf to see if a string contains a word. It returns an index when the substring is found, but -1 if not.
 		
-	  ├─┬─────────────────────────────────────────────────────────────────┐
-			string s = "I have a cat";
+	  ├─┬────────────────────────────────────────────────────────IndexOf──┐
+			│ Loop through all instances of the letter 'a'.
+			├─┬───────────────────────────────────────────────────────────────┘
+				string s = "I have a cat";
 
-			// Loop through all instances of the letter 'a'.
-			int i = 0;
-			while ((i = s.IndexOf('a', i)) != -1)
-			{
-				Console.WriteLine(s.Substring(i));
-				i++;
-			}
+				int i = 0;
+				while ((i = s.IndexOf('a', i)) != -1)
+				{
+					Console.WriteLine(s.Substring(i));
+					i++;
+				}
 			
-╟─├─├─┬─────────────────────────────────────────────────────────────────┐
+╟─├─├─┬────────────────────────────────────────────────────────IndexOf──┐
 			│ LastIndexOf
 			├─┬───────────────────────────────────────────────────────────────┘
 				├─ This works like IndexOf, but searches in reverse, from the right to the left part of the string. It starts with the last char.
 			
-╟─├─├─┬─────────────────────────────────────────────────────────────────┐
+╟─├─├─┬────────────────────────────────────────────────────────IndexOf──┐
 			│ IndexOfAny
 			├─┬───────────────────────────────────────────────────────────────┘
 				├─ This method receives a char array argument. It searches for the first index of any of the characters provided in that array.
 			
-╟─├─├─┬─────────────────────────────────────────────────────────────────┐
+╟─├─├─┬────────────────────────────────────────────────────────IndexOf──┐
 			│ LastIndexOfAny
 			├─┬───────────────────────────────────────────────────────────────┘
 			
-╟─├─├─┬─────────────────────────────────────────────────────────────██──┐
+╟─├─├─┬────────────────────────────────────────────────────██──IndexOf──┐
 			│ IndexOf vs for-loop
 			├─┬───────────────────────────────────────────────────────────────┘
 				Should we prefer IndexOf over for-loops when-possible? Test IndexOf against a single-character iteration for-loop and it is more efficient to scan each character individually than to use IndexOf.
 			
-			├─┬───────────────────────────────────────────────────────────────┐
+			├─┬──────────────────────────────────────────────────────IndexOf──┐
 				using System;
 				using System.Diagnostics;
 
@@ -237,6 +238,34 @@
 
 
 
+╟─┬─────────────────────────────────────────────────────────────────────┐
+  │ StringBuilder
+  ├─┬───────────────────────────────────────────────────────────────────┘
+
+
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+	  │ AppendFormat
+	  ├─┬─────────────────────────────────────────────────────────────────┘
+			├─ The core reason to use AppendFormat is for clarity of the resulting code. It is clear to see what string data will be generated. You can put parenthesis around values, which would be more confusing syntactically if you were to use string concatenation.
+
+	  ├─┬─────────────────────────────────────────────────────────────────┐
+			StringBuilder sb = new StringBuilder();
+			
+			string[] data = { "Dot", "Net", "Perls" };
+			int counter = 0;
+			
+			foreach (string value in data)
+			{
+				sb.AppendFormat(
+					"You have visited {0} ({1}).\n",
+					value,
+					++counter);
+			}
+			Console.WriteLine(sb);
+
+╟─├─├─┬─────────────────────────────────────────────────────────────────┐
+			├─ The StringBuilder AppendFormat method is useful for generating text based on a pattern.
 
 
 
@@ -245,21 +274,10 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+12|            |
+08|        |
+04|    |
+02|  |
 
 ─ │ ═ ║
 

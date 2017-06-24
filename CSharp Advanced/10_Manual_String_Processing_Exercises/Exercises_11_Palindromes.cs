@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace Manual_String_Processing_Exercises
 {
+    /// <summary>
+    /// Extracts from a given text all palindromes.
+    /// Use spaces, commas, dots, question marks and exclamation marks as word delimiters.
+    /// </summary>
+    /// <output>
+    /// Print palindromes on the console on a single line, separated by comma and space.
+    /// Only unique palindromes, sorted lexicographically (small letters are before big ones).
+    /// </output>
     class Exercises_11_Palindromes
     {
         static void Main()

@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace Manual_String_Processing_Exercises
 {
+    /// <summary>
+    /// We are given tow lines of big number (0 - 1050 chars)
+    /// </summary>
+    /// <output>
+    /// Display the sum of these numbers
+    /// </output>
+    /// <remarks>
+    /// Do not use BigInteger or BigDecimal
+    /// </remarks>
     class Exercises_07_Sum_Big_Numbers
     {
         private static Stack<char> num1;
