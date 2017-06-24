@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Exam_01_Cubic_Artillery.cs" />
+    <Compile Include="Exam_01_Cubic_Artillery.cs" />
     <None Include="Exam_02_Cubics_Rube.cs" />
     <None Include="Exam_03_Cubics_Messages.cs" />
     <None Include="Exam_04_Cubic_Assault.cs" />
