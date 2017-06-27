@@ -210,8 +210,21 @@ using System.Text.RegularExpressions;
       \b\w*[^s\W]\b
       John's -> Match: John
 			
-n3wc0nt3st25
 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 ─ │ ═ ║
 
 ┌ ┐ └ ┘ ┬ ┴ ├ ┤ ┼
