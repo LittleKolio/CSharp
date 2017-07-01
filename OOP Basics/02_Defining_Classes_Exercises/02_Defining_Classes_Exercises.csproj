@@ -45,10 +45,15 @@
   <ItemGroup>
     <Compile Include="Classes\Car.cs" />
     <Compile Include="Classes\Cargo.cs" />
+    <Compile Include="Classes\Cat.cs" />
     <Compile Include="Classes\CourierCar.cs" />
+    <Compile Include="Classes\Cymric.cs" />
     <Compile Include="Classes\Engine.cs" />
+    <Compile Include="Classes\Siamese.cs" />
+    <Compile Include="Classes\StreetExtraordinaire.cs" />
     <Compile Include="Classes\Tire.cs" />
-    <Compile Include="StartUp\Exercises_08_Raw_Data.cs" />
+    <Compile Include="StartUp\Exercises_14_Cat_Lady.cs" />
+    <None Include="StartUp\Exercises_08_Raw_Data.cs" />
     <None Include="StartUp\Exercises_07_Speed_Racing.cs" />
     <None Include="StartUp\Exercises_03_Oldest_Family_Member.cs" />
     <None Include="StartUp\Exercises_04_Opinion_Poll.cs" />
