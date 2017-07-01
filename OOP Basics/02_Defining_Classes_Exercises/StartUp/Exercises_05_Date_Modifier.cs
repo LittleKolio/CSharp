@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Defining_Classes_Exercises
 {
-    class Exercises_StartUp_05_Date_Modifier
+    class Exercises_05_Date_Modifier
     {
         static void Main()
         {

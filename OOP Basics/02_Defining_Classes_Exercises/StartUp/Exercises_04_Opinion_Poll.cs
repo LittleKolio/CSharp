@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Defining_Classes_Exercises
+﻿namespace Defining_Classes_Exercises
 {
-    class Exercises_StartUp_04_Opinion_Poll
+    using Classes;
+    using System;
+
+    class Exercises_04_Opinion_Poll
     {
         static void Main()
         {

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Defining_Classes_Exercises
+﻿namespace Defining_Classes_Exercises
 {
-    class Exercises_StartUp_02_Creating_Constructors
+    using Classes;
+    using System;
+    using System.Reflection;
+
+    class Exercises_02_Creating_Constructors
     {
         static void Main()
         {

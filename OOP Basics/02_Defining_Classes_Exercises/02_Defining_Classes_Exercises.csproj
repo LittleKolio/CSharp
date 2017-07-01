@@ -43,14 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Exercises_StartUp_03_Oldest_Family_Member.cs" />
-    <None Include="Exercises_StartUp_04_Opinion_Poll.cs" />
+    <None Include="StartUp\Exercises_03_Oldest_Family_Member.cs" />
+    <None Include="StartUp\Exercises_04_Opinion_Poll.cs" />
     <Compile Include="Classes\DateModifier.cs" />
-    <Compile Include="Exercises_StartUp_05_Date_Modifier.cs" />
-    <Compile Include="Family.cs" />
-    <Compile Include="Person.cs" />
+    <Compile Include="Classes\Employee.cs" />
+    <None Include="StartUp\Exercises_05_Date_Modifier.cs" />
+    <Compile Include="Classes\Family.cs" />
+    <Compile Include="Classes\Person.cs" />
+    <None Include="StartUp\Exercises_06_Company_Roster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Exercises_StartUp_02_Creating_Constructors.cs" />
+    <None Include="StartUp\Exercises_02_Creating_Constructors.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -14,7 +14,7 @@
 
         private DateTime Parser(string date)
         {
-            return DateTime.ParseExact(date, "yyyy mm dd", null);
+            return DateTime.ParseExact(date, "yyyy MM dd", null);
         }
 
         public int Difference
