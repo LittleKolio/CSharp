@@ -45,7 +45,8 @@
   <ItemGroup>
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StartUp\Lab_01_Sort_Persons_By_Name_And_Age.cs" />
+    <None Include="StartUp\Lab_01_Sort_Persons_By_Name_And_Age.cs" />
+    <None Include="StartUp\Lab_02_Salary_Increase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
