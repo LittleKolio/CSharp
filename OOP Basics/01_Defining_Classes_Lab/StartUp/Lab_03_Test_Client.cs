@@ -1,26 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Defining_Classes_Lab
+﻿namespace Defining_Classes_Lab.StartUp
 {
-    class StartUp
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    class Lab_03_Test_Client
     {
         static void Main()
         {
-            #region Test 2.Methods
-            /*
-            BankAccount acc = new BankAccount();
-            acc.ID = 1;
-            acc.Deposit(15);
-            acc.Withdraw(5);
-            Console.WriteLine(acc.ToString());
-            */
-            #endregion
-
-            Dictionary<int, BankAccount> accounts 
+            Dictionary<int, BankAccount> accounts
                 = new Dictionary<int, BankAccount>();
 
             string input;
