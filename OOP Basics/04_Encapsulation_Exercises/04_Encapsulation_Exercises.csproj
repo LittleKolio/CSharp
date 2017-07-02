@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AE524062-A239-44B4-9119-4AD33C115D1D}</ProjectGuid>
+    <ProjectGuid>{17EA5CA2-8B26-4E64-A359-D3376B997A8C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Encapsulation_Lab</RootNamespace>
-    <AssemblyName>03_Encapsulation_Lab</AssemblyName>
+    <RootNamespace>Encapsulation_Exercises</RootNamespace>
+    <AssemblyName>04_Encapsulation_Exercises</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,18 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Person.cs" />
-    <Compile Include="Classes\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="StartUp\Lab_03_Validation_Data.cs" />
-    <Compile Include="StartUp\Lab_04_First_And_Reserve_Team.cs" />
-    <None Include="StartUp\Lab_01_Sort_Persons_By_Name_And_Age.cs" />
-    <None Include="StartUp\Lab_02_Salary_Increase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Classes\" />
+    <Folder Include="StartUp\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

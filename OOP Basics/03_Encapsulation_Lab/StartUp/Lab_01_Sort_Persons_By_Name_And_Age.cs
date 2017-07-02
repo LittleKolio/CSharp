@@ -15,7 +15,10 @@
             for (int i = 0; i < lines; i++)
             {
                 var cmdArgs = Console.ReadLine().Split();
-                var person = new Person(cmdArgs[0], cmdArgs[1], int.Parse(cmdArgs[2]));
+                var person = new Person(
+                    cmdArgs[0], 
+                    cmdArgs[1], 
+                    int.Parse(cmdArgs[2]));
                 persons.Add(person);
             }
 
