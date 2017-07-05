@@ -1,0 +1,16 @@
+﻿namespace Inheritance_Exercises.Classes
+{
+    class GoldenEditionBook : Book
+    {
+        public GoldenEditionBook(
+            string title, string author, decimal price) 
+            : base(title, author, price)
+        {
+        }
+
+        public override decimal Price
+        {
+            get { return base.Price * 1.3M; }
+        }
+    }
+}
