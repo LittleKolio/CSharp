@@ -17,9 +17,9 @@
                 string title = Console.ReadLine();
                 decimal price = decimal.Parse(Console.ReadLine());
 
-                Book book = new Book(title, author, price);
+                Book book = new Book(author, title, price);
                 GoldenEditionBook goldenEditionBook 
-                    = new GoldenEditionBook(title, author, price);
+                    = new GoldenEditionBook(author, title, price);
 
                 Console.WriteLine(book);
                 Console.WriteLine(goldenEditionBook);

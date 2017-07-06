@@ -1,12 +1,11 @@
-﻿using System;
-using System.Text;
-
-namespace Inheritance_Exercises.Classes
+﻿namespace Inheritance_Exercises.Classes
 {
+    using System;
+
     public class Person
     {
-        protected string name;
-        protected int age;
+        private string name;
+        private int age;
         public Person(string name, int age)
         {
             this.Age = age;
@@ -26,7 +25,7 @@ namespace Inheritance_Exercises.Classes
                 this.age = value;
             }
         }
-        public virtual string Name
+        public string Name
         {
             get { return this.name; }
             set
@@ -42,9 +41,7 @@ namespace Inheritance_Exercises.Classes
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(string.Format("Name: {0}, Age: {1}", this.Name, this.Age));
-            return sb.ToString();
+            return $"Name: {this.Name}, Age: {this.Age}";
         }
     }
 }
