@@ -6,8 +6,15 @@ public class Dog : Animal
         : base(name, favouriteFood)
     {
     }
+
     public override string ExplainMyself()
     {
-        return base.ExplainMyself() + Environment.NewLine + "DJAAF";
+        return $"I am {base.Name} and my fovourite food is " +
+            $"{base.FavouriteFood} DJAAF";
     }
+
+    //public override string ExplainMyself()
+    //{
+    //    return base.ExplainMyself() + Environment.NewLine + "DJAAF";
+    //}
 }

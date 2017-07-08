@@ -1,4 +1,4 @@
-﻿public class Animal
+﻿public abstract class Animal
 {
     private string name;
     private string favouriteFood;
@@ -19,8 +19,10 @@
         set { this.favouriteFood = value; }
     }
 
-    public virtual string ExplainMyself()
-    {
-        return $"I am {this.Name} and my fovourite food is {this.FavouriteFood}";
-    }
+    public abstract string ExplainMyself();
+
+    //public virtual string ExplainMyself()
+    //{
+    //    return $"I am {this.Name} and my fovourite food is {this.FavouriteFood}";
+    //}
 }
