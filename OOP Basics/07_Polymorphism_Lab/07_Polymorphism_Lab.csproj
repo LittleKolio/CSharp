@@ -52,7 +52,6 @@
     <Compile Include="Classes\Shape.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartUp\Lab_03_Shapes.cs" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="StartUp\Lab_01_MathOperation.cs" />
     <None Include="StartUp\Lab_02_Animals.cs" />
   </ItemGroup>

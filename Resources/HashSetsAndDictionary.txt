@@ -54,7 +54,7 @@
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│ Get first element
 	├─┬───────────────────────────────────────────────────────────────────┘
-    ├─ Note that to call First here is actually to call a Linq extension of IEnumerable, which is implemented by Dictionary<TKey,TValue>. But for a Dictionary, "first" doesn't have a defined meaning. The last item added ends up being the "First" (in other words, it behaves like a Stack), but that is implementation specific, it's not the guaranteed behavior. In other words, to assume you're going to get any defined item by calling First would be to beg for trouble -- using it should be treated as akin to getting a random item from the Dictionary.
+    ├─ Note that to call First here is actually to call a Linq extension of IEnumerable, which is implemented by Dictionary<TKey,TValue>. But for a Dictionary, "first" doesn't have a defined meaning. The last item added ends up being the "First" (in other words, it behaves like a Stack), but that is implementation specific, it's not the guaranteed behavior. In other words, using it should be treated as akin to getting a random item from the Dictionary.
 		
 ╟─├─┬───────────────────────────────────────────────────────────────────┐
     ├─ You could derive a specific meaning from the use of First by combining it with the Linq OrderBy
