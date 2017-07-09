@@ -1,4 +1,6 @@
-﻿namespace Polymorphism_Exercises.Classes
+﻿using System;
+
+namespace Polymorphism_Exercises.Classes
 {
     public abstract class Mammal : Animal
     {
@@ -9,9 +11,10 @@
         }
 
         protected string Region { get; set; }
+
         public override string ToString()
         {
-            return $"{base.GetType().Name}[{base.Name}, {base.Weight}, {this.Region}, {base.FoodEaten}]";
+            return $"{base.Type}[{base.Name}, {base.Weight}, {this.Region}, {base.FoodEaten}]";
         }
     }
 }

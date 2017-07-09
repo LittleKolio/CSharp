@@ -22,54 +22,20 @@
                     .Split(new[] { ' ' },
                     StringSplitOptions.RemoveEmptyEntries);
 
-                switch (animalInput[0])
+                Animal animal = AnimalFactory.GetAnimal(animalInput);
+                Food food = FoodFactory.GetFood(foodInput);
+
+                Console.WriteLine(animal.MakeSound());
+                try
                 {
-                    case "Mouse":
-                        Animal mouse = new Mouse(
-                            animalInput[1], double.Parse(animalInput[2]), animalInput[3]);
-                        Feed(mouse, foodInput);
-                        break;
-                    case "Cat":
-                        Animal cat = new Cat(
-                            animalInput[1], double.Parse(animalInput[2]), animalInput[3], animalInput[4]);
-                        Feed(cat, foodInput);
-                        break;
-                    case "Tiger":
-                        Animal tiger = new Tiger(
-                            animalInput[1], double.Parse(animalInput[2]), animalInput[3]);
-                        Feed(tiger, foodInput);
-                        break;
-                    case "Zebra":
-                        Animal zebra = new Zebra(
-                            animalInput[1], double.Parse(animalInput[2]), animalInput[3]);
-                        Feed(zebra, foodInput);
-                        break;
+                    animal.Eat(food);
                 }
-            }
-        }
-
-        private static void Feed(Animal animal, string[] foodInput)
-        {
-            Console.WriteLine(animal.MakeSound());
-
-            try
-            {
-                switch (foodInput[0])
+                catch (ArgumentException ex)
                 {
-                    case "Vegetable":
-                        animal.Eat(new Vegetable(int.Parse(foodInput[1])));
-                        break;
-                    case "Meat":
-                        animal.Eat(new Meat(int.Parse(foodInput[1])));
-                        break;
+                    Console.WriteLine(ex.Message);
                 }
+                Console.WriteLine(animal);
             }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-            Console.WriteLine(animal);
         }
     }
 }

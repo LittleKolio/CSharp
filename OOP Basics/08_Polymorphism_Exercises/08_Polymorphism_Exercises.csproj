@@ -43,19 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Farm\Animal.cs" />
-    <Compile Include="Classes\Farm\Cat.cs" />
-    <Compile Include="Classes\Farm\Mouse.cs" />
-    <Compile Include="Classes\Farm\Tiger.cs" />
-    <Compile Include="Classes\Farm\Zebra.cs" />
+    <Compile Include="Classes\Animal\Animal.cs" />
+    <Compile Include="Classes\Animal\AnimalFactory.cs" />
+    <Compile Include="Classes\Animal\Cat.cs" />
+    <Compile Include="Classes\Animal\Mouse.cs" />
+    <Compile Include="Classes\Animal\Tiger.cs" />
+    <Compile Include="Classes\Animal\Zebra.cs" />
+    <Compile Include="Classes\Food\FoodFactory.cs" />
     <Compile Include="Classes\Vehicle\Bus.cs" />
     <Compile Include="Classes\Vehicle\Car.cs" />
-    <Compile Include="Classes\Farm\Female.cs" />
-    <Compile Include="Classes\Farm\Food.cs" />
-    <Compile Include="Classes\Farm\Mammal.cs" />
-    <Compile Include="Classes\Farm\Meat.cs" />
+    <Compile Include="Classes\Animal\Female.cs" />
+    <Compile Include="Classes\Food\Food.cs" />
+    <Compile Include="Classes\Animal\Mammal.cs" />
+    <Compile Include="Classes\Food\Meat.cs" />
     <Compile Include="Classes\Vehicle\Truck.cs" />
-    <Compile Include="Classes\Farm\Vegetable.cs" />
+    <Compile Include="Classes\Food\Vegetable.cs" />
     <Compile Include="Classes\Vehicle\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="StartUp\Exercises_02_Vehicles_Extension.cs" />

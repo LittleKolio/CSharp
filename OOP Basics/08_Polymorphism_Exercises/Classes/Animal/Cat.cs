@@ -17,7 +17,7 @@ namespace Polymorphism_Exercises.Classes
         }
         public override string ToString()
         {
-            return $"{base.GetType().Name}[{base.Name}, {this.Breed}, {base.Weight}, {base.Region}, {base.FoodEaten}]";
+            return $"Cat[{base.Name}, {this.Breed}, {base.Weight}, {base.Region}, {base.FoodEaten}]";
         }
     }
 }

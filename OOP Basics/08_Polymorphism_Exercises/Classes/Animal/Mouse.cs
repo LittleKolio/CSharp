@@ -9,13 +9,14 @@ namespace Polymorphism_Exercises.Classes
 
         public override void Eat(Food food)
         {
-            if (food is Meat)
+            if (food.GetType().Name != "Vegetable")
             {
                 throw new ArgumentException(
-                    $"Mouses are not eating that type of food!");
+                    $"Zebras are not eating that type of food!");
             }
             base.Eat(food);
         }
+
         public override string MakeSound()
         {
             return "SQUEEEAAAK!";

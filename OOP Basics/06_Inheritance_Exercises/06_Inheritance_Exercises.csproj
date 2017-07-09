@@ -43,16 +43,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Book.cs" />
+    <Compile Include="Classes\Book\Book.cs" />
     <Compile Include="Classes\Child.cs" />
-    <Compile Include="Classes\GoldenEditionBook.cs" />
-    <Compile Include="Classes\Human.cs" />
-    <Compile Include="Classes\Person.cs" />
-    <Compile Include="Classes\Student.cs" />
-    <Compile Include="Classes\Worker.cs" />
+    <Compile Include="Classes\Food\Apple.cs" />
+    <Compile Include="Classes\Food\Cram.cs" />
+    <Compile Include="Classes\Food\Food.cs" />
+    <Compile Include="Classes\Food\FoodFactory.cs" />
+    <Compile Include="Classes\Food\HoneyCake.cs" />
+    <Compile Include="Classes\Food\Lembas.cs" />
+    <Compile Include="Classes\Food\Melon.cs" />
+    <Compile Include="Classes\Gandalf.cs" />
+    <Compile Include="Classes\Mood\Angry.cs" />
+    <Compile Include="Classes\Mood\Happy.cs" />
+    <Compile Include="Classes\Mood\JavaScript.cs" />
+    <Compile Include="Classes\Mood\Mood.cs" />
+    <Compile Include="Classes\Food\Mushrooms.cs" />
+    <Compile Include="Classes\Food\OtherFood.cs" />
+    <Compile Include="Classes\Book\GoldenEditionBook.cs" />
+    <Compile Include="Classes\Mankind\Human.cs" />
+    <Compile Include="Classes\Mood\MoodFactory.cs" />
+    <Compile Include="Classes\Mood\Sad.cs" />
+    <Compile Include="Classes\Mankind\Person.cs" />
+    <Compile Include="Classes\Mankind\Student.cs" />
+    <Compile Include="Classes\Mankind\Worker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StartUp\Exercises_04_Mordors_Cruelty_Plan.cs" />
     <None Include="StartUp\Exercises_02_Book_Shop.cs" />
-    <Compile Include="StartUp\Exercises_03_Mankind.cs" />
+    <None Include="StartUp\Exercises_03_Mankind.cs" />
     <None Include="StartUp\Exercises_01_Person.cs" />
   </ItemGroup>
   <ItemGroup>

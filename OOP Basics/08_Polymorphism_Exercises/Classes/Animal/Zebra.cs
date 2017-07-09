@@ -2,24 +2,24 @@
 
 namespace Polymorphism_Exercises.Classes
 {
-    public class Tiger : Female
+    public class Zebra : Mammal
     {
-        public Tiger(string name, double weight, string region) 
+        public Zebra(string name, double weight, string region) 
             : base(name, weight, region) { }
 
         public override void Eat(Food food)
         {
-            if (food is Vegetable)
+            if (food.GetType().Name != "Vegetable")
             {
                 throw new ArgumentException(
-                    $"Tigers are not eating that type of food!");
+                    $"Zebras are not eating that type of food!");
             }
             base.Eat(food);
         }
 
         public override string MakeSound()
         {
-            return "ROAAR!!!";
+            return "Zs";
         }
     }
 }
