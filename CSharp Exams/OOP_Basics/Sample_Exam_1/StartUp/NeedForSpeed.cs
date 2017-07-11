@@ -12,6 +12,7 @@
         static void Main()
         {
             CarManager manager = new CarManager();
+
             string input;
             while ((input = Console.ReadLine()) != "Cops Are Here")
             {
@@ -20,29 +21,37 @@
                     StringSplitOptions.RemoveEmptyEntries);
 
                 string command = formatInput[0];
-                int id = int.Parse(formatInput[1]);
-                string type = formatInput[2];
-                string brand = formatInput[3];
-                string model = formatInput[4];
-                int yearOfProduction = int.Parse(formatInput[5]);
-                int horsepower = int.Parse(formatInput[6]);
-                int acceleration = int.Parse(formatInput[7]);
-                int suspension = int.Parse(formatInput[8]);
-                int durability = int.Parse(formatInput[9]);
 
                 switch (command)
                 {
                     case "register":
                         manager.Register(
-                            id,
-                            type,
-                            brand,
-                            model,
-                            yearOfProduction,
-                            horsepower,
-                            acceleration,
-                            suspension,
-                            durability);
+                            int.Parse(formatInput[1]), //id
+                            formatInput[2], //type
+                            formatInput[3], //brand
+                            formatInput[4], //model
+                            int.Parse(formatInput[5]), //yearOfProduction
+                            int.Parse(formatInput[6]), //horsepower
+                            int.Parse(formatInput[7]), //acceleration
+                            int.Parse(formatInput[8]), //suspension
+                            int.Parse(formatInput[9]) //durability
+                            );
+                        break;
+
+                    case "open":
+                        manager.Open(
+                            int.Parse(formatInput[1]), //id
+                            formatInput[2], //type
+                            int.Parse(formatInput[3]), //length
+                            formatInput[4], //route
+                            int.Parse(formatInput[5]) //prizePool
+                            );
+                        break;
+                    case "participate":
+                        manager.Participate(
+                            int.Parse(formatInput[1]), //carId
+                            int.Parse(formatInput[2]) //raceId
+                            );
                         break;
                 }
             }

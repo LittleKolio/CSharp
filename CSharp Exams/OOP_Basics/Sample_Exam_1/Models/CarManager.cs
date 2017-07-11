@@ -6,10 +6,13 @@
     {
         private Dictionary<int, Car> cars;
         private Dictionary<int, Race> races;
+        private Garage garage;
+
         public CarManager()
         {
             this.cars = new Dictionary<int, Car>();
             this.races = new Dictionary<int, Race>();
+            this.garage = new Garage();
         }
 
         public void Register(
@@ -39,8 +42,25 @@
         {
             return null;
         }
-        public void Open(int id, string type, int legth, string route, int prizePool) { }
-        public void Participate(int carId, int raceId) { }
+        public void Open(int id, string type, int length, string route, int prizePool)
+        {
+            switch (type)
+            {
+                case "Casual":
+                    races.Add(id, new Casual(length, route, prizePool));
+                    break;
+                case "Drag":
+                    races.Add(id, new Drag(length, route, prizePool));
+                    break;
+                case "Drift":
+                    races.Add(id, new Drift(length, route, prizePool));
+                    break;
+            }
+        }
+        public void Participate(int carId, int raceId)
+        {
+
+        }
         public string Start(int id)
         {
             return null;
