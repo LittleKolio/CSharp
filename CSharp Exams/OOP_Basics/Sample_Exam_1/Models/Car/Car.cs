@@ -26,5 +26,7 @@
         public int Acceleration { get; set; }
         public int Suspension { get; set; }
         public int Durability { get; set; }
+        public int Id { get; set; }
+        public int Points { get; set; }
     }
 }

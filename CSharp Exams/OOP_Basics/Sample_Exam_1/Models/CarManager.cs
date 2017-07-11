@@ -1,17 +1,18 @@
 ﻿namespace Sample_Exam_1.Models
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     public class CarManager
     {
-        private Dictionary<int, Car> cars;
-        private Dictionary<int, Race> races;
+        private List<Car> cars;
+        private List<Race> races;
         private Garage garage;
 
         public CarManager()
         {
-            this.cars = new Dictionary<int, Car>();
-            this.races = new Dictionary<int, Race>();
+            this.cars = new List<Car>();
+            this.races = new List<Race>();
             this.garage = new Garage();
         }
 
@@ -29,37 +30,37 @@
             switch (type)
             {
                 case "Performance":
-                    cars.Add(id, new Performance(
+                    cars.Add(new Performance(
                         brand, model, yearOfProduction, horsepower, acceleration, suspension, durability));
                     break;
                 case "Show":
-                    cars.Add(id, new Show(
+                    cars.Add(new Show(
                         brand, model, yearOfProduction, horsepower, acceleration, suspension, durability));
                     break;
             }
         }
-        public string Check(int id)
-        {
-            return null;
-        }
+
         public void Open(int id, string type, int length, string route, int prizePool)
         {
             switch (type)
             {
                 case "Casual":
-                    races.Add(id, new Casual(length, route, prizePool));
+                    races.Add(new Casual(length, route, prizePool));
                     break;
                 case "Drag":
-                    races.Add(id, new Drag(length, route, prizePool));
+                    races.Add(new Drag(length, route, prizePool));
                     break;
                 case "Drift":
-                    races.Add(id, new Drift(length, route, prizePool));
+                    races.Add(new Drift(length, route, prizePool));
                     break;
             }
         }
         public void Participate(int carId, int raceId)
         {
-
+            //if (garage.ParkedCars.All(id => id != carId))
+            //{
+            //    races[raceId].AddParticipant
+            //}
         }
         public string Start(int id)
         {
@@ -68,6 +69,10 @@
         public void Park(int id) { }
         public void Unpark(int id) { }
         public void Tune(int tuneIndex, string addOn) { }
+        public string Check(int id)
+        {
+            return null;
+        }
 
     }
 }

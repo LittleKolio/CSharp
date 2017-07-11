@@ -4,19 +4,19 @@
 
     public class Garage
     {
-        private List<int> parkedCars;
+        private List<Car> parkedCars;
         public Garage()
         {
-            this.parkedCars = new List<int>();
+            this.parkedCars = new List<Car>();
         }
-        public List<int> ParkedCars
+        public List<Car> ParkedCars
         {
             get { return this.parkedCars; }
             //set { this.parkedCars = value; }
         }
-        public void AddCar(int id)
+        public void AddCar(Car car)
         {
-            this.parkedCars.Add(id);
+            this.parkedCars.Add(car);
         }
     }
 }

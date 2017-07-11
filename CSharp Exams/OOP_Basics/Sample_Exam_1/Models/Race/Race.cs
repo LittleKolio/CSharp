@@ -4,23 +4,25 @@
 
     public abstract class Race
     {
-        protected Dictionary<int, int> participants;
+        protected List<Car> participants;
         public Race(int length, string route, int prizePool)
         {
             this.Length = length;
             this.Route = route;
             this.PrizePool = prizePool;
-            this.participants = new Dictionary<int, int>();
+            this.participants = new List<Car>();
         }
         public int Length { get; set; }
         public string Route { get; set; }
         public int PrizePool { get; set; }
+        public int Id { get; set; }
 
         public abstract int Points(Car car);
 
-        public void AddParticipant(int id, Car car)
+        public void AddParticipant(Car car)
         {
-            this.participants.Add(id, this.Points(car));
+            car.Points = this.Points(car);
+            this.participants.Add(car);
         }
     }
 }
