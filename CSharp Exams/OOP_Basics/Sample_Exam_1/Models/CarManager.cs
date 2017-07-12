@@ -56,42 +56,58 @@ public class CarManager
     }
     public void Participate(int carId, int raceId)
     {
-        if (garage.parkedCars.All(id => id != carId))
+        bool parked = garage.parkedCars.All(id => id != carId);
+        if (parked && cars.ContainsKey(carId))
         {
             races[raceId].AddParticipant(carId);
         }
     }
-    public string Start(int id)
+    public string Start(int carId)
     {
-        int prize = races[id].PrizePool;
+        Race race = races[carId];
+        int prize = race.PrizePool;
 
-        var winners = races[id].participants
+        var winners = race.participants
             .Where(key => cars.ContainsKey(key))
-            .Select(key => cars[key])
-            .Select(car => new
+            .Select(key => new
             {
-                points = races[id].Points(car),
-                info = $"{car.Brand} {car.Model}"
+                points = race.Points(cars[key]),
+                info = $"{cars[key].Brand} {cars[key].Model}"
             })
             .OrderByDescending(car => car.points)
             .ToList();
 
         StringBuilder sb = new StringBuilder();
-        sb.Append(winners.First().info);
-        //sb.AppendLine($" {winners.First().points}PP - ${ * 0.5}");
-        sb.Append(winners.Skip(1).First().info);
-        sb.AppendLine($" {winners.Skip(1).First().points}PP - ${races[id].PrizePool * 0.3}");
-        sb.Append(winners.Skip(2).First().info);
-        sb.AppendLine($" {winners.Skip(2).First().points}PP - ${races[id].PrizePool * 0.2}");
+        sb.AppendLine($"{race.Route} - {race.Length}");
+        sb.Append("1. " + winners.First().info);
+        sb.AppendLine($" {winners.First().points}PP - ${ prize * 0.5}");
+        sb.Append("2. " + winners.Skip(1).First().info);
+        sb.AppendLine($" {winners.Skip(1).First().points}PP - ${prize * 0.3}");
+        sb.Append("3. " + winners.Skip(2).First().info);
+        sb.Append($" {winners.Skip(2).First().points}PP - ${prize * 0.2}");
 
         return sb.ToString();
     }
-    public string Check(int id)
+    public string Check(int carId)
     {
-        return cars[id].ToString();
+        return cars[carId].ToString();
     }
-    public void Park(int id) { }
-    public void Unpark(int id) { }
+    public void Park(int carId)
+    {
+        bool racing = races
+            .SelectMany(race => 
+                race.Value.participants)
+            .Any(car => car == carId);
+
+        if (!racing && cars.ContainsKey(carId))
+        {
+            garage.AddCar(carId);
+        }
+    }
+    public void Unpark(int id)
+    {
+
+    }
     public void Tune(int tuneIndex, string addOn) { }
 
 

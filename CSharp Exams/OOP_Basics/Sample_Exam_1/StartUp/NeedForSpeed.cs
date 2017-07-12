@@ -64,6 +64,16 @@
                             int.Parse(formatInput[1]) //raceId
                             ));
                         break;
+                    case "park":
+                        manager.Park(
+                            int.Parse(formatInput[1]) //carId
+                            );
+                        break;
+                    case "unpark":
+                        manager.Park(
+                            int.Parse(formatInput[1]) //carId
+                            );
+                        break;
                 }
             }
         }

@@ -11,4 +11,8 @@ public class Garage
     {
         this.parkedCars.Add(id);
     }
+    public void RemoveCar(int id)
+    {
+        this.parkedCars.Remove(id);
+    }
 }
