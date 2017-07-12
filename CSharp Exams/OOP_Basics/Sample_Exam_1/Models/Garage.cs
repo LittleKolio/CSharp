@@ -1,22 +1,14 @@
-﻿namespace Sample_Exam_1.Models
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-    public class Garage
+public class Garage
+{
+    public List<int> parkedCars;
+    public Garage()
     {
-        private List<Car> parkedCars;
-        public Garage()
-        {
-            this.parkedCars = new List<Car>();
-        }
-        public List<Car> ParkedCars
-        {
-            get { return this.parkedCars; }
-            //set { this.parkedCars = value; }
-        }
-        public void AddCar(Car car)
-        {
-            this.parkedCars.Add(car);
-        }
+        this.parkedCars = new List<int>();
+    }
+    public void AddCar(int id)
+    {
+        this.parkedCars.Add(id);
     }
 }

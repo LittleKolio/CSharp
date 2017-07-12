@@ -45,13 +45,13 @@
   <ItemGroup>
     <Compile Include="Models\CarManager.cs" />
     <Compile Include="Models\Car\Car.cs" />
-    <Compile Include="Models\Race\Casual.cs" />
-    <Compile Include="Models\Race\Drag.cs" />
-    <Compile Include="Models\Race\Drift.cs" />
+    <Compile Include="Models\Race\CasualRace.cs" />
+    <Compile Include="Models\Race\DragRace.cs" />
+    <Compile Include="Models\Race\DriftRace.cs" />
     <Compile Include="Models\Garage.cs" />
-    <Compile Include="Models\Car\Performance.cs" />
+    <Compile Include="Models\Car\PerformanceCar.cs" />
     <Compile Include="Models\Race\Race.cs" />
-    <Compile Include="Models\Car\Show.cs" />
+    <Compile Include="Models\Car\ShowCar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartUp\NeedForSpeed.cs" />
   </ItemGroup>

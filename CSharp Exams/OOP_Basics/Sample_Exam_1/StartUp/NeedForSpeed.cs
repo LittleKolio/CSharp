@@ -1,6 +1,5 @@
-﻿namespace Sample_Exam_1.StartUp
+﻿namespace Sample_Exam_1
 {
-    using Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -47,11 +46,23 @@
                             int.Parse(formatInput[5]) //prizePool
                             );
                         break;
+
                     case "participate":
                         manager.Participate(
                             int.Parse(formatInput[1]), //carId
                             int.Parse(formatInput[2]) //raceId
                             );
+                        break;
+
+                    case "check":
+                        Console.WriteLine(manager.Check(
+                            int.Parse(formatInput[1]) //carId
+                            ));
+                        break;
+                    case "start":
+                        Console.WriteLine(manager.Start(
+                            int.Parse(formatInput[1]) //raceId
+                            ));
                         break;
                 }
             }

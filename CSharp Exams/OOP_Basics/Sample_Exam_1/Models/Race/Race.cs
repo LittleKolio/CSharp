@@ -1,28 +1,23 @@
-﻿namespace Sample_Exam_1.Models
+﻿using System.Collections.Generic;
+
+public abstract class Race
 {
-    using System.Collections.Generic;
-
-    public abstract class Race
+    public List<int> participants;
+    public Race(int length, string route, int prizePool)
     {
-        protected List<Car> participants;
-        public Race(int length, string route, int prizePool)
-        {
-            this.Length = length;
-            this.Route = route;
-            this.PrizePool = prizePool;
-            this.participants = new List<Car>();
-        }
-        public int Length { get; set; }
-        public string Route { get; set; }
-        public int PrizePool { get; set; }
-        public int Id { get; set; }
+        this.Length = length;
+        this.Route = route;
+        this.PrizePool = prizePool;
+        this.participants = new List<int>();
+    }
+    public int Length { get; set; }
+    public string Route { get; set; }
+    public int PrizePool { get; set; }
 
-        public abstract int Points(Car car);
+    public abstract int Points(Car car);
 
-        public void AddParticipant(Car car)
-        {
-            car.Points = this.Points(car);
-            this.participants.Add(car);
-        }
+    public void AddParticipant(int id)
+    {
+        this.participants.Add(id);
     }
 }
