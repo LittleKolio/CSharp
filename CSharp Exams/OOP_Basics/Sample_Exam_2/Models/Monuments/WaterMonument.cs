@@ -1,6 +1,17 @@
-﻿public class WaterMonument : Monument
+﻿using System;
+
+public class WaterMonument : Monument
 {
     public WaterMonument(string name, int waterAffinity) 
-        : base(name, waterAffinity)
-    { }
+        : base(name)
+    {
+        this.WaterAffinity = waterAffinity;
+    }
+
+    public int WaterAffinity { get; set; }
+
+    public override int Bonus()
+    {
+        return this.WaterAffinity;
+    }
 }
