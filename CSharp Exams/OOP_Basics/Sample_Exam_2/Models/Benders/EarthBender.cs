@@ -14,4 +14,8 @@ public class EarthBender : Bender
     {
         return base.Power * this.GroundSaturation;
     }
+    public override string ToString()
+    {
+        return $"Earth Bender: {base.Name}, Power: {base.Power}, Ground Saturation: {this.GroundSaturation}";
+    }
 }

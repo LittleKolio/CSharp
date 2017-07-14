@@ -14,4 +14,8 @@ public class WaterMonument : Monument
     {
         return this.WaterAffinity;
     }
+    public override string ToString()
+    {
+        return $"Water Monument: {base.Name}, Water Affinity: {this.WaterAffinity}";
+    }
 }

@@ -14,4 +14,8 @@ public class FireBender : Bender
     {
         return base.Power * this.HeatAggression;
     }
+    public override string ToString()
+    {
+        return $"Fire Bender: {base.Name}, Power: {base.Power}, Heat Aggression: {this.HeatAggression}";
+    }
 }

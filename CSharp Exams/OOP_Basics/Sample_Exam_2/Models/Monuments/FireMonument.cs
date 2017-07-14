@@ -14,4 +14,8 @@ public class FireMonument : Monument
     {
         return this.FireAffinity;
     }
+    public override string ToString()
+    {
+        return $"Fire Monument: {base.Name}, Fire Affinity: {this.FireAffinity}";
+    }
 }

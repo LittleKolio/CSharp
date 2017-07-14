@@ -14,4 +14,8 @@ public class EarthMonument : Monument
     {
         return this.EarthAffinity;
     }
+    public override string ToString()
+    {
+        return $"Earth Monument: {base.Name}, Earth Affinity: {this.EarthAffinity}";
+    }
 }

@@ -14,4 +14,8 @@ public class AirMonument : Monument
     {
         return this.AirAffinity;
     }
+    public override string ToString()
+    {
+        return $"Air Monument: {base.Name}, Air Affinity: {this.AirAffinity}";
+    }
 }
