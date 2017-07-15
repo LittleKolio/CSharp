@@ -56,7 +56,7 @@
     <Compile Include="Models\Monuments\WaterMonument.cs" />
     <Compile Include="Models\Nation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="NationBuilder.cs" />
+    <Compile Include="NationsBuilder.cs" />
     <Compile Include="StartUp\StartUp.cs" />
   </ItemGroup>
   <ItemGroup>

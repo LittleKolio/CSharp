@@ -5,12 +5,12 @@ using System.Linq;
 public class Engine
 {
     private bool running;
-    private NationBuilder nationBuilder;
+    private NationsBuilder nationBuilder;
 
     public Engine()
     {
         this.running = true;
-        this.nationBuilder = new NationBuilder();
+        this.nationBuilder = new NationsBuilder();
     }
 
     public void Run()

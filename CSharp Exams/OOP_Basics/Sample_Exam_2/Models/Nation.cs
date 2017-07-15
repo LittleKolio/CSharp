@@ -43,10 +43,10 @@ public class Nation
         if (this.monuments.Any())
         {
             sb.AppendLine()
-                .AppendLine(string.Join(Environment.NewLine,
+                .Append(string.Join(Environment.NewLine,
                     this.monuments.Select(m => $"###{m}")));
         }
-        else { sb.AppendLine(" None"); }
+        else { sb.Append(" None"); }
         return sb.ToString();
     }
     public void DeclareDefeat()

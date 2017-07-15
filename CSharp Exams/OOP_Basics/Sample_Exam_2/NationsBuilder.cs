@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class NationBuilder
+public class NationsBuilder
 {
     private Dictionary<string, Nation> nations;
     private List<string> warHistory;
-    public NationBuilder()
+    public NationsBuilder()
     {
         this.nations = new Dictionary<string, Nation>
         {
@@ -89,7 +89,7 @@ public class NationBuilder
                 nation.DeclareDefeat();
             }
         }
-        this.warHistory.Add($"War {this.warHistory.Count + 1} issued by {nationsType}.");
+        this.warHistory.Add($"War {this.warHistory.Count + 1} issued by {nationsType}");
     }
     public string GetWarsRecord() => string.Join(Environment.NewLine, this.warHistory);
 }
