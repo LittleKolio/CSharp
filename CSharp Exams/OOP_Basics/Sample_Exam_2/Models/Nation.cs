@@ -23,7 +23,7 @@ public class Nation
     }
     public double TotalPower()
     {
-        double power = warriors.Sum(bender => bender.TotalPower());
+        double power = this.warriors.Sum(bender => bender.TotalPower());
         double bonus = this.monuments.Sum(mon => mon.Bonus());
         return power * (bonus / 100 + 1);
     }
@@ -48,5 +48,10 @@ public class Nation
         }
         else { sb.AppendLine(" None"); }
         return sb.ToString();
+    }
+    public void DeclareDefeat()
+    {
+        this.warriors.Clear();
+        this.monuments.Clear();
     }
 }

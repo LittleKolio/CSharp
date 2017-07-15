@@ -16,6 +16,6 @@ public class AirBender : Bender
     }
     public override string ToString()
     {
-        return $"Air Bender: {base.Name}, Power: {base.Power}, Aerial Integrity: {this.AerialIntegrity}";
+        return $"Air Bender: {base.Name}, Power: {base.Power}, Aerial Integrity: {this.AerialIntegrity:F2}";
     }
 }

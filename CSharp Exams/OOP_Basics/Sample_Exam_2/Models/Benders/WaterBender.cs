@@ -16,6 +16,6 @@ public class WaterBender : Bender
     }
     public override string ToString()
     {
-        return $"Water Bender: {base.Name}, Power: {base.Power}, Water Clarity: {this.WaterClarity}";
+        return $"Water Bender: {base.Name}, Power: {base.Power}, Water Clarity: {this.WaterClarity:F2}";
     }
 }

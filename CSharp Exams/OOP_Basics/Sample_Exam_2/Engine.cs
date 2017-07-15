@@ -19,6 +19,7 @@ public class Engine
         {
             string input = this.ReadInput();
             List<string> commands = this.ParseInput(input);
+            this.DistributeCommand(commands);
         }
     }
     private string ReadInput()
@@ -45,13 +46,17 @@ public class Engine
                 this.nationBuilder.AssignMonument(commands);
                 break;
             case "Status":
-                string str = this.nationBuilder.GetStatus(commands[0]);
-                Console.WriteLine(str);
+                string strStats = this.nationBuilder.GetStatus(commands[0]);
+                Console.WriteLine(strStats);
                 break;
             case "War":
-
+                this.nationBuilder.IssueWar(commands[0]);
                 break;
-            case "Quit": break;
+            case "Quit":
+                string strQuit = this.nationBuilder.GetWarsRecord();
+                Console.WriteLine(strQuit);
+                this.running = false;
+                break;
         }
     }
 }

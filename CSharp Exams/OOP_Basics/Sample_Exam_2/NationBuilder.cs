@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 public class NationBuilder
 {
     private Dictionary<string, Nation> nations;
+    private List<string> warHistory;
     public NationBuilder()
     {
         this.nations = new Dictionary<string, Nation>
@@ -14,6 +16,7 @@ public class NationBuilder
             { "Fire", new Nation() },
             { "Earth", new Nation() }
         };
+        this.warHistory = new List<string>();
     }
     public void AssignBender(List<string> benStats)
     {
@@ -78,11 +81,15 @@ public class NationBuilder
     }
     public void IssueWar(string nationsType)
     {
-        //TODO: Add some logic here … 
+        double winner = this.nations.Max(n => n.Value.TotalPower());
+        foreach (var nation in this.nations.Values)
+        {
+            if (nation.TotalPower() != winner)
+            {
+                nation.DeclareDefeat();
+            }
+        }
+        this.warHistory.Add($"War {this.warHistory.Count + 1} issued by {nationsType}.");
     }
-    public string GetWarsRecord()
-    {
-        //TODO: Add some logic here … 
-    }
-
+    public string GetWarsRecord() => string.Join(Environment.NewLine, this.warHistory);
 }

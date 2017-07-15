@@ -43,20 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine\Engine.cs" />
+    <Compile Include="Engine.cs" />
     <Compile Include="Models\Benders\AirBender.cs" />
-    <Compile Include="Models\Benders\Bender.cs" />
+    <Compile Include="Models\Bender.cs" />
     <Compile Include="Models\Benders\EarthBender.cs" />
     <Compile Include="Models\Benders\FireBender.cs" />
     <Compile Include="Models\Benders\WaterBender.cs" />
     <Compile Include="Models\Monuments\AirMonument.cs" />
     <Compile Include="Models\Monuments\EarthMonument.cs" />
     <Compile Include="Models\Monuments\FireMonument.cs" />
-    <Compile Include="Models\Monuments\Monument.cs" />
+    <Compile Include="Models\Monument.cs" />
     <Compile Include="Models\Monuments\WaterMonument.cs" />
     <Compile Include="Models\Nation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StartUp\NationBuilder.cs" />
+    <Compile Include="NationBuilder.cs" />
+    <Compile Include="StartUp\StartUp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
