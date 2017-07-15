@@ -1,4 +1,6 @@
-﻿public class ShowCar : Car
+﻿using System.Text;
+
+public class ShowCar : Car
 {
     public ShowCar(
         string brand,
@@ -21,8 +23,16 @@
     }
     public int Stars { get; set; }
 
+    public override void Tune(int index, string addOn)
+    {
+        base.Tune(index, addOn);
+        this.Stars = this.Stars + index;
+    }
+
     public override string ToString()
     {
-        return base.ToString() + $"{this.Stars} *";
+        StringBuilder sb = new StringBuilder(base.ToString());
+        sb.Append($"{this.Stars} *");
+        return sb.ToString();
     }
 }

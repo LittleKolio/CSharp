@@ -2,17 +2,34 @@
 
 public class Garage
 {
-    public List<int> parkedCars;
+    private Dictionary<int, Car> parkedCars;
     public Garage()
     {
-        this.parkedCars = new List<int>();
+        this.parkedCars = new Dictionary<int, Car>();
     }
-    public void AddCar(int id)
+
+    public Dictionary<int, Car> ParkedCars
     {
-        this.parkedCars.Add(id);
+        get { return this.parkedCars; }
     }
-    public void RemoveCar(int id)
+
+    public void Park(int id, Car car)
+    {
+        this.parkedCars.Add(id, car);
+    }
+    public void Unpark(int id)
     {
         this.parkedCars.Remove(id);
+    }
+    public bool IsParked(int id)
+    {
+        return this.parkedCars.ContainsKey(id);
+    }
+    public void Tune(int index, string addOn)
+    {
+        foreach (Car car in this.ParkedCars.Values)
+        {
+            car.Tune(index, addOn);
+        }
     }
 }
