@@ -145,6 +145,98 @@
 				(endTime - startTime) / 1000.0);
 
 
+				
+				
+				
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Encapsulation
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─ Achieved with access modifiers (private, public…). Encapsulation is used to hide the code and data inside a single unit to protect the data from the outside the world 
+
+
+
+
+
+
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Abstraction
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─ Achieved with interfaces and abstract classes. Abstraction is a process of hiding the implementation details and showing only functionality to the user.
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Abstract Class
+	├─┬───────────────────────────────────────────────────────────────────┘
+		├─ An abstract class can contain access modifiers for the subs, functions, properties.
+	├─┬───────────────────────────────────────────────────────────────────┐
+		│ When to use
+		├─┬─────────────────────────────────────────────────────────────────┘
+			├─ 
+				
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Interface
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─ A program has classes, methods and properties. What if these members could be used in a unified way? What if we could share this code?
+
+
+ An interface can contain signatures of methods, properties, indexers, events
+ 
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	public interface IPrintable {
+		//adds public abstract for all members
+		void Print();
+	}
+
+	class Document : IPrintable
+	{  
+		public void Print() { Console.ReadLine("Hello"); }
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 12|            |
 08|        |
