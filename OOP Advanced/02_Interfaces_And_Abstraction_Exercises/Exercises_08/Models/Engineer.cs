@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 public class Engineer : SpecialisedSoldier, IEngineer
@@ -20,10 +21,13 @@ public class Engineer : SpecialisedSoldier, IEngineer
 
     public override string ToString()
     {
-        StringBuilder sb = new StringBuilder(base.ToString());
-        sb.AppendLine();
-        sb.AppendLine("Repairs:");
-        sb.Append(string.Join(Environment.NewLine + "  ", this.Repairs));
+        StringBuilder sb = new StringBuilder(base.ToString() + Environment.NewLine);
+        sb.Append("Repairs:");
+        if (this.Repairs.Any())
+        {
+            sb.AppendLine();
+            sb.Append("  " + string.Join(Environment.NewLine + "  ", this.Repairs));
+        }
         return sb.ToString();
     }
 }

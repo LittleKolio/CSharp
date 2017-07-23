@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 public class Commando : SpecialisedSoldier, ICommando
@@ -24,10 +25,13 @@ public class Commando : SpecialisedSoldier, ICommando
 
     public override string ToString()
     {
-        StringBuilder sb = new StringBuilder(base.ToString());
-        sb.AppendLine();
-        sb.AppendLine("Missions:");
-        sb.Append(string.Join(Environment.NewLine + "  ", this.Missions));
+        StringBuilder sb = new StringBuilder(base.ToString() + Environment.NewLine);
+        sb.Append("Missions:");
+        if (this.Missions.Any())
+        {
+            sb.AppendLine();
+            sb.Append("  " + string.Join(Environment.NewLine + "  ", this.Missions));
+        }
         return sb.ToString();
     }
 }

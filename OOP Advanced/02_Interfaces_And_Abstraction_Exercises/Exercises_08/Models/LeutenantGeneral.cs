@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 public class LeutenantGeneral : Private, ILeutenantGeneral
@@ -19,10 +20,13 @@ public class LeutenantGeneral : Private, ILeutenantGeneral
 
     public override string ToString()
     {
-        StringBuilder sb = new StringBuilder(base.ToString());
-        sb.AppendLine();
-        sb.AppendLine("Privates:");
-        sb.Append(string.Join(Environment.NewLine, this.Soldiers));
+        StringBuilder sb = new StringBuilder(base.ToString() + Environment.NewLine);
+        sb.Append("Privates:");
+        if (this.Soldiers.Any())
+        {
+            sb.AppendLine();
+            sb.Append("  " + string.Join(Environment.NewLine + "  ", this.Soldiers));
+        }
         return sb.ToString();
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Pet : IBirthdate
+public class Pet : IPet
 {
     public Pet(string name, DateTime birthdate)
     {

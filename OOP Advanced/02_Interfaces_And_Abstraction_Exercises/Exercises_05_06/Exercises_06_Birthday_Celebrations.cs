@@ -25,34 +25,27 @@
                 string model = tokens[0];
                 tokens.Remove(model);
 
-                switch ()
-                {
-
-                }
-
                 DateTime date;
                 bool isDate = DateTime.TryParseExact(
-                    tokens[tokens.Length - 1],
+                    tokens[tokens.Count - 1],
                     "dd/MM/yyyy",
                     null, //CultureInfo.InvariantCulture,
                     DateTimeStyles.None,
                     out date);
 
-                if (tokens.Length == 2 && isDate)
+                switch (model)
                 {
-                    all.Add(new Pet(tokens[0], date));
-                }
-                else if (tokens.Length == 4)
-                {
-                    all.Add(new Citizen(
-                        tokens[0], 
-                        int.Parse(tokens[1]), 
-                        tokens[2],
-                        date));
-                }
-                else
-                {
-                    throw new Exception("Something is wrong");
+                    case "Citizen":
+                        all.Add(new Citizen(
+                            tokens[0],
+                            int.Parse(tokens[1]),
+                            tokens[2],
+                            date
+                        ));
+                        break;
+                    case "Pet":
+                        all.Add(new Pet(tokens[0], date));
+                        break;
                 }
             }
 
@@ -66,7 +59,7 @@
             {
                 if (item.CheckBirthday(year))
                 {
-                    Console.WriteLine(item.Birthdate);
+                    Console.WriteLine("{0:dd/MM/yyyy}", item.Birthdate);
                 }
             }
         }

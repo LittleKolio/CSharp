@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Citizen : ISociety, IBirthdate
+public class Citizen : ICitizen
 {
     public Citizen(string name, int age, string id)
     {

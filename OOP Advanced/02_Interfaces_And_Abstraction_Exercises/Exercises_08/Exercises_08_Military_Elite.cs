@@ -53,15 +53,19 @@
                             ));
                         break;
                     case "Commando":
-                        IList<IMission> missions = GetMissions(tokens.Skip(6).ToList());
-                        army.Add(new Commando(
-                            int.Parse(tokens[1]),
-                            tokens[2],
-                            tokens[3],
-                            double.Parse(tokens[4]),
-                            tokens[5],
-                            missions
-                            ));
+
+                        if (new[] { "Airforces", "Marines" }.Contains(tokens[5]))
+                        {
+                            IList<IMission> missions = GetMissions(tokens.Skip(6).ToList());
+                            army.Add(new Commando(
+                                int.Parse(tokens[1]),
+                                tokens[2],
+                                tokens[3],
+                                double.Parse(tokens[4]),
+                                tokens[5],
+                                missions
+                                ));
+                        }
                         break;
                     case "Spy":
                         army.Add(new Spy(
@@ -95,7 +99,10 @@
             List<IMission> list = new List<IMission>();
             for (int i = 0; i < tokens.Count; i += 2)
             {
-                list.Add(new Mission(tokens[i], tokens[i + 1]));
+                if (new[] { "inProgress", "Finished" }.Contains(tokens[i + 1]))
+                {
+                    list.Add(new Mission(tokens[i], tokens[i + 1]));
+                }
             }
             return list;
         }
