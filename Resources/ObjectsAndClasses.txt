@@ -169,15 +169,27 @@
 	│ Abstract Class
 	├─┬───────────────────────────────────────────────────────────────────┘
 		├─ An abstract class can contain access modifiers for the subs, functions, properties.
+		
+		├─ An abstract class can have fields and constants defined
+		
+		├─ If we add a new method to an abstract class then we have the option of providing default implementation and therefore all the existing code might work properly.
+
 	├─┬───────────────────────────────────────────────────────────────────┐
 		│ When to use
 		├─┬─────────────────────────────────────────────────────────────────┘
-			├─ 
+			├─ If various implementations are of the same kind and use common behavior or status then abstract class is better to use.
+
 				
 ╔═══════════════════════════════════════════════════════════════════════╗
 ║ Interface
 ╠═══════════════════════════════════════════════════════════════════════╝
 ╟─ A program has classes, methods and properties. What if these members could be used in a unified way? What if we could share this code?
+
+╟─ An interface cannot have access modifiers for the subs, functions, properties etc. Everything is assumed as public. No fields can be defined in interfaces
+╟─ If we add a new method to an Interface then we have to track down all the implementations of the interface and define implementation for the new method.
+
+
+If various implementations only share method signatures then it is better to use Interfaces.
 
 
  An interface can contain signatures of methods, properties, indexers, events

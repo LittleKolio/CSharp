@@ -43,15 +43,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\IBirthable.cs" />
-    <Compile Include="Interface\ICar.cs" />
-    <Compile Include="Interface\IIdentifiable.cs" />
-    <Compile Include="Models\Citizen.cs" />
-    <Compile Include="Interface\IPerson.cs" />
-    <Compile Include="Models\Ferrari.cs" />
+    <None Include="Exercises_04\Interfaces\IBrowsing.cs" />
+    <None Include="Exercises_04\Interfaces\ICalling.cs" />
+    <None Include="Exercises_01_02\Interfaces\IBirthable.cs" />
+    <None Include="Exercises_03\Interfaces\ICar.cs" />
+    <None Include="Exercises_01_02\Interfaces\IIdentifiable.cs" />
+    <None Include="Exercises_05_06\Exercises_06_Birthday_Celebrations.cs" />
+    <None Include="Exercises_05_06\Interfaces\IBirthdate.cs" />
+    <None Include="Exercises_05_06\Interfaces\ISociety.cs" />
+    <None Include="Exercises_01_02\Models\Citizen.cs" />
+    <None Include="Exercises_01_02\Interfaces\IPerson.cs" />
+    <None Include="Exercises_03\Models\Ferrari.cs" />
+    <None Include="Exercises_04\Models\Smartphone.cs" />
+    <None Include="Exercises_05_06\Models\Citizen.cs" />
+    <None Include="Exercises_05_06\Models\Pet.cs" />
+    <None Include="Exercises_05_06\Models\Robot.cs" />
+    <Compile Include="Exercises_08\Exercises_08_Military_Elite.cs" />
+    <Compile Include="Exercises_08\Interfaces\ICommando.cs" />
+    <Compile Include="Exercises_08\Interfaces\ILeutenantGeneral.cs" />
+    <Compile Include="Exercises_08\Interfaces\IEngineer.cs" />
+    <Compile Include="Exercises_08\Interfaces\IMission.cs" />
+    <Compile Include="Exercises_08\Interfaces\IPrivate.cs" />
+    <Compile Include="Exercises_08\Interfaces\IRepair.cs" />
+    <Compile Include="Exercises_08\Interfaces\ISoldier.cs" />
+    <Compile Include="Exercises_08\Interfaces\ISpecialisedSoldier.cs" />
+    <Compile Include="Exercises_08\Interfaces\ISpy.cs" />
+    <Compile Include="Exercises_08\Models\Commando.cs" />
+    <Compile Include="Exercises_08\Models\Engineer.cs" />
+    <Compile Include="Exercises_08\Models\LeutenantGeneral.cs" />
+    <Compile Include="Exercises_08\Models\Mission.cs" />
+    <Compile Include="Exercises_08\Models\Private.cs" />
+    <Compile Include="Exercises_08\Models\Repair.cs" />
+    <Compile Include="Exercises_08\Models\Soldier.cs" />
+    <Compile Include="Exercises_08\Models\SpecialisedSoldier.cs" />
+    <Compile Include="Exercises_08\Models\Spy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="StartUp\Exercises_01_Define_An_Interface_IPerson.cs" />
-    <None Include="StartUp\Exercises_02_Multiple_Implementation.cs" />
+    <None Include="Exercises_05_06\Exercises_05_Border_Control.cs" />
+    <None Include="Exercises_03\Exercises_03_Ferrari.cs" />
+    <None Include="Exercises_04\Exercises_04_Telephony.cs" />
+    <None Include="Exercises_01_02\Exercises_01_Define_An_Interface_IPerson.cs" />
+    <None Include="Exercises_01_02\Exercises_02_Multiple_Implementation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
