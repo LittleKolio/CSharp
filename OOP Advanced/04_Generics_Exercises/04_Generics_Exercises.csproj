@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{92A96FB9-DD1C-42E0-9C34-3A0C47873E2F}</ProjectGuid>
+    <ProjectGuid>{25162669-F1F3-4D1F-8A5F-4433718B6211}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Generics_Lab</RootNamespace>
-    <AssemblyName>03_Generics_Lab</AssemblyName>
+    <RootNamespace>Generics_Exercises</RootNamespace>
+    <AssemblyName>04_Generics_Exercises</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,12 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Lab_01\Generics\Box.cs" />
-    <None Include="Lab_01\Lab_01_Box_Of_T.cs" />
-    <None Include="Lab_02\Generics\ArrayCreator.cs" />
-    <None Include="Lab_02\Lab_02_Generic_Array_Creator.cs" />
-    <Compile Include="Lab_03\Lab_03_Generic_Scale.cs" />
-    <Compile Include="Lab_03\Generics\Scale.cs" />
+    <None Include="Exercises_01_02_03_04_05_06\Exercises_01_Generic_Box.cs" />
+    <None Include="Exercises_01_02_03_04_05_06\Exercises_03_Generic_Box_Of_Integer.cs" />
+    <None Include="Exercises_01_02_03_04_05_06\Exercises_04_Generic_Swap_Method_Strings.cs" />
+    <None Include="Exercises_01_02_03_04_05_06\Exercises_05_Generic_Swap_Method_Integers.cs" />
+    <None Include="Exercises_01_02_03_04_05_06\Exercises_06_Generic_Count_Method_Strings.cs" />
+    <None Include="Exercises_01_02_03_04_05_06\Generics\Box.cs" />
+    <None Include="Exercises_01_02_03_04_05_06\Exercises_02_Generic_Box_Of_String.cs" />
+    <Compile Include="Exercises_08\Exercises_08_Custom_List.cs" />
+    <Compile Include="Exercises_08\Generics\CustomList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
