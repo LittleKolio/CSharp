@@ -1,3 +1,6 @@
-﻿public class CustomList<T>
+﻿using System;
+
+public class CustomList<T>
+    where T : IComparable
 {
 }

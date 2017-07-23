@@ -52,6 +52,7 @@
     <None Include="Exercises_01_02_03_04_05_06\Exercises_02_Generic_Box_Of_String.cs" />
     <Compile Include="Exercises_08\Exercises_08_Custom_List.cs" />
     <Compile Include="Exercises_08\Generics\CustomList.cs" />
+    <Compile Include="Exercises_08\Interfaces\ICustomList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
