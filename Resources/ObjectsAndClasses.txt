@@ -208,22 +208,60 @@ If various implementations only share method signatures then it is better to use
 
 
 
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Tuple
+╠═══════════════════════════════════════════════════════════════════════╝
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	├─ A tuple is an ordered list of elements. In mathematics, an n-tuple is a sequence (or ordered list) of "n" elements, where "n" is a non-negative integer.
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	├─ Tuple is not a struct. It is a class. It will be allocated upon the managed heap. Each class instance that is allocated adds to the burden of garbage collection.
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	├─ The properties Item1, Item2 and further do not have setters. We cannot change a property (like Item1) after the constructor has run. A Tuple is immutable once created in memory. This limitation can lead to more maintainable code that does not rely on field changes through time. It can also reduce performance.
+	
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	├─ A Tuple has advantages. It is a reference and can be reused. When a Tuple is passed as an argument, only 4 bytes need copying. But KeyValuePair, a struct, has more bytes.
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	├─ When we create a Tuple, we specify the order and types of the fields. Tuple can have more complex items inside it, such as arrays. We can also pass the Tuple to other methods.
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	var tuple = new Tuple<string, string[], int, int[]>
+	(
+		"perl",
+		new string[] { "java", "c#" },
+		1,
+		new int[] { 2, 3 }
+	);
 
 
 
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	├─ The Tuple.Create method calls a constructor and returns a reference. There is essentially no functional reason to ever call Tuple.Create. It might have more pleasing syntax.
+	
+	├─┬───────────────────────────────────────────────────────────────────┐
+		var tuple = Tuple.Create("cat", 2, true);
 
 
 
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Sort
+	├─┬───────────────────────────────────────────────────────────────────┘
+		├─ Tuples can be sorted. A Tuple is a great way to encapsulate units of data. But it can make sorting harder. A Comparison delegate is needed.
 
 
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ ValueTuple
+	├─┬───────────────────────────────────────────────────────────────────┘
+		├─ With a ValueTuple, we can use a simpler syntax form to create and handle tuples. Add the System.ValueTuple package to your program (it is a NuGet package).
+		
+	├─┬───────────────────────────────────────────────────────────────────┐
+		var data = (10, "bird", 1.5);
 
-
-
-
-
-
-
-
+	├─┬───────────────────────────────────────────────────────────────────┘
+		├─ With the ValueTuple syntax we can improve the readability of code that uses tuples. We do not need to use Item1, Item2 syntax—we can access items by a label or name. 
 
 
 

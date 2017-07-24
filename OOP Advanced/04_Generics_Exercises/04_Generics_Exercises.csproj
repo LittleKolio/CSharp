@@ -55,6 +55,8 @@
     <Compile Include="Exercises_08_09\Generics\CustomList.cs" />
     <Compile Include="Exercises_08_09\Generics\Sorter.cs" />
     <Compile Include="Exercises_08_09\Interfaces\ICustomList.cs" />
+    <Compile Include="Exercises_11\Exercises_11_Tuple.cs" />
+    <Compile Include="Exercises_11\Generics\Tuple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
