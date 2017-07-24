@@ -80,6 +80,14 @@
     <None Include="Exercises_08\Models\Soldier.cs" />
     <None Include="Exercises_08\Models\SpecialisedSoldier.cs" />
     <None Include="Exercises_08\Models\Spy.cs" />
+    <Compile Include="Exercises_09\Exercises_09_Collection_Hierarchy.cs" />
+    <Compile Include="Exercises_09\Interfaces\IAddCollection.cs" />
+    <Compile Include="Exercises_09\Interfaces\IAddRemoveCollection.cs" />
+    <Compile Include="Exercises_09\Interfaces\IMyList.cs" />
+    <Compile Include="Exercises_09\Models\AddCollection.cs" />
+    <Compile Include="Exercises_09\Models\AddRemoveCollection.cs" />
+    <Compile Include="Exercises_09\Models\CustomCollection.cs" />
+    <Compile Include="Exercises_09\Models\MyList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Exercises_05_06\Exercises_05_Border_Control.cs" />
     <None Include="Exercises_03\Exercises_03_Ferrari.cs" />

@@ -51,12 +51,12 @@
     <None Include="Exercises_01_02_03_04_05_06\Generics\Box.cs" />
     <None Include="Exercises_01_02_03_04_05_06\Exercises_02_Generic_Box_Of_String.cs" />
     <None Include="Exercises_08_09\Exercises_08_Custom_List.cs" />
-    <Compile Include="Exercises_08_09\Exercises_09_Custom_List_Sorter.cs" />
-    <Compile Include="Exercises_08_09\Generics\CustomList.cs" />
-    <Compile Include="Exercises_08_09\Generics\Sorter.cs" />
-    <Compile Include="Exercises_08_09\Interfaces\ICustomList.cs" />
+    <None Include="Exercises_08_09\Exercises_09_Custom_List_Sorter.cs" />
+    <None Include="Exercises_08_09\Generics\CustomList.cs" />
+    <None Include="Exercises_08_09\Generics\Sorter.cs" />
+    <None Include="Exercises_08_09\Interfaces\ICustomList.cs" />
     <Compile Include="Exercises_11\Exercises_11_Tuple.cs" />
-    <Compile Include="Exercises_11\Generics\Tuple.cs" />
+    <Compile Include="Exercises_11\Generics\CustomTuple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
