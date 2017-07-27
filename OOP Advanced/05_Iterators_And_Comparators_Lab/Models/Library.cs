@@ -1,19 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Library : IEnumerable<Book>
 {
-    //private readonly IList<Book> books;
-    public IList<Book> Books { get; private set; }
+    private readonly SortedSet<Book> books;
+    //public SortedSet<Book> Books { get; private set; }
 
     public Library(params Book[] books)
     {
-        this.Books = new List<Book>(books);
+        this.books = new SortedSet<Book>(books, new BookComparator());
     }
 
     public IEnumerator<Book> GetEnumerator()
     {
-        return new LibraryIterator(this.Books);
+        return new LibraryIterator(this.books.ToList());
     }
     IEnumerator IEnumerable.GetEnumerator()
     {
