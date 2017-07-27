@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lab_02_Library_Iterator.cs" />
+    <Compile Include="Models\Book.cs" />
+    <None Include="Lab_01_Library.cs" />
+    <Compile Include="Models\Library.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
