@@ -53,5 +53,15 @@ public class Library : IEnumerable<Book>
         {
             this.currentIndex = -1;
         }
+
+        public bool HasNext()
+        {
+            return (this.currentIndex + 1) < this.Books.Count;
+        }
+
+        public void Print()
+        {
+
+        }
     }
 }

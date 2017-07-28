@@ -9,6 +9,7 @@ public class ListyIterator<T> : IEnumerator<T>
 
     public ListyIterator()
     {
+        this.Reset();
         this.list = new List<T>();
     }
 
@@ -19,21 +20,18 @@ public class ListyIterator<T> : IEnumerator<T>
 
     object IEnumerator.Current
     {
-        get { }
+        get { return this.Current; }
     }
 
-    public void Dispose()
-    {
-        throw new NotImplementedException();
-    }
+    public void Dispose() { }
 
     public bool MoveNext()
     {
-        throw new NotImplementedException();
+        return ++this.index < this.list.Count;
     }
 
     public void Reset()
     {
-        throw new NotImplementedException();
+        this.index = 
     }
 }
