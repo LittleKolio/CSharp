@@ -48,8 +48,14 @@
     <None Include="Exercises_01_02\ListyIterator.cs" />
     <None Include="Exercises_03\CustomStack.cs" />
     <None Include="Exercises_03\Exercises_03_Stack.cs" />
-    <Compile Include="Exercises_04\Exercises_04_Froggy.cs" />
-    <Compile Include="Exercises_04\Lake.cs" />
+    <None Include="Exercises_04\Exercises_04_Froggy.cs" />
+    <None Include="Exercises_04\Lake.cs" />
+    <None Include="Exercises_05\Exercises_05_Comparing_Objects.cs" />
+    <None Include="Exercises_05\Person.cs" />
+    <Compile Include="Exercises_06\Exercises_06_Strategy_Pattern.cs" />
+    <Compile Include="Exercises_06\NameComparator.cs" />
+    <Compile Include="Exercises_06\Person.cs" />
+    <Compile Include="Exercises_06\AgeComparator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
