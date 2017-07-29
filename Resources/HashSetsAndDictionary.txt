@@ -175,9 +175,12 @@
 
 
 
+╔═══════════════════════════════════════════════════════════════════════╗
+║ SortedSet
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─ We have many elements and want to store them in a sorted order and also eliminate all duplicates from the data structure.
 
-
-
+╟─ The SortedSet is part of the System.Collections.Generic namespace. Its performance tends to be worse than a hash table like Dictionary. 
 
 
 

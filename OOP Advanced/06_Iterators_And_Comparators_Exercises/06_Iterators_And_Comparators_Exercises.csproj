@@ -44,8 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Exercises_01_02\Exercises_01_ListyIterator.cs" />
-    <Compile Include="Exercises_01_02\Exercises_02_Collection.cs" />
-    <Compile Include="Exercises_01_02\ListyIterator.cs" />
+    <None Include="Exercises_01_02\Exercises_02_Collection.cs" />
+    <None Include="Exercises_01_02\ListyIterator.cs" />
+    <None Include="Exercises_03\CustomStack.cs" />
+    <None Include="Exercises_03\Exercises_03_Stack.cs" />
+    <Compile Include="Exercises_04\Exercises_04_Froggy.cs" />
+    <Compile Include="Exercises_04\Lake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
