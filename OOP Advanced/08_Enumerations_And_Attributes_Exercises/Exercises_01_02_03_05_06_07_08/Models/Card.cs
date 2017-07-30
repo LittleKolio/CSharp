@@ -26,6 +26,20 @@ public class Card : IComparable<Card>
 
     public int CompareTo(Card other)
     {
-        return this.Power - other.Power;
+        if (other == null) { return 1; }
+
+        int result = this.Power - other.Power;
+        if (result == 0)
+        {
+            result = (int)this.Suit - (int)other.Suit; 
+        }
+        return result;
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null) { return false; }
+        Card card = obj as Card;
+        return this.Power == card.Power;
     }
 }
