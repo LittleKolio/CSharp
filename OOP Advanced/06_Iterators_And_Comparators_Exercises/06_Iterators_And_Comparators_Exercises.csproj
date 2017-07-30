@@ -45,17 +45,17 @@
   <ItemGroup>
     <None Include="Exercises_01_02\Exercises_01_ListyIterator.cs" />
     <None Include="Exercises_01_02\Exercises_02_Collection.cs" />
-    <None Include="Exercises_01_02\ListyIterator.cs" />
-    <None Include="Exercises_03\CustomStack.cs" />
+    <None Include="Exercises_01_02\Generics\ListyIterator.cs" />
+    <None Include="Exercises_03\Generics\CustomStack.cs" />
     <None Include="Exercises_03\Exercises_03_Stack.cs" />
     <None Include="Exercises_04\Exercises_04_Froggy.cs" />
-    <None Include="Exercises_04\Lake.cs" />
+    <None Include="Exercises_04\Generics\Lake.cs" />
     <None Include="Exercises_05\Exercises_05_Comparing_Objects.cs" />
-    <None Include="Exercises_05\Person.cs" />
+    <None Include="Exercises_05\Models\Person.cs" />
     <Compile Include="Exercises_06\Exercises_06_Strategy_Pattern.cs" />
-    <Compile Include="Exercises_06\NameComparator.cs" />
-    <Compile Include="Exercises_06\Person.cs" />
-    <Compile Include="Exercises_06\AgeComparator.cs" />
+    <Compile Include="Exercises_06\Models\NameComparator.cs" />
+    <Compile Include="Exercises_06\Models\Person.cs" />
+    <Compile Include="Exercises_06\Models\AgeComparator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

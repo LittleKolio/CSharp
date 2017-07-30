@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06_Iterators_And_Comparator
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07_Enumerations_And_Attributes_Lab", "07_Enumerations_And_Attributes_Lab\07_Enumerations_And_Attributes_Lab.csproj", "{5F874959-B75A-4779-AA33-5213260612D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08_Enumerations_And_Attributes_Exercises", "08_Enumerations_And_Attributes_Exercises\08_Enumerations_And_Attributes_Exercises.csproj", "{161D8476-D75A-40E7-9C2B-EFD7F9A47B08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{5F874959-B75A-4779-AA33-5213260612D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F874959-B75A-4779-AA33-5213260612D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F874959-B75A-4779-AA33-5213260612D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{161D8476-D75A-40E7-9C2B-EFD7F9A47B08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{161D8476-D75A-40E7-9C2B-EFD7F9A47B08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{161D8476-D75A-40E7-9C2B-EFD7F9A47B08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{161D8476-D75A-40E7-9C2B-EFD7F9A47B08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
