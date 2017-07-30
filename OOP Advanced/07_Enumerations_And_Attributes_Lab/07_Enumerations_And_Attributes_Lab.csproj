@@ -47,16 +47,21 @@
     <None Include="Lab_01\Models\WeekDay.cs" />
     <None Include="Lab_01\Models\WeeklyCalendar.cs" />
     <None Include="Lab_01\Models\WeeklyEntry.cs" />
-    <Compile Include="Lab_02\Exercises_02_Coffee_Machine.cs" />
-    <Compile Include="Lab_02\Models\CoffeeMachine.cs" />
-    <Compile Include="Lab_02\Models\CoffeePrice.cs" />
-    <Compile Include="Lab_02\Models\CoffeeType.cs" />
-    <Compile Include="Lab_02\Models\Coin.cs" />
+    <None Include="Lab_02\Exercises_02_Coffee_Machine.cs" />
+    <None Include="Lab_02\Models\CoffeeMachine.cs" />
+    <None Include="Lab_02\Models\CoffeePrice.cs" />
+    <None Include="Lab_02\Models\CoffeeType.cs" />
+    <None Include="Lab_02\Models\Coin.cs" />
+    <None Include="Lab_03_04\Lab_03_Create_Attribute.cs" />
+    <Compile Include="Lab_03_04\Lab_04_Create_Attribute.cs" />
+    <Compile Include="Lab_03_04\SoftUni.cs" />
+    <Compile Include="Lab_03_04\Tracker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
