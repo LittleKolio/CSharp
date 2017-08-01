@@ -52,13 +52,14 @@
     <None Include="Exercises_04\Generics\Lake.cs" />
     <None Include="Exercises_05\Exercises_05_Comparing_Objects.cs" />
     <None Include="Exercises_05\Models\Person.cs" />
-    <Compile Include="Exercises_06\Exercises_06_Strategy_Pattern.cs" />
-    <Compile Include="Exercises_06\Models\NameComparator.cs" />
-    <Compile Include="Exercises_06\Models\Person.cs" />
-    <Compile Include="Exercises_06\Models\AgeComparator.cs" />
+    <None Include="Exercises_06\Exercises_06_Strategy_Pattern.cs" />
+    <None Include="Exercises_06\Models\NameComparator.cs" />
+    <None Include="Exercises_06\Models\Person.cs" />
+    <None Include="Exercises_06\Models\AgeComparator.cs" />
     <Compile Include="Exercises_08\Exercises_08_Pet_Clinics.cs" />
     <Compile Include="Exercises_08\Models\Clinic.cs" />
     <Compile Include="Exercises_08\Models\Pet.cs" />
+    <Compile Include="Exercises_08\Models\RoomsRegister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
