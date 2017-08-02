@@ -25,11 +25,10 @@ public class RoomsRegister : IEnumerable<int>
 
         int step = 1;
 
-        while (step < this.startRoom)
+        while (step <= this.startRoom)
         {
             yield return this.startRoom - step;
-            yield return this.startRoom + step;
-            step++;
+            yield return this.startRoom + step++;
         }
     }
 

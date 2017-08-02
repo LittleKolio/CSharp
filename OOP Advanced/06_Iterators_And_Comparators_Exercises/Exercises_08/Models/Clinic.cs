@@ -15,7 +15,7 @@ public class Clinic
         this.roomsRegister = new RoomsRegister(roomNumber);
     }
 
-    public string Name { get; private set; }
+    public string Name { get; set; }
 
     public int RoomNumber
     {
@@ -62,7 +62,7 @@ public class Clinic
         return false;
     }
 
-    public bool EmptyRoom()
+    public bool HasEmptyRooms()
     {
         return this.emptyRooms > 0;
     }
@@ -74,7 +74,7 @@ public class Clinic
         {
             sb.AppendLine(this.Print(i));
         }
-        return sb.ToString();
+        return sb.ToString().Trim();
     }
 
     public string Print(int index)

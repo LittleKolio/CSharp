@@ -68,7 +68,7 @@
         private static void CheckForEmptyRoom(string clinicName)
         {
             Clinic currentClinic = clinics[clinicName];
-            Console.WriteLine(currentClinic.EmptyRoom());
+            Console.WriteLine(currentClinic.HasEmptyRooms());
         }
 
         private static void RemovePetFromClinic(string clinicName)
