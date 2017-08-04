@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    class BlackBoxInt
+    public class BlackBoxInt
     {
         private static int DefaultValue = 0;
 
