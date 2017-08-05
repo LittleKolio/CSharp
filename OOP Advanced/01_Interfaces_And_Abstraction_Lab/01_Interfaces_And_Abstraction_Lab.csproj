@@ -43,15 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Lab_02\Interfaces\ICar.cs" />
+    <Compile Include="Lab_02\Interfaces\ICar.cs" />
     <None Include="Lab_01\Interfaces\IDrawable.cs" />
-    <None Include="Lab_02\Interfaces\IElectricCar.cs" />
-    <None Include="Lab_02\Models\Seat.cs" />
+    <Compile Include="Lab_02\Interfaces\IElectricCar.cs" />
+    <Compile Include="Lab_02\Models\Seat.cs" />
     <None Include="Lab_01\Models\Circle.cs" />
     <None Include="Lab_01\Models\Rectangle.cs" />
-    <None Include="Lab_02\Models\Tesla.cs" />
+    <Compile Include="Lab_02\Models\Tesla.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Lab_02\Lab_02_Cars.cs" />
+    <Compile Include="Lab_02\Lab_02_Cars.cs" />
     <None Include="Lab_01\Lab_01_Shapes.cs" />
   </ItemGroup>
   <ItemGroup>

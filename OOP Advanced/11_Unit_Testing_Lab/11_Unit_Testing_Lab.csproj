@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F874959-B75A-4779-AA33-5213260612D4}</ProjectGuid>
+    <ProjectGuid>{7008A0FC-B200-49EF-91CD-891609CDC548}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Enumerations_And_Attributes_Lab</RootNamespace>
-    <AssemblyName>07_Enumerations_And_Attributes_Lab</AssemblyName>
+    <RootNamespace>Unit_Testing_Lab</RootNamespace>
+    <AssemblyName>11_Unit_Testing_Lab</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,19 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Lab_01\Lab_01_Weekdays.cs" />
-    <None Include="Lab_01\Enums\WeekDay.cs" />
-    <None Include="Lab_01\Models\WeeklyCalendar.cs" />
-    <None Include="Lab_01\Models\WeeklyEntry.cs" />
-    <None Include="Lab_02\Exercises_02_Coffee_Machine.cs" />
-    <None Include="Lab_02\Models\CoffeeMachine.cs" />
-    <None Include="Lab_02\Enums\CoffeePrice.cs" />
-    <None Include="Lab_02\Enums\CoffeeType.cs" />
-    <None Include="Lab_02\Enums\Coin.cs" />
-    <None Include="Lab_03_04\Lab_03_Create_Attribute.cs" />
-    <Compile Include="Lab_03_04\Lab_04_Create_Attribute.cs" />
-    <Compile Include="Lab_03_04\Attributes\SoftUni.cs" />
-    <Compile Include="Lab_03_04\Models\Tracker.cs" />
+    <Compile Include="Lab_01\Axe.cs" />
+    <Compile Include="Lab_01\Dummy.cs" />
+    <Compile Include="Lab_01\Hero.cs" />
+    <Compile Include="Lab_01\StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

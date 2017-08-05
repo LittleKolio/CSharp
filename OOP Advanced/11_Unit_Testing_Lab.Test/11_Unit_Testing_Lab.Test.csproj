@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F874959-B75A-4779-AA33-5213260612D4}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{A4DC351C-3E33-4C35-84E4-744542513E15}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Enumerations_And_Attributes_Lab</RootNamespace>
-    <AssemblyName>07_Enumerations_And_Attributes_Lab</AssemblyName>
+    <RootNamespace>Unit_Testing_Lab.Test</RootNamespace>
+    <AssemblyName>11_Unit_Testing_Lab.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.7.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,25 +44,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Lab_01\Lab_01_Weekdays.cs" />
-    <None Include="Lab_01\Enums\WeekDay.cs" />
-    <None Include="Lab_01\Models\WeeklyCalendar.cs" />
-    <None Include="Lab_01\Models\WeeklyEntry.cs" />
-    <None Include="Lab_02\Exercises_02_Coffee_Machine.cs" />
-    <None Include="Lab_02\Models\CoffeeMachine.cs" />
-    <None Include="Lab_02\Enums\CoffeePrice.cs" />
-    <None Include="Lab_02\Enums\CoffeeType.cs" />
-    <None Include="Lab_02\Enums\Coin.cs" />
-    <None Include="Lab_03_04\Lab_03_Create_Attribute.cs" />
-    <Compile Include="Lab_03_04\Lab_04_Create_Attribute.cs" />
-    <Compile Include="Lab_03_04\Attributes\SoftUni.cs" />
-    <Compile Include="Lab_03_04\Models\Tracker.cs" />
+    <Compile Include="AxeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\11_Unit_Testing_Lab\11_Unit_Testing_Lab.csproj">
+      <Project>{7008a0fc-b200-49ef-91cd-891609cdc548}</Project>
+      <Name>11_Unit_Testing_Lab</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
