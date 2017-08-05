@@ -264,13 +264,52 @@ If various implementations only share method signatures then it is better to use
 		├─ With the ValueTuple syntax we can improve the readability of code that uses tuples. We do not need to use Item1, Item2 syntax—we can access items by a label or name. 
 
 
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Reflection
+╠═══════════════════════════════════════════════════════════════════════╝
 
+╟─ Reflection is the ability of a computer program to examine and modify the structure and behavior of the program at runtime. Reflection allows you to obtain information about  types defined within assemblies,  information about fields, properties and methods.
 
+The classes in the System.Reflection namespace, together with System.Type, enable you to obtain information about loaded assemblies and the types defined within, such as classes, interfaces, and value types. You can also use reflection to create type instances at run time and to invoke them.
 
+	class Program
+	{
+		private static int a = 5, b = 10, c = 20;
 
-
-
-
+		static void Main(string[] args)
+		{
+			Console.WriteLine("a + b + c = " + (a + b + c));
+			
+			//Enter the name of the variable that you wish to change
+			string varName = Console.ReadLine();
+			
+			Type t = typeof(Program);
+			FieldInfo fieldInfo = t.GetField(
+				varName, 
+				BindingFlags.NonPublic | 
+				BindingFlags.Static
+				);
+				
+			if(fieldInfo != null)
+			{
+				Console.WriteLine(
+					"The current value of " + 
+					fieldInfo.Name + " is " + 
+					fieldInfo.GetValue(null) + 
+					". You may enter a new value now:"
+					);
+					
+				string newValue = Console.ReadLine();
+				int newInt;
+				if(int.TryParse(newValue, out newInt))
+				{
+					fieldInfo.SetValue(null, newInt);
+					Console.WriteLine("a + b + c = " + (a + b + c));
+				}
+				Console.ReadKey();
+			}
+		}
+	}
 
 
 
