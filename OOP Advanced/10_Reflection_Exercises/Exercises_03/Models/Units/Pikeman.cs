@@ -1,4 +1,4 @@
-﻿namespace Reflection_Exercises.Models.Units
+﻿namespace Reflection_Exercises
 {
     public class Pikeman : Unit
     {

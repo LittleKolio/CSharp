@@ -1,7 +1,6 @@
-﻿namespace Reflection_Exercises.Data
+﻿namespace Reflection_Exercises
 {
     using System;
-    using Contracts;
     using System.Collections.Generic;
     using System.Text;
     class UnitRepository : IRepository

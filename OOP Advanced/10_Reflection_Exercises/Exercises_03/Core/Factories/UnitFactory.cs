@@ -1,11 +1,10 @@
-﻿namespace Reflection_Exercises.Core.Factories
+﻿namespace Reflection_Exercises
 {
     using System;
-    using Contracts;
 
     public class UnitFactory : IUnitFactory
     {
-        private const string unitNameSpace = "Reflection_Exercises.Models.Units";
+        private const string unitNameSpace = "Reflection_Exercises";
         public IUnit CreateUnit(string unitType)
         {
             Type typeUnit = Type.GetType(unitNameSpace + "." + unitType);

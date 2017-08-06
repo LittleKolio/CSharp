@@ -1,4 +1,4 @@
-﻿namespace Reflection_Exercises.Contracts
+﻿namespace Reflection_Exercises
 {
     public interface IDestroyable
     {

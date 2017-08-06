@@ -1,7 +1,6 @@
-﻿namespace Reflection_Exercises.Models.Units
+﻿namespace Reflection_Exercises
 {
     using System;
-    using Contracts;
 
     public class Unit : IUnit
     {

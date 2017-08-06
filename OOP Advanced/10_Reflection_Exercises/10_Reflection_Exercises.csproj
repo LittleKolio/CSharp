@@ -49,6 +49,11 @@
     <None Include="Exercises_02\BlackBoxInt.cs" />
     <None Include="Exercises_02\BlackBoxIntegerTests.cs" />
     <Compile Include="Exercises_03\AppEntryPoint.cs" />
+    <Compile Include="Exercises_03\Core\Ccommands\AddCommand.cs" />
+    <Compile Include="Exercises_03\Core\Ccommands\Command.cs" />
+    <Compile Include="Exercises_03\Core\Ccommands\FightCommand.cs" />
+    <Compile Include="Exercises_03\Core\Ccommands\ReportCommand.cs" />
+    <Compile Include="Exercises_03\Core\CommandInterpreter.cs" />
     <Compile Include="Exercises_03\Core\Engine.cs" />
     <Compile Include="Exercises_03\Contracts\IAttacker.cs" />
     <Compile Include="Exercises_03\Contracts\ICommandInterpreter.cs" />
@@ -62,7 +67,7 @@
     <Compile Include="Exercises_03\Models\Units\Gunner.cs" />
     <Compile Include="Exercises_03\Models\Units\Horseman.cs" />
     <Compile Include="Exercises_03\Models\Units\Pikeman.cs" />
-    <Compile Include="Exercises_03\Models\Units\SwordsMan.cs" />
+    <Compile Include="Exercises_03\Models\Units\Swordsman.cs" />
     <Compile Include="Exercises_03\Models\Units\Unit.cs" />
     <Compile Include="Exercises_03\Data\UnitRepository.cs" />
     <Compile Include="Exercises_03\Core\Factories\UnitFactory.cs" />
@@ -71,9 +76,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Exercises_03\Core\Ccommands\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
