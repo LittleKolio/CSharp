@@ -18,7 +18,7 @@
         [SetUp]
         public void TestInit()
         {
-            //Arange
+            //Arrange
             this.axe = new Axe(AxeAttack, AxeDurability);
             this.dummy = new Dummy(DummyHealth, DummyExperience);
         }
@@ -26,7 +26,7 @@
         [Test]
         public void AxeLosesDurability()
         {
-            //Arange
+            //Arrange
             //Axe axe = new Axe(attack, durability);
             //Dummy dummy = new Dummy(10, 10);
 
@@ -48,7 +48,7 @@
         [Test]
         public void BrokenAxe()
         {
-            //Arange
+            //Arrange
             //Axe axe = new Axe(1, 1);
             //Dummy dummy = new Dummy(10, 10);
             this.axe = new Axe(1, 1);

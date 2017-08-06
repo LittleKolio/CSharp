@@ -14,7 +14,7 @@
         [Test]
         public void GetExperience()
         {
-            //Arenge
+            //Arrange
             Hero hero = new Hero("Tatu", new Axe(10, 10));
             Dummy dummy = new Dummy(20, 20);
 
