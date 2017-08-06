@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11_Unit_Testing_Lab", "11_U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11_Unit_Testing_Lab.Test", "11_Unit_Testing_Lab.Test\11_Unit_Testing_Lab.Test.csproj", "{A4DC351C-3E33-4C35-84E4-744542513E15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12_Unit_Testing_Exercises", "12_Unit_Testing_Exercises\12_Unit_Testing_Exercises.csproj", "{EC448B78-82A7-4815-B3E0-C5B2BE37733F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{A4DC351C-3E33-4C35-84E4-744542513E15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4DC351C-3E33-4C35-84E4-744542513E15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4DC351C-3E33-4C35-84E4-744542513E15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC448B78-82A7-4815-B3E0-C5B2BE37733F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC448B78-82A7-4815-B3E0-C5B2BE37733F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC448B78-82A7-4815-B3E0-C5B2BE37733F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC448B78-82A7-4815-B3E0-C5B2BE37733F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
