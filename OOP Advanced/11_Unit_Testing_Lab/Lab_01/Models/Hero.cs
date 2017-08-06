@@ -2,13 +2,14 @@
 {
     private string name;
     private int experience;
-    private Axe weapon;
+    private IWeapon weapon;
 
-    public Hero(string name)
+    public Hero(string name, IWeapon weapon)
     {
         this.name = name;
         this.experience = 0;
-        this.weapon = new Axe(10, 10);
+
+        this.weapon = weapon;
     }
 
     public string Name
@@ -21,7 +22,7 @@
         get { return this.experience; }
     }
 
-    public Axe Weapon
+    public IWeapon Weapon
     {
         get { return this.weapon; }
     }

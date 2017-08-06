@@ -43,9 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lab_01\Axe.cs" />
-    <Compile Include="Lab_01\Dummy.cs" />
-    <Compile Include="Lab_01\Hero.cs" />
+    <Compile Include="Lab_01\Interfaces\ITarget.cs" />
+    <Compile Include="Lab_01\Models\Axe.cs" />
+    <Compile Include="Lab_01\Models\Dummy.cs" />
+    <Compile Include="Lab_01\Models\Hero.cs" />
+    <Compile Include="Lab_01\Interfaces\IWeapon.cs" />
     <Compile Include="Lab_01\StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

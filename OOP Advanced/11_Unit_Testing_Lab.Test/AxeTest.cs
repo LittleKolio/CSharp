@@ -1,6 +1,7 @@
 ﻿namespace Unit_Testing_Lab.Test
 {
     using NUnit.Framework;
+    using NUnit.Framework.Interfaces;
     using System;
 
     [TestFixture]
@@ -33,8 +34,15 @@
             axe.Attack(dummy);
 
             //Assert
-            //Assert.AreEqual(9, axe.DurabilityPoints);
-            Assert.IsTrue(axe.DurabilityPoints == 9);
+            Assert.AreEqual(9, axe.DurabilityPoints, "Axe duarability doesn't change after attack");
+            //Assert.IsTrue(axe.DurabilityPoints == 9);
+        }
+
+        [TearDown]
+        public void CleanUp()
+        {
+            if (TestContext.CurrentContext.Result.Outcome.Status == 
+                TestStatus.Failed) { }
         }
 
         [Test]
