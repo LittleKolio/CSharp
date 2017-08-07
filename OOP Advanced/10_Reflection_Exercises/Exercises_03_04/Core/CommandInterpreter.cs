@@ -45,7 +45,25 @@
                     "Invalid command");
             }
 
-            return (IExecutable)Activator.CreateInstance(commandType, cmdParams);
+            IExecutable currentCommand = 
+                (IExecutable)Activator.CreateInstance(commandType, cmdParams);
+            currentCommand = InjectDependencies(currentCommand);
+
+            return currentCommand;
+        }
+
+        private IExecutable InjectDependencies(IExecutable currentCommand)
+        {
+            FieldInfo[] fields = currentCommand
+                .GetType()
+                .GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
+                .Where(f => f.GetCustomAttribute<InjectAttribute>() != null)
+                .ToArray();
+
+            foreach (FieldInfo field in fields)
+            {
+                field.SetValue(currentCommand, )
+            }
         }
     }
 }
