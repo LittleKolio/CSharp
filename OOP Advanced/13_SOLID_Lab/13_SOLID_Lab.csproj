@@ -65,20 +65,31 @@
     <None Include="Lab_03\Employee.cs" />
     <None Include="Lab_03\Manager.cs" />
     <None Include="Lab_03\Program.cs" />
-    <Compile Include="Lab_04\Employee.cs" />
-    <Compile Include="Lab_04\IRechargeable.cs" />
-    <Compile Include="Lab_04\ISleeper.cs" />
-    <Compile Include="Lab_04\RechargeStation.cs" />
-    <Compile Include="Lab_04\Robot.cs" />
-    <Compile Include="Lab_04\TestClass.cs" />
-    <Compile Include="Lab_04\Worker.cs" />
+    <None Include="Lab_04\Employee.cs" />
+    <None Include="Lab_04\IRechargeable.cs" />
+    <None Include="Lab_04\ISleeper.cs" />
+    <None Include="Lab_04\Lab_04_Recharge.cs" />
+    <None Include="Lab_04\RechargeStation.cs" />
+    <None Include="Lab_04\Robot.cs" />
+    <None Include="Lab_04\RobotAdapter.cs" />
+    <None Include="Lab_04\TestClass.cs" />
+    <None Include="Lab_04\Worker.cs" />
+    <Compile Include="Lab_05\ISecurityUI.cs" />
+    <Compile Include="Lab_05\KeyCardCheck.cs" />
+    <Compile Include="Lab_05\PinCodeCheck.cs" />
+    <Compile Include="Lab_05\Program.cs" />
+    <Compile Include="Lab_05\ScannerUI.cs" />
+    <Compile Include="Lab_05\SecurityCheck.cs" />
+    <Compile Include="Lab_05\SecurityManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
