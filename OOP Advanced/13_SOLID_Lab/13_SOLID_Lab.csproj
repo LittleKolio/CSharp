@@ -74,10 +74,12 @@
     <None Include="Lab_04\RobotAdapter.cs" />
     <None Include="Lab_04\TestClass.cs" />
     <None Include="Lab_04\Worker.cs" />
+    <Compile Include="Lab_05\IKeyCardUI.cs" />
+    <Compile Include="Lab_05\IPinCodeUI.cs" />
     <Compile Include="Lab_05\ISecurityUI.cs" />
     <Compile Include="Lab_05\KeyCardCheck.cs" />
     <Compile Include="Lab_05\PinCodeCheck.cs" />
-    <Compile Include="Lab_05\Program.cs" />
+    <Compile Include="Lab_05\Lab_05_Security_Door.cs" />
     <Compile Include="Lab_05\ScannerUI.cs" />
     <Compile Include="Lab_05\SecurityCheck.cs" />
     <Compile Include="Lab_05\SecurityManager.cs" />

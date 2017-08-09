@@ -1,4 +1,4 @@
-﻿namespace _05.Security_Door
+﻿namespace SOLID_Lab.Lab_05
 {
     public class PinCodeCheck : SecurityCheck
     {

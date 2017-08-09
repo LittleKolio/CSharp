@@ -1,6 +1,6 @@
-﻿namespace _05.Security_Door
+﻿namespace SOLID_Lab.Lab_05
 {
-    public class Program
+    public class Lab_05_Security_Door
     {
         public static void Main() 
         {
@@ -9,6 +9,6 @@
             PinCodeCheck pinCodeCheck = new PinCodeCheck(scannerUi);
             SecurityManager manager = new SecurityManager(keyCardCheck, pinCodeCheck);
             manager.Check();
+        }
     }
-}
 }

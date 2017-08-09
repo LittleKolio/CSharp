@@ -1,9 +1,6 @@
-﻿namespace _05.Security_Door
+﻿namespace SOLID_Lab.Lab_05
 {
-    public interface ISecurityUI
+    public interface ISecurityUI : IPinCodeUI, IKeyCardUI
     {
-        string RequestKeyCard();
-
-        int RequestPinCode();
     }
 }
