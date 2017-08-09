@@ -165,6 +165,10 @@
 ╠═══════════════════════════════════════════════════════════════════════╝
 ╟─ Achieved with interfaces and abstract classes. Abstraction is a process of hiding the implementation details and showing only functionality to the user.
 
+Abstraction means ignoring irrelevant features, properties, or functions and emphasizing the relevant ones relevant to the project we develop
+Abstraction helps managing complexity
+
+
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│ Abstract Class
 	├─┬───────────────────────────────────────────────────────────────────┘

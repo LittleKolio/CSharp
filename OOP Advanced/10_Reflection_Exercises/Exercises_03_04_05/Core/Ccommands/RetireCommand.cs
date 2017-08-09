@@ -1,11 +1,12 @@
-﻿using System;
-
-namespace Reflection_Exercises
+﻿namespace Reflection_Exercises
 {
+    using System;
+
     public class RetireCommand : Command
     {
         [Inject]
         private IRepository repository;
+
         public RetireCommand(string[] data) : base(data)
         {
         }

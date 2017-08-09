@@ -29,9 +29,7 @@
 
             object[] cmdParams =
             {
-                data,
-                this.repository,
-                this.unitFactory
+                data
             };
 
             Type commandType = Assembly
@@ -47,9 +45,8 @@
 
             IExecutable currentCommand = 
                 (IExecutable)Activator.CreateInstance(commandType, cmdParams);
-            currentCommand = InjectDependencies(currentCommand);
 
-            return currentCommand;
+            return InjectDependencies(currentCommand);
         }
 
         private IExecutable InjectDependencies(IExecutable currentCommand)
@@ -60,10 +57,19 @@
                 .Where(f => f.GetCustomAttribute<InjectAttribute>() != null)
                 .ToArray();
 
+            FieldInfo[] fieldsType = this.GetType()
+                .GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
+
+
             foreach (FieldInfo field in fields)
             {
-                field.SetValue(currentCommand, )
+                field.SetValue(
+                    currentCommand,
+                    fieldsType.First(f => f.FieldType == field.FieldType).GetValue(this)
+                    );
             }
+
+            return currentCommand;
         }
     }
 }

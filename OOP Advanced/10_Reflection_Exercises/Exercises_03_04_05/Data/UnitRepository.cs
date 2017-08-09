@@ -41,15 +41,13 @@
 
         public void RemoveUnit(string unitType)
         {
-            if (!this.amountOfUnits.ContainsKey(unitType))
+            if (!this.amountOfUnits.ContainsKey(unitType) ||
+                this.amountOfUnits[unitType] == 0)
             {
                 throw new ArgumentException(
                     "No such units in repository.");
             }
-            if (this.amountOfUnits[unitType] > 0)
-            {
-                this.amountOfUnits[unitType]--;
-            }
+            this.amountOfUnits[unitType]--;
         }
     }
 }

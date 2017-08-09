@@ -1,17 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit3TestAdapter.3.8.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.8.0\build\net35\NUnit3TestAdapter.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{43A619E3-DB84-4C25-9467-91FFDB8C0815}</ProjectGuid>
+    <ProjectGuid>{B2DF9172-C639-4598-A6BA-74B814EFFC4A}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Reflection_Exercises</RootNamespace>
-    <AssemblyName>10_Reflection_Exercises</AssemblyName>
+    <RootNamespace>SOLID_Lab</RootNamespace>
+    <AssemblyName>13_SOLID_Lab</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,9 +36,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.7.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,42 +50,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Exercises_01\HarvestingFields.cs" />
-    <None Include="Exercises_01\HarvestingFieldsTest.cs" />
-    <None Include="Exercises_02\BlackBoxInt.cs" />
-    <None Include="Exercises_02\BlackBoxIntegerTests.cs" />
-    <Compile Include="Exercises_03_04_05\AppEntryPoint.cs" />
-    <Compile Include="Exercises_03_04_05\Atributes\InjectAttribute.cs" />
-    <Compile Include="Exercises_03_04_05\Core\Ccommands\AddCommand.cs" />
-    <Compile Include="Exercises_03_04_05\Core\Ccommands\Command.cs" />
-    <Compile Include="Exercises_03_04_05\Core\Ccommands\FightCommand.cs" />
-    <Compile Include="Exercises_03_04_05\Core\Ccommands\ReportCommand.cs" />
-    <Compile Include="Exercises_03_04_05\Core\Ccommands\RetireCommand.cs" />
-    <Compile Include="Exercises_03_04_05\Core\CommandInterpreter.cs" />
-    <Compile Include="Exercises_03_04_05\Core\Engine.cs" />
-    <Compile Include="Exercises_03_04_05\Contracts\IAttacker.cs" />
-    <Compile Include="Exercises_03_04_05\Contracts\ICommandInterpreter.cs" />
-    <Compile Include="Exercises_03_04_05\Contracts\IDestroyable.cs" />
-    <Compile Include="Exercises_03_04_05\Contracts\IExecutable.cs" />
-    <Compile Include="Exercises_03_04_05\Contracts\IRepository.cs" />
-    <Compile Include="Exercises_03_04_05\Contracts\IRunnable.cs" />
-    <Compile Include="Exercises_03_04_05\Contracts\IUnit.cs" />
-    <Compile Include="Exercises_03_04_05\Contracts\IUnitFactory.cs" />
-    <Compile Include="Exercises_03_04_05\Models\Units\Archer.cs" />
-    <Compile Include="Exercises_03_04_05\Models\Units\Gunner.cs" />
-    <Compile Include="Exercises_03_04_05\Models\Units\Horseman.cs" />
-    <Compile Include="Exercises_03_04_05\Models\Units\Pikeman.cs" />
-    <Compile Include="Exercises_03_04_05\Models\Units\Swordsman.cs" />
-    <Compile Include="Exercises_03_04_05\Models\Units\Unit.cs" />
-    <Compile Include="Exercises_03_04_05\Data\UnitRepository.cs" />
-    <Compile Include="Exercises_03_04_05\Core\Factories\UnitFactory.cs" />
+    <None Include="Lab_01\File.cs" />
+    <None Include="Lab_01\IStreamFile.cs" />
+    <None Include="Lab_01\Music.cs" />
+    <None Include="Lab_01\Program.cs" />
+    <None Include="Lab_01\StreamProgressInfo.cs" />
+    <None Include="Lab_02\Circle.cs" />
+    <None Include="Lab_02\GraphicEditor.cs" />
+    <None Include="Lab_02\IShape.cs" />
+    <None Include="Lab_02\Program.cs" />
+    <None Include="Lab_02\Rectangle.cs" />
+    <None Include="Lab_02\Square.cs" />
+    <None Include="Lab_03\DetailsPrinter.cs" />
+    <None Include="Lab_03\Employee.cs" />
+    <None Include="Lab_03\Manager.cs" />
+    <None Include="Lab_03\Program.cs" />
+    <Compile Include="Lab_04\Employee.cs" />
+    <Compile Include="Lab_04\IRechargeable.cs" />
+    <Compile Include="Lab_04\ISleeper.cs" />
+    <Compile Include="Lab_04\RechargeStation.cs" />
+    <Compile Include="Lab_04\Robot.cs" />
+    <Compile Include="Lab_04\TestClass.cs" />
+    <Compile Include="Lab_04\Worker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.8.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.8.0\build\net35\NUnit3TestAdapter.props'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

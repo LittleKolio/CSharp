@@ -46,6 +46,7 @@
     <Compile Include="Exercises_01\Database.cs" />
     <Compile Include="Exercises_01\IDatabase.cs" />
     <Compile Include="Exercises_01\StartUp.cs" />
+    <Compile Include="Exercises_03\ListIterator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
