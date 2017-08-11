@@ -43,11 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exercises_01\Enums\ReportType.cs" />
     <Compile Include="Exercises_01\Exercises_01_Logger.cs" />
     <Compile Include="Exercises_01\Interfaces\IAppender.cs" />
     <Compile Include="Exercises_01\Interfaces\ILayout.cs" />
     <Compile Include="Exercises_01\Interfaces\ILogger.cs" />
+    <Compile Include="Exercises_01\LibraryModels\ConsoleAppender.cs" />
+    <Compile Include="Exercises_01\LibraryModels\FileAppender.cs" />
+    <Compile Include="Exercises_01\LibraryModels\LogFile.cs" />
+    <Compile Include="Exercises_01\LibraryModels\Logger.cs" />
     <Compile Include="Exercises_01\LibraryModels\SimpleLayout.cs" />
+    <Compile Include="Exercises_01\LibraryModels\XmlLayout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
