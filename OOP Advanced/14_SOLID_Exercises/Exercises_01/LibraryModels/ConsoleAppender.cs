@@ -13,13 +13,7 @@
         }
 
         public ILayout Layout { get; private set; }
-
         public ReportType Type { get; set; }
-
-        public void Append()
-        {
-            throw new NotImplementedException();
-        }
 
         public void Append(string dateTime, string messageType, string message)
         {

@@ -2,6 +2,7 @@
 {
     using System;
     using SOLID_Exercises.Exercises_01.Interfaces;
+    using Enums;
 
     public class Logger : ILogger
     {
@@ -16,7 +17,11 @@
         {
             foreach (IAppender item in this.appender)
             {
-                item.Append(dateTime, messageType, message);
+                ReportType currentType = (ReportType)Enum.Parse(typeof(ReportType), messageType);
+                if (item.Type >= currentType)
+                {
+                    item.Append(dateTime, messageType, message);
+                }
             }
         }
 
@@ -42,7 +47,7 @@
 
         public void Warning(string dateTime, string message)
         {
-            throw new NotImplementedException();
+            this.Log(dateTime, "Warning", message);
         }
     }
 }
