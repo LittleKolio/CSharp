@@ -1,13 +1,17 @@
 ﻿namespace SOLID_Exercises.Exercises_01
 {
-    using SOLID_Exercises.Exercises_01.LibraryModels;
-    using SOLID_Exercises.Exercises_01.Interfaces;
+    using Models;
+    using Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using Enums;
+    using IO;
+    using Models.Layouts;
+    using Models.Appenders;
+    using Core;
 
     public class Exercises_01_Logger
     {
@@ -16,7 +20,19 @@
             //Step1();
             //Step2();
             //Step3();
-            Step4();
+            //Step4();
+            Step5();
+        }
+
+        private static void Step5()
+        {
+            IWriter writer = new Writer();
+            IReader reader = new Reader();
+
+            LayoutFactory layoutFactory = new LayoutFactory();
+            AppenderFactory appenderFactory = new AppenderFactory();
+
+            Engine engine = new Engine(reader, writer);
         }
 
         private static void Step1()

@@ -12,7 +12,5 @@
             string dateTime, 
             string messageType, 
             string message);
-
-
     }
 }

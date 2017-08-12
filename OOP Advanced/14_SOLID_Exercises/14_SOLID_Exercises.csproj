@@ -43,17 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exercises_01\Core\Engine.cs" />
     <Compile Include="Exercises_01\Enums\ReportType.cs" />
     <Compile Include="Exercises_01\Exercises_01_Logger.cs" />
     <Compile Include="Exercises_01\Interfaces\IAppender.cs" />
     <Compile Include="Exercises_01\Interfaces\ILayout.cs" />
     <Compile Include="Exercises_01\Interfaces\ILogger.cs" />
-    <Compile Include="Exercises_01\LibraryModels\ConsoleAppender.cs" />
-    <Compile Include="Exercises_01\LibraryModels\FileAppender.cs" />
-    <Compile Include="Exercises_01\LibraryModels\LogFile.cs" />
-    <Compile Include="Exercises_01\LibraryModels\Logger.cs" />
-    <Compile Include="Exercises_01\LibraryModels\SimpleLayout.cs" />
-    <Compile Include="Exercises_01\LibraryModels\XmlLayout.cs" />
+    <Compile Include="Exercises_01\Interfaces\IReader.cs" />
+    <Compile Include="Exercises_01\Interfaces\IWriter.cs" />
+    <Compile Include="Exercises_01\IO\Reader.cs" />
+    <Compile Include="Exercises_01\IO\Writer.cs" />
+    <Compile Include="Exercises_01\Models\Appenders\AppenderFactory.cs" />
+    <Compile Include="Exercises_01\Models\Appenders\ConsoleAppender.cs" />
+    <Compile Include="Exercises_01\Models\Appenders\FileAppender.cs" />
+    <Compile Include="Exercises_01\Models\Layouts\LayoutFactory.cs" />
+    <Compile Include="Exercises_01\Models\LogFile.cs" />
+    <Compile Include="Exercises_01\Models\Logger.cs" />
+    <Compile Include="Exercises_01\Models\Layouts\SimpleLayout.cs" />
+    <Compile Include="Exercises_01\Models\Layouts\XmlLayout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
