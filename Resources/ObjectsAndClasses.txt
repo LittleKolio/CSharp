@@ -318,14 +318,44 @@ The classes in the System.Reflection namespace, together with System.Type, enabl
 
 
 
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Factory for classes
+	├─┬───────────────────────────────────────────────────────────────────┘
+		public ISome GetAppender(string name, IOther other)
+		{
+			Type type = Assembly
+				.GetExecutingAssembly()
+				.GetTypes()
+				.FirstOrDefault(t => t.Name == name);
 
+			return (ISome)Activator.CreateInstance(type, other);
+		}
 
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Method of object(in this case Logger)
+	├─┬───────────────────────────────────────────────────────────────────┘
 
+		private ILogger logger;
+		
+		public void SendMessageToLogger(string message)
+		{
+			string[] tokens = message.Split('|');
+			string methodName = this.ToTitleCase(tokens[0]);
+			MethodInfo currentMethod = typeof(Logger)
+				.GetMethod(methodName);
+			currentMethod.Invoke(
+				this.logger, 
+				new object[] { tokens[1], tokens[2] }
+				);
+		}
 
-
-
-
-
+		private string ToTitleCase(string methodName)
+		{
+			return CultureInfo
+			.CurrentCulture
+			.TextInfo
+			.ToTitleCase(methodName.ToLower());
+		}
 
 
 

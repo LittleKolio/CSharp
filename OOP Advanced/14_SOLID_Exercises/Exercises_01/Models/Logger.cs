@@ -3,6 +3,7 @@
     using System;
     using Interfaces;
     using Enums;
+    using System.Text;
 
     public class Logger : ILogger
     {
@@ -15,13 +16,14 @@
 
         private void Log(string dateTime, string messageType, string message)
         {
-            foreach (IAppender item in this.appenders)
+            foreach (IAppender appender in this.appenders)
             {
-                ReportType currentType = (ReportType)Enum.Parse(typeof(ReportType), messageType);
+                ReportType currentType = (ReportType)Enum
+                    .Parse(typeof(ReportType), messageType);
 
-                if (item.Type >= currentType)
+                if (appender.Type <= currentType)
                 {
-                    item.Append(dateTime, messageType, message);
+                    appender.Append(dateTime, messageType.ToUpper(), message);
                 }
             }
         }
@@ -49,6 +51,16 @@
         public void Warning(string dateTime, string message)
         {
             this.Log(dateTime, "Warning", message);
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (IAppender appender in this.appenders)
+            {
+                sb.AppendLine(appender.ToString());
+            }
+            return sb.ToString();
         }
     }
 }

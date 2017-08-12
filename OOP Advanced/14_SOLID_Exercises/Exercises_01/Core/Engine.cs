@@ -32,10 +32,15 @@
                 if (input == "END")
                 {
                     this.isRunning = false;
+                    continue;
                 }
 
                 this.controller.SendMessageToLogger(input);
             }
+
+            this.writer.ConsoleWriter(
+                this.controller.GetLoggerInfo()
+                );
         }
     }
 }

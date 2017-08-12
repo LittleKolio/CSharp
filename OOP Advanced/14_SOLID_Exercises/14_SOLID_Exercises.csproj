@@ -54,6 +54,7 @@
     <Compile Include="Exercises_01\Interfaces\IWriter.cs" />
     <Compile Include="Exercises_01\IO\Reader.cs" />
     <Compile Include="Exercises_01\IO\Writer.cs" />
+    <Compile Include="Exercises_01\Models\Appenders\Appender.cs" />
     <Compile Include="Exercises_01\Models\Appenders\AppenderFactory.cs" />
     <Compile Include="Exercises_01\Models\Appenders\ConsoleAppender.cs" />
     <Compile Include="Exercises_01\Models\Appenders\FileAppender.cs" />

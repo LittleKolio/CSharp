@@ -3,22 +3,31 @@
     using System;
     using Enums;
     using SOLID_Exercises.Exercises_01.Interfaces;
+    using IO;
 
-    public class FileAppender : IAppender
+    public class FileAppender : Appender
     {
+        private IWriter writer;
+
         public FileAppender(ILayout layout)
+            : base (layout)
         {
-            this.Layout = layout;
+            this.writer = new Writer();
         }
-        public ILayout Layout { get; private set; }
 
         public LogFile File { get; set; }
 
-        public ReportType Type { get; set; }
-
-        public void Append(string dateTime, string messageType, string message)
+        public override void Append(string dateTime, string messageType, string message)
         {
-            this.File.Write(this.Layout.FormatMessage(dateTime, messageType, message));
+            this.writer.ConsoleWriter(
+                this.Layout.FormatMessage(
+                    dateTime, messageType, message)
+                    );
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + $", File size: {this.File.Size}";
         }
     }
 }

@@ -4,20 +4,25 @@
     using SOLID_Exercises.Exercises_01.Interfaces;
     using System.Linq;
     using Enums;
+    using IO;
 
-    public class ConsoleAppender : IAppender
+    public class ConsoleAppender : Appender
     {
+        private IWriter writer;
+
         public ConsoleAppender(ILayout layout)
+            : base(layout)
         {
-            this.Layout = layout;
+            this.writer = new Writer();
         }
 
-        public ILayout Layout { get; private set; }
-        public ReportType Type { get; set; }
-
-        public void Append(string dateTime, string messageType, string message)
+        public override void Append(string dateTime, string messageType, string message)
         {
-            Console.WriteLine(this.Layout.FormatMessage(dateTime, messageType, message));
+            base.Count++;
+            this.writer.ConsoleWriter(
+                this.Layout.FormatMessage(
+                    dateTime, messageType, message)
+                    );
         }
     }
 }

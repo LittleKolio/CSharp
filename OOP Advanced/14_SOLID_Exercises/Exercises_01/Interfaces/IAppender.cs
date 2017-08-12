@@ -1,11 +1,11 @@
 ﻿namespace SOLID_Exercises.Exercises_01.Interfaces
 {
-    using SOLID_Exercises.Exercises_01.Enums;
+    using Enums;
 
     public interface IAppender
     {
+        int Count { get; }
         ILayout Layout { get; }
-
         ReportType Type { get; set; }
 
         void Append(

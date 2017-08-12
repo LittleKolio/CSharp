@@ -30,7 +30,7 @@ namespace SOLID_Exercises.Exercises_01.Models
         {
             this.sb.AppendLine(message);
             File.AppendAllText(path, message + Environment.NewLine);
-            this.Size = this.LettersSum(message);
+            this.Size += this.LettersSum(message);
         }
     }
 }
