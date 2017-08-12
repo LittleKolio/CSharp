@@ -1,23 +1,24 @@
-﻿namespace SOLID_Exercises.Exercises_01.LibraryModels
+﻿namespace SOLID_Exercises.Exercises_01.Models
 {
     using System;
-    using SOLID_Exercises.Exercises_01.Interfaces;
+    using Interfaces;
     using Enums;
 
     public class Logger : ILogger
     {
-        private IAppender[] appender;
+        private IAppender[] appenders;
 
-        public Logger(params IAppender[] appender)
+        public Logger(params IAppender[] appenders)
         {
-            this.appender = appender;
+            this.appenders = appenders;
         }
 
         private void Log(string dateTime, string messageType, string message)
         {
-            foreach (IAppender item in this.appender)
+            foreach (IAppender item in this.appenders)
             {
                 ReportType currentType = (ReportType)Enum.Parse(typeof(ReportType), messageType);
+
                 if (item.Type >= currentType)
                 {
                     item.Append(dateTime, messageType, message);

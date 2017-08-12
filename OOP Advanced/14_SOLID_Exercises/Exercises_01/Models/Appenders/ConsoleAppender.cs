@@ -1,4 +1,4 @@
-﻿namespace SOLID_Exercises.Exercises_01.LibraryModels
+﻿namespace SOLID_Exercises.Exercises_01.Models.Appenders
 {
     using System;
     using SOLID_Exercises.Exercises_01.Interfaces;

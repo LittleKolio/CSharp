@@ -1,5 +1,5 @@
 ﻿
-namespace SOLID_Exercises.Exercises_01.LibraryModels
+namespace SOLID_Exercises.Exercises_01.Models
 {
     using System;
     using System.IO;

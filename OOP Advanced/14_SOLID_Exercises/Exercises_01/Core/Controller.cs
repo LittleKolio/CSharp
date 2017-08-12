@@ -2,6 +2,7 @@
 {
     using Enums;
     using Interfaces;
+    using Models;
     using Models.Appenders;
     using Models.Layouts;
     using System;
@@ -14,7 +15,7 @@
     {
         private LayoutFactory layoutFactory;
         private AppenderFactory appenderFactory;
-        private 
+        private ILogger logger;
 
         public Controller(LayoutFactory layoutFactory, AppenderFactory appenderFactory)
         {
@@ -30,7 +31,7 @@
         public void InitilizeLogger(IReader reader)
         {
             IAppender[] appenders = this.ReadAllAppenders(reader);
-            this.
+            this.logger = new Logger(appenders);
         }
 
         private IAppender[] ReadAllAppenders(IReader reader)

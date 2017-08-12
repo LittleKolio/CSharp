@@ -1,4 +1,4 @@
-﻿namespace SOLID_Exercises.Exercises_01.LibraryModels
+﻿namespace SOLID_Exercises.Exercises_01.Models.Layouts
 {
     using System;
     using SOLID_Exercises.Exercises_01.Interfaces;
