@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exercises_01\Core\Controller.cs" />
     <Compile Include="Exercises_01\Core\Engine.cs" />
     <Compile Include="Exercises_01\Enums\ReportType.cs" />
     <Compile Include="Exercises_01\Exercises_01_Logger.cs" />

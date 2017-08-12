@@ -6,7 +6,7 @@
     {
         ILayout Layout { get; }
 
-        ReportType Type { get; }
+        ReportType Type { get; set; }
 
         void Append(
             string dateTime, 

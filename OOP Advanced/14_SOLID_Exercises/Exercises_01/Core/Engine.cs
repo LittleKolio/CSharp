@@ -9,19 +9,22 @@
 
     public class Engine
     {
+        private Controller controller;
         private IReader reader;
         private IWriter writer;
         private bool isRunning;
 
-        public Engine(IReader reader, IWriter writer)
+        public Engine(IReader reader, IWriter writer, Controller controller)
         {
             this.reader = reader;
             this.writer = writer;
+            this.controller = controller;
         }
 
         public void Run()
         {
             this.isRunning = true;
+            this.controller.InitilizeLogger(this.reader);
 
             while (this.isRunning)
             {
@@ -31,7 +34,7 @@
                     this.isRunning = false;
                 }
 
-
+                this.controller.SendMessageToLogger(input);
             }
         }
     }

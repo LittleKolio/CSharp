@@ -32,7 +32,10 @@
             LayoutFactory layoutFactory = new LayoutFactory();
             AppenderFactory appenderFactory = new AppenderFactory();
 
-            Engine engine = new Engine(reader, writer);
+            Controller controller = new Controller(layoutFactory, appenderFactory);
+            Engine engine = new Engine(reader, writer, controller);
+
+            engine.Run();
         }
 
         private static void Step1()
