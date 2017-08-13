@@ -358,6 +358,140 @@ The classes in the System.Reflection namespace, together with System.Type, enabl
 		}
 
 
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Event
+╠═══════════════════════════════════════════════════════════════════════╝
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Delegate
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ A delegate is a specialized class often called a Function Pointer (in C and C++)
+	
+	
+	├─┬───────────────────────────────────────────────────────────────────┐
+		public delegate void DelegateExample(int num, EnumType enumType);
+		
+		static void Main()
+		{
+			//1.
+			DelegateExample dele1 = HandlerExample;
+			dele1(1, EnumType.e1);
+			
+			//2.
+			DelegateExample dele2 = new DelegateExample(HandlerExample);
+			dele2(2, EnumType.e2);
+			
+			//3.
+			MethodTest(HandlerExample);
+			
+			//4.
+			DelegateExample dele4 = HandlerExample;
+			dele4 += dele1;
+			dele4(4, EnumType.e4);
+		}
+		
+		static void HandlerExample(int num, EnumType enumType)
+		{
+			Console.WriteLine($"Number : {num} / Enum : {enumType}");
+		}
+		
+		static void MethodTest(DelegateExample dele3)
+		{
+			dele3(3, EnumType.e3);
+		}
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ Lambda
+		├─┬─────────────────────────────────────────────────────────────────┘
+			public delegate int DelegateExample(int a, int b);
+			
+			static void Main(string[] args)
+			{         
+				DelegateExample sum = (a, b) => a + b;
+				int result = sum(1, 1); //2
+			} 
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Event
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ Events in C# are special delegate instances declared by the keyword event. Event can be member of an interface - Delegates cannot.
+	
+	├─ An event can only be called in the class where it is defined. By default the access to the events is synchronized (thread-safe).
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		public delegate void DeathDelegate();
+		
+		public class Player
+		{
+			public event DeathDelegate DeathEvent;
+			
+			private 
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

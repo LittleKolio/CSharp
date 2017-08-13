@@ -43,10 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnumType.cs" />
-    <Compile Include="Exercises_01\Dispatcher.cs" />
+    <None Include="Exercises_01\Dispatcher.cs" />
+    <None Include="Exercises_01\Exercises_01_Event_Implementation.cs" />
+    <None Include="Exercises_01\Handler.cs" />
+    <None Include="Exercises_01\NameChangeEventArgs.cs" />
+    <Compile Include="Exercises_02\Exercises_02_Kings_Gambit.cs" />
+    <Compile Include="Exercises_02\Models\Footman.cs" />
+    <Compile Include="Exercises_02\Models\King.cs" />
+    <Compile Include="Exercises_02\Models\RoyalGuard.cs" />
+    <Compile Include="Exercises_02\Models\Soldier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
