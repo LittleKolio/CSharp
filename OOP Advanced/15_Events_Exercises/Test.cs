@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Events_Exercises_Exercises
+namespace Events_Exercises
 {
     public class Test
     {

@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "13_SOLID_Lab", "13_SOLID_La
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "14_SOLID_Exercises", "14_SOLID_Exercises\14_SOLID_Exercises.csproj", "{8ED5F868-0912-4EFE-A6CF-31FB8D7D1335}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "15_Events_Exercises_Exercises", "15_Events_Exercises_Exercises\15_Events_Exercises_Exercises.csproj", "{5DCF9D9B-115B-4A21-8BD8-F73474F06AB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "15_Events_Exercises", "15_Events_Exercises\15_Events_Exercises.csproj", "{5DCF9D9B-115B-4A21-8BD8-F73474F06AB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

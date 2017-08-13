@@ -7,8 +7,8 @@
     <ProjectGuid>{5DCF9D9B-115B-4A21-8BD8-F73474F06AB2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Events_Exercises_Exercises</RootNamespace>
-    <AssemblyName>15_Events_Exercises_Exercises</AssemblyName>
+    <RootNamespace>Events_Exercises</RootNamespace>
+    <AssemblyName>15_Events_Exercises</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -44,12 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnumType.cs" />
+    <Compile Include="Exercises_01\Dispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
