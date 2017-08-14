@@ -59,14 +59,19 @@
     <None Include="Exercises_03\Models\PrimitiveCalculator.cs" />
     <None Include="Exercises_03\Strategy\MultiplyStrategy.cs" />
     <None Include="Exercises_03\Strategy\SubtractionStrategy.cs" />
+    <Compile Include="Exercises_04\Employees\Employee.cs" />
+    <Compile Include="Exercises_04\Exercises_04_Work_Force.cs" />
+    <Compile Include="Exercises_04\JobEventArgs.cs" />
+    <Compile Include="Exercises_04\JobsList.cs" />
+    <Compile Include="Exercises_04\Models\Job.cs" />
+    <Compile Include="Exercises_04\Employees\PartTimeEmployee.cs" />
+    <Compile Include="Exercises_04\Employees\StandartEmployee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Exercises_04\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
