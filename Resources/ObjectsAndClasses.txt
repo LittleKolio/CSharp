@@ -314,10 +314,82 @@ The classes in the System.Reflection namespace, together with System.Type, enabl
 			}
 		}
 	}
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Compile Time 
+	├─┬───────────────────────────────────────────────────────────────────┘
+		├─ if you know it’s name
+		
+		Type myType = typeof(ClassName);
+		
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Run Time 
+	├─┬───────────────────────────────────────────────────────────────────┘
+		├─ if the name is unknown
+		
+		Type myType = Type.GetType("Namespace.ClassName")
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Fields
+	├─┬───────────────────────────────────────────────────────────────────┘
+		Type type = typeof(ClassName);
+
+		FieldInfo field = type.GetField("fieldName");
 
 
+		ClassName testInstance = (ClassName)Activator
+			.CreateInstance(type);
+			
+		field.SetValue(testInstance, 5);
+		int fieldValue = (int)field.GetValue(testInstance);	
+	
+	├─┬───────────────────────────────────────────────────────────────────┐
+		Type type = Type.GetType(className);
 
+		FieldInfo[] fields = type.GetFields(
+			BindingFlags.NonPublic |
+			BindingFlags.Public |
+			BindingFlags.Instance |
+			BindingFlags.Static
+		);
+		
+		Dictionary<string, Func<FieldInfo[]>> filter
+			= new Dictionary<string, Func<FieldInfo[]>>()
+		{
+			{ "private", () => fields.Where(f => f.IsPrivate).ToArray() },
+			{ "protected", () => fields.Where(f => f.IsFamily).ToArray() },
+			{ "public", () => fields.Where(f => f.IsPublic).ToArray() },
+			{ "all", () => fields }
+		};
 
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Properties and Methods
+	├─┬───────────────────────────────────────────────────────────────────┘
+		Type type = Type.GetType(className);
+		MethodInfo testMethod = type.GetMethod("MethodName");
+		MethodInfo overloadMethod = type.GetMethod(
+			"MethodName",
+			new []{typeof(...)}
+		);
+
+		MethodInfo[] propsSetter = type.GetMethods(
+			BindingFlags.Public |
+			BindingFlags.Instance
+		);
+		foreach (MethodInfo method in 
+			propsSetter.Where(p => p.Name.StartsWith("set")))
+		{
+			// some code
+		}
+		
+		MethodInfo[] propsGetter = type.GetMethods(
+			BindingFlags.NonPublic |
+			BindingFlags.Instance
+		);
+		foreach (MethodInfo method in 
+			propsGetter.Where(p => p.Name.StartsWith("get")))
+		{
+			// some code
+		}
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│ Factory for classes
 	├─┬───────────────────────────────────────────────────────────────────┘
@@ -330,6 +402,18 @@ The classes in the System.Reflection namespace, together with System.Type, enabl
 
 			return (ISome)Activator.CreateInstance(type, other);
 		}
+		
+		
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Instance
+	├─┬───────────────────────────────────────────────────────────────────┘
+		Type sbType = Type.GetType("System.Text.StringBuilder");
+
+		StringBuilder sbInstance = (StringBuilder)Activator
+			.CreateInstance(sbType);
+			
+		StringBuilder sbInstCapacity = (StringBuilder)Activator
+			 .CreateInstance(sbType, new object[] {10});
 
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│ Method of object(in this case Logger)
@@ -343,6 +427,7 @@ The classes in the System.Reflection namespace, together with System.Type, enabl
 			string methodName = this.ToTitleCase(tokens[0]);
 			MethodInfo currentMethod = typeof(Logger)
 				.GetMethod(methodName);
+				
 			currentMethod.Invoke(
 				this.logger, 
 				new object[] { tokens[1], tokens[2] }
