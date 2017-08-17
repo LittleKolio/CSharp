@@ -1,9 +1,9 @@
-﻿namespace SampleExam_1_7Aug2016.WasteDisposal
+﻿namespace RecyclingStation.WasteDisposal
 {
     using System;
     using System.Linq;
-    using SampleExam_1_7Aug2016.WasteDisposal.Attributes;
-    using SampleExam_1_7Aug2016.WasteDisposal.Interfaces;
+    using RecyclingStation.WasteDisposal.Attributes;
+    using RecyclingStation.WasteDisposal.Interfaces;
 
     public class GarbageProcessor : IGarbageProcessor
     {
@@ -21,9 +21,16 @@
         public IProcessingData ProcessWaste(IWaste garbage)
         {
             Type type = garbage.GetType();
-            DisposableAttribute disposalAttribute = (DisposableAttribute)type.GetCustomAttributes(true).FirstOrDefault(x => x.GetType() == typeof(DisposableAttribute));
+            DisposableAttribute disposalAttribute = (DisposableAttribute)type
+                .GetCustomAttributes(true)
+                .FirstOrDefault(x => x.GetType() == typeof(DisposableAttribute));
+
             IGarbageDisposalStrategy currentStrategy;
-            if (disposalAttribute == null || !this.StrategyHolder.GetDisposalStrategies.TryGetValue(disposalAttribute.GetType(), out currentStrategy))
+
+            if (disposalAttribute == null || 
+                !this.StrategyHolder
+                .GetDisposalStrategies
+                .TryGetValue(disposalAttribute.GetType(), out currentStrategy))
             {
                 throw new ArgumentException(
                     "The passed in garbage does not implement a supported Disposable Strategy Attribute.");

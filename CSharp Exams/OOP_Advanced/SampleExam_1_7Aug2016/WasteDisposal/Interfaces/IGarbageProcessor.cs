@@ -1,4 +1,4 @@
-﻿namespace SampleExam_1_7Aug2016.WasteDisposal.Interfaces
+﻿namespace RecyclingStation.WasteDisposal.Interfaces
 {
     using System;
 
@@ -10,7 +10,7 @@
         /// <summary>
         /// An IStrategyHolder object holding the currently contained strategies.
         /// </summary>
-        IStrategyHolder StrategyHolder { get;}
+        IStrategyHolder StrategyHolder { get; }
 
         /// <summary>
         /// Identifies and executes a disposal strategy from the strategies contained in the StrategyHolder based on the passed in garbage's Disposable Attribute.

@@ -1,4 +1,4 @@
-﻿namespace SampleExam_1_7Aug2016.WasteDisposal.Interfaces
+﻿namespace RecyclingStation.WasteDisposal.Interfaces
 {
     using System;
     using System.Collections.Generic;

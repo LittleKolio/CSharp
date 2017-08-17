@@ -1,8 +1,8 @@
-﻿namespace SampleExam_1_7Aug2016.WasteDisposal
+﻿namespace RecyclingStation.WasteDisposal
 {
     using System;
     using System.Collections.Generic;
-    using SampleExam_1_7Aug2016.WasteDisposal.Interfaces;
+    using RecyclingStation.WasteDisposal.Interfaces;
 
     internal class StrategyHolder : IStrategyHolder
     {

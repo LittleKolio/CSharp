@@ -1,4 +1,4 @@
-﻿namespace SampleExam_1_7Aug2016.WasteDisposal.Attributes
+﻿namespace RecyclingStation.WasteDisposal.Attributes
 {
     using System;
 

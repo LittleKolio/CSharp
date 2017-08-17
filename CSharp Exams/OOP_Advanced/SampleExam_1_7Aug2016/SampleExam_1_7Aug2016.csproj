@@ -7,7 +7,7 @@
     <ProjectGuid>{15F7ACB3-1792-4DAD-B763-723F0ACFD7EF}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SampleExam_1_7Aug2016</RootNamespace>
+    <RootNamespace>RecyclingStation</RootNamespace>
     <AssemblyName>SampleExam_1_7Aug2016</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -43,6 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Engin.cs" />
+    <Compile Include="Core\methodInfo.cs" />
+    <Compile Include="Core\RecyclingStation.cs" />
+    <Compile Include="Interfaces\IReader.cs" />
+    <Compile Include="Interfaces\IRecyclingStation.cs" />
+    <Compile Include="Interfaces\IWriter.cs" />
+    <Compile Include="IO\Reader.cs" />
+    <Compile Include="IO\Writer.cs" />
+    <Compile Include="Models\Garbage\Garbage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecyclingStationMain.cs" />
     <Compile Include="WasteDisposal\Attributes\DisposableAttribute.cs" />
@@ -53,10 +62,14 @@
     <Compile Include="WasteDisposal\Interfaces\IStrategyHolder.cs" />
     <Compile Include="WasteDisposal\Interfaces\IWaste.cs" />
     <Compile Include="WasteDisposal\StrategyHolder.cs" />
+    <Compile Include="Models\Garbage\Burnable.cs" />
+    <Compile Include="Models\Garbage\Recyclable.cs" />
+    <Compile Include="Models\Garbage\Storable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

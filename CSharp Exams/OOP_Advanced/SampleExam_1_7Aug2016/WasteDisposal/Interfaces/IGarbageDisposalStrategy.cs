@@ -1,4 +1,4 @@
-﻿namespace SampleExam_1_7Aug2016.WasteDisposal.Interfaces
+﻿namespace RecyclingStation.WasteDisposal.Interfaces
 {
     /// <summary>
     /// Interface that should be implemented by Garbage Disposal Strategies.
