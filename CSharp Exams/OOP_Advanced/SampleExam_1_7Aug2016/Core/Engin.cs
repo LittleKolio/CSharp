@@ -16,9 +16,9 @@
 
         private IReader read;
         private IWriter write;
-        private IRecyclingStation station;
+        private IRecyclingManager station;
 
-        public Engin(IReader read, IWriter write, IRecyclingStation station)
+        public Engin(IReader read, IWriter write, IRecyclingManager station)
         {
             this.read = read;
             this.write = write;
@@ -40,7 +40,11 @@
             while ((input = this.read.ConsoleReadLine()) != Terminator)
             {
                 string[] tokens = SplitCommand(input, ' ');
-                string[] garbageParams = SplitCommand(tokens[1], '|');
+                string[] garbageParams = default(string[]); // null
+                if (tokens.Length == 2)
+                {
+                    garbageParams = SplitCommand(tokens[1], '|');
+                }
 
                 MethodInfo methodToInvoke = stationMethods
                     .FirstOrDefault(
@@ -54,8 +58,13 @@
                     Type type = methodParams[i].ParameterType;
                     parsedParams[i] = Convert.ChangeType(garbageParams[i], type);
                 }
-                methodToInvoke.Invoke(this.station, parsedParams);
+
+                object result = methodToInvoke.Invoke(this.station, parsedParams);
+
+                this.write.AppendMessage(result.ToString());
             }
+
+            this.write.ConsoleWrite();
         }
     }
 }

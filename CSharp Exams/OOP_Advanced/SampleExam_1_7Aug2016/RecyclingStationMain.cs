@@ -11,7 +11,7 @@
         {
             IReader read = new Reader();
             IWriter write = new Writer();
-            IRecyclingStation station = new RecyclingStation();
+            IRecyclingManager station = new RecyclingManager();
             Engin engine = new Engin(read, write, station);
             engine.Run();
         }

@@ -44,10 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Engin.cs" />
-    <Compile Include="Core\methodInfo.cs" />
-    <Compile Include="Core\RecyclingStation.cs" />
+    <Compile Include="Core\RecyclingManager.cs" />
+    <Compile Include="Factory\WasteFactory.cs" />
     <Compile Include="Interfaces\IReader.cs" />
-    <Compile Include="Interfaces\IRecyclingStation.cs" />
+    <Compile Include="Interfaces\IRecyclingManager.cs" />
+    <Compile Include="Interfaces\IWasteFactory.cs" />
     <Compile Include="Interfaces\IWriter.cs" />
     <Compile Include="IO\Reader.cs" />
     <Compile Include="IO\Writer.cs" />
