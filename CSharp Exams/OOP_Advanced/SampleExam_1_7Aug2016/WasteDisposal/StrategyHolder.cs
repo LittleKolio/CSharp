@@ -8,7 +8,7 @@
     {
         private readonly IDictionary<Type, IGarbageDisposalStrategy> strategies;
 
-        public StrategyHolder()
+        public StrategyHolder(IDictionary<Type, IGarbageDisposalStrategy> strategies)
         {
             this.strategies = new Dictionary<Type, IGarbageDisposalStrategy>();
         }
@@ -20,14 +20,24 @@
 
         public bool AddStrategy(Type disposableAttribute, IGarbageDisposalStrategy strategy)
         {
-            this.strategies.Add(disposableAttribute, strategy);
-            return true;
+            if (!this.GetDisposalStrategies.ContainsKey(disposableAttribute))
+            {
+                this.strategies.Add(disposableAttribute, strategy);
+                return true;
+            }
+
+            return false;
         }
 
         public bool RemoveStrategy(Type disposableAttribute)
         {
-            this.strategies.Remove(disposableAttribute);
-            return true;
+            if (this.GetDisposalStrategies.ContainsKey(disposableAttribute))
+            {
+                this.strategies.Remove(disposableAttribute);
+                return true;
+            }
+
+            return false;
         }
     }
 }

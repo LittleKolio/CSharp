@@ -16,10 +16,5 @@
         public double VolumePerKg { get; private set; }
 
         public double Weight { get; private set; }
-
-        public double TotalVolume
-        {
-            get { return this.VolumePerKg * this.Weight; }
-        }
     }
 }

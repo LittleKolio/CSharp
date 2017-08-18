@@ -52,7 +52,16 @@
     <Compile Include="Interfaces\IWriter.cs" />
     <Compile Include="IO\Reader.cs" />
     <Compile Include="IO\Writer.cs" />
+    <Compile Include="Models\Attributes\BurnableAttribute.cs" />
+    <Compile Include="Models\Attributes\RecyclableAttribute.cs" />
+    <Compile Include="Models\Attributes\StorableAttribute.cs" />
+    <Compile Include="Models\GarbageStrategy\BurnableStrategy.cs" />
+    <Compile Include="Models\GarbageStrategy\GarbageDisposalStrategy.cs" />
+    <Compile Include="Models\GarbageStrategy\RecyclableStrategy.cs" />
+    <Compile Include="Models\GarbageStrategy\StorableStrategy.cs" />
     <Compile Include="Models\Garbage\Garbage.cs" />
+    <Compile Include="Models\ProcessingData.cs" />
+    <Compile Include="Models\WasteExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecyclingStationMain.cs" />
     <Compile Include="WasteDisposal\Attributes\DisposableAttribute.cs" />
