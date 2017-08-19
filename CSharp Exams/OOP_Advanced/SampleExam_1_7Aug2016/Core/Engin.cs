@@ -16,14 +16,14 @@
 
         private IReader read;
         private IWriter write;
-        private IRecyclingManager station;
+        private IRecyclingManager manager;
 
         public Engin(IReader read, IWriter write, IRecyclingManager station)
         {
             this.read = read;
             this.write = write;
-            this.station = station;
-            this.stationMethods = this.station
+            this.manager = station;
+            this.stationMethods = this.manager
                 .GetType()
                 .GetMethods();
         }
@@ -59,7 +59,7 @@
                     parsedParams[i] = Convert.ChangeType(garbageParams[i], type);
                 }
 
-                object result = methodToInvoke.Invoke(this.station, parsedParams);
+                object result = methodToInvoke.Invoke(this.manager, parsedParams);
 
                 this.write.AppendMessage(result.ToString());
             }
