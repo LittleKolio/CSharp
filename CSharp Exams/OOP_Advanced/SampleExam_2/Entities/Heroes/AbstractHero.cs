@@ -13,7 +13,14 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
     private long hitPoints;
     private long damage;
 
-    protected AbstractHero(string name, int strength, int agility, int intelligence, int hitPoints, int damage)
+    protected AbstractHero(
+        string name, 
+        int strength, 
+        int agility, 
+        int intelligence, 
+        int hitPoints, 
+        int damage
+        )
     {
         this.Name = name;
         this.strength = strength;
@@ -63,13 +70,20 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
 
     public long SecondaryStats
     {
-        get { return this.Strength + this.Agility + this.Intelligence; }
+        get { return this.HitPoints + this.Damage; }
     }
 
     //REFLECTION
-    public ICollection<IItem> Items { get; }
+    public ICollection<IItem> Items
+    {
+        get
+        {
+            Type heroClass = typeof(HeroInventory);
+            var field = heroClass.GetCustomAttribute()
+        }
+    }
 
-    public void AddRecipe(Recipe recipe)
+    public void AddRecipe(IRecipe recipe)
     {
         this.inventory.AddRecipeItem(recipe);
     }

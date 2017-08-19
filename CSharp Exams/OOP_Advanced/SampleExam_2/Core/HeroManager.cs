@@ -4,11 +4,11 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-public class HeroManager
+public class HeroManager : IManager
 {
     public Dictionary<string, IHero> heroes;
 
-    public string AddHero(List<String> arguments)
+    public string AddHero(IList<string> arguments)
     {
         string result = null;
 
@@ -32,7 +32,7 @@ public class HeroManager
         return result;
     }
 
-    public string AddItemToHero(List<String> arguments, Hero hero)
+    public string AddItem(IList<string> arguments)
     {
         string result = null;
 
@@ -53,6 +53,25 @@ public class HeroManager
         return result;
     }
 
+    public string Inspect(IList<string> arguments)
+    {
+        string heroName = arguments[0];
+
+        return this.heroes[heroName].ToString();
+    }
+
+    public string Quit(IList<string> args)
+    {
+        throw new NotImplementedException();
+    }
+
+    public string AddRecipe(IList<string> args)
+    {
+        throw new NotImplementedException();
+    }
+
+
+
     public string CreateGame()
     {
         StringBuilder result = new StringBuilder();
@@ -65,12 +84,6 @@ public class HeroManager
         return result.ToString();
     }
 
-    public string Inspect(List<String> arguments)
-    {
-        string heroName = arguments[0];
-
-        return this.heroes[heroName].ToString();
-    }
 
     //Само Батман знае как работи това
     public static void GenerateResult()
@@ -92,15 +105,5 @@ public class HeroManager
 
             type = type.BaseType;
         }
-    }
-
-    public static void DontTouchThisMethod()
-    {
-        //това не трябва да го пипаме, че ако го махнем ще ни счупи цялата логика
-        var l = new List<string>();
-        var m = new Manager();
-        HeroCommand cmd = new HeroCommand(l, m);
-        var str = "Execute";
-        Console.WriteLine(str);
     }
 }

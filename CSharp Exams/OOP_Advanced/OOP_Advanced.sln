@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExam_1_7Aug2016", "Sa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExam_1_7Aug2016.Test", "SampleExam_1_7Aug2016.Test\SampleExam_1_7Aug2016.Test.csproj", "{D273581B-FB4B-4956-B079-26C1D208D4CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hell", "SampleExam_2\Hell.csproj", "{3C9A169B-08A0-4734-9601-EEDD84F7AA37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleExam_2_Hell", "SampleExam_2\SampleExam_2_Hell.csproj", "{3C9A169B-08A0-4734-9601-EEDD84F7AA37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

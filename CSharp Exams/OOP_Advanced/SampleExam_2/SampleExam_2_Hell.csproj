@@ -42,12 +42,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AbstractCommand.cs" />
+    <Compile Include="Commands\HeroCommand.cs" />
+    <Compile Include="Commands\InspectCommand.cs" />
+    <Compile Include="Commands\ItemCommand.cs" />
     <Compile Include="Commands\QuitCommand.cs" />
+    <Compile Include="Commands\RecipeCommand.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\HeroManager.cs" />
     <Compile Include="Entities\Heroes\AbstractHero.cs" />
+    <Compile Include="Entities\Items\AbstractItem.cs" />
+    <Compile Include="Entities\Items\CommonItem.cs" />
+    <Compile Include="Entities\Items\RecipeItem.cs" />
     <Compile Include="Entities\Miscellaneous\HeroInventory.cs" />
     <Compile Include="Entities\Miscellaneous\ItemAttribute.cs" />
+    <Compile Include="Interfaces\ICommand.cs" />
+    <Compile Include="Interfaces\IHero.cs" />
+    <Compile Include="Interfaces\IInventory.cs" />
+    <Compile Include="Interfaces\IItem.cs" />
+    <Compile Include="Interfaces\IManager.cs" />
+    <Compile Include="Interfaces\IReader.cs" />
+    <Compile Include="Interfaces\IRecipe.cs" />
+    <Compile Include="Interfaces\IWriter.cs" />
     <Compile Include="IO\ConsoleReader.cs" />
     <Compile Include="IO\ConsoleWriter.cs" />
     <Compile Include="StartUp.cs" />
@@ -57,8 +73,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

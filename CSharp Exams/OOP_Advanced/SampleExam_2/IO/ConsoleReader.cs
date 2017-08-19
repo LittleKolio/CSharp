@@ -1,9 +1,6 @@
 ﻿using System;
 
-public class ConsoleReader
+public class ConsoleReader : IReader
 {
-    public string ReadLine()
-    {
-        return Console.ReadLine();
-    }
+    public string ReadLine() => Console.ReadLine();
 }

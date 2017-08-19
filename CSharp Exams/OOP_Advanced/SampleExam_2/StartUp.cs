@@ -2,8 +2,8 @@
 {
     public static void Main()
     {
-        IInputReader reader = new ConsoleReader();
-        IOutputWriter writer = new ConsoleWriter();
+        IReader reader = new ConsoleReader();
+        IWriter writer = new ConsoleWriter();
         HeroManager manager = new HeroManager();
 
         Engine engine = new Engine(reader, writer, manager);

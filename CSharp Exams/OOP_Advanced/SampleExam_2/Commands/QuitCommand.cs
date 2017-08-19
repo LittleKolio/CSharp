@@ -1,17 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class QuitCommand : AbstractCommand
 {
-    protected QuitCommand()
-    {
-
-    }
-    public QuitCommand(List<string> args, IManager manager)
+    public QuitCommand(IList<string> args, IManager manager)
+        : base(args, manager)
     {
     }
 
-    public virtual string Execute()
+    public override string Execute()
     {
-        return base.Manager.Quit(this.ArgsList);
+        return base.Manager.Quit(base.Args);
     }
 }
