@@ -76,11 +76,20 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
     //REFLECTION
     public ICollection<IItem> Items
     {
+        //mmeeee bug
         get
         {
             Type heroClass = typeof(HeroInventory);
-            var field = heroClass.GetCustomAttribute()
+            Attribute field = heroClass.GetCustomAttribute(
+                typeof(ItemAttribute), false
+                );
+            return null;
         }
+    }
+
+    public void AddItem(IItem item)
+    {
+        this.inventory.AddCommonItem(item);
     }
 
     public void AddRecipe(IRecipe recipe)

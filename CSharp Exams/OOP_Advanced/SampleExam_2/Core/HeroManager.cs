@@ -6,7 +6,12 @@ using System.Text;
 
 public class HeroManager : IManager
 {
-    public Dictionary<string, IHero> heroes;
+    private Dictionary<string, IHero> heroes;
+
+    public HeroManager()
+    {
+        this.heroes = new Dictionary<string, IHero>();
+    }
 
     public string AddHero(IList<string> arguments)
     {
@@ -18,15 +23,19 @@ public class HeroManager : IManager
         try
         {
             Type clazz = Type.GetType(heroType);
-            var constructors = clazz.GetConstructors();
+            ConstructorInfo[] constructors = clazz.GetConstructors();
             IHero hero = (IHero) constructors[0].Invoke(new object[] {heroName});
+            this.heroes.Add(hero.Name, hero);
 
-
-            result = string.Format($"Created {heroType} - {hero.GetType().Name}");
+            result = string.Format(
+                Constants.HeroCreateMessage, 
+                heroType, 
+                hero.GetType().Name
+                );
         }
         catch (Exception e)
         {
-            return e.Message;
+            result = e.Message;
         }
 
         return result;
@@ -34,9 +43,6 @@ public class HeroManager : IManager
 
     public string AddItem(IList<string> arguments)
     {
-        string result = null;
-
-        //Ма те много бе!
         string itemName = arguments[0];
         string heroName = arguments[1];
         int strengthBonus = int.Parse(arguments[2]);
@@ -45,12 +51,22 @@ public class HeroManager : IManager
         int hitPointsBonus = int.Parse(arguments[5]);
         int damageBonus = int.Parse(arguments[6]);
 
-        CommonItem newItem = new CommonItem(itemName, strengthBonus, agilityBonus, intelligenceBonus, hitPointsBonus,
-            damageBonus);
-        //тука трябваше да добавя към hero ама промених едно нещо и то много неща се счупиха и реших просто да не добавям
+        IItem newItem = new CommonItem(
+            itemName, 
+            strengthBonus, 
+            agilityBonus, 
+            intelligenceBonus, 
+            hitPointsBonus,
+            damageBonus
+            );
 
-        result = string.Format(Constants.ItemCreateMessage, newItem.Name, heroName);
-        return result;
+        this.heroes[heroName].AddItem(newItem);
+
+        return string.Format(
+            Constants.ItemCreateMessage, 
+            newItem.Name, 
+            heroName
+            );
     }
 
     public string Inspect(IList<string> arguments)
@@ -60,17 +76,41 @@ public class HeroManager : IManager
         return this.heroes[heroName].ToString();
     }
 
-    public string Quit(IList<string> args)
+    public string Quit(IList<string> arguments)
     {
         throw new NotImplementedException();
     }
 
-    public string AddRecipe(IList<string> args)
+    public string AddRecipe(IList<string> arguments)
     {
-        throw new NotImplementedException();
+        string itemName = arguments[0];
+        string heroName = arguments[1];
+        int strengthBonus = int.Parse(arguments[2]);
+        int agilityBonus = int.Parse(arguments[3]);
+        int intelligenceBonus = int.Parse(arguments[4]);
+        int hitPointsBonus = int.Parse(arguments[5]);
+        int damageBonus = int.Parse(arguments[6]);
+
+        List<string> requiredItems = arguments.Skip(7).ToList();
+
+        IRecipe newRecipe = new RecipeItem(
+            itemName,
+            strengthBonus,
+            agilityBonus,
+            intelligenceBonus,
+            hitPointsBonus,
+            damageBonus,
+            requiredItems
+            );
+
+        this.heroes[heroName].AddRecipe(newRecipe);
+
+        return string.Format(
+            Constants.RecipeCreatedMessage,
+            newRecipe.Name,
+            heroName
+            );
     }
-
-
 
     public string CreateGame()
     {
@@ -84,8 +124,6 @@ public class HeroManager : IManager
         return result.ToString();
     }
 
-
-    //Само Батман знае как работи това
     public static void GenerateResult()
     {
         const string PropName = "_connectionString";

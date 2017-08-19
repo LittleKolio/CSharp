@@ -51,6 +51,9 @@
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\HeroManager.cs" />
     <Compile Include="Entities\Heroes\AbstractHero.cs" />
+    <Compile Include="Entities\Heroes\Assassin.cs" />
+    <Compile Include="Entities\Heroes\Barbarian.cs" />
+    <Compile Include="Entities\Heroes\Wizard.cs" />
     <Compile Include="Entities\Items\AbstractItem.cs" />
     <Compile Include="Entities\Items\CommonItem.cs" />
     <Compile Include="Entities\Items\RecipeItem.cs" />
