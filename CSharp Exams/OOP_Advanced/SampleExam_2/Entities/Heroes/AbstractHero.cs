@@ -79,11 +79,15 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
         //mmeeee bug
         get
         {
-            Type heroClass = typeof(HeroInventory);
-            Attribute field = heroClass.GetCustomAttribute(
-                typeof(ItemAttribute), false
-                );
-            return null;
+            Type heroInventory = typeof(HeroInventory);
+            FieldInfo field = heroInventory
+                .GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
+                .FirstOrDefault(f => 
+                    f.GetCustomAttribute(typeof(ItemAttribute)) != null
+                    );
+            Dictionary<string, IItem> commonItems = (Dictionary<string, IItem>)field.GetValue(this.inventory);
+
+            return commonItems.Values.ToList();
         }
     }
 
@@ -113,5 +117,30 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
             return primary;
         }
         return this.SecondaryStats.CompareTo(other.SecondaryStats);
+    }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+
+        sb.AppendLine($"Hero: {this.Name}, Class: {this.GetType().Name}");
+        sb.AppendLine($"HitPoints: {this.HitPoints}, Damage: {this.Damage}");
+        sb.AppendLine($"Strength: {this.Strength}");
+        sb.AppendLine($"Agility: {this.Agility}");
+        sb.AppendLine($"Intelligence: {this.Intelligence}");
+
+        // TODO Item override tostring
+
+        //if (this.Items.Any())
+        //{
+        //    sb.AppendLine("Items:");
+        //    foreach (IItem item in this.Items)
+        //    {
+        //        sb.AppendLine(item.ToString());
+        //    }
+        //}
+
+
+        return sb.ToString().Trim();
     }
 }

@@ -1,7 +1,4 @@
-﻿namespace RecyclingStation.Interfaces
+﻿public interface IReader
 {
-    public interface IReader
-    {
-        string ConsoleReadLine();
-    }
+    string ConsoleReadLine();
 }

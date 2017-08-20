@@ -31,7 +31,11 @@ public class Engine
 
     private List<string> ParseInput(string input)
     {
-        return input.Split(' ').ToList();
+        return input
+            .Split(new char[] { ' ' }, 
+                StringSplitOptions.RemoveEmptyEntries
+                )
+            .ToList();
     }
 
     private string ProcessInput(List<string> arguments)
