@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Last_Army.Entities.Missions
+﻿public class Hard : Mission
 {
-    class Hard
+    private const double EnduranceRequired = 80;
+
+    public Hard(string name, double scoreToComplete) 
+        : base(name, EnduranceRequired, scoreToComplete)
     {
     }
 }

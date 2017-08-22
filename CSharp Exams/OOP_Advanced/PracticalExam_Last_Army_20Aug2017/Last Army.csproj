@@ -50,10 +50,12 @@
     <Compile Include="Core\SoldierController.cs" />
     <Compile Include="Entities\Ammunitions\Ammunition.cs" />
     <Compile Include="Entities\Missions\Easy.cs" />
+    <Compile Include="Entities\Missions\Hard.cs" />
     <Compile Include="Entities\Missions\Medium.cs" />
     <Compile Include="Entities\Missions\Mission.cs" />
     <Compile Include="Entities\Soldiers\Corporal.cs" />
     <Compile Include="Entities\Soldiers\Ranker.cs" />
+    <Compile Include="Entities\WareHouse.cs" />
     <Compile Include="Factory\AmmunitionFactory.cs" />
     <Compile Include="Factory\SoldierFactory.cs" />
     <Compile Include="Entities\Ammunitions\AutomaticMachine.cs" />
@@ -69,6 +71,7 @@
     <Compile Include="Interfaces\IMissionFactory.cs" />
     <Compile Include="Interfaces\ISoldier.cs" />
     <Compile Include="Interfaces\ISoldierFactory.cs" />
+    <Compile Include="Interfaces\IWareHouse.cs" />
     <Compile Include="IO\ConsoleReader.cs" />
     <Compile Include="IO\ConsoleWriter.cs" />
     <Compile Include="LastArmyMain.cs" />

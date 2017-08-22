@@ -1,19 +1,11 @@
-﻿using System;
-using System.Text;
-using Last_Army.Core;
-using Last_Army.IO;
-
-namespace Last_Army
+﻿public class LastArmyMain
 {
-    class LastArmyMain
+    static void Main()
     {
-        static void Main()
-        {
-            GameController gameController
-            Engine engine = new Engine();
-            engine.Run();
+        GameController gameController = new GameController();
+        Engine engine = new Engine(gameController);
+        engine.Run();
 
 
-        }
     }
 }

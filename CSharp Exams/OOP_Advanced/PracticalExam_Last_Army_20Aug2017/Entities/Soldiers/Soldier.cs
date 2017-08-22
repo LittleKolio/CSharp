@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public abstract class Soldier : ISoldier
 {
+    private double endurance;
+
     public Soldier(
         string name, 
         int age, 
@@ -17,12 +20,40 @@ public abstract class Soldier : ISoldier
     }
 
     public IDictionary<string, IAmmunition> Weapons { private set; get; }
+
     protected IReadOnlyList<string> WeaponsAllowed { private set; get; }
+
     public string Name { get; private set; }
+
     public int Age { get; private set; }
+
     public double Experience { get; private set; }
-    public double Endurance { get; private set; }
-    public double OverallSkill { get; private set; }
+
+    public double Endurance
+    {
+        get { return this.endurance; }
+        protected set
+        {
+            if (value <= 100)
+            {
+                this.endurance = value;
+            }
+            else if (value > 100)
+            {
+                this.endurance = 100;
+            }
+            else
+            {
+                throw new ArgumentException(
+                    "Something is wrong : Endurance");
+            }
+        }
+    }
+
+    public virtual double OverallSkill
+    {
+        get { return this.Age + this.Experience; }
+    }
 
     public bool ReadyForMission(IMission mission)
     {
@@ -55,11 +86,13 @@ public abstract class Soldier : ISoldier
         }
     }
 
-    public override string ToString() => string.Format(
-        OutputMessages.SoldierToString, 
-        this.Name, 
-        this.OverallSkill
-        );
+
     public abstract void Regenerate();
     public abstract void CompleteMission(IMission mission);
+
+    public override string ToString() => string.Format(
+        OutputMessages.SoldierToString,
+        this.Name,
+        this.OverallSkill
+    );
 }

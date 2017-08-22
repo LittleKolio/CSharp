@@ -27,10 +27,9 @@ public class Engine
             {
                 result.AppendLine(arg.Message);
             }
-            input = ConsoleReader.ReadLine();
         }
 
-        gameController.RequestResult(result);
+        //gameController.RequestResult(result);
         ConsoleWriter.WriteLine(result.ToString());
     }
 }

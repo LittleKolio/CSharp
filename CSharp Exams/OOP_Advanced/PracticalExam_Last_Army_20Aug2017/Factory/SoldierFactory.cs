@@ -1,30 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-namespace Last_Army.Core
+
+public class SoldiersFactory
 {
-    public class SoldiersFactory
+    public ISoldier CreateSoldier(IList<string> arguments)
     {
-        public SoldiersFactory()
-        {
-        }
-        //name, age, experience, speed, endurance, motivation, maxWeight
-        public static Soldier GenerateRanker(string name, int age, int experience, double speed, double endurance,
-            double motivation, double maxWeight)
-        {
-            return new Ranker(name, age, experience, speed, endurance, motivation, maxWeight);
-        }
+        string soldierClassName = arguments[0];
+        arguments.Remove(soldierClassName);
 
-        public static Soldier GenerateCorporal(string name, int age, int experience, double speed, double endurance,
-            double motivation, double maxWeight)
-        {
-            return new Corporal(name, age, experience, speed, endurance, motivation, maxWeight);
-        }
+        Type typesoldierClass = Type.GetType(soldierClassName);
+        ISoldier soldier = (ISoldier)Activator.CreateInstance(
+                typesoldierClass,
+                new object[] 
+                {
+                    arguments[0],               // name
+                    int.Parse(arguments[1]),    // age
+                    double.Parse(arguments[2]), // experience
+                    double.Parse(arguments[3])  // endurance
+                }
+            );
 
-        public static Soldier GenerateSpecialForce(string name, int age, int experience, double speed, double endurance,
-            double motivation, double maxWeight)
-        {
-            return new SpecialForce(name, age, experience, speed, endurance, motivation, maxWeight);
-        }
+        return soldier;
     }
 }

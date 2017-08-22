@@ -1,46 +1,45 @@
 ﻿using System.Collections.Generic;
 
-namespace Last_Army.Core
+public static class AmmunitionsController
 {
-    public static class AmmunitionsController
+    private static List<string> weaponsForRemoval = new List<string>();
+
+    public static void DecreaseAmmunitionsWearLevel(
+        Mission mission, 
+        Dictionary<string, List<Ammunition>> wearHouse)
     {
-        private static List<string> weaponsForRemoval = new List<string>();
+        string weaponName = string.Empty;
 
-        public static void DecreaseAmmunitionsWearLevel(Mission mission, Dictionary<string, List<Ammunition>> wearHouse)
+        foreach (var weapon in mission.MissionWeapons)
         {
-            string weaponName = string.Empty;
-
-            foreach (var weapon in mission.MissionWeapons)
+            weaponName = weapon.Name;
+            foreach (var ammunition in wearHouse[weaponName])
             {
-                weaponName = weapon.Name;
-                foreach (var ammunition in wearHouse[weaponName])
+                if (weaponName.Equals(ammunition.Name))
                 {
-                    if (weaponName.Equals(ammunition.Name))
-                    {
-                        ammunition.DecreaseWearLevel(mission);
-                    }
+                    ammunition.DecreaseWearLevel(mission);
+                }
+            }
+        }
+    }
+
+    public static void ThrowAnyWeaponsWithZeroWearLevel(Dictionary<string, List<Ammunition>> wearHouse)
+    {
+        foreach (var type in wearHouse)
+        {
+            foreach (var weapon in type.Value)
+            {
+                if (weapon.WearLevelIsZero)
+                {
+                    weaponsForRemoval.Add(type.Key);
                 }
             }
         }
 
-        public static void ThrowAnyWeaponsWithZeroWearLevel(Dictionary<string, List<Ammunition>> wearHouse)
+        for (int i = 0; i < weaponsForRemoval.Count; i++)
         {
-            foreach (var type in wearHouse)
-            {
-                foreach (var weapon in type.Value)
-                {
-                    if (weapon.WearLevelIsZero)
-                    {
-                        weaponsForRemoval.Add(type.Key);
-                    }
-                }
-            }
-
-            for (int i = 0; i < weaponsForRemoval.Count; i++)
-            {
-                wearHouse.Remove(weaponsForRemoval[i]);
-            }
-            weaponsForRemoval.Clear();
+            wearHouse.Remove(weaponsForRemoval[i]);
         }
+        weaponsForRemoval.Clear();
     }
 }

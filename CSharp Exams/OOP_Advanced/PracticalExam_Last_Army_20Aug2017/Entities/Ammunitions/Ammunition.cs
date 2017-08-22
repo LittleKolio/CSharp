@@ -4,12 +4,11 @@ public abstract class Ammunition : IAmmunition
 {
     public Ammunition(
         string name, 
-        //double wearLevel, 
         double weight)
     {
         this.Name = name;
-        //this.WearLevel = wearLevel;
         this.Weight = weight;
+        this.WearLevel = weight * 100;
     }
 
     public string Name { get; private set; }

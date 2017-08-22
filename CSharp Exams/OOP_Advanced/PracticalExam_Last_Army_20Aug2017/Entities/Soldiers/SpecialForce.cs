@@ -4,6 +4,8 @@ using System.Text;
 public class SpecialForce : Soldier
 {
     private const double OverallSkillMiltiplier = 3.5;
+
+    //dose it need
     private readonly List<string> weaponsAllowed = new List<string>
     {
         "Gun",
@@ -24,10 +26,16 @@ public class SpecialForce : Soldier
     {
     }
 
+    public override double OverallSkill
+    {
+        get { return base.OverallSkill * OverallSkillMiltiplier; }
+    }
+
     public override void Regenerate()
     {
-
+        base.Endurance = base.Endurance + 30 + this.Age;
     }
+
     public override void CompleteMission(IMission mission)
     {
 
