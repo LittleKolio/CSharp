@@ -1,9 +1,16 @@
-﻿public class NightVision : Ammunition
+﻿using System;
+
+public class NightVision : Ammunition
 {
     public const double NightVisionWeight = 0.8;
 
     public NightVision(string name)
-        : base (name, NightVisionWeight)
+        : base (name)
     {
+    }
+
+    public override double Weight
+    {
+        get { return NightVisionWeight; }
     }
 }

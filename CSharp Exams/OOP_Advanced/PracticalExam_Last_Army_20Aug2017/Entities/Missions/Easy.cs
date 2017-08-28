@@ -1,9 +1,14 @@
 ﻿public class Easy : Mission
 {
-    private const double EnduranceRequired = 20;
+    private const double EasyEnduranceRequired = 20;
 
     public Easy(string name, double scoreToComplete
-        ) : base(name, EnduranceRequired, scoreToComplete)
+        ) : base(name, scoreToComplete)
     {
+    }
+
+    public override double EnduranceRequired
+    {
+        get { return EasyEnduranceRequired; }
     }
 }

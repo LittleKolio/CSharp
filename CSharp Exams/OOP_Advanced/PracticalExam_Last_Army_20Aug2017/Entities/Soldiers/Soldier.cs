@@ -23,6 +23,11 @@ public abstract class Soldier : ISoldier
 
     protected IReadOnlyList<string> WeaponsAllowed { private set; get; }
 
+    public virtual double OverallSkill
+    {
+        get { return this.Age + this.Experience; }
+    }
+
     public string Name { get; private set; }
 
     public int Age { get; private set; }
@@ -48,11 +53,6 @@ public abstract class Soldier : ISoldier
                     "Something is wrong : Endurance");
             }
         }
-    }
-
-    public virtual double OverallSkill
-    {
-        get { return this.Age + this.Experience; }
     }
 
     public bool ReadyForMission(IMission mission)
@@ -86,8 +86,8 @@ public abstract class Soldier : ISoldier
         }
     }
 
-
     public abstract void Regenerate();
+
     public abstract void CompleteMission(IMission mission);
 
     public override string ToString() => string.Format(

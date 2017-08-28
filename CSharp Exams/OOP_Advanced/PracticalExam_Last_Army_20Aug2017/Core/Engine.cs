@@ -1,32 +1,61 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 
 public class Engine
 {
     private const string Terminator = "Enough! Pull back!";
-    private GameController gameController;
+    private IGameController gameController;
+    private MethodInfo[] methods;
     private StringBuilder result;
 
-    public Engine(GameController gameController)
+    public Engine(IGameController gameController)
     {
         this.gameController = gameController;
+        this.methods = this.gameController
+            .GetType()
+            .GetMethods();
         this.result = new StringBuilder();
+    }
+
+    private string[] CustomSplit(string input, params char[] chars)
+    {
+        return input.Split(chars, StringSplitOptions.RemoveEmptyEntries);
     }
 
     public void Run()
     {
         string input;
-        while ((input = ConsoleReader.ReadLine())
-            .Equals(Terminator))
+        while ((input = ConsoleReader.ReadLine()).Equals(Terminator))
         {
+            string[] tokens = CustomSplit(input, ' ');
+            string methodName = tokens[0];
+
+            MethodInfo methodToInvoke = methods.FirstOrDefault(
+                m => m.Name.Equals(methodName, StringComparison.OrdinalIgnoreCase)
+                );
+
+            ParameterInfo[] methodParams = methodToInvoke.GetParameters();
+            object[] parsedParams = new object[methodParams.Length];
+            for (int i = 0; i < methodParams.Length; i++)
+            {
+                Type type = methodParams[i].GetType();
+                parsedParams[i] = Convert.ChangeType(tokens[i + 1], type);
+            }
+
+            string methodResult = string.Empty;
+
             try
             {
-                gameController.GiveInputToGameController(input);
+                //methodResult = methodToInvoke.Invoke(this.gameController, parsedParams);
             }
             catch (ArgumentException arg)
             {
-                result.AppendLine(arg.Message);
+                methodResult = arg.Message;
             }
+
+            this.result.AppendLine(methodResult);
         }
 
         //gameController.RequestResult(result);

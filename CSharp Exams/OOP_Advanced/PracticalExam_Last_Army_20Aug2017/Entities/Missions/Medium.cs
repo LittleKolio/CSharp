@@ -1,9 +1,16 @@
-﻿public class Medium : Mission
+﻿using System;
+
+public class Medium : Mission
 {
-    private const double EnduranceRequired = 50;
+    private const double MediumEnduranceRequired = 50;
 
     public Medium(string name, double scoreToComplete) 
-        : base(name, EnduranceRequired, scoreToComplete)
+        : base(name, scoreToComplete)
     {
+    }
+
+    public override double EnduranceRequired
+    {
+        get { return MediumEnduranceRequired; }
     }
 }

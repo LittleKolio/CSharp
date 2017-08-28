@@ -1,9 +1,16 @@
-﻿public class Hard : Mission
+﻿using System;
+
+public class Hard : Mission
 {
-    private const double EnduranceRequired = 80;
+    private const double HardEnduranceRequired = 80;
 
     public Hard(string name, double scoreToComplete) 
-        : base(name, EnduranceRequired, scoreToComplete)
+        : base(name, scoreToComplete)
     {
+    }
+
+    public override double EnduranceRequired
+    {
+        get { return HardEnduranceRequired; }
     }
 }

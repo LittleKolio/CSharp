@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-public class GameController
+public class GameController : IGameController
 {
     private SoldiersFactory soldierFactory;
     private WareHouse wareHouse;
@@ -20,6 +20,29 @@ public class GameController
         this.army = new Dictionary<string, List<ISoldier>>();
         //this.MissionControllerField = new MissionController();
     }
+
+
+
+
+    public void WareHouse()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Soldier()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Mission()
+    {
+        throw new NotImplementedException();
+    }
+
+
+
+
+
 
     public void CreateSoldierGameController(IList<string> data)
     {
@@ -72,6 +95,7 @@ public class GameController
         //    this.MissionControllerField.PerformMission(new Easy());
         //}
     }
+
 
     //public string RequestResult()
     //{

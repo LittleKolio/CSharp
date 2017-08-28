@@ -18,4 +18,9 @@ public abstract class Ammunition : IAmmunition
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return $"{this.Name} - {this.WearLevel}";
+    }
 }
