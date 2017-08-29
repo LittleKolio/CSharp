@@ -31,6 +31,8 @@ public class GameController : IGameController
         ISoldier soldier = this.soldierFactory
             .CreateSoldier(type, name, age, experience, endurance);
 
+
+
         if (!this.army.ContainsKey(soldier.Name))
         {
             this.army.Add(soldier.Name, soldier);
@@ -42,11 +44,6 @@ public class GameController : IGameController
     public string Mission(string type)
     {
         return string.Empty;
-    }
-
-    private bool AmmunitionsForSoldier()
-    {
-
     }
 
     //public string RequestResult()
