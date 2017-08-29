@@ -56,8 +56,8 @@
     <Compile Include="Entities\Soldiers\Corporal.cs" />
     <Compile Include="Entities\Soldiers\Ranker.cs" />
     <Compile Include="Entities\WareHouse.cs" />
-    <Compile Include="Factory\AmmunitionFactory.cs" />
-    <Compile Include="Factory\SoldierFactory.cs" />
+    <Compile Include="Factories\AmmunitionFactory.cs" />
+    <Compile Include="Factories\SoldierFactory.cs" />
     <Compile Include="Entities\Ammunitions\AutomaticMachine.cs" />
     <Compile Include="Entities\Ammunitions\Other\BulletproofVest.cs" />
     <Compile Include="Entities\Ammunitions\Other\Grenades.cs" />

@@ -9,93 +9,45 @@ public class GameController : IGameController
     private SoldiersFactory soldierFactory;
     private WareHouse wareHouse;
 
-    private Dictionary<string, List<ISoldier>> army;
-
+    private Dictionary<string, ISoldier> army;
     //private MissionController missionControllerField;
 
     public GameController()
     {
         this.soldierFactory = new SoldiersFactory();
-
-        this.army = new Dictionary<string, List<ISoldier>>();
+        this.army = new Dictionary<string, ISoldier>();
         //this.MissionControllerField = new MissionController();
     }
 
 
 
-
-    public void WareHouse()
+    public string WareHouse(string name, int count)
     {
-        throw new NotImplementedException();
+        return string.Empty;
     }
 
-    public void Soldier()
+    public string Soldier(string type, string name, int age, double experience, double endurance)
     {
-        throw new NotImplementedException();
-    }
+        ISoldier soldier = this.soldierFactory
+            .CreateSoldier(type, name, age, experience, endurance);
 
-    public void Mission()
-    {
-        throw new NotImplementedException();
-    }
-
-
-
-
-
-
-    public void CreateSoldierGameController(IList<string> data)
-    {
-        ISoldier soldier = this.soldierFactory.CreateSoldier(data);
-
-        if (!this.army.ContainsKey(soldier.GetType().Name))
+        if (!this.army.ContainsKey(soldier.Name))
         {
-            this.army.Add(
-                soldier.GetType().Name,
-                new List<ISoldier>()
-                );
+            this.army.Add(soldier.Name, soldier);
         }
 
-        this.army[soldier.GetType().Name].Add(soldier);
+        return string.Empty;
     }
 
-    public void GiveInputToGameController(string input)
+    public string Mission(string type)
     {
-        IList<string> data = input.Split(
-            new char[] { ' ' }, 
-            StringSplitOptions.RemoveEmptyEntries)
-            .ToList();
-
-        string command = data[0];
-        data.Remove(command);
-
-        switch (command)
-        {
-            case "Soldier": this.CreateSoldierGameController(data); break;
-
-            case "WareHouse":
-                {
-
-                } break;
-
-            default:
-                break;
-
-        }
-
-        //else if (data[0].Equals("WearHouse"))
-        //{
-        //    string name = data[1];
-        //    int number = int.Parse(data[2]);
-
-        //    AddAmmunitions(AmmunitionFactory.CreateAmmunitions(name, number));
-        //}
-        //else if (data[0].Equals("Mission"))
-        //{
-        //    this.MissionControllerField.PerformMission(new Easy());
-        //}
+        return string.Empty;
     }
 
+    private bool AmmunitionsForSoldier()
+    {
+
+    }
 
     //public string RequestResult()
     //{

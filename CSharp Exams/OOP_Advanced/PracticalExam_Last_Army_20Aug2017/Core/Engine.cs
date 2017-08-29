@@ -6,14 +6,15 @@ using System.Text;
 public class Engine
 {
     private const string Terminator = "Enough! Pull back!";
-    private IGameController gameController;
+
+    private IGameController controller;
     private MethodInfo[] methods;
     private StringBuilder result;
 
-    public Engine(IGameController gameController)
+    public Engine(IGameController controller)
     {
-        this.gameController = gameController;
-        this.methods = this.gameController
+        this.controller = controller;
+        this.methods = this.controller
             .GetType()
             .GetMethods();
         this.result = new StringBuilder();
@@ -44,18 +45,17 @@ public class Engine
                 parsedParams[i] = Convert.ChangeType(tokens[i + 1], type);
             }
 
-            string methodResult = string.Empty;
-
             try
             {
-                //methodResult = methodToInvoke.Invoke(this.gameController, parsedParams);
+                this.result.AppendLine(methodToInvoke
+                    .Invoke(this.controller, parsedParams)
+                    .ToString()
+                    );
             }
             catch (ArgumentException arg)
             {
-                methodResult = arg.Message;
+                this.result.AppendLine(arg.Message);
             }
-
-            this.result.AppendLine(methodResult);
         }
 
         //gameController.RequestResult(result);

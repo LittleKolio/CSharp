@@ -28,6 +28,11 @@ public class Corporal : Soldier
         get { return base.OverallSkill * OverallSkillMiltiplier; }
     }
 
+    public override IReadOnlyList<string> WeaponsAllowed
+    {
+        get { return this.weaponsAllowed; }
+    }
+
     public override void Regenerate()
     {
         base.Endurance = base.Endurance + 10 + this.Age;

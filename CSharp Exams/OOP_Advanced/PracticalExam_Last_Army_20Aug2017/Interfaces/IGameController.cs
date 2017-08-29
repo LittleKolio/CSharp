@@ -1,6 +1,6 @@
 ﻿public interface IGameController
 {
-    void WareHouse();
-    void Soldier();
-    void Mission();
+    string WareHouse(string name, int count);
+    string Soldier(string type, string name, int age, double experience, double endurance);
+    string Mission(string type);
 }

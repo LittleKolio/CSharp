@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 public class SpecialForce : Soldier
@@ -6,7 +7,7 @@ public class SpecialForce : Soldier
     private const double OverallSkillMiltiplier = 3.5;
 
     //dose it need
-    private readonly List<string> weaponsAllowed = new List<string>
+    private List<string> weaponsAllowed = new List<string>
     {
         "Gun",
         "AutomaticMachine",
@@ -29,6 +30,11 @@ public class SpecialForce : Soldier
     public override double OverallSkill
     {
         get { return base.OverallSkill * OverallSkillMiltiplier; }
+    }
+
+    public override IReadOnlyList<string> WeaponsAllowed
+    {
+        get { return this.weaponsAllowed; }
     }
 
     public override void Regenerate()

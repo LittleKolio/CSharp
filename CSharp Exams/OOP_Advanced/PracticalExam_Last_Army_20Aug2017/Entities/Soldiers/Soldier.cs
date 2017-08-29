@@ -19,9 +19,9 @@ public abstract class Soldier : ISoldier
         this.Endurance = endurance;
     }
 
-    public IDictionary<string, IAmmunition> Weapons { private set; get; }
+    public IDictionary<string, IAmmunition> Weapons { get; private set; }
 
-    protected IReadOnlyList<string> WeaponsAllowed { private set; get; }
+    public abstract IReadOnlyList<string> WeaponsAllowed { get; }
 
     public virtual double OverallSkill
     {
