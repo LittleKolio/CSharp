@@ -5,13 +5,14 @@ public class Corporal : Soldier
 {
     private const double OverallSkillMiltiplier = 2.5;
 
-    private readonly List<string> weaponsAllowed = new List<string>
+    private readonly IDictionary<string, IAmmunition> weapons
+        = new Dictionary<string, IAmmunition>
     {
-        "Gun",
-        "AutomaticMachine",
-        "MachineGun",
-        "Helmet",
-        "Knife"
+        { "Gun", new Gun("Gun") },
+        { "AutomaticMachine", new AutomaticMachine("AutomaticMachine") },
+        { "MachineGun", new MachineGun("MachineGun") },
+        { "Helmet", new Helmet("Helmet") },
+        { "Knife", new Knife("Knife") }
     };
 
     public Corporal(
@@ -28,9 +29,9 @@ public class Corporal : Soldier
         get { return base.OverallSkill * OverallSkillMiltiplier; }
     }
 
-    public override IReadOnlyList<string> WeaponsAllowed
+    public override IDictionary<string, IAmmunition> Weapons
     {
-        get { return this.weaponsAllowed; }
+        get { return this.weapons; }
     }
 
     public override void Regenerate()
