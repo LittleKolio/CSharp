@@ -4,9 +4,7 @@ using System.Collections.Generic;
 public class Corporal : Soldier
 {
     private const double OverallSkillMiltiplier = 2.5;
-
-    private readonly IDictionary<string, IAmmunition> weapons
-        = new Dictionary<string, IAmmunition>
+    private IDictionary<string, IAmmunition> weapons = new Dictionary<string, IAmmunition>
     {
         { "Gun", new Gun("Gun") },
         { "AutomaticMachine", new AutomaticMachine("AutomaticMachine") },

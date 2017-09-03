@@ -31,9 +31,10 @@ public class GameController : IGameController
         ISoldier soldier = this.soldierFactory
             .CreateSoldier(type, name, age, experience, endurance);
 
+        List<string> soldierWeapons = soldier.Weapons.Keys.ToList();
 
-
-        if (!this.army.ContainsKey(soldier.Name))
+        if (!this.army.ContainsKey(soldier.Name) &&
+            soldierWeapons.All(w => this.wareHouse.Ammunitions[w] > 0))
         {
             this.army.Add(soldier.Name, soldier);
         }

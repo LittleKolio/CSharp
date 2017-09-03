@@ -4,12 +4,11 @@ using System.Collections.Generic;
 public class Ranker : Soldier
 {
     private const double OverallSkillMiltiplier = 1.5;
-
-    private readonly List<string> weaponsAllowed = new List<string>
+    private IDictionary<string, IAmmunition> weapons = new Dictionary<string, IAmmunition>
     {
-        "Gun",
-        "AutomaticMachine",
-        "Helmet"
+        { "Gun", new Gun("Gun") },
+        { "AutomaticMachine", new AutomaticMachine("AutomaticMachine") },
+        { "Helmet", new Helmet("Helmet") }
     };
 
     public Ranker(
@@ -26,9 +25,9 @@ public class Ranker : Soldier
         get { return base.OverallSkill * OverallSkillMiltiplier; }
     }
 
-    public override IReadOnlyList<string> WeaponsAllowed
+    public override IDictionary<string, IAmmunition> Weapons
     {
-        get { return this.weaponsAllowed; }
+        get { return this.weapons; }
     }
 
     public override void Regenerate()
