@@ -5,6 +5,7 @@ using System.Linq;
 public abstract class Soldier : ISoldier
 {
     private double endurance;
+    private IDictionary<string, IAmmunition> weapons;
 
     public Soldier(
         string name, 
@@ -17,9 +18,14 @@ public abstract class Soldier : ISoldier
         this.Age = age;
         this.Experience = experience;
         this.Endurance = endurance;
+        this.weapons = new Dictionary<string, IAmmunition>();
     }
 
-    public abstract IDictionary<string, IAmmunition> Weapons { get; }
+    public IDictionary<string, IAmmunition> Weapons
+    {
+        get { return this.weapons; }
+    }
+    protected abstract IReadOnlyList<string> WeaponsAllowed { get; }
 
     public virtual double OverallSkill
     {

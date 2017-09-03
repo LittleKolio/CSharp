@@ -1,9 +1,16 @@
-﻿public class BulletproofVest
+﻿using System;
+
+public class BulletproofVest : Ammunition
 {
-    public const double Weight = 3.4;
+    public const double BulletproofVestWeight = 3.4;
 
     public BulletproofVest(string name)
-        : base(name, Weight)
+        : base(name)
     {
+    }
+
+    public override double Weight
+    {
+        get { return BulletproofVestWeight; }
     }
 }

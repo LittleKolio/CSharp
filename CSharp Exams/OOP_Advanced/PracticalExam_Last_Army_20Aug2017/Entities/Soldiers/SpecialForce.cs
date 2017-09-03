@@ -5,16 +5,17 @@ using System.Text;
 public class SpecialForce : Soldier
 {
     private const double OverallSkillMiltiplier = 3.5;
-    private IDictionary<string, IAmmunition> weapons = new Dictionary<string, IAmmunition>
-    {
-        { "Gun", new Gun("Gun") },
-        { "AutomaticMachine", new AutomaticMachine("AutomaticMachine") },
-        { "MachineGun", new MachineGun("MachineGun") },
-        { "RPG", new RPG("RPG") },
-        { "Helmet", new Helmet("Helmet") },
-        { "Knife", new Knife("Knife") },
-        { "NightVision", new NightVision("NightVision") }
-    };
+
+    private readonly List<string> weaponsAllowed = new List<string>
+        {
+            "Gun",
+            "AutomaticMachine",
+            "MachineGun",
+            "RPG",
+            "Helmet",
+            "Knife",
+            "NightVision"
+        };
 
     public SpecialForce(
         string name, 
@@ -30,9 +31,9 @@ public class SpecialForce : Soldier
         get { return base.OverallSkill * OverallSkillMiltiplier; }
     }
 
-    public override IDictionary<string, IAmmunition> Weapons
+    protected override IReadOnlyList<string> WeaponsAllowed
     {
-        get { return this.weapons; }
+        get { return this.weaponsAllowed; }
     }
 
     public override void Regenerate()

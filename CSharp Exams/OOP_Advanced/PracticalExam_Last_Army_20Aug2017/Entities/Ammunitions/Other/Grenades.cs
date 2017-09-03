@@ -1,9 +1,16 @@
-﻿public class Grenades
+﻿using System;
+
+public class Grenades : Ammunition
 {
-    public const double Weight = 1.0;
+    public const double GrenadesWeight = 1.0;
 
     public Grenades(string name) 
-        : base (name, Weight)
+        : base (name)
     {
+    }
+
+    public override double Weight
+    {
+        get { return GrenadesWeight; }
     }
 }

@@ -7,6 +7,7 @@ using System.Text;
 public class GameController : IGameController
 {
     private SoldiersFactory soldierFactory;
+    private AmmunitionFactory ammunitionFactory;
     private WareHouse wareHouse;
 
     private Dictionary<string, ISoldier> army;
@@ -23,6 +24,13 @@ public class GameController : IGameController
 
     public string WareHouse(string name, int count)
     {
+        IAmmunition ammu = this.ammunitionFactory.CreateAmmunition(name);
+        if (!this.wareHouse.Ammunitions.ContainsKey(ammu.Name))
+        {
+            this.wareHouse.Ammunitions.Add(ammu.Name, 0);
+        }
+        this.wareHouse.Ammunitions[ammu.Name] += count;
+
         return string.Empty;
     }
 
@@ -33,8 +41,9 @@ public class GameController : IGameController
 
         List<string> soldierWeapons = soldier.Weapons.Keys.ToList();
 
-        if (!this.army.ContainsKey(soldier.Name) &&
-            soldierWeapons.All(w => this.wareHouse.Ammunitions[w] > 0))
+        //bool allowedWeapons = soldierWeapons.All(w => this.wareHouse.Ammunitions[w] > 0);
+
+        if (!this.army.ContainsKey(soldier.Name))
         {
             this.army.Add(soldier.Name, soldier);
         }

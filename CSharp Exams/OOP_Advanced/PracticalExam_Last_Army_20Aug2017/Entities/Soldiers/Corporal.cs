@@ -4,14 +4,15 @@ using System.Collections.Generic;
 public class Corporal : Soldier
 {
     private const double OverallSkillMiltiplier = 2.5;
-    private IDictionary<string, IAmmunition> weapons = new Dictionary<string, IAmmunition>
-    {
-        { "Gun", new Gun("Gun") },
-        { "AutomaticMachine", new AutomaticMachine("AutomaticMachine") },
-        { "MachineGun", new MachineGun("MachineGun") },
-        { "Helmet", new Helmet("Helmet") },
-        { "Knife", new Knife("Knife") }
-    };
+
+    private readonly List<string> weaponsAllowed = new List<string>
+        {
+            "Gun",
+            "AutomaticMachine",
+            "MachineGun",
+            "Helmet",
+            "Knife"
+        };
 
     public Corporal(
         string name, 
@@ -27,9 +28,9 @@ public class Corporal : Soldier
         get { return base.OverallSkill * OverallSkillMiltiplier; }
     }
 
-    public override IDictionary<string, IAmmunition> Weapons
+    protected override IReadOnlyList<string> WeaponsAllowed
     {
-        get { return this.weapons; }
+        get { return this.weaponsAllowed; }
     }
 
     public override void Regenerate()
