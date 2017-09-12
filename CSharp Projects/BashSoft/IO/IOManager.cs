@@ -23,7 +23,7 @@
                 string currentPath = folders.Pop();
                 int depth = currentPath.Split('\\').Length - folderDepth;
 
-                OutputWriter.WriteMessageOnNewLine(
+                OutputWriter.WriteOneLineMessage(
                     '\u251C' + 
                     new string('\u2500', depth) + 
                     currentPath);
@@ -42,7 +42,7 @@
                         string fileName = file.Substring(
                             file.LastIndexOf("\\") + 1);
 
-                        OutputWriter.WriteMessageOnNewLine(
+                        OutputWriter.WriteOneLineMessage(
                             new string(' ', depth + 1) + "\u2514\u2500 " +
                             fileName);
                     }
@@ -55,7 +55,7 @@
                  */
                 catch (UnauthorizedAccessException ex)
                 {
-                    OutputWriter.WriteMessageOnNewLine(ex.Message);
+                    OutputWriter.WriteOneLineMessage(ex.Message);
                     continue;
                 }
 
@@ -67,7 +67,7 @@
                  */
                 catch (DirectoryNotFoundException ex)
                 {
-                    OutputWriter.WriteMessageOnNewLine(ex.Message);
+                    OutputWriter.WriteOneLineMessage(ex.Message);
                     continue;
                 }
             }

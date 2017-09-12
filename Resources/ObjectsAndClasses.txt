@@ -97,6 +97,12 @@
 		
 		├─██ Клас, който има само private конструктори не може да бъде инстанциран. Такъв клас обикновено има само статични членове и се нарича utility клас.
 
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Static class
+	├─┬───────────────────────────────────────────────────────────────────┘
+		├─ A static class cannot be instantiated. In other words, you cannot use the new keyword to create a variable of the class type. Because there is no instance variable, you access the members of a static class by using the class name itself.
+
+		A static class can be used as a convenient container for sets of methods that just operate on input parameters and do not have to get or set any internal instance fields. For example, the static System.Math class
 
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│ this
@@ -192,9 +198,7 @@ Abstraction helps managing complexity
 ╟─ An interface cannot have access modifiers for the subs, functions, properties etc. Everything is assumed as public. No fields can be defined in interfaces
 ╟─ If we add a new method to an Interface then we have to track down all the implementations of the interface and define implementation for the new method.
 
-
 If various implementations only share method signatures then it is better to use Interfaces.
-
 
  An interface can contain signatures of methods, properties, indexers, events
  
@@ -526,19 +530,30 @@ The classes in the System.Reflection namespace, together with System.Type, enabl
 
 
 
+╔═══════════════════════════════════════════════════════════════════════╗
+║ Access modifiers
+╠═══════════════════════════════════════════════════════════════════════╝
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Public 
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ Липса на ограничения върху видимостта, най-малко рестриктивното от всички нива на достъп в C#. Това означава, че всеки друг клас ще може да създава обекти от тип този клас и да има достъп до методите и полетата на класа (стига тези полета да имат подходящо ниво на достъп).
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Private (default access modifier)
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ Не може да бъде достъпван от никой друг клас (освен от класа, в който е дефиниран). Прилага, когато липсва модификатор за достъп пред съответния елемент на класа.
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Internal
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ Това означава, че само класовете от същото асембли ще могат да създават обекти от тип този клас и да имат достъп до методите и полетата (с подходящо ниво на достъп) на класа.
 
 
 
 
 
-
-
-
-
-
-
-
-
+╟─ Ако във Visual Studio имаме два проекта в общ solution и искаме от единия проект да използваме клас, дефиниран в другия проект, то реферираният клас трябва задължително да е public.
 
 
 

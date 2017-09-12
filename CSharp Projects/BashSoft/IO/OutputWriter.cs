@@ -12,7 +12,7 @@
         {
             Console.Write(message);
         }
-        public static void WriteMessageOnNewLine(string message)
+        public static void WriteOneLineMessage(string message)
         {
             Console.WriteLine(message);
         }
