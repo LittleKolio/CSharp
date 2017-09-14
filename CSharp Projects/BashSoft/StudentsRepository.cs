@@ -17,11 +17,11 @@
             }
             else
             {
-                OutputWriter.WriteMessageOnNewLine(CustomMessages.dataExists);
+                OutputWriter.WriteOneLineMessage(CustomMessages.dataExists);
             }
         }
 
-        private static void ReadData()
+        public static void ReadData()
         {
             string input;
             while (!string.IsNullOrEmpty(
@@ -49,6 +49,35 @@
 
             isDataInitialize = true;
             OutputWriter.WriteOneLineMessage("Read data.");
+        }
+
+        private static void DisplayStudent(KeyValuePair<string, List<int>> student)
+        {
+            OutputWriter.WriteOneLineMessage($"{student.Key} - {string.Join(", ", student.Value)}");
+        }
+
+        public static void GetStudentScores(string cours, string student)
+        {
+            if (coursesAndStudents.ContainsKey(cours) &&
+                coursesAndStudents[cours].ContainsKey(student))
+            {
+                DisplayStudent(
+                    new KeyValuePair<string, List<int>>(
+                        student, coursesAndStudents[cours][student]));
+            }
+        }
+
+        public static void GetCoursStudents(string cours)
+        {
+            if (coursesAndStudents.ContainsKey(cours))
+            {
+                foreach (string student in coursesAndStudents[cours].Keys)
+                {
+                    DisplayStudent(
+                    new KeyValuePair<string, List<int>>(
+                        student, coursesAndStudents[cours][student]));
+                }
+            }
         }
     }
 }

@@ -17,8 +17,12 @@
             //    OutputWriter.DisplayExeption(input);
             //}
 
-            string path = @"D:\Movies";
-            IOManager.TraverseFolder(path);
+            //string path = @"D:\Movies";
+            //IOManager.TraverseFolder(path);
+
+            StudentsRepository.InitializeData();
+            StudentsRepository.ReadData();
+            StudentsRepository.GetStudentScores("Unity", "Ivan");
         }
     }
 }
