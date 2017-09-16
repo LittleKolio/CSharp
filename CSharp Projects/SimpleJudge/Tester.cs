@@ -3,6 +3,7 @@
     using BashSoft.IO;
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -13,6 +14,9 @@
         {
             OutputWriter.WriteOneLineMessage("Reading files...");
             string mismatchPath = GetMismatchPath(expectedOutputPath);
+
+            string[] userOutput = File.ReadAllLines(userOutputPath);
+            string[] expectedOutput = File.ReadAllLines(expectedOutputPath);
 
         }
 
