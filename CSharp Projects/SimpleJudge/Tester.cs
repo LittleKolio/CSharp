@@ -18,6 +18,19 @@
             string[] userOutput = File.ReadAllLines(userOutputPath);
             string[] expectedOutput = File.ReadAllLines(expectedOutputPath);
 
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < userOutput.Length; i++)
+            {
+                string input = userOutput[i];
+                string compareWith = userOutput[i];
+
+                if ()
+                {
+
+                }
+            }
+
         }
 
         private static string GetMismatchPath(string expectedOutputPath)
