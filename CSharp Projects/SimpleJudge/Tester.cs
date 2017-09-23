@@ -10,6 +10,8 @@
 
     public static class Tester
     {
+        private static string mismatchFormat = "Mismatch at line {0} -- expected: \"{1}\", actual: \"{2}\"";
+        private static bool mismatchBool = false;
         public static void CompareContent(string userOutputPath, string expectedOutputPath)
         {
             OutputWriter.WriteOneLineMessage("Reading files...");
@@ -23,20 +25,25 @@
             for (int i = 0; i < userOutput.Length; i++)
             {
                 string input = userOutput[i];
-                string compareWith = userOutput[i];
+                string compareWith = expectedOutput[i];
 
-                if ()
+                if (!input.Equals(compareWith))
                 {
-
+                    sb.AppendLine(string.Format(
+                        mismatchFormat, (i + 1), input, compareWith));
                 }
             }
 
+            if (sb.Length > 0)
+            {
+                File.WriteAllText(mismatchPath, sb.ToString());
+            }
         }
 
         private static string GetMismatchPath(string expectedOutputPath)
         {
             int lastIndex = expectedOutputPath.LastIndexOf('\\');
-            string path = expectedOutputPath.Substring(lastIndex);
+            string path = expectedOutputPath.Substring(0, lastIndex);
             string mismatchPath = path + @"\Mismatches.txt";
             return mismatchPath;
         }

@@ -9,23 +9,28 @@
 
     public static class IOManager
     {
-        public static void TraverseFolder(string path)
+
+        public static void TraverseFolder(int depth)
         {
             OutputWriter.WriteEmptyLine();
 
-            int folderDepth = path.Split('\\').Length;
+            int folderDepth = CustomPath.CurrentPath.Split('\\').Length;
 
             Stack<string> folders = new Stack<string>();
-            folders.Push(path);
+            folders.Push(CustomPath.CurrentPath);
 
             while (folders.Count != 0)
             {
                 string currentPath = folders.Pop();
-                int depth = currentPath.Split('\\').Length - folderDepth;
+                int currentDepth = currentPath.Split('\\').Length - folderDepth;
+                if (currentDepth > depth)
+                {
+                    break;
+                }
 
                 OutputWriter.WriteOneLineMessage(
                     '\u251C' + 
-                    new string('\u2500', depth) + 
+                    new string('\u2500', currentDepth) + 
                     currentPath);
 
                 try
@@ -43,7 +48,7 @@
                             file.LastIndexOf("\\") + 1);
 
                         OutputWriter.WriteOneLineMessage(
-                            new string(' ', depth + 1) + "\u2514\u2500 " +
+                            new string(' ', currentDepth + 1) + "\u2514\u2500 " +
                             fileName);
                     }
                 }
