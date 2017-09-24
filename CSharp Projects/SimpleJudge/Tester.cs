@@ -22,7 +22,9 @@
 
             StringBuilder sb = new StringBuilder();
 
-            for (int i = 0; i < userOutput.Length; i++)
+            int count = Math.Max(userOutput.Length, expectedOutput.Length);
+
+            for (int i = 0; i < count; i++)
             {
                 string input = userOutput[i];
                 string compareWith = expectedOutput[i];
@@ -33,6 +35,16 @@
                         mismatchFormat, (i + 1), input, compareWith));
                 }
             }
+
+            //if (userOutput.Length > expectedOutput.Length)
+            //{
+
+            //}
+
+            //if (userOutput.Length < expectedOutput.Length)
+            //{
+
+            //}
 
             if (sb.Length > 0)
             {
