@@ -11,7 +11,6 @@
     public static class Tester
     {
         private static string mismatchFormat = "Mismatch at line {0} -- expected: \"{1}\", actual: \"{2}\"";
-        private static bool mismatchBool = false;
         public static void CompareContent(string userOutputPath, string expectedOutputPath)
         {
             OutputWriter.WriteOneLineMessage("Reading files...");
@@ -22,12 +21,27 @@
 
             StringBuilder sb = new StringBuilder();
 
-            int count = Math.Max(userOutput.Length, expectedOutput.Length);
+            int count = 0;
+
+            if (userOutput.Length > expectedOutput.Length)
+            {
+                sb.AppendLine("The file is bigger.");
+                count = userOutput.Length;
+            }
+
+            if (userOutput.Length < expectedOutput.Length)
+            {
+                sb.AppendLine("The file is smaller.");
+                count = expectedOutput.Length;
+            }
 
             for (int i = 0; i < count; i++)
             {
-                string input = userOutput[i];
-                string compareWith = expectedOutput[i];
+                string input = "none";
+                string compareWith = "none";
+
+                if (userOutput.Length > i) { input = userOutput[i]; }
+                if (expectedOutput.Length > i) { compareWith = expectedOutput[i]; }
 
                 if (!input.Equals(compareWith))
                 {
@@ -35,17 +49,7 @@
                         mismatchFormat, (i + 1), input, compareWith));
                 }
             }
-
-            //if (userOutput.Length > expectedOutput.Length)
-            //{
-
-            //}
-
-            //if (userOutput.Length < expectedOutput.Length)
-            //{
-
-            //}
-
+            
             if (sb.Length > 0)
             {
                 File.WriteAllText(mismatchPath, sb.ToString());
