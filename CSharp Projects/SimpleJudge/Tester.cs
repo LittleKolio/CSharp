@@ -1,5 +1,6 @@
 ﻿namespace SimpleJudge
 {
+    using BashSoft;
     using BashSoft.IO;
     using System;
     using System.Collections.Generic;
@@ -10,49 +11,67 @@
 
     public static class Tester
     {
-        private static string mismatchFormat = "Mismatch at line {0} -- expected: \"{1}\", actual: \"{2}\"";
+        private static string mismatchFormat 
+            = "Mismatch at line {0} -- expected: \"{1}\", actual: \"{2}\"";
+
         public static void CompareContent(string userOutputPath, string expectedOutputPath)
         {
             OutputWriter.WriteOneLineMessage("Reading files...");
-            string mismatchPath = GetMismatchPath(expectedOutputPath);
-
-            string[] userOutput = File.ReadAllLines(userOutputPath);
-            string[] expectedOutput = File.ReadAllLines(expectedOutputPath);
-
             StringBuilder sb = new StringBuilder();
 
-            int count = 0;
-
-            if (userOutput.Length > expectedOutput.Length)
+            try
             {
-                sb.AppendLine("The file is bigger.");
-                count = userOutput.Length;
-            }
+                string[] userOutput = File.ReadAllLines(userOutputPath);
+                string[] expectedOutput = File.ReadAllLines(expectedOutputPath);
 
-            if (userOutput.Length < expectedOutput.Length)
-            {
-                sb.AppendLine("The file is smaller.");
-                count = expectedOutput.Length;
-            }
+                string mismatchPath = GetMismatchPath(expectedOutputPath);
 
-            for (int i = 0; i < count; i++)
-            {
-                string input = "none";
-                string compareWith = "none";
+                int count = 0;
 
-                if (userOutput.Length > i) { input = userOutput[i]; }
-                if (expectedOutput.Length > i) { compareWith = expectedOutput[i]; }
-
-                if (!input.Equals(compareWith))
+                if (userOutput.Length > expectedOutput.Length)
                 {
-                    sb.AppendLine(string.Format(
-                        mismatchFormat, (i + 1), input, compareWith));
+                    OutputWriter.WriteOneLineMessage(
+                        CustomMessages.FileHasMoreText);
+
+                    count = userOutput.Length;
+                }
+
+                if (userOutput.Length < expectedOutput.Length)
+                {
+                    OutputWriter.WriteOneLineMessage(
+                        CustomMessages.FileHasLessText);
+
+                    count = expectedOutput.Length;
+                }
+
+                for (int i = 0; i < count; i++)
+                {
+                    string input = "none";
+                    string compareWith = "none";
+
+                    if (userOutput.Length > i) { input = userOutput[i]; }
+                    if (expectedOutput.Length > i) { compareWith = expectedOutput[i]; }
+
+                    if (!input.Equals(compareWith))
+                    {
+                        sb.AppendLine(string.Format(
+                            mismatchFormat, (i + 1), input, compareWith));
+                    }
+                }
+
+                if (sb.Length > 0)
+                {
+                    File.WriteAllText(mismatchPath, sb.ToString());
+                }
+                else if (sb.Length == 0)
+                {
+                    OutputWriter.WriteOneLineMessage(
+                        CustomMessages.FilesAreIdentical);
                 }
             }
-            
-            if (sb.Length > 0)
+            catch (DirectoryNotFoundException ex)
             {
-                File.WriteAllText(mismatchPath, sb.ToString());
+                OutputWriter.WriteOneLineMessage(ex.Message);
             }
         }
 

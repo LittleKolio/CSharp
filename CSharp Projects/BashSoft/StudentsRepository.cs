@@ -17,7 +17,7 @@
             }
             else
             {
-                OutputWriter.WriteOneLineMessage(CustomMessages.dataExists);
+                OutputWriter.WriteOneLineMessage(CustomMessages.DataExists);
             }
         }
 

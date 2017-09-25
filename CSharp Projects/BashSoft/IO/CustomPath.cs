@@ -1,5 +1,6 @@
 ﻿namespace BashSoft.IO
 {
+    using System;
     using System.IO;
 
     public static class CustomPath
@@ -18,7 +19,16 @@
         public static void CreateDirectory(string folderName)
         {
             string path = CurrentPath + "\\" + folderName;
-            Directory.CreateDirectory(path);
+
+            try
+            {
+                Directory.CreateDirectory(path);
+            }
+            catch (ArgumentException)
+            {
+                OutputWriter.WriteOneLineMessage(
+                    CustomMessages.NotAllowedCharacters);
+            }
         }
 
         public static void ChangePath(string newPath)

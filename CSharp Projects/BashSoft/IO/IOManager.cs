@@ -58,9 +58,10 @@
                  * will be thrown if we do not have
                  * discovery permission on a folder or file.
                  */
-                catch (UnauthorizedAccessException ex)
+                catch (UnauthorizedAccessException)
                 {
-                    OutputWriter.WriteOneLineMessage(ex.Message);
+                    OutputWriter.WriteOneLineMessage(
+                        CustomMessages.UnauthorizedAccess);
                     continue;
                 }
 
@@ -68,7 +69,7 @@
                  * It is also possible (but unlikely) that a
                  * DirectoryNotFound exception will be raised.
                  * This will happen if currentDir has been deleted by
-                 * another application or thread after our call to Directory.Exists.
+                 * another application or thread after our call to TraverseFolder().
                  */
                 catch (DirectoryNotFoundException ex)
                 {
