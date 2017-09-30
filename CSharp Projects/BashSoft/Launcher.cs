@@ -1,5 +1,6 @@
 ﻿namespace BashSoft
 {
+    using Core;
     using IO;
     using System;
     using System.Collections.Generic;
@@ -12,12 +13,6 @@
     {
         static void Main()
         {
-            //string input;
-            //while ((input = Console.ReadLine()) != "end")
-            //{
-            //    OutputWriter.DisplayExeption(input);
-            //}
-
             //string path = @"D:\Movies";
             //IOManager.TraverseFolder(path);
 
@@ -25,8 +20,11 @@
             //StudentsRepository.ReadData();
             //StudentsRepository.GetStudentScores("Unity", "Ivan");
 
-            CustomPath.ChangePath(@"C:\Windows");
-            IOManager.TraverseFolder(20);
+            //CustomPath.ChangePath(@"C:\Windows");
+            //IOManager.TraverseFolder(20);
+
+            Engine engine = new Engine();
+            engine.Run();
         }
     }
 }

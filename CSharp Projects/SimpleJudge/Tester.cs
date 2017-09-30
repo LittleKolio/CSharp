@@ -71,7 +71,7 @@
             }
             catch (DirectoryNotFoundException ex)
             {
-                OutputWriter.WriteOneLineMessage(ex.Message);
+                OutputWriter.WriteExeption(ex.Message);
             }
         }
 

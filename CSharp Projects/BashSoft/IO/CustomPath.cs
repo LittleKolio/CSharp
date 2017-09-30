@@ -26,7 +26,7 @@
             }
             catch (ArgumentException)
             {
-                OutputWriter.WriteOneLineMessage(
+                OutputWriter.WriteExeption(
                     CustomMessages.NotAllowedCharacters);
             }
         }
