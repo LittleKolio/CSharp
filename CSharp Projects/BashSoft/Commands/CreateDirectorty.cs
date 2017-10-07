@@ -6,16 +6,18 @@
 
     public class CreateDirectorty : Command
     {
-        private string folderName;
-
-        public CreateDirectorty(string folderName)
+        public CreateDirectorty(List<string> list) : base(list)
         {
-            this.folderName = folderName;
+        }
+
+        public override Command Create(List<string> list)
+        {
+            return new CreateDirectorty(list);
         }
 
         public override void Execute()
         {
-            CustomPath.CreateDirectory(this.folderName);
+            CustomPath.CreateDirectory(base.List[0]);
         }
     }
 }
