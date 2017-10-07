@@ -22,7 +22,7 @@ namespace BashSoft.Commands
             {
                 if (value.Count == 0)
                 {
-                    throw new ArgumentException("Nothing!!");
+                    throw new ArgumentException("Nothing!!!");
                 }
                 this.list = value;
             }
