@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\CreateDirectorty.cs" />
+    <Compile Include="Commands\NotFound.cs" />
+    <Compile Include="Commands\TestCommand.cs" />
     <Compile Include="Core\CommandController.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="CustomMessages.cs" />

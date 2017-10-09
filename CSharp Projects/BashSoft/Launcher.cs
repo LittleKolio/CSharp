@@ -23,7 +23,8 @@
             //CustomPath.ChangePath(@"C:\Windows");
             //IOManager.TraverseFolder(20);
 
-            Engine engine = new Engine();
+            CommandController controller = new CommandController();
+            Engine engine = new Engine(controller);
             engine.Run();
         }
     }

@@ -1,26 +1,35 @@
 ﻿namespace BashSoft.Core
 {
     using BashSoft.IO;
+    using Commands;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class Engine
     {
-        private Dictionary<string, ICommand>
-
         private const string EndCommand = "quit";
+        private CommandController controller;
+        private Command command;
+
+        public Engine(CommandController controller)
+        {
+            this.controller = controller;
+        }
 
         public void Run()
         {
             string input;
-            while ((input = InputReader.ConsoleReader())
-                .Equals(
-                    EndCommand, 
-                    StringComparison.InvariantCultureIgnoreCase)
-                    )
+            while (!(input = InputReader.ConsoleReader())
+                .Equals(EndCommand,StringComparison.InvariantCultureIgnoreCase))
             {
-                OutputWriter.WriteOneLineMessage("Success!");
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    throw new Exception("niama nikoi");
+                }
 
+                this.command = this.controller.Run(input);
+                this.command.Execute();
             }
         }
 

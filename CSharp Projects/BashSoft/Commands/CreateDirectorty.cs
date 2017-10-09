@@ -17,7 +17,8 @@
 
         public override void Execute()
         {
-            CustomPath.CreateDirectory(base.List[0]);
+            OutputWriter.WriteOneLineMessage("Command: mkdir - " + base.list[1]);
+            //CustomPath.CreateDirectory(base.List[0]);
         }
     }
 }

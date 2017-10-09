@@ -8,24 +8,11 @@ namespace BashSoft.Commands
 {
     public abstract class Command
     {
-        private List<string> list;
+        protected List<string> list;
 
         public Command(List<string> list)
         {
-            this.List = list;
-        }
-
-        protected List<string> List
-        {
-            get { return this.list; }
-            set
-            {
-                if (value.Count == 0)
-                {
-                    throw new ArgumentException("Nothing!!!");
-                }
-                this.list = value;
-            }
+            this.list = list;
         }
 
         public abstract void Execute();
