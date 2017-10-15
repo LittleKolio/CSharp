@@ -6,6 +6,10 @@
 
     public class CreateDirectorty : Command
     {
+        public CreateDirectorty()
+        {
+        }
+
         public CreateDirectorty(List<string> list) : base(list)
         {
         }

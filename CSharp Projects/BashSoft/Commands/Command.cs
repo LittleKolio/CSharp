@@ -10,9 +10,19 @@ namespace BashSoft.Commands
     {
         protected List<string> list;
 
+        public Command()
+        {
+        }
+
         public Command(List<string> list)
         {
-            this.list = list;
+            this.List = list;
+        }
+
+        public virtual List<string> List
+        {
+            get { return this.list; }
+            protected set { this.list = value; }
         }
 
         public abstract void Execute();

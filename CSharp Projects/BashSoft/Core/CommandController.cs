@@ -36,8 +36,8 @@
         {
             this.commandList = new Dictionary<string, Command>
             {
-                { "mkdir", new CreateDirectorty(null) },
-                { "test", new TestCommand(null) }
+                { "mkdir", new CreateDirectorty() },
+                { "test", new TestCommand() }
             };
         }
     }

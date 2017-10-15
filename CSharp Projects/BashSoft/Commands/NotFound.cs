@@ -13,10 +13,10 @@
         {
         }
 
-        //public override Command Create(List<string> list)
-        //{
-        //    return new NotFound(list);
-        //}
+        public override Command Create(List<string> list)
+        {
+            return new NotFound(list);
+        }
 
         public override void Execute()
         {
