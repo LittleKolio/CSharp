@@ -7,13 +7,13 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class NotFound : Command
+    public class NotFound : ICommand
     {
         public NotFound(List<string> list) : base(list)
         {
         }
 
-        public override Command Create(List<string> list)
+        public override ICommand Create(List<string> list)
         {
             return new NotFound(list);
         }

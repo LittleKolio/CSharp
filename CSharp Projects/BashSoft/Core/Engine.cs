@@ -10,7 +10,7 @@
     {
         private const string EndCommand = "quit";
         private CommandController controller;
-        private Command command;
+        private ICommand command;
 
         public Engine(CommandController controller)
         {

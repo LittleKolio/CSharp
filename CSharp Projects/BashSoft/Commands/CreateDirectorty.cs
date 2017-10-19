@@ -4,24 +4,19 @@
     using System;
     using System.Collections.Generic;
 
-    public class CreateDirectorty : Command
+    [Command("mkdir")]
+    public class CreateDirectorty : ICommand
     {
-        public CreateDirectorty()
+        public CreateDirectorty(string name)
         {
+            this.Name = name;
         }
 
-        public CreateDirectorty(List<string> list) : base(list)
-        {
-        }
+        public string Name { get; set; }
 
-        public override Command Create(List<string> list)
+        public void Execute()
         {
-            return new CreateDirectorty(list);
-        }
-
-        public override void Execute()
-        {
-            OutputWriter.WriteOneLineMessage("Command: mkdir - " + base.list[1]);
+            OutputWriter.WriteOneLineMessage("Command: mkdir - " + this.Name);
             //CustomPath.CreateDirectory(base.List[0]);
         }
     }

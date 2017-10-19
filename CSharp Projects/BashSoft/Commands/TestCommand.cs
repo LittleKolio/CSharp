@@ -7,41 +7,18 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class TestCommand : Command
+    public class TestCommand : ICommand
     {
-        public TestCommand()
+        public TestCommand(string test)
         {
+            this.Test = test;
         }
 
-        public TestCommand(List<string> list) : base(list)
-        {
-        }
+        public string Test { get; set; }
 
-        public override Command Create(List<string> list)
+        public void Execute()
         {
-            return new TestCommand(list);
-        }
-
-        public override List<string> List
-        {
-            get
-            {
-                return base.List;
-            }
-
-            protected set
-            {
-                if (value.Count < 2)
-                {
-                    throw new ArgumentException("List is empty!");
-                }
-                base.List = value;
-            }
-        }
-
-        public override void Execute()
-        {
-            OutputWriter.WriteOneLineMessage("Command: test - " + base.list[1]);
+            OutputWriter.WriteOneLineMessage("Command: test - " + this.Test);
         }
     }
 }

@@ -43,7 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\CommandAttribute.cs" />
+    <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\CreateDirectorty.cs" />
     <Compile Include="Commands\NotFound.cs" />
     <Compile Include="Commands\TestCommand.cs" />
