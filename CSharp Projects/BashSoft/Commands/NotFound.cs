@@ -9,19 +9,17 @@
 
     public class NotFound : ICommand
     {
-        public NotFound(List<string> list) : base(list)
+        public NotFound(string input)
         {
+            this.Input = input;
         }
 
-        public override ICommand Create(List<string> list)
-        {
-            return new NotFound(list);
-        }
+        public string Input { get; set; }
 
-        public override void Execute()
+        public void Execute()
         {
             OutputWriter.WriteOneLineMessage(
-                $"Command: {base.list[0]} not found!");
+                $"Command: {this.Input} not found!");
         }
     }
 }

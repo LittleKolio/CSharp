@@ -7,6 +7,8 @@
     using System.Text;
     using System.Threading.Tasks;
 
+    //[Command(CommandCode.test)]
+    [Cmd("test")]
     public class TestCommand : ICommand
     {
         public TestCommand(string test)
