@@ -8,37 +8,35 @@
 
     public class CommandController
     {
-        //private Dictionary<string, ICommand> commandList;
-        private List<string> commandList;
+        private string[] delimiter;
+        private List<string> inputList;
+        private Type[] assemblyTypes;
 
         public CommandController()
         {
-            this.commandList = new List<string>();
-            //this.Initialize();
+            this.delimiter = new string[] { " " };
+            this.inputList = new List<string>();
+            this.assemblyTypes = Assembly
+                .GetExecutingAssembly()
+                .GetTypes();
         }
 
-        public ICommand Run(string input)
+        public ICmd Run(string input)
         {
-            this.commandList = input.Split(new[] { ' ' }, 
-                StringSplitOptions.RemoveEmptyEntries).ToList();
-            string str = this.commandList[0];
-            this.commandList.Remove(str);
+            SplitInputString(input);
 
-            Type type = Assembly
-                .GetExecutingAssembly()
-                .GetTypes()
-                .FirstOrDefault(t => 
-                    ((CmdAttribute)t.GetCustomAttribute(typeof(CmdAttribute), true)).Input 
-                    == str);
+            string strCommand = this.inputList[0].ToLower();
 
-            //var type = Assembly
-            //    .ReflectionOnlyLoad("BashSoft")
-            //    .GetTypes()
-            //    .FirstOrDefault(t => t.GetCustomAttributesData().First().ConstructorArguments.First().Value.ToString() == "mkdir");
+            CmdEnum code;
+            Enum.TryParse(strCommand, true, out code);
+
+            Type type = this.assemblyTypes
+                .FirstOrDefault(tp => tp.GetCustomAttributes(typeof(CmdAttribute))
+                    .Any(attr => ((CmdAttribute)attr).KeyCode == code));
 
             object[] paramsArray = default(object[]);
 
-            if (this.commandList.Count > 0)
+            if (this.inputList.Count > 0)
             {
                 ParameterInfo[] commandParams = type
                     .GetConstructors()
@@ -50,31 +48,19 @@
                 for (int i = 0; i < commandParams.Length; i++)
                 {
                     Type paramType = commandParams[i].ParameterType;
-                    paramsArray[i] = Convert.ChangeType(commandList[i], paramType);
+                    paramsArray[i] = Convert.ChangeType(inputList[i + 1], paramType);
                 }
             }
 
-            ICommand command = (ICommand)Activator.CreateInstance(type, paramsArray);
+            ICmd command = (ICmd)Activator.CreateInstance(type, paramsArray);
 
             return command;
-
-            //if (!commandList.ContainsKey(command))
-            //{
-            //    return new NotFound(this.list);
-            //}
-            //else
-            //{
-            //    return this.commandList[command].Create(this.list);
-            //}
         }
 
-        //private void Initialize()
-        //{
-        //    this.commandList = new Dictionary<string, string>
-        //    {
-        //        { "mkdir", "CreateDirectorty" },
-        //        { "test", new TestCommand() }
-        //    };
-        //}
+        private void SplitInputString(string input)
+        {
+            this.inputList = input.Split(this.delimiter,
+                StringSplitOptions.RemoveEmptyEntries).ToList();
+        }
     }
 }

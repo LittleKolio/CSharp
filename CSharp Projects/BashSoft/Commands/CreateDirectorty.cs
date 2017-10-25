@@ -4,9 +4,8 @@
     using System;
     using System.Collections.Generic;
 
-    //[Command(CommandCode.mkdir)]
-    [Cmd("mkdir")]
-    public class CreateDirectorty : ICommand
+    [Cmd(CmdEnum.mkdir)]
+    public class CreateDirectorty : ICmd
     {
         public CreateDirectorty(string name)
         {

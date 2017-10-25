@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BashSoft.Commands
 {
-    public enum CommandCode
+    public enum CmdEnum
     {
         test, //Test
         mkdir, //CreateDirectory

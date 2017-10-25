@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BashSoft.Commands
 {
-    public interface ICommand
+    public interface ICmd
     {
         void Execute();
     }

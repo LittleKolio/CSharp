@@ -7,7 +7,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class NotFound : ICommand
+    public class NotFound : ICmd
     {
         public NotFound(string input)
         {

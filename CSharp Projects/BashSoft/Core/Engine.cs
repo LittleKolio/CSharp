@@ -10,7 +10,7 @@
     {
         private const string EndCommand = "quit";
         private CommandController controller;
-        private ICommand command;
+        //private ICommand command;
 
         public Engine(CommandController controller)
         {
@@ -28,8 +28,7 @@
                     throw new Exception("niama nikoi");
                 }
 
-                this.command = this.controller.Run(input);
-                this.command.Execute();
+                this.controller.Run(input).Execute();
             }
         }
 
