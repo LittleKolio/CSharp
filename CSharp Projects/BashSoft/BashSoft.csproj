@@ -46,9 +46,10 @@
     <Compile Include="Commands\CmdAttribute.cs" />
     <Compile Include="Commands\CmdEnum.cs" />
     <Compile Include="Commands\ICmd.cs" />
-    <Compile Include="Commands\CreateDirectory.cs" />
-    <Compile Include="Commands\NotFound.cs" />
-    <Compile Include="Commands\TestCommand.cs" />
+    <Compile Include="Commands\Models\CreateDirectory.cs" />
+    <Compile Include="Commands\Models\NotFound.cs" />
+    <Compile Include="Commands\Models\OpenFile.cs" />
+    <Compile Include="Commands\Models\TestCommand.cs" />
     <Compile Include="Core\CommandController.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="CustomMessages.cs" />

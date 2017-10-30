@@ -14,7 +14,7 @@ namespace BashSoft.Commands
         //Create directory in the current directory by given name.
         mkdir,
 
-        //Traverse current directory to the given depth
+        //display the files and subfolders in the current directory by given depth
         ls,
 
         //Comparing two files by given two absolute paths
