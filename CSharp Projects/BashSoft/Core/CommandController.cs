@@ -1,6 +1,7 @@
 ﻿namespace BashSoft.Core
 {
     using Commands;
+    using IO;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -28,7 +29,11 @@
             string strCommand = this.inputList[0].ToLower();
 
             CmdEnum code;
-            Enum.TryParse(strCommand, true, out code);
+            if (!Enum.TryParse(strCommand, true, out code))
+            {
+                throw new ArgumentException(
+                    CustomMessages.CommandDontExist);
+            }
 
             Type type = this.assemblyTypes
                 .FirstOrDefault(tp => tp.GetCustomAttributes(typeof(CmdAttribute))
@@ -36,7 +41,7 @@
 
             object[] paramsArray = default(object[]);
 
-            if (this.inputList.Count > 0)
+            if (this.inputList.Count > 1)
             {
                 ParameterInfo[] commandParams = type
                     .GetConstructors()

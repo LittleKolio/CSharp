@@ -8,9 +8,7 @@ namespace BashSoft.Commands
 {
     public enum CmdEnum
     {
-        /// <summary>
-        /// Just for testing.
-        /// </summary>
+        /// <summary> Just for testing. </summary>
         test,
 
         /// <summary>
@@ -58,24 +56,16 @@ namespace BashSoft.Commands
         /// </summary>
         or,
 
-        /// <summary>
-        /// Download file
-        /// </summary>
+        /// <summary> Download file </summary>
         dd,
 
-        /// <summary>
-        /// Downloads file asynchronous
-        /// </summary>
+        /// <summary> Downloads file asynchronous </summary>
         dda,
 
-        /// <summary>
-        /// Get help
-        /// </summary>
+        /// <summary> Get help </summary>
         h,
 
-        /// <summary>
-        /// Open file
-        /// </summary>
+        /// <summary> Open file </summary>
         op
     }
 }

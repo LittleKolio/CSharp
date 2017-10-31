@@ -50,6 +50,7 @@
     <Compile Include="Commands\Models\NotFound.cs" />
     <Compile Include="Commands\Models\OpenFile.cs" />
     <Compile Include="Commands\Models\TestCommand.cs" />
+    <Compile Include="Commands\Models\TraverseFolder.cs" />
     <Compile Include="Core\CommandController.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="CustomMessages.cs" />
