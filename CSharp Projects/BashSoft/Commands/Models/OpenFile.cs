@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace BashSoft.Commands
 {
+    [Cmd(CmdEnum.op)]
     public class OpenFile : ICmd
     {
         private string fileName;

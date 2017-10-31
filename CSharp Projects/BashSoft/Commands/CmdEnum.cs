@@ -8,43 +8,74 @@ namespace BashSoft.Commands
 {
     public enum CmdEnum
     {
-        //Just for testing.
+        /// <summary>
+        /// Just for testing.
+        /// </summary>
         test,
 
-        //Create directory in the current directory by given name.
+        /// <summary>
+        /// Create directory in the current directory by given name.
+        /// </summary>
         mkdir,
 
-        //display the files and subfolders in the current directory by given depth
+        /// <summary>
+        /// display the files and subfolders in 
+        /// the current directory by given depth.
+        /// </summary>
         ls,
 
-        //Comparing two files by given two absolute paths
+        /// <summary>
+        /// Comparing two files by given two absolute paths.
+        /// </summary>
         cmp,
 
-        //Change the current directory by given relative path
+        /// <summary>
+        /// Change the current directory by given relative path.
+        /// </summary>
         chdirrel,
 
-        //Change the current directory by given absolute path
+        /// <summary>
+        /// Change the current directory by given absolute path.
+        /// </summary>
         chdirabs,
 
-        //Read students database by given name of file witch in the current directory.
+        /// <summary>
+        /// Read students database by given name of 
+        /// file witch in the current directory.
+        /// </summary>
         rdb,
 
-        //Filter students from given cours by a given option and then take quantity of filtered students.
+        /// <summary>
+        /// Filter students from given cours by a given option and 
+        /// then take quantity of filtered students.
+        /// </summary>
         fr,
 
-        //Order students from given course by ascending or descending order and then ake quantity of filtered students.
+        /// <summary>
+        /// Order students from given course by ascending or 
+        /// descending order and 
+        /// then take quantity of filtered students.
+        /// </summary>
         or,
 
-        //Download file
+        /// <summary>
+        /// Download file
+        /// </summary>
         dd,
 
-        //Downloads file asynchronous
+        /// <summary>
+        /// Downloads file asynchronous
+        /// </summary>
         dda,
 
-        //Get help
+        /// <summary>
+        /// Get help
+        /// </summary>
         h,
 
-        //Open file
+        /// <summary>
+        /// Open file
+        /// </summary>
         op
     }
 }
