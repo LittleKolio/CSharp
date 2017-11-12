@@ -76,6 +76,8 @@
                     OutputWriter.WriteExeption(ex.Message);
                     continue;
                 }
+
+                OutputWriter.WriteEmptyLine();
             }
         }
     }

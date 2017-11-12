@@ -1,6 +1,7 @@
 ﻿namespace BashSoft.Core
 {
     using Commands;
+    using IO;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -8,14 +9,10 @@
 
     public class CommandController
     {
-        private string[] delimiter;
-        private List<string> inputList;
         private Type[] assemblyTypes;
 
         public CommandController()
         {
-            this.delimiter = new string[] { " " };
-            this.inputList = new List<string>();
             this.assemblyTypes = Assembly
                 .GetExecutingAssembly()
                 .GetTypes();
@@ -23,9 +20,9 @@
 
         public ICmd Run(string input)
         {
-            SplitInputString(input);
+            string[] list = FormatInput.SplitText(input, " ");
 
-            string strCommand = this.inputList[0].ToLower();
+            string strCommand = list[0].ToLower();
 
             CmdEnum code;
             Enum.TryParse(strCommand, true, out code);
@@ -36,7 +33,7 @@
 
             object[] paramsArray = default(object[]);
 
-            if (this.inputList.Count > 0)
+            if (list.Length > 0)
             {
                 ParameterInfo[] commandParams = type
                     .GetConstructors()
@@ -48,19 +45,13 @@
                 for (int i = 0; i < commandParams.Length; i++)
                 {
                     Type paramType = commandParams[i].ParameterType;
-                    paramsArray[i] = Convert.ChangeType(inputList[i + 1], paramType);
+                    paramsArray[i] = Convert.ChangeType(list[i + 1], paramType);
                 }
             }
 
             ICmd command = (ICmd)Activator.CreateInstance(type, paramsArray);
 
             return command;
-        }
-
-        private void SplitInputString(string input)
-        {
-            this.inputList = input.Split(this.delimiter,
-                StringSplitOptions.RemoveEmptyEntries).ToList();
         }
     }
 }

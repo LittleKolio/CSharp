@@ -53,6 +53,7 @@
     <Compile Include="Core\CommandController.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="CustomMessages.cs" />
+    <Compile Include="IO\FormatInput.cs" />
     <Compile Include="IO\InputReader.cs" />
     <Compile Include="IO\IOManager.cs" />
     <Compile Include="IO\OutputWriter.cs" />

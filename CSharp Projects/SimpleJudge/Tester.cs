@@ -24,7 +24,7 @@
                 string[] userOutput = File.ReadAllLines(userOutputPath);
                 string[] expectedOutput = File.ReadAllLines(expectedOutputPath);
 
-                string mismatchPath = GetMismatchPath(expectedOutputPath);
+                string mismatchPath = PathForMismatchFile(expectedOutputPath);
 
                 int count = 0;
 
@@ -75,7 +75,7 @@
             }
         }
 
-        private static string GetMismatchPath(string expectedOutputPath)
+        private static string PathForMismatchFile(string expectedOutputPath)
         {
             int lastIndex = expectedOutputPath.LastIndexOf('\\');
             string path = expectedOutputPath.Substring(0, lastIndex);

@@ -25,11 +25,9 @@
         {
             string input;
             while (!string.IsNullOrEmpty(
-                input = Console.ReadLine()))
+                input = InputReader.ConsoleReader()))
             {
-                string[] tokens = input.Split(
-                    new[] { ' ' }, 
-                    StringSplitOptions.RemoveEmptyEntries);
+                string[] tokens = FormatInput.SplitText(input, " ");
                 string cours = tokens[0];
                 string student = tokens[1];
                 int mark = int.Parse(tokens[2]);
