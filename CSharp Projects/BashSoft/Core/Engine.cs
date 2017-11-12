@@ -23,12 +23,25 @@
             while (!(input = InputReader.ConsoleReader())
                 .Equals(EndCommand,StringComparison.InvariantCultureIgnoreCase))
             {
-                if (string.IsNullOrWhiteSpace(input))
+                try
                 {
-                    throw new Exception("niama nikoi");
-                }
+                    if (string.IsNullOrWhiteSpace(input))
+                    {
+                        throw new Exception(
+                            CustomMessages.InputIsEmpty);
+                    }
 
-                this.controller.Run(input).Execute();
+                    this.controller.Run(input).Execute();
+                }
+                catch (ArgumentException ex)
+                {
+                    OutputWriter.WriteExeption(ex.Message);
+                }
+                catch (FormatException ex)
+                {
+                    OutputWriter.WriteExeption(ex.Message);
+                }
+                //finally { }
             }
         }
 

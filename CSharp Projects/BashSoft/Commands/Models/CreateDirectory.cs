@@ -6,7 +6,7 @@
     using System.IO;
 
     /// <summary>
-    /// Create directory in the current directory by given name.
+    /// Create folder in the current directory by given name.
     /// </summary>
     [Cmd(CmdEnum.mkdir)]
     public class CreateDirectory : ICmd
@@ -31,7 +31,6 @@
 
         public void Execute()
         {
-            //OutputWriter.WriteOneLineMessage("Command: mkdir - " + this.FolderName);
             try
             {
                 Directory.CreateDirectory(this.Path());
