@@ -66,8 +66,6 @@
                 }
 
                 /**
-                 * It is also possible (but unlikely) that a
-                 * DirectoryNotFound exception will be raised.
                  * This will happen if currentDir has been deleted by
                  * another application or thread after our call to TraverseFolder().
                  */

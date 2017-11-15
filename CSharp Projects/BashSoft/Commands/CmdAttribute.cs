@@ -2,7 +2,7 @@
 {
     using System;
 
-    //[AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Class)]
     public class CmdAttribute : Attribute
     {
         public CmdAttribute(CmdEnum keyCode)

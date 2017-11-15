@@ -8,6 +8,7 @@
         public const string FileHasMoreText = "The file has more text lines.";
         public const string FileHasLessText = "The file has less text lines.";
         public const string FilesAreIdentical = "The file are identical. There are no mismatches.";
+        public const string FilesDontExist = "File or directory dont exist.";
 
         public const string test = "Example";
         public const string CommandDontExist = "The input command don't exist!";

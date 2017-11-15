@@ -21,5 +21,13 @@
         {
             CurrentPath = newPath;
         }
+
+        public static string PathForMismatches(string fileTwoPath)
+        {
+            int lastIndex = fileTwoPath.LastIndexOf('\\');
+            string path = fileTwoPath.Substring(0, lastIndex);
+            string mismatchPath = path + @"\Mismatches.txt";
+            return mismatchPath;
+        }
     }
 }

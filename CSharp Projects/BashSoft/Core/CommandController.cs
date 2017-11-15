@@ -37,11 +37,7 @@
 
             object[] paramsArray = default(object[]);
 
-<<<<<<< HEAD
-            if (list.Length > 0)
-=======
-            if (this.inputList.Count > 1)
->>>>>>> master
+            if (list.Length > 1)
             {
                 ParameterInfo[] commandParams = type
                     .GetConstructors()

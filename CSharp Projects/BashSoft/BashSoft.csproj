@@ -46,6 +46,7 @@
     <Compile Include="Commands\CmdAttribute.cs" />
     <Compile Include="Commands\CmdEnum.cs" />
     <Compile Include="Commands\ICmd.cs" />
+    <Compile Include="Commands\Models\CompareTwoFiles.cs" />
     <Compile Include="Commands\Models\CreateDirectory.cs" />
     <Compile Include="Commands\Models\NotFound.cs" />
     <Compile Include="Commands\Models\OpenFile.cs" />
