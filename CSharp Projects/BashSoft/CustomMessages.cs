@@ -5,8 +5,8 @@
         public const string DataExists = "Data already exists!";
         public const string NotAllowedCharacters = "The given name contains symbols that are not allowed to be used in names of files and folders.";
         public const string UnauthorizedAccess = "The folder/file you are trying to get access needs a higher level of rights than you currently have.";
-        public const string FileHasMoreText = "The file has more text lines.";
-        public const string FileHasLessText = "The file has less text lines.";
+        public const string FileOneHasMoreText = "File one has more text lines.";
+        public const string FileTwoHasMoreText = "File two has more text lines.";
         public const string FilesAreIdentical = "The file are identical. There are no mismatches.";
         public const string FilesDontExist = "File or directory dont exist.";
 

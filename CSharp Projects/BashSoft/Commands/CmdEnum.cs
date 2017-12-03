@@ -17,7 +17,7 @@ namespace BashSoft.Commands
         mkdir,
 
         /// <summary>
-        /// display the files and subfolders in 
+        /// Display the files and subfolders in 
         /// the current directory by given depth.
         /// </summary>
         ls,

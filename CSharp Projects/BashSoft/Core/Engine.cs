@@ -41,6 +41,10 @@
                 {
                     OutputWriter.WriteExeption(ex.Message);
                 }
+                catch (Exception ex)
+                {
+                    OutputWriter.WriteExeption(ex.Message);
+                }
                 //finally { }
             }
         }
