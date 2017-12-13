@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F0F46248-92C9-4D67-8DFD-4C574C9C5543}</ProjectGuid>
+    <ProjectGuid>{2EF67EE6-6A81-44A3-A837-2CCA6EC2CD45}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simple</RootNamespace>
-    <AssemblyName>Simple</AssemblyName>
+    <RootNamespace>TreeStructure</RootNamespace>
+    <AssemblyName>TreeStructure</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,17 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="TraverseDirectory_BFS.cs" />
-    <None Include="TraverseDirectory_DFS.cs" />
-    <None Include="Stopwatch.cs" />
-    <None Include="UnionAndItersect.cs" />
-    <None Include="RandomNumber.cs" />
-    <None Include="PrimeNumber.cs" />
-    <None Include="Factorial.cs" />
-    <None Include="PascalTriangle.cs" />
-    <None Include="MatrixConsoleReadLine.cs" />
-    <None Include="Labyrinth.cs" />
-    <None Include="Base10NumberToAnyBase.cs" />
+    <Compile Include="Example.cs" />
+    <Compile Include="Tree.cs" />
+    <Compile Include="TreeNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
