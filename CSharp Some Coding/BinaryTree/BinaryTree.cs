@@ -39,5 +39,20 @@
         {
             get { return this.root; }
         }
+
+        private void Print(BinaryTreeNode<T> root)
+        {
+            if (root == null) { return; }
+
+            Print(root.LeftChild);
+            Console.Write(root.Value + "   ");
+            Print(root.RightChild);
+        }
+
+        public void Print()
+        {
+            Print(this.Root);
+            Console.WriteLine();
+        }
     }
 }

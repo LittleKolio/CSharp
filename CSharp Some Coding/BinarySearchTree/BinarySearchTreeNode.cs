@@ -6,21 +6,23 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class BinaryTreeNode<T>
+    public class BinarySearchTreeNode<T> 
+        : IComparable<BinarySearchTreeNode<T>>
+        where T : IComparable<T>
     {
         private T value;
         private bool hasParent;
-        private BinaryTreeNode<T> leftChild;
-        private BinaryTreeNode<T> rightChild;
+        private BinarySearchTreeNode<T> leftChild;
+        private BinarySearchTreeNode<T> rightChild;
 
-        public BinaryTreeNode(T value, BinaryTreeNode<T> leftChild, BinaryTreeNode<T> rightChild)
+        public BinarySearchTreeNode(T value, BinarySearchTreeNode<T> leftChild, BinarySearchTreeNode<T> rightChild)
         {
             this.Value = value;
             this.LeftChild = leftChild;
             this.RightChild = rightChild;
         }
 
-        public BinaryTreeNode(T value) 
+        public BinarySearchTreeNode(T value) 
             : this (value, null, null)
         { }
 
@@ -38,7 +40,7 @@
             }
         }
 
-        public BinaryTreeNode<T> LeftChild
+        public BinarySearchTreeNode<T> LeftChild
         {
             get { return this.leftChild; }
             set
@@ -59,7 +61,7 @@
             }
         }
 
-        public BinaryTreeNode<T> RightChild
+        public BinarySearchTreeNode<T> RightChild
         {
             get { return this.rightChild; }
             set
@@ -78,6 +80,11 @@
                 value.hasParent = true;
                 this.rightChild = value;
             }
+        }
+
+        public int CompareTo(BinarySearchTreeNode<T> other)
+        {
+            throw new NotImplementedException();
         }
     }
 }
