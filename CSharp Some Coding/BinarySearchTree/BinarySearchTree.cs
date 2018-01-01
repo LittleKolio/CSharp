@@ -66,9 +66,7 @@
             this.root = Insert(value, null, this.root);
         }
 
-        private BinaryTreeNode<T> Insert(T value, 
-            BinaryTreeNode<T> parentNode, 
-            BinaryTreeNode<T> node)
+        private BinaryTreeNode<T> Insert(T value, BinaryTreeNode<T> parentNode, BinaryTreeNode<T> node)
         {
             if (node == null)
             {
@@ -140,10 +138,43 @@
 
             if (theChild != null)
             {
+                theChild.parent = node.parent;
+
+                if (node.parent == null)
+                {
+                    this.root = theChild;
+                }
+                else
+                {
+                    if (node.parent.leftChild == node)
+                    {
+                        node.parent.leftChild = theChild;
+                    }
+                    else
+                    {
+                        node.parent.rightChild = theChild;
+                    }
+                }
 
             }
-
-            throw new NotImplementedException();
+            else
+            {
+                if (node.parent == null)
+                {
+                    this.root = null;
+                }
+                else
+                {
+                    if (node.parent.leftChild == node)
+                    {
+                        node.parent.leftChild = null;
+                    }
+                    else
+                    {
+                        node.parent.rightChild = null;
+                    }
+                }
+            }
         }
     }
 }
