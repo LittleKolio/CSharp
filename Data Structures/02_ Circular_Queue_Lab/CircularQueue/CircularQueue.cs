@@ -1,45 +1,90 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
-public class CircularQueue<T>
+public class CircularQueue<T> : IEnumerable<T>
 {
+    private T[] arr;
     private const int DefaultCapacity = 4;
-
+    private int capacity;
+    private int head;
     public int Count { get; private set; }
 
     public CircularQueue(int capacity = DefaultCapacity)
     {
-        // TODO
-        throw new NotImplementedException();
+        this.capacity = capacity;
+        this.arr = new T[capacity];
+        this.head = 0;
+        this.Count = 0;
     }
 
     public void Enqueue(T element)
     {
-        // TODO
-        throw new NotImplementedException();
+        if (this.Count >= this.capacity)
+        {
+            this.Resize();
+        }
+
+        int index = (this.head + this.Count) % this.capacity;
+        this.arr[index] = element;
+        this.Count++;
+
     }
 
     private void Resize()
     {
-        // TODO
-        throw new NotImplementedException();
+        T[] newArray = new T[this.capacity * 2];
+        this.capacity *= 2;
+        this.CopyAllElements(newArray);
+        this.arr = newArray;
+        this.head = 0;
     }
 
     private void CopyAllElements(T[] newArray)
     {
-        // TODO
-        throw new NotImplementedException();
+        for (int i = 0; i < this.Count; i++)
+        {
+            int index = (i + this.head) % this.capacity;
+            newArray[i] = this.arr[index];
+        }
     }
 
-    // Should throw InvalidOperationException if the queue is empty
     public T Dequeue()
     {
-        // TODO
-        throw new NotImplementedException();
+        if (this.Count == 0)
+        {
+            throw new InvalidOperationException();
+        }
+
+        T element = this.arr[this.head];
+
+        if (this.Count == 1)
+        {
+            this.head = 0;
+        }
+        else
+        {
+            this.head = (this.head + 1) % this.capacity;
+        }
+        this.Count--;
+
+        return element;
     }
 
     public T[] ToArray()
     {
-        // TODO
+        T[] newArray = new T[this.Count];
+        this.CopyAllElements(newArray);
+        return newArray;
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        throw new NotImplementedException();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
         throw new NotImplementedException();
     }
 }
