@@ -10,7 +10,17 @@
     {
         public static void Main(string[] args)
         {
+            List<string> words = Console.ReadLine()
+                .Split(new char[] { ' ' },
+                    StringSplitOptions.RemoveEmptyEntries)
+                .ToList();
 
+            words.Sort();
+            foreach (string item in words)
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine();
         }
     }
 }
