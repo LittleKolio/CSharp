@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_01_Reverse_Numbers_Stack", "Exercise_01_Reverse_Numbers_Stack\Exercise_01_Reverse_Numbers_Stack.csproj", "{749A783D-CE33-4B97-BFA0-226EB8DAD015}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_02_Calculate_Sequence_Queue", "Exercise_02_Calculate_Sequence_Queue\Exercise_02_Calculate_Sequence_Queue.csproj", "{7F96990D-07CB-448B-850E-1FB5196840EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{749A783D-CE33-4B97-BFA0-226EB8DAD015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{749A783D-CE33-4B97-BFA0-226EB8DAD015}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{749A783D-CE33-4B97-BFA0-226EB8DAD015}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{749A783D-CE33-4B97-BFA0-226EB8DAD015}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F96990D-07CB-448B-850E-1FB5196840EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F96990D-07CB-448B-850E-1FB5196840EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F96990D-07CB-448B-850E-1FB5196840EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F96990D-07CB-448B-850E-1FB5196840EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
