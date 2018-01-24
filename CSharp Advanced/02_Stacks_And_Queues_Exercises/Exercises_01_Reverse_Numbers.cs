@@ -8,25 +8,29 @@ namespace Stacks_And_Queues_Exercises
     {
         static void Main()
         {
-            //int[] input = Console.ReadLine()
-            //    .Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
-            //    .Select(int.Parse)
-            //    .ToArray();
+            int[] input = Console.ReadLine()
+                .Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse)
+                .ToArray();
 
-            string input = Console.ReadLine();
+            Stack<int> stack = new Stack<int>(input);
+            Console.WriteLine(string.Join(" ", stack));
 
-            if (input != string.Empty)
-            {
-                Stack<int> stack = new Stack<int>(
-                    input.Split(new char[] { ' ' }, 
-                        StringSplitOptions.RemoveEmptyEntries)
-                    .Select(int.Parse));
+            //string input = Console.ReadLine();
+            //if (input != string.Empty)
+            //{
+            //    Stack<int> stack = new Stack<int>(
+            //        input.Split(new char[] { ' ' }, 
+            //            StringSplitOptions.RemoveEmptyEntries)
+            //        .Select(int.Parse));
 
-                while (stack.Count > 0)
-                {
-                    Console.Write(stack.Pop() + " ");
-                }
-            }
+            //    while (stack.Count > 0)
+            //    {
+            //        Console.Write(stack.Pop() + " ");
+            //    }
+            //}
+
+
         }
     }
 }

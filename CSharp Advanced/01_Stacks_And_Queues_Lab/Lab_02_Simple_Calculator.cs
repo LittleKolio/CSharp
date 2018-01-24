@@ -18,14 +18,21 @@ namespace Stacks_And_Queues_Lab
                 string op = stack.Pop();
                 int second = int.Parse(stack.Pop());
 
-                if (op == "+")
+                //if (op == "+")
+                //{
+                //    stack.Push((first + second).ToString());
+                //}
+                //else
+                //{
+                //    stack.Push((first - second).ToString());
+                //}
+
+                switch (op)
                 {
-                    stack.Push((first + second).ToString());
+                    case "+": stack.Push((first + second).ToString()); break;
+                    case "-": stack.Push((first - second).ToString()); break;
                 }
-                else
-                {
-                    stack.Push((first - second).ToString());
-                }
+
             }
 
             Console.WriteLine(stack.Pop());

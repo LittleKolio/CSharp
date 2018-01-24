@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Stacks_And_Queues_Exercises
+﻿namespace Stacks_And_Queues_Exercises
 {
-    class Exercises_07_Balanced_Parentheses
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    public class Exercises_07_Balanced_Parentheses
     {
-        static void Main()
+        public static void Main()
         {
             string input = Console.ReadLine();
             Stack<char> parentheses = new Stack<char>();

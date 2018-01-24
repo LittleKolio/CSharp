@@ -54,5 +54,7 @@
             child.hasParent = true;
             this.children.Add(child);
         }
+
+
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Stacks_And_Queues_Exercises
+﻿namespace Trash.Ex02_Stacks_and_Queues
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,8 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class Exercises_05_Calculate_Sequence_With_Queue
+
+    public class Ex05_Submit_a_solution
     {
         public static void Main()
         {

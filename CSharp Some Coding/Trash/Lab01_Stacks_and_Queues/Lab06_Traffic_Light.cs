@@ -1,4 +1,4 @@
-﻿namespace Basic_Tree
+﻿namespace Trash
 {
     using System;
     using System.Collections.Generic;
@@ -6,10 +6,11 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class Test
+    public class Lab06_Traffic_Light
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
+
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Stacks_And_Queues_Exercises
+﻿namespace Stacks_And_Queues_Exercises
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     class Exercises_02_Basic_Stack_Operations
     {
         static void Main()
@@ -25,18 +25,25 @@ namespace Stacks_And_Queues_Exercises
                 .Select(int.Parse)
                 .ToArray();
 
-            Stack<int> stack = new Stack<int>();
+            Stack<int> stack = new Stack<int>(seq);
 
-            for (int i = 0; i < opp[0]; i++)
-            {
-                int index = i % seq.Length;
-                stack.Push(seq[index]);
-            }
+            //for (int i = 0; i < opp[0]; i++)
+            //{
+            //    int index = i % seq.Length;
+            //    stack.Push(seq[index]);
+            //}
 
             for (int i = 0; i < opp[1]; i++)
             {
                 stack.Pop();
             }
+
+            //int count = 0;
+            //while (count < opp[1])
+            //{
+            //    stack.Pop();
+            //    count++;
+            //}
 
             if (stack.Count != 0)
             {

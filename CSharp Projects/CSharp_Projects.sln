@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BashSoft", "BashSoft\BashSo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{72F6B46D-79E1-45D2-A2E6-5795171EA120}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Command_Interpreter", "Command_Interpreter\Command_Interpreter.csproj", "{1F4F49CA-769A-4C33-912C-76CD389DC4F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{72F6B46D-79E1-45D2-A2E6-5795171EA120}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72F6B46D-79E1-45D2-A2E6-5795171EA120}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72F6B46D-79E1-45D2-A2E6-5795171EA120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F4F49CA-769A-4C33-912C-76CD389DC4F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F4F49CA-769A-4C33-912C-76CD389DC4F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F4F49CA-769A-4C33-912C-76CD389DC4F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F4F49CA-769A-4C33-912C-76CD389DC4F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

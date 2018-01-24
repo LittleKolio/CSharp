@@ -1,26 +1,27 @@
-﻿namespace Stacks_And_Queues_Exercises
+﻿namespace Trash.Ex02_Stacks_and_Queues
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
 
-    public class Exercises03MaximumElement
+    public class Ex03_Maximum_Element
     {
         public static void Main()
         {
-            int input = int.Parse(Console.ReadLine());
+            int num = int.Parse(Console.ReadLine());
 
             Stack<int> stack = new Stack<int>();
             Stack<int> maxNumbers = new Stack<int>();
             maxNumbers.Push(0);
 
-            //string input;
-            //while (!string.IsNullOrEmpty(input = Console.ReadLine())) { }
-
-            for (int i = 0; i < input; i++)
+            string input;
+            while (!string.IsNullOrEmpty(input = Console.ReadLine()))
             {
-                int[] query = Console.ReadLine()
-                    .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                int[] query = input
+                    .Split(new[] { ' ' },
+                        StringSplitOptions.RemoveEmptyEntries)
                     .Select(int.Parse)
                     .ToArray();
 

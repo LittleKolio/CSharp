@@ -12,12 +12,13 @@ namespace Stacks_And_Queues_Lab
 
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == '(')
+                char element = input[i];
+                if (element == '(')
                 {
                     stack.Push(i);
                 }
 
-                if (input[i] == ')')
+                if (element == ')')
                 {
                     int startIndex = stack.Pop();
                     string str = input.Substring(startIndex, i - startIndex + 1);
