@@ -67,6 +67,8 @@
     <None Include="Exercises_09_Stack_Fibonacci.cs" />
     <None Include="Exercises_08_Recursive_Fibonacci.cs" />
     <None Include="Exercises_06_Truck_Tour.cs" />
+    <None Include="Exercises_10_Simple_Text_Editor.cs" />
+    <Compile Include="Exercises_11_Poisonous_Plants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

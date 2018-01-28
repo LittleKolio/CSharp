@@ -21,6 +21,83 @@
             //Ex03LeafNodes();
 
             //Ex04MiddleNodes();
+
+            //Ex05DeepestNode();
+
+            //Ex06LongestPath();
+
+            Ex07AllPathsWithAGivenSum();
+        }
+
+        private static void Ex07AllPathsWithAGivenSum()
+        {
+            int sum = int.Parse(Console.ReadLine());
+
+            List<Tree<int>> leafList = nodeByValue.Values
+                .Where(x => x.Children.Count == 0)
+                .ToList();
+
+            Console.WriteLine($"Longest path: {sum}");
+
+            foreach (Tree<int> leaf in leafList)
+            {
+                List<int> leafPath = new List<int>();
+                LeafPath(leaf, leafPath);
+
+                if (sum == leafPath.Sum())
+                {
+                    leafPath.Reverse();
+                    Console.WriteLine(string.Join(" ", leafPath));
+                }
+            }
+        }
+
+        private static void Ex06LongestPath()
+        {
+            List<Tree<int>> leafList = nodeByValue.Values
+                .Where(x => x.Children.Count == 0)
+                .ToList();
+
+            List<int> longestPath = null;
+            foreach (Tree<int> leaf in leafList)
+            {
+                List<int> leafPath = new List<int>();
+                LeafPath(leaf, leafPath);
+
+                if (longestPath == null || 
+                    longestPath.Count < leafPath.Count)
+                {
+                    longestPath = leafPath;
+                }
+            }
+            longestPath.Reverse();
+            Console.WriteLine("Longest path: " + string.Join(" ", longestPath));
+        }
+
+        private static void LeafPath(Tree<int> leaf, List<int> path)
+        {
+            path.Add(leaf.Value);
+
+            if (leaf.Parent == null)
+            {
+                return;
+            }
+
+            LeafPath(leaf.Parent, path);
+        }
+
+        private static void Ex05DeepestNode()
+        {
+            Dictionary<int, List<int>> list = new Dictionary<int, List<int>>();
+            DepthOfLeafNodes(GetRootNode(), list);
+
+            int value = list
+                .OrderByDescending(n => n.Key)
+                .FirstOrDefault()
+                .Value
+                .FirstOrDefault();
+
+            Console.WriteLine($"Deepest node: {value}");
         }
 
         private static void Ex04MiddleNodes()
@@ -31,17 +108,6 @@
             Console.WriteLine(string.Join(" ", list.OrderBy(n => n)));
         }
 
-        private static void Ex01RootNode()
-        {
-            int rootValue = GetRootNode().Value;
-            Console.WriteLine($"Root node: {rootValue}");
-        }
-
-        private static void Ex02PrintTree()
-        {
-            PrintTree(GetRootNode());
-        }
-
         private static void Ex03LeafNodes()
         {
             List<int> list = new List<int>();
@@ -49,6 +115,17 @@
 
             Console.Write("Leaf nodes: ");
             Console.WriteLine(string.Join(" ", list.OrderBy(n => n)));
+        }
+
+        private static void Ex02PrintTree()
+        {
+            PrintTree(GetRootNode());
+        }
+
+        private static void Ex01RootNode()
+        {
+            int rootValue = GetRootNode().Value;
+            Console.WriteLine($"Root node: {rootValue}");
         }
 
         static Tree<int> GetTreeNodeByValue(int value)
@@ -95,6 +172,26 @@
             foreach (Tree<int> item in node.Children)
             {
                 PrintTree(item, indent + 1);
+            }
+        }
+
+        static void DepthOfLeafNodes(
+            Tree<int> node, 
+            Dictionary<int, List<int>> list, 
+            int depth = 0)
+        {
+            if (node.Children.Count == 0)
+            {
+                if (!list.ContainsKey(depth))
+                {
+                    list.Add(depth, new List<int>());
+                }
+                list[depth].Add(node.Value);
+            }
+
+            foreach (Tree<int> item in node.Children)
+            {
+                DepthOfLeafNodes(item, list, depth + 1);
             }
         }
 

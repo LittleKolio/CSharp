@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Stacks_And_Queues_Exercises
+﻿namespace Trash.Ex02_Stacks_and_Queues
 {
-    class Exercises_08_Recursive_Fibonacci
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    public class Ex08_Recursive_Fibonacci
     {
-        private static long[] fibNumbers;
+        private static long[] fibNums;
 
         public static void Main()
         {
@@ -16,7 +16,7 @@ namespace Stacks_And_Queues_Exercises
 
             fibNums = new long[input];
             Console.WriteLine(GetFibonacci(input - 1));
-
+            
         }
 
         private static long GetFibonacci(int index)

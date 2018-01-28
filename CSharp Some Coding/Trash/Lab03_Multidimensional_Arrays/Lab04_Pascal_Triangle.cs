@@ -1,4 +1,4 @@
-﻿namespace Multidimensional_Arrays_Lab
+﻿namespace Trash.Lab03_Multidimensional_Arrays
 {
     using System;
     using System.Collections.Generic;
@@ -6,44 +6,22 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class Lab_04_Pascal_Triangle
+    public class Lab04_Pascal_Triangle
     {
-        private static int input;
-
+        private static int depth;
         public static void Main()
         {
-            input = int.Parse(Console.ReadLine());
+            depth = int.Parse(Console.ReadLine());
 
             long[] arr = { 1 };
             Console.WriteLine(string.Join(" ", arr));
 
             Triangle(arr);
-
-            /*
-            long[][] triangle = new long[input][];
-
-            for (int row = 0; row < triangle.Length; row++)
-            {
-                triangle[row] = new long[row + 1];
-                triangle[row][0] = 1;
-                triangle[row][triangle[row].Length - 1] = 1;
-
-                for (int col = 1; col < triangle[row].Length - 1; col++)
-                {
-                    triangle[row][col] = triangle[row - 1][col - 1] + triangle[row - 1][col];
-                }
-            }
-
-            foreach (var item in triangle)
-            {
-                Console.WriteLine(string.Join(" ", item));
-            }
-            */
         }
 
         private static void Triangle(long[] arr)
         {
-            if (arr.Length == input)
+            if (arr.Length == depth)
             {
                 return;
             }

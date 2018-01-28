@@ -55,7 +55,15 @@
     <None Include="Ex02_Stacks_and_Queues\Ex04_Basic_Queue_Operations.cs" />
     <None Include="Ex02_Stacks_and_Queues\Ex05_Submit_a_solution.cs" />
     <None Include="Ex02_Stacks_and_Queues\Ex06_Truck_Tour.cs" />
-    <Compile Include="Ex02_Stacks_and_Queues\Ex07_Balanced_Parentheses.cs" />
+    <None Include="Ex02_Stacks_and_Queues\Ex07_Balanced_Parentheses.cs" />
+    <None Include="Ex02_Stacks_and_Queues\Ex08_Recursive_Fibonacci.cs" />
+    <None Include="Ex02_Stacks_and_Queues\Ex09_Stack_Fibonacci.cs" />
+    <None Include="Ex02_Stacks_and_Queues\Ex10_Simple_Text_Editor.cs" />
+    <None Include="Ex02_Stacks_and_Queues\Ex11_Poisonous_Plants.cs" />
+    <None Include="Lab03_Multidimensional_Arrays\Lab01_Sum_Matrix_Elements.cs" />
+    <None Include="Lab03_Multidimensional_Arrays\Lab02_Maximum_sum_of_2x2_submatrix.cs" />
+    <None Include="Lab03_Multidimensional_Arrays\Lab03_Group_Numbers.cs" />
+    <None Include="Lab03_Multidimensional_Arrays\Lab04_Pascal_Triangle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,14 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F0F46248-92C9-4D67-8DFD-4C574C9C5543}</ProjectGuid>
+    <ProjectGuid>{535B6A0A-8ED5-4580-ABAE-CD7E251578F8}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simple</RootNamespace>
-    <AssemblyName>Simple</AssemblyName>
+    <RootNamespace>BinarySearchTree</RootNamespace>
+    <AssemblyName>BinarySearchTree</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,29 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="TraverseDirectory_BFS.cs" />
-    <None Include="TraverseDirectory_DFS.cs" />
-    <None Include="Stopwatch.cs" />
-    <None Include="UnionAndItersect.cs" />
-    <None Include="RandomNumber.cs" />
-    <None Include="PrimeNumber.cs" />
-    <None Include="Factorial.cs" />
-    <None Include="PascalTriangle.cs" />
-    <None Include="MatrixConsoleReadLine.cs" />
-    <None Include="Labyrinth.cs" />
-    <None Include="Base10NumberToAnyBase.cs" />
-    <None Include="FileOperations.cs" />
+    <Compile Include="BinarySearchTree.cs" />
+    <Compile Include="IBinarySearchTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
