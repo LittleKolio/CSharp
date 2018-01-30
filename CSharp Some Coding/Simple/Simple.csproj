@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="StringPalindrome.cs" />
     <None Include="TraverseDirectory_BFS.cs" />
     <None Include="TraverseDirectory_DFS.cs" />
     <None Include="Stopwatch.cs" />

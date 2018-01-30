@@ -64,11 +64,18 @@
     <None Include="Lab03_Multidimensional_Arrays\Lab02_Maximum_sum_of_2x2_submatrix.cs" />
     <None Include="Lab03_Multidimensional_Arrays\Lab03_Group_Numbers.cs" />
     <None Include="Lab03_Multidimensional_Arrays\Lab04_Pascal_Triangle.cs" />
+    <None Include="Ex04_Multidimensional_Arrays\Ex01_Matrix_of_Palindromes.cs" />
+    <None Include="Ex04_Multidimensional_Arrays\Ex02_Diagonal_Difference.cs" />
+    <None Include="Ex04_Multidimensional_Arrays\Ex03_2x2_Squares_Matrix.cs" />
+    <None Include="Lab05_Streams\Class1.cs" />
+    <None Include="Ex04_Multidimensional_Arrays\Ex04_Maximal_Sum.cs" />
+    <None Include="Ex04_Multidimensional_Arrays\Ex12_String_Matrix_Rotation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

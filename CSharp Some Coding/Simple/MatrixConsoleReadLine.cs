@@ -6,6 +6,26 @@
 
     class MatrixConsoleReadLine
     {
+        private static int[][] MatrixReadNLines()
+        {
+            int[][] matrix = new int[5][];
+
+            for (var row = 0; row < 5; row++)
+            {
+                string line = Console.ReadLine();
+
+                if (line.Length != 5)
+                    throw new FormatException();
+
+                matrix[row] = line
+                    .Split(new[] { ' ' },
+                        StringSplitOptions.RemoveEmptyEntries)
+                    .Select(int.Parse)
+                    .ToArray();
+            }
+            return matrix;
+        }
+
         private static int[,] MatrixReadNLines()
         {
             int[,] matrix = new int[5, 5];
@@ -13,7 +33,8 @@
             for (var row = 0; row < 5; row++)
             {
                 int[] line = Console.ReadLine()
-                    .Split(' ')
+                    .Split(new[] { ' ' },
+                        StringSplitOptions.RemoveEmptyEntries)
                     .Select(int.Parse)
                     .ToArray();
 
@@ -38,7 +59,8 @@
                 throw new FormatException();
 
             int[] lineArray = line
-                .Split(' ')
+                .Split(new[] { ' ' },
+                    StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToArray();
 

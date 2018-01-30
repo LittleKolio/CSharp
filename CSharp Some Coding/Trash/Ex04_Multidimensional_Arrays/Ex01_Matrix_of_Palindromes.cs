@@ -1,4 +1,4 @@
-﻿namespace Multidimensional_Arrays_Exercises
+﻿namespace Trash.Ex04_Multidimensional_Arrays
 {
     using System;
     using System.Collections.Generic;
@@ -6,19 +6,18 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class Exercises_01_Matrix_Of_Palindromes
+    public class Ex01_Matrix_of_Palindromes
     {
         public static void Main()
         {
-            int[] input = Console.ReadLine()
-                .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+            int[] nums = Console.ReadLine()
+                .Split(new char[] { ' ' },
+                    StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToArray();
 
-            //var watch = System.Diagnostics.Stopwatch.StartNew();
-
-            int row = input[0];
-            int col = input[1];
+            int row = nums[0];
+            int col = nums[1];
 
             string[][] matrix = new string[row][];
 
@@ -39,9 +38,6 @@
 
                 Console.WriteLine(string.Join(" ", matrix[i]));
             }
-
-            //watch.Stop();
-            //Console.WriteLine(watch.ElapsedTicks);
         }
     }
 }

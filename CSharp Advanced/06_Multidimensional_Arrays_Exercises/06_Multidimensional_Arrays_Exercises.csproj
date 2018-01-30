@@ -53,6 +53,7 @@
     <None Include="Exercises_08_Radioactive_Mutant_Vampire_Bunnies.cs" />
     <None Include="Exercises_09_Crossfire.cs" />
     <None Include="Exercises_10_The_Heigan_Dance.cs" />
+    <None Include="Exercises_12_String_Matrix_Rotation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
