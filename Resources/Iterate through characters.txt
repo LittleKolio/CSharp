@@ -1,0 +1,430 @@
+
+What is the fastest way to iterate through individual characters in a string in C#?
+
+The title is the question. Below is my attempt to answer it through research. But I don't trust my uninformed research so I still pose the question (What is the fastest way to iterate through individual characters in a string in C#?).
+
+Occasionally I want to cycle through the characters of a string one-by-one, such as when parsing for nested tokens -- something which cannot be done with regular expressions. I am wondering what the fastest way is to iterate through the individual characters in a string, particularly very large strings.
+
+I did a bunch of testing myself and my results are below. However there are many readers with much more in depth knowledge of the .NET CLR and C# compiler so I don't know if I'm missing something obvious, or if I made a mistake in my test code. So I solicit your collective response. If anyone has insight into how the string indexer actually works that would be very helpful. (Is it a C# language feature compiled into something else behind the scenes? Or something built in to the CLR?).
+
+The first method using a stream was taken directly from the accepted answer from the thread: how to generate a stream from a string?
+
+Tests
+
+longString is a 99.1 million character string consisting of 89 copies of the plain-text version of the C# language specification. Results shown are for 20 iterations. Where there is a 'startup' time (such as for the first iteration of the implicitly created array in method #3), I tested that separately, such as by breaking from the loop after the first iteration.
+
+Results
+
+From my tests, caching the string in a char array using the ToCharArray() method is the fastest for iterating over the entire string. The ToCharArray() method is an upfront expense, and subsequent access to individual characters is slightly faster than the built in index accessor.
+
+                                           milliseconds
+                                ---------------------------------
+ Method                         Startup  Iteration  Total  StdDev
+------------------------------  -------  ---------  -----  ------
+ 1 index accessor                     0        602    602       3
+ 2 explicit convert ToCharArray     165        410    582       3
+ 3 foreach (c in string.ToCharArray)168        455    623       3
+ 4 StringReader                       0       1150   1150      25
+ 5 StreamWriter => Stream           405       1940   2345      20
+ 6 GetBytes() => StreamReader       385       2065   2450      35
+ 7 GetBytes() => BinaryReader       385       5465   5850      80
+ 8 foreach (c in string)              0        960    960       4
+
+Update: Per @Eric's comment, here are results for 100 iterations over a more normal 1.1 M char string (one copy of the C# spec). Indexer and char arrays are still fastest, followed by foreach(char in string), followed by stream methods.
+
+                                           milliseconds
+                                ---------------------------------
+ Method                         Startup  Iteration  Total  StdDev
+------------------------------  -------  ---------  -----  ------
+ 1 index accessor                     0        6.6    6.6    0.11
+ 2 explicit convert ToCharArray     2.4        5.0    7.4    0.30
+ 3 for(c in string.ToCharArray)     2.4        4.7    7.1    0.33
+ 4 StringReader                       0       14.0   14.0    1.21
+ 5 StreamWriter => Stream           5.3       21.8   27.1    0.46
+ 6 GetBytes() => StreamReader       4.4       23.6   28.0    0.65
+ 7 GetBytes() => BinaryReader       5.0       61.8   66.8    0.79
+ 8 foreach (c in string)              0       10.3   10.3    0.11     
+
+Code Used (tested separately; shown together for brevity)
+
+//1 index accessor
+int strLength = longString.Length;
+for (int i = 0; i < strLength; i++) { c = longString[i]; }
+
+//2 explicit convert ToCharArray
+int strLength = longString.Length;
+char[] charArray = longString.ToCharArray();
+for (int i = 0; i < strLength; i++) { c = charArray[i]; }
+
+//3 for(c in string.ToCharArray)
+foreach (char c in longString.ToCharArray()) { } 
+
+//4 use StringReader
+int strLength = longString.Length;
+StringReader sr = new StringReader(longString);
+for (int i = 0; i < strLength; i++) { c = Convert.ToChar(sr.Read()); }
+
+//5 StreamWriter => StreamReader 
+int strLength = longString.Length;
+MemoryStream stream = new MemoryStream();
+StreamWriter writer = new StreamWriter(stream);
+writer.Write(longString);
+writer.Flush();
+stream.Position = 0;
+StreamReader str = new StreamReader(stream);
+while (stream.Position < strLength) { c = Convert.ToChar(str.Read()); } 
+
+//6 GetBytes() => StreamReader
+int strLength = longString.Length;
+MemoryStream stream = new MemoryStream(Encoding.Unicode.GetBytes(longString));
+StreamReader str = new StreamReader(stream);
+while (stream.Position < strLength) { c = Convert.ToChar(str.Read()); }
+
+//7 GetBytes() => BinaryReader 
+int strLength = longString.Length;
+MemoryStream stream = new MemoryStream(Encoding.Unicode.GetBytes(longString));
+BinaryReader br = new BinaryReader(stream, Encoding.Unicode);
+while (stream.Position < strLength) { c = br.ReadChar(); }
+
+//8 foreach (c in string)
+foreach (char c in longString) { } 
+
+Accepted answer:
+
+I interpreted @CodeInChaos and Ben's notes as follows:
+
+fixed (char* pString = longString) {
+    char* pChar = pString;
+    for (int i = 0; i < strLength; i++) {
+        c = *pChar ;
+        pChar++;
+    }
+}
+
+Execution for 100 iterations over the short string was 4.4 ms, with < 0.1 ms st dev.
+c# string
+shareimprove this question
+	
+edited May 23 '17 at 12:34
+Community♦
+11
+	
+asked Jan 9 '12 at 19:07
+Joshua Honig
+8,32763458
+	
+4 	 
+	
+ToCharArray() creates a new copy of "super long" string, so even if its performance notable, memory consumption overcome benefits it brings. – Tigran Jan 9 '12 at 19:10
+1 	 
+	
+Just wondering, measuring in LINQPad using System.Diagnostics.Stopwatch? – kamranicus Jan 9 '12 at 19:12
+3 	 
+	
+What about foreach (char c in str) ? – L.B Jan 9 '12 at 19:12
+3 	 
+	
+Though this data is interesting trivia, I note that the vast majority of SO readers will never have to index into a 99 million char string. (If I had a 99 million char string, odds are good it would be on disk and I would be using a memory mapped file in the first place, not a string.) Would it not be more interesting to measure strings of a more realistic size? – Eric Lippert Jan 9 '12 at 19:16
+2 	 
+	
+If unsafe code is acceptable, you can also fix the string in memory and then use pointers. fixed(char* ps=s){...} – CodesInChaos Jan 9 '12 at 19:17
+show 3 more comments
+6 Answers
+active
+oldest
+votes
+up vote
+7
+down vote
+accepted
+	
+
+The fastest answer is to use C++/CLI: How to: Access Characters in a System::String
+
+This approach iterates through the characters in-place in the string using pointer arithmetic. There are no copies, no implicit range checks, and no per-element function calls.
+
+It's likely possible to get (nearly, C++/CLI doesn't require pinning) the same performance from C# by writing an unsafe C# version of PtrToStringChars.
+
+Something like:
+
+unsafe char* PtrToStringContent(string s, out GCHandle pin)
+{
+    pin = GCHandle.Alloc(s, GCHandleType.Pinned);
+    return (char*)pin.AddrOfPinnedObject().Add(System.Runtime.CompilerServices.RuntimeHelpers.OffsetToStringData).ToPointer();
+}
+
+Do remember to call GCHandle.Free afterwards.
+
+CodeInChaos's comment points out that C# provides a syntactic sugar for this:
+
+fixed(char* pch = s) { ... }
+
+shareimprove this answer
+	
+edited Jan 9 '12 at 19:32
+	
+answered Jan 9 '12 at 19:23
+Ben Voigt
+222k25281517
+	
+2 	 
+	
+Any way you could post an example of how to call and PtrToStringChars from C#? I read the article you linked to as well as How to: Convert System::String to wchar_t* or char*, and I get the general idea, but I lack the C++ skills to know how to call this from C#. – Joshua Honig Jan 9 '12 at 19:35
+add a comment
+up vote
+23
+down vote
+	
+
+Any reason not to include foreach?
+
+foreach (char c in text)
+{
+    ...
+}
+
+Is this really going to be your performance bottleneck, by the way? What proportion of your total running time does the iteration itself take?
+shareimprove this answer
+	
+answered Jan 9 '12 at 19:10
+Jon Skeet
+1004k60674258100
+	
+3 	 
+	
+It is included in method 3. As for performance: all these methods are so fast that it probably doesn't matter. But knowing is still interesting, especially when it reveals something about how the runtime or language works. – Joshua Honig Jan 9 '12 at 19:13
+3 	 
+	
+@jmh_gr - No it isn't. Method 3 iterates over the result of a call to ToCharArray. – Oded Jan 9 '12 at 19:14
+8 	 
+	
+@jmh_gr: So if all you need to do is iterate over the characters, I'd use this. It's the simplest code which expresses your intention. If that's fast enough, don't micro-optimize towards more complex code. – Jon Skeet Jan 9 '12 at 19:24
+3 	 
+	
+@jmh_gr: However, if you start applying the same measurements to very similar situations, you can get very different results. Using BinaryReader seems like going out of your way to start with - I always start with the simplest, most readable and testable code that works, measure that, and optimize further if necessary. – Jon Skeet Jan 9 '12 at 19:33
+3 	 
+	
+@one.beat.consumer: No, it's not safe to assume that - given that it wasn't in there until after I'd added my answer. It was edited in by the OP. – Jon Skeet Jan 10 '12 at 1:22
+show 7 more comments
+up vote
+8
+down vote
+	
+
+These kind of artificial tests are pretty dangerous. Notable is that your //2 and //3 versions of the code never actually indexes the string. The jitter optimizer just throws away the code since the c variable isn't used at all. You are just measuring how long the for() loop takes. You can't really see this unless you look at the generated machine code.
+
+Change it to c += longString[i]; to force the array indexer to be used.
+
+Which is nonsense of course. Profile only real code.
+shareimprove this answer
+	
+edited Jan 12 '12 at 0:43
+	
+answered Jan 9 '12 at 19:44
+Hans Passant
+736k10111771893
+	
+   	 
+	
++1 - Thanks for pointing that out. – one.beat.consumer Jan 9 '12 at 23:10
+add a comment
+up vote
+5
+down vote
+	
+
+TL;DR: a simple foreach is the fastest way to iterate a string.
+
+For people coming back to this: times change!
+
+With the latest .NET 64-bit JIT, the unsafe version actually is the slowest.
+
+Below is a benchmark implementation for BenchmarkDotNet. From these, I got the following results:
+
+          Method |      Mean |     Error |    StdDev |
+---------------- |----------:|----------:|----------:|
+        Indexing | 5.9712 us | 0.8738 us | 0.3116 us |
+ IndexingOnArray | 8.2907 us | 0.8208 us | 0.2927 us |
+  ForEachOnArray | 8.1919 us | 0.6505 us | 0.1690 us |
+         ForEach | 5.6946 us | 0.0648 us | 0.0231 us |
+          Unsafe | 7.2952 us | 1.1050 us | 0.3941 us |
+
+The interesting ones are the one that do not work on an array copy. This shows that indexing and foreach are very similar in performance, with a 5% difference, foreach being faster. Using unsafe is actually 28% slower than using a foreach.
+
+In the past unsafe may have been the fastest option, but JIT's get faster and smarter all the time.
+
+As a reference, the benchmark code:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Horology;
+using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Running;
+
+namespace StringIterationBenchmark
+{
+    public class StringIteration
+    {
+        public static void Main(string[] args)
+        {
+            var config = new ManualConfig();
+
+            config.Add(DefaultConfig.Instance);
+
+            config.Add(Job.Default
+                .WithLaunchCount(1)
+                .WithIterationTime(TimeInterval.FromMilliseconds(500))
+                .WithWarmupCount(3)
+                .WithTargetCount(6)
+            );
+
+            BenchmarkRunner.Run<StringIteration>(config);
+        }
+
+        private readonly string _longString = BuildLongString();
+
+        private static string BuildLongString()
+        {
+            var sb = new StringBuilder();
+            var random = new Random();
+
+            while (sb.Length < 10000)
+            {
+                char c = (char)random.Next(char.MaxValue);
+                if (!Char.IsControl(c))
+                    sb.Append(c);
+            }
+
+            return sb.ToString();
+        }
+
+        [Benchmark]
+        public char Indexing()
+        {
+            char c = '\0';
+            var longString = _longString;
+            int strLength = longString.Length;
+
+            for (int i = 0; i < strLength; i++)
+            {
+                c |= longString[i];
+            }
+
+            return c;
+        }
+
+        [Benchmark]
+        public char IndexingOnArray()
+        {
+            char c = '\0';
+            var longString = _longString;
+            int strLength = longString.Length;
+            char[] charArray = longString.ToCharArray();
+
+            for (int i = 0; i < strLength; i++)
+            {
+                c |= charArray[i];
+            }
+
+            return c;
+        }
+
+        [Benchmark]
+        public char ForEachOnArray()
+        {
+            char c = '\0';
+            var longString = _longString;
+
+            foreach (char item in longString.ToCharArray())
+            {
+                c |= item;
+            }
+
+            return c;
+        }
+
+        [Benchmark]
+        public char ForEach()
+        {
+            char c = '\0';
+            var longString = _longString;
+
+            foreach (char item in longString)
+            {
+                c |= item;
+            }
+
+            return c;
+        }
+
+        [Benchmark]
+        public unsafe char Unsafe()
+        {
+            char c = '\0';
+            var longString = _longString;
+            int strLength = longString.Length;
+
+            fixed (char* p = longString)
+            {
+                var p1 = p;
+
+                for (int i = 0; i < strLength; i++)
+                {
+                    c |= *p1;
+                    p1++;
+                }
+            }
+
+            return c;
+        }
+    }
+}
+
+The code has a few minor changes from the offered code. The chars that are retrieved from the original string are |-ed with the variable being returned, and we return the value. The reason for this is that we actually need to do something with the result. Otherwise, if we'd just be iterating over the string like:
+
+//8 foreach (c in string)
+foreach (char c in longString) { } 
+
+the JIT is free to remove this because it could infer that you're not actually observing the results of the iteration. By |-ing the characters in the array and returning this, BenchmarkDotNet will make sure that the JIT can't perform this optimization.
+shareimprove this answer
+	
+answered Apr 25 '17 at 12:14
+
+If micro optimization is very important for you, then try this. (I assumed input string's length to be multiple of 8 for simplicity)
+
+unsafe void LoopString()
+{
+    fixed (char* p = longString)
+    {
+        char c1,c2,c3,c4;
+        Int64 len = longString.Length;
+        Int64* lptr = (Int64*)p;
+        Int64 l;
+        for (int i = 0; i < len; i+=8)
+        {
+            l = *lptr;
+            c1 = (char)(l & 0xffff);
+            c2 = (char)(l >> 16);
+            c3 = (char)(l >> 32);
+            c4 = (char)(l >> 48);
+            lptr++;
+        }
+    }
+}
+
+Just kidding, never use this code :)
+shareimprove this answer
+	
+answered Jan 9 '12 at 20:22
+
+If speed really matters for is faster than foreach
+
+for (int i = 0; i < text.Length; i++) {
+   char ch = text[i];
+   ...
+}

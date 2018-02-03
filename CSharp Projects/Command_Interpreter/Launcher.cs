@@ -1,5 +1,6 @@
 ﻿namespace Command_Interpreter
 {
+    using IO;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -11,10 +12,10 @@
     {
         public static void Main()
         {
-            //string path = @"D:\Downloads";
-            string path = Directory.GetCurrentDirectory();
+            string path = @"D:\Movies";
+            //string path = Directory.GetCurrentDirectory();
             //string path = @"C:\Windows";
-            //IOManager.TraversingFileSystem(path);
+            IOManager.TraversingFileSystem(path);
 
             Console.WriteLine(path);
             Console.ReadKey();

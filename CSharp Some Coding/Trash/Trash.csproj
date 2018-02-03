@@ -67,9 +67,20 @@
     <None Include="Ex04_Multidimensional_Arrays\Ex01_Matrix_of_Palindromes.cs" />
     <None Include="Ex04_Multidimensional_Arrays\Ex02_Diagonal_Difference.cs" />
     <None Include="Ex04_Multidimensional_Arrays\Ex03_2x2_Squares_Matrix.cs" />
-    <None Include="Lab05_Streams\Class1.cs" />
+    <None Include="Lab05_Streams\Lab01_Read_File.cs" />
     <None Include="Ex04_Multidimensional_Arrays\Ex04_Maximal_Sum.cs" />
     <None Include="Ex04_Multidimensional_Arrays\Ex12_String_Matrix_Rotation.cs" />
+    <None Include="Lab05_Streams\Lab02_Write_to_File.cs" />
+    <None Include="Lab05_Streams\Lab03_Write_File_FileStream.cs" />
+    <None Include="Ex06_Functional_Programming\Ex01_Action_Print.cs" />
+    <None Include="Lab05_Streams\Lab04_Copying_File.cs" />
+    <None Include="Ex06_Functional_Programming\Ex02_Knights_Of_Honor.cs" />
+    <None Include="Ex06_Functional_Programming\Ex03_Custom_Min_Function.cs" />
+    <None Include="Ex06_Functional_Programming\Ex04_Find_Evens_Or_Odds.cs" />
+    <None Include="Ex06_Functional_Programming\Ex05_Applied_Arithmetics.cs" />
+    <None Include="Ex06_Functional_Programming\Ex06_Reverse_And_Exclude.cs" />
+    <None Include="Ex06_Functional_Programming\Ex07_Predicate_For_Names.cs" />
+    <Compile Include="Ex06_Functional_Programming\Ex08_Custom_Comparator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace Functional_Programming_Exercises
+﻿namespace Trash.Ex06_Functional_Programming
 {
     using System;
     using System.Collections.Generic;
@@ -6,18 +6,18 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    class Exercises_07_Predicate_For_Names
+    public class Ex07_Predicate_For_Names
     {
-        static void Main()
+        public static void Main()
         {
-            int length = int.Parse(Console.ReadLine());
+            int num = int.Parse(Console.ReadLine());
 
-            Func<string, bool> isRgihtLen = name => name.Length <= length;
+            Func<string, bool> func = str => str.Length <= num;
 
             Console.ReadLine()
                 .Split(new char[] { ' ' },
                     StringSplitOptions.RemoveEmptyEntries)
-                .Where(isRgihtLen)
+                .Where(func)
                 .ToList()
                 .ForEach(str => Console.WriteLine(str));
         }

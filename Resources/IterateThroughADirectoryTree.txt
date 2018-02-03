@@ -1,0 +1,9 @@
+Iterate Through a Directory Tree
+
+n the simplest case, in which you know for certain that you have access permissions for all directories under a specified root, you can use the System.IO.SearchOption.AllDirectories flag. This flag returns all the nested subdirectories that match the specified pattern. The following example shows how to use this flag.
+
+root.GetDirectories("*.*", System.IO.SearchOption.AllDirectories);
+
+The weakness in this approach is that if any one of the subdirectories under the specified root causes a DirectoryNotFoundException or UnauthorizedAccessException, the whole method fails and returns no directories. The same is true when you use the GetFiles method. If you have to handle these exceptions on specific subfolders, you must manually walk the directory tree, as shown in the following examples.
+
+The recursive approach is elegant but has the potential to cause a stack overflow exception if the directory tree is large and deeply nested. 

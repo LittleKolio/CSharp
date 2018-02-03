@@ -1,38 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Functional_Programming_Exercises
+﻿namespace Functional_Programming_Exercises
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
     class Exercises_06_Reverse_And_Exclude
     {
         static void Main()
         {
-            List<int> list = Console.ReadLine()
+            int[] list = Console.ReadLine()
                 .Split(new[] { ' ' },
                 StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
-                .ToList();
+                .ToArray();
 
             int divNum = int.Parse(Console.ReadLine());
 
-            Stack<int> result = new Stack<int>();
+            /*
+            Func<int, bool> func = num => num % divNum != 0;
 
-            Predicate<int> divisible = num => num % divNum == 0;
+            int[] result = input
+                .Where(func)
+                .Reverse()
+                .ToArray();
 
-            foreach (var num in list)
-            {
-                if (!divisible(num))
-                {
-                    result.Push(num);
-                }
-            }
+            Console.WriteLine(string.Join(" ", result));
+            */
+
+            Stack<int> result = new Stack<int>(list);
+
+            Predicate<int> divisible = num => num % divNum != 0;
 
             while (result.Count > 0)
             {
-                Console.Write(result.Pop() + " ");
+                if (divisible(result.Peek()))
+                {
+                    Console.Write(result.Pop() + " ");
+                }
+                else
+                {
+                    result.Pop();
+                }
             }
             Console.WriteLine();
         }
