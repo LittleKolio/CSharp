@@ -16,9 +16,6 @@
                 .Select(int.Parse)
                 .ToArray();
 
-            //Func<int, int, int>
-
-            Array.Sort()
         }
     }
 }

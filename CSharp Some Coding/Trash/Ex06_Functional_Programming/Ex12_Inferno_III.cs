@@ -1,4 +1,4 @@
-﻿namespace Functional_Programming_Exercises
+﻿namespace Trash.Ex06_Functional_Programming
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class Exercises_12_Inferno_III
+    public class Ex12_Inferno_III
     {
         public static void Main()
         {
@@ -27,12 +27,12 @@
                 {
                     List<int> value = sequence
                         .Where(gem =>
-                        {
-                            int i = sequence.IndexOf(gem);
-                            int left = (i - 1) < 0 ? 0 : sequence[i - 1];
-                            int right = (i + 1) >= sequence.Count ? 0 : sequence[i + 1];
-                            return SwitchFunc(tokens, left, gem, right);
-                        })
+                            {
+                                int i = sequence.IndexOf(gem);
+                                int left = (i - 1) < 0 ? 0 : sequence[i - 1];
+                                int right = (i + 1) >= sequence.Count ? 0 : sequence[i + 1];
+                                return SwitchFunc(tokens, left, gem, right);
+                            })
                         .ToList();
 
                     if (value.Count > 0)
@@ -74,7 +74,7 @@
 
         private static string[] SplitInput(string input, string delimiter)
         {
-            return input.Split(delimiter.ToCharArray(),
+            return input.Split(delimiter.ToCharArray(), 
                 StringSplitOptions.RemoveEmptyEntries);
         }
     }

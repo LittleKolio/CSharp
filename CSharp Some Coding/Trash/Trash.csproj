@@ -80,7 +80,9 @@
     <None Include="Ex06_Functional_Programming\Ex05_Applied_Arithmetics.cs" />
     <None Include="Ex06_Functional_Programming\Ex06_Reverse_And_Exclude.cs" />
     <None Include="Ex06_Functional_Programming\Ex07_Predicate_For_Names.cs" />
-    <Compile Include="Ex06_Functional_Programming\Ex08_Custom_Comparator.cs" />
+    <None Include="Ex06_Functional_Programming\Ex08_Custom_Comparator.cs" />
+    <None Include="Ex06_Functional_Programming\Ex09_List_Of_Predicates.cs" />
+    <None Include="Ex06_Functional_Programming\Ex12_Inferno_III.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
