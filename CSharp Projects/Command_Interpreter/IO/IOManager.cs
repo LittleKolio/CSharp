@@ -23,7 +23,7 @@
         /// <param name="path"></param>
         public static void TraversingFileSystem(string path)
         {
-            // I dont no witch is the fastest way to iterate through characters in string!
+            //I dont no witch is the fastest way to iterate through characters in string!
             //int indentation = Regex.Matches(path, "\\").Count;
             //int indentation = path.Split('\\').Length;
             int initialDepth = path.Count(c => c == '\\');
@@ -49,16 +49,18 @@
                 {
                     directories = Directory.GetDirectories(currentPath);
                 }
-                catch (UnauthorizedAccessException ex)
+                catch (UnauthorizedAccessException)
                 {
-                    Console.WriteLine(ex.Message);
+                    OutputWriter.WriteOneLineMessage(
+                        ExceptionMessages.folder_DontHaveAccess);
                     continue;
                 }
                 // This will happen if current Dir has been deleted by
                 // another application or thread after our call to Directory.
-                catch (DirectoryNotFoundException ex)
+                catch (DirectoryNotFoundException)
                 {
-                    Console.WriteLine(ex.Message);
+                    OutputWriter.WriteOneLineMessage(
+                        ExceptionMessages.folder_DoseNotExist);
                     continue;
                 }
 
@@ -69,12 +71,14 @@
                 }
                 catch (UnauthorizedAccessException ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    OutputWriter.WriteOneLineMessage(
+                        ExceptionMessages.file_DontHaveAccess);
                     continue;
                 }
                 catch (DirectoryNotFoundException ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    OutputWriter.WriteOneLineMessage(
+                        ExceptionMessages.folder_DoseNotExist);
                     continue;
                 }
 
@@ -93,7 +97,8 @@
                     }
                     catch (FileNotFoundException ex)
                     {
-                        Console.WriteLine(ex.Message);
+                        OutputWriter.WriteOneLineMessage(
+                            ExceptionMessages.file_DoseNotExist);
                         continue;
                     }
                 }

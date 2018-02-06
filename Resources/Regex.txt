@@ -43,7 +43,9 @@ using System.Text.RegularExpressions;
 				/// </summary>
 				public static string UpperFirst(string srt)
 				{
-					return Regex.Replace(srt, @"\b[a-z]\w+", 
+					return Regex.Replace(
+						srt, 
+						@"\b[a-z]\w+", 
 						delegate(Match match)
 						{
 							string v = match.ToString();
@@ -121,11 +123,11 @@ using System.Text.RegularExpressions;
     ├───────────────────────────────────────────────────────────────────┤
 		
  
-    ├─ Greedy repetition
+    ├─ Greedy repetition - all symbols in one group
     └─┬─────────────────────────────────────────────────────────────────┘
       "\.+"
  
-    ├─ Lazy repetition
+    ├─ Lazy repetition - one symbol by group
     └─┬─────────────────────────────────────────────────────────────────┘
       "\.+?"
 

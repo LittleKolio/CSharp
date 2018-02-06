@@ -29,32 +29,26 @@ namespace Practical_Exam_25June2017
     {
         static void Main()
         {
+            //string pattern = @"\[\w+<(\d+)REGEH(\d+)>\w+\]";
+            //"\.+?" - Lazy repetition -> "\S+?"
             string pattern = @"\[\S+?<(\d+)REGEH(\d+)>\S+?\]";
             Regex regex = new Regex(pattern);
 
             string input = Console.ReadLine();
 
-            MatchCollection matches = regex.Matches(input);
+            MatchCollection matches = Regex.Matches(input, pattern);
 
-            Queue<int> numbers = new Queue<int>();
+            int index = 0;
             foreach (Match match in matches)
             {
                 for (int i = 1; i < match.Groups.Count; i++)
                 {
-                    numbers.Enqueue(int.Parse(match.Groups[i].Value));
+                    index += int.Parse(match.Groups[i].Value);
+                    int correctIndex = index % input.Length;
+                    Console.Write(input[correctIndex]);
                 }
             }
-
-            StringBuilder sb = new StringBuilder();
-            int index = 0;
-
-            while (numbers.Count > 0)
-            {
-                index += numbers.Dequeue();
-                sb.Append(input[index % (input.Length - 1)]);
-            }
-
-            Console.WriteLine(sb);
+            Console.WriteLine();
         }
     }
 }
