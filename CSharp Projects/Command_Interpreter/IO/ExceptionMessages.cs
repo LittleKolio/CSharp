@@ -8,9 +8,14 @@
 
     public static class ExceptionMessages
     {
-        public const string data_IsInitialized = "Data is already initialized!";
+        public const string data_IsInitialized = "Data structure is already initialized!";
+        public const string data_IsNotInitialized = "The data structure must be initialized first.";
+        public const string data_CoursDoseNotExist = "The course does not exist in the data base!";
+        public const string data_StudentDoseNotExist = "The student does not exist in this cours!";
+
         public const string file_DoseNotExist = "File does not exist!";
         public const string file_DontHaveAccess = "You don't have access to tose file!";
+
         public const string folder_DoseNotExist = "Folder does not exist!";
         public const string folder_DontHaveAccess = "You don't have access to tose folder!";
     }

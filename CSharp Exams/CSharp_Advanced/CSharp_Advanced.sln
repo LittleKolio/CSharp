@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample_Exam_2_From_22August
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practical_Exam_25June2017", "Practical_Exam_25June2017\Practical_Exam_25June2017.csproj", "{13DFBEA5-21F4-424D-AB07-B58CC5EBB187}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exam_Retake_3September2017", "Exam_Retake_3September2017\Exam_Retake_3September2017.csproj", "{80198CFB-9D15-49A3-BA29-9841735E4C65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{13DFBEA5-21F4-424D-AB07-B58CC5EBB187}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13DFBEA5-21F4-424D-AB07-B58CC5EBB187}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13DFBEA5-21F4-424D-AB07-B58CC5EBB187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80198CFB-9D15-49A3-BA29-9841735E4C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80198CFB-9D15-49A3-BA29-9841735E4C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80198CFB-9D15-49A3-BA29-9841735E4C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80198CFB-9D15-49A3-BA29-9841735E4C65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

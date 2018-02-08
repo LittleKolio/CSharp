@@ -58,5 +58,66 @@
                 studentsByCourse[course][student].Add(mark);
             }
         }
+
+        private static bool IsQueryForCoursePossible(string cours)
+        {
+            if (isDataInitialized)
+            {
+                if (studentsByCourse.ContainsKey(cours))
+                {
+                    return true;
+                }
+                else
+                {
+                    OutputWriter.WriteOneLineMessage(
+                        ExceptionMessages.data_CoursDoseNotExist);
+                }
+            }
+            else
+            {
+                OutputWriter.WriteOneLineMessage(
+                    ExceptionMessages.data_IsNotInitialized);
+            }
+
+            return false;
+        }
+
+        private static bool IsQueryForStudentPossiblе(string cours, string student)
+        {
+            if (IsQueryForCoursePossible(cours) &&
+                studentsByCourse[cours].ContainsKey(student))
+            {
+                return true;
+            }
+            else
+            {
+                OutputWriter.WriteOneLineMessage(
+                    ExceptionMessages.data_StudentDoseNotExist);
+            }
+
+            return false;
+        }
+
+        public static void GetStudent(string cours, string student)
+        {
+            if (IsQueryForStudentPossiblе(cours, student))
+            {
+                OutputWriter.PrintStudent(
+                    new KeyValuePair<string, List<int>>(
+                        student, studentsByCourse[cours][student]));
+            }
+        }
+
+        public static void GetAllStudents(string cours)
+        {
+            if (IsQueryForCoursePossible(cours))
+            {
+                OutputWriter.WriteOneLineMessage(cours);
+                foreach (var student in studentsByCourse[cours])
+                {
+                    OutputWriter.PrintStudent(student);
+                }
+            }
+        }
     }
 }

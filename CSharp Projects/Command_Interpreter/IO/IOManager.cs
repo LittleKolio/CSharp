@@ -69,13 +69,13 @@
                 {
                     files = Directory.GetFiles(currentPath);
                 }
-                catch (UnauthorizedAccessException ex)
+                catch (UnauthorizedAccessException)
                 {
                     OutputWriter.WriteOneLineMessage(
                         ExceptionMessages.file_DontHaveAccess);
                     continue;
                 }
-                catch (DirectoryNotFoundException ex)
+                catch (DirectoryNotFoundException)
                 {
                     OutputWriter.WriteOneLineMessage(
                         ExceptionMessages.folder_DoseNotExist);
@@ -95,7 +95,7 @@
                         offsetString = new string(' ', offset + 1) + "\u2514\u2500";
                         OutputWriter.WriteOneLineMessage(offsetString + info.Name);
                     }
-                    catch (FileNotFoundException ex)
+                    catch (FileNotFoundException)
                     {
                         OutputWriter.WriteOneLineMessage(
                             ExceptionMessages.file_DoseNotExist);

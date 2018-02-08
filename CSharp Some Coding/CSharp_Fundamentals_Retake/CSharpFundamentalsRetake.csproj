@@ -85,6 +85,10 @@
     <None Include="Ex06_Functional_Programming\Ex12_Inferno_III.cs" />
     <None Include="CSharp_Advanced_Exam_25June2017\Exam01_Regeh.cs" />
     <None Include="CSharp_Advanced_Exam_25June2017\Exam02_Knight_Game.cs" />
+    <None Include="CSharp_Advanced_Exam_25June2017\Exam03_Number_Wars.cs" />
+    <None Include="CSharp_Advanced_Exam_25June2017\Exam04_Hospital.cs" />
+    <None Include="CSharp_Advanced_Exam_3September2017\Exam_01_Dangerous_Floor.cs" />
+    <None Include="CSharp_Advanced_Exam_3September2017\Exam_02_Crypto_Master.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

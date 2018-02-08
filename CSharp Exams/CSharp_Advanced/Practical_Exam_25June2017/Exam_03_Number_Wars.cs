@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Practical_Exam_25June2017
+﻿namespace Practical_Exam_25June2017
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// There are two players. Each of them have cards in their hands.
     /// Cards consist of a number and an English letter something like "11f", "53g", "55g", "3k", "66666p".
@@ -27,106 +27,103 @@ namespace Practical_Exam_25June2017
     /// Each number will contain an integer with a single letter at the end.
     /// Time limit: 0.3 sec.Memory limit: 16 MB.
     /// </remarks>
+    /// 
     class Exam_03_Number_Wars
     {
-        public static Queue<string> player1;
-        public static Queue<string> player2;
+        public static Queue<string> p1Hand;
+        public static Queue<string> p2Hand;
+        public static int turns;
 
-        static void Main()
+        public static void Main()
         {
-            player1 = new Queue<string>(
-                Console.ReadLine()
-                    .Split(new[] { ' ' },
-                        StringSplitOptions.RemoveEmptyEntries)
-                );
-            player2 = new Queue<string>(
-                Console.ReadLine()
-                    .Split(new[] { ' ' },
-                        StringSplitOptions.RemoveEmptyEntries)
-                );
+            InitializeProperties();
 
-            int turns = 0;
-            bool ravenstvo = false;
-            while (
-                player1.Count > 0 && 
-                player2.Count > 0 && 
-                turns < 1000000)
+            while (p1Hand.Count > 0 && p2Hand.Count > 0 && turns < 1000000)
             {
-                List<string> hand = new List<string>();
-                string player = "";
-                
-                string card_P1 = player1.Dequeue();
-                string card_P2 = player2.Dequeue();
+                List<string> warCards = new List<string>();
 
-                long card_P1_Num = long.Parse(card_P1.Remove(card_P1.Length - 1));
-                long card_P2_Num = long.Parse(card_P2.Remove(card_P2.Length - 1));
+                string p1Card = p1Hand.Dequeue();
+                string p2Card = p2Hand.Dequeue();
 
-                hand.Add(card_P1);
-                hand.Add(card_P2);
+                warCards.Add(p1Card);
+                warCards.Add(p2Card);
 
-                if (card_P1_Num == card_P2_Num)
-                {
-                    ravenstvo = true;
+                int p1Num = int.Parse(p1Card.Substring(0, p1Card.Length - 1));
+                int p2Num = int.Parse(p2Card.Substring(0, p2Card.Length - 1));
 
-                    long sum_P1 = 0;
-                    long sum_P2 = 0;
+                CompareBySum(warCards, p1Num.CompareTo(p2Num));
 
-                    while (player1.Count > 2 && player2.Count > 2)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            string war_P1 = player1.Dequeue();
-                            string war_P2 = player2.Dequeue();
-                            sum_P1 += (war_P1.Last() - 'a') + 1;
-                            sum_P2 += (war_P2.Last() - 'a') + 1;
-                            hand.Add(war_P1);
-                            hand.Add(war_P2);
-                        }
-
-                        if (sum_P2 != sum_P1)
-                        {
-                            ravenstvo = false;
-                            break;
-                        }
-                    }
-
-                    if (sum_P1 > sum_P2) { player = "p1"; }
-                    if (sum_P1 < sum_P2) { player = "p2"; }
-                }
-
-                if (card_P1_Num > card_P2_Num) { player = "p1"; }
-                if (card_P1_Num < card_P2_Num) { player = "p2"; }
-
-                if (!ravenstvo) { CardsPlayer(hand, player); }
-                
                 turns++;
             }
 
-            if (ravenstvo && player1.Count < 3 && player2.Count < 3)
-            {
-                Console.WriteLine($"Draw after {turns} turns");
-            }
-            else if (player1.Count > player2.Count)
-            {
-                Console.WriteLine($"First player wins after {turns} turns");
-            }
-            else if(player1.Count < player2.Count)
-            {
-                Console.WriteLine($"Second player wins after {turns} turns");
-            }
+            PrintResultByCount(p1Hand.Count.CompareTo(p2Hand.Count));
         }
 
-        private static void CardsPlayer(List<string> hand, string player)
+        private static void InitializeProperties()
         {
-            foreach (var card in 
-                hand
-                .OrderByDescending(c => long.Parse(c.Remove(c.Length - 1)))
-                .ThenByDescending(c => c.Last())
-                )
+            p1Hand = new Queue<string>(SplitInput(Console.ReadLine(), " "));
+            p2Hand = new Queue<string>(SplitInput(Console.ReadLine(), " "));
+            turns = 0;
+        }
+
+        private static void CompareBySum(List<string> warCards, int result)
+        {
+            if (result > 0) { AddToWinnerHand(p1Hand, warCards); }
+            else if (result < 0) { AddToWinnerHand(p2Hand, warCards); }
+            else { War(warCards); }
+        }
+
+        private static void PrintResultByCount(int result)
+        {
+            if (result > 0) { Console.Write("First player wins "); }
+            else if (result < 0) { Console.Write("Second player wins "); }
+            else { Console.Write("Draw "); }
+            Console.WriteLine($"after {turns} turns");
+        }
+
+        private static void War(List<string> warCards)
+        {
+            int p1Sum = 0;
+            int p2Sum = 0;
+
+            for (int i = 0; i < 3; i++)
             {
-                if (player == "p1") { player1.Enqueue(card); }
-                if (player == "p2") { player2.Enqueue(card); }
+                string p1Card = string.Empty;
+                string p2Card = string.Empty;
+                try
+                {
+                    p1Card = p1Hand.Dequeue();
+                    p2Card = p2Hand.Dequeue();
+                }
+                catch
+                {
+                    PrintResultByCount(p1Hand.Count.CompareTo(p2Hand.Count));
+                    return;
+                }
+
+                warCards.Add(p1Card);
+                warCards.Add(p2Card);
+
+                p1Sum += p1Card.Last() - 'a' + 1;
+                p2Sum += p2Card.Last() - 'a' + 1;
             }
+
+            CompareBySum(warCards, p1Sum.CompareTo(p2Sum));
+        }
+
+        private static string[] SplitInput(string input, string delimiter)
+        {
+            return input.Split(delimiter.ToCharArray(),
+                StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        private static void AddToWinnerHand(Queue<string> hand, List<string> cards)
+        {
+            cards
+                .OrderByDescending(card => int.Parse(card.Substring(0, card.Length - 1)))
+                .ThenByDescending(card => card.Last())
+                .ToList()
+                .ForEach(card => hand.Enqueue(card));
         }
     }
 }

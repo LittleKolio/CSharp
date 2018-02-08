@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearchTree", "BinaryS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTableChaining", "HashTableChaining\HashTableChaining.csproj", "{33A5E593-1A68-4351-A006-8696C9136D8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trash", "Trash\Trash.csproj", "{20A651D7-6186-4F62-AF47-4E66880E9177}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpFundamentalsRetake", "CSharp_Fundamentals_Retake\CSharpFundamentalsRetake.csproj", "{20A651D7-6186-4F62-AF47-4E66880E9177}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
