@@ -45,7 +45,7 @@
   <ItemGroup>
     <None Include="Exam_01_Dangerous_Floor.cs" />
     <None Include="Exam_02_Crypto_Master.cs" />
-    <Compile Include="Exam_03_Greedy_Times.cs" />
+    <None Include="Exam_03_Greedy_Times.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -122,14 +122,25 @@ using System.Text.RegularExpressions;
     ├─ Exact quantifiers
     ├───────────────────────────────────────────────────────────────────┤
 		
- 
-    ├─ Greedy repetition - all symbols in one group
-    └─┬─────────────────────────────────────────────────────────────────┘
-      "\.+"
- 
-    ├─ Lazy repetition - one symbol by group
-    └─┬─────────────────────────────────────────────────────────────────┘
-      "\.+?"
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+    │ Greedy repetition
+    ├───────────────────────────────────────────────────────────────────┘
+    ├─ All symbols in one group
+    ├─┬─────────────────────────────────────────────────────────────────┘
+      ".+"
+
+		├─ The "<.+>" will match entire <EM>first</EM>. The dot is repeated by the plus. The plus is greedy. Therefore, the engine will repeat the dot as many times as it can. The quick fix to this problem is to make the plus lazy instead of greedy "<.+?>". Or we can use a greedy plus and a negated character class "<[^>]+>".
+
+		
+╟─┬─────────────────────────────────────────────────────────────────────┐
+  │ \Q…\E Escape Sequences
+  ├─┬───────────────────────────────────────────────────────────────────┘
+		├─ All the characters between the "\Q" and the "\E" are interpreted as literal characters. E.g. "\Q*\d+*\E" matches the literal text *\d+*. The "\E" may be omitted at the end of the regex, so "\Q*\d+*" is the same as "\Q*\d+*\E". 
+	
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+    │ Lazy repetition
+    ├─┬─────────────────────────────────────────────────────────────────┘
+      ".+?"
 
 ╟─┬─────────────────────────────────────────────────────────────────────┐
   │ Grouping Constructs - Named group
@@ -217,7 +228,7 @@ using System.Text.RegularExpressions;
  
  
  
- 
+Suppose you want to use a regex to match a list of function names in a programming language: Get, GetValue, Set or SetValue. The obvious solution is "Get|GetValue|Set|SetValue". The entire regex has successfully matched Set in SetValue. The solution is "\b(Get|GetValue|Set|SetValue)\b" or "\b(Get(Value)?|Set(Value)?)\b". Since all options have the same end, we can optimize this further to "\b(Get|Set)(Value)?\b".
  
  
  

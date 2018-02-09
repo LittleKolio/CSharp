@@ -89,6 +89,8 @@
     <None Include="CSharp_Advanced_Exam_25June2017\Exam04_Hospital.cs" />
     <None Include="CSharp_Advanced_Exam_3September2017\Exam_01_Dangerous_Floor.cs" />
     <None Include="CSharp_Advanced_Exam_3September2017\Exam_02_Crypto_Master.cs" />
+    <None Include="CSharp_Advanced_Exam_3September2017\Exam_03_Greedy_Times.cs" />
+    <Compile Include="CSharp_Advanced_Exam_3September2017\Exam_04_Treasure_Map.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
