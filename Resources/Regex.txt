@@ -79,8 +79,8 @@ using System.Text.RegularExpressions;
 		
 ╟─├─┬───────────────────────────────────────────────────────────────────┐
 		│ Groups
-		├─┬─────────────────────────────────────────────────────────────────┘
-			├─ Collection is indexed at 1, not zero-the first group is found at index 1.
+		├───────────────────────────────────────────────────────────────────┘
+		├─ Collection is indexed at 1, not zero-the first group is found at index 1.
 		├─┬─────────────────────────────────────────────────────────────────┐
 			match.Groups[index].Value;
 		
@@ -123,12 +123,9 @@ using System.Text.RegularExpressions;
     ├───────────────────────────────────────────────────────────────────┤
 		
 ╟─├─┬───────────────────────────────────────────────────────────────────┐
-    │ Greedy repetition
+    │ Greedy repetition - ".+"
     ├───────────────────────────────────────────────────────────────────┘
     ├─ All symbols in one group
-    ├─┬─────────────────────────────────────────────────────────────────┘
-      ".+"
-
 		├─ The "<.+>" will match entire <EM>first</EM>. The dot is repeated by the plus. The plus is greedy. Therefore, the engine will repeat the dot as many times as it can. The quick fix to this problem is to make the plus lazy instead of greedy "<.+?>". Or we can use a greedy plus and a negated character class "<[^>]+>".
 
 		
@@ -138,9 +135,9 @@ using System.Text.RegularExpressions;
 		├─ All the characters between the "\Q" and the "\E" are interpreted as literal characters. E.g. "\Q*\d+*\E" matches the literal text *\d+*. The "\E" may be omitted at the end of the regex, so "\Q*\d+*" is the same as "\Q*\d+*\E". 
 	
 ╟─├─┬───────────────────────────────────────────────────────────────────┐
-    │ Lazy repetition
+    │ Lazy repetition - ".+?"
     ├─┬─────────────────────────────────────────────────────────────────┘
-      ".+?"
+      
 
 ╟─┬─────────────────────────────────────────────────────────────────────┐
   │ Grouping Constructs - Named group
@@ -155,9 +152,9 @@ using System.Text.RegularExpressions;
     └─┬─────────────────────────────────────────────────────────────────┘
       "\d{2}(-|\/)\d{2}\1\d{4}"
 			
-      \1 call (-|\/)
+      "\1" call "(-|\/)"
 			
-      \k<name> call (?<name>regex)
+      "\k<name>" call "(?<name>regex)"
 
 ╟─┬─────────────────────────────────────────────────────────────────────┐
   │ Lookahead and Lookbehind (Lookaround)
@@ -223,12 +220,22 @@ using System.Text.RegularExpressions;
       \b\w*[^s\W]\b
       John's -> Match: John
 			
-
+╟─┬─────────────────────────────────────────────────────────────────────┐
+  │ 
+  ├─┬───────────────────────────────────────────────────────────────────┘
+    ├ \S+?
+    ├─ Match one or more non-white-space characters, but as few as possible.
+    ├───────────────────────────────────────────────────────────────────┤
+    ├ [\s\p{P}]
+    ├─ Match either a white-space character or a punctuation mark.
+    ├───────────────────────────────────────────────────────────────────┤
+    ├ [\s\p{P}]
+    ├─ Match either a white-space character or a punctuation mark.
+    ├───────────────────────────────────────────────────────────────────┤
  
  
  
- 
-Suppose you want to use a regex to match a list of function names in a programming language: Get, GetValue, Set or SetValue. The obvious solution is "Get|GetValue|Set|SetValue". The entire regex has successfully matched Set in SetValue. The solution is "\b(Get|GetValue|Set|SetValue)\b" or "\b(Get(Value)?|Set(Value)?)\b". Since all options have the same end, we can optimize this further to "\b(Get|Set)(Value)?\b".
+Suppose you want to use a regex to match a list of function names in a programming language: Get, GetValue, Set or SetValue. The obvious solution is "Get|GetValue|Set|SetValue". The entire regex has matched only Set in SetValue. The solution is "\b(Get|GetValue|Set|SetValue)\b" or "\b(Get(Value)?|Set(Value)?)\b". Since all options have the same end, we can optimize this further to "\b(Get|Set)(Value)?\b".
  
  
  

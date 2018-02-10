@@ -6,6 +6,37 @@
     using System.Text;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// The board is 8x8 squares. There are 6 kinds of pieces: 
+    /// King - moves exactly one square horizontally, vertically, or diagonally. 
+    /// Rook- moves any number of vacant squares in a horizontal or vertical direction. 
+    /// Bishop - moves any number of vacant squares in any diagonal direction. 
+    /// Queen - moves any number of vacant squares in a horizontal, vertical, or diagonal direction. 
+    /// Pawn – moves straight forward one square to the top.
+    /// On the first 8 rows, you will receive а board with some pieces placed on it. 
+    /// Empty cells will be marked with "x" and all squares will be separated by comma.
+    /// x,x,Q,x,R,x,x,P
+    /// ...
+    /// On the next lines, you will receive moves Q01-12.
+    /// The first symbol is the type, two digits ar the position (row, col). 
+    /// The next two digits are the final position (row, col).
+    /// The moves need to be checked in the very same order as shown below:
+    /// 1 There is no such a piece on square.
+    /// 2 Piece makes invalid move (look above).
+    /// 3 Piece gets out of board.
+    /// </summary>
+    /// <output>
+    /// You should print only one message depending on the problem.
+    /// There is no such a piece!
+    /// Invalid move!
+    /// Move go out of board!
+    /// </output>
+    /// <remarks>
+    /// Moves count will be in the range [0…1000]
+    /// Time limit: 0.3 sec.
+    /// Memory limit: 16 MB.
+    /// </remarks>
+
     public class Exam_01_Dangerous_Floor
     {
         public static string[][] board;
