@@ -1,7 +1,6 @@
 ﻿namespace SimpleJudge
 {
-    using BashSoft;
-    using BashSoft.IO;
+    using BashSoft2.IO;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -11,76 +10,78 @@
 
     public static class Tester
     {
-        private static string mismatchFormat 
-            = "Mismatch at line {0} -- expected: \"{1}\", actual: \"{2}\"";
-
         public static void CompareContent(string userOutputPath, string expectedOutputPath)
         {
             OutputWriter.WriteOneLineMessage("Reading files...");
-            StringBuilder sb = new StringBuilder();
-
-            try
+            if (!File.Exists(userOutputPath) || !File.Exists(expectedOutputPath))
             {
-                string[] userOutput = File.ReadAllLines(userOutputPath);
-                string[] expectedOutput = File.ReadAllLines(expectedOutputPath);
-
-                string mismatchPath = PathForMismatchFile(expectedOutputPath);
-
-                int count = 0;
-
-                if (userOutput.Length > expectedOutput.Length)
-                {
-                    OutputWriter.WriteOneLineMessage(
-                        CustomMessages.FileHasMoreText);
-
-                    count = userOutput.Length;
-                }
-
-                if (userOutput.Length < expectedOutput.Length)
-                {
-                    OutputWriter.WriteOneLineMessage(
-                        CustomMessages.FileHasLessText);
-
-                    count = expectedOutput.Length;
-                }
-
-                for (int i = 0; i < count; i++)
-                {
-                    string input = "none";
-                    string compareWith = "none";
-
-                    if (userOutput.Length > i) { input = userOutput[i]; }
-                    if (expectedOutput.Length > i) { compareWith = expectedOutput[i]; }
-
-                    if (!input.Equals(compareWith))
-                    {
-                        sb.AppendLine(string.Format(
-                            mismatchFormat, (i + 1), input, compareWith));
-                    }
-                }
-
-                if (sb.Length > 0)
-                {
-                    File.WriteAllText(mismatchPath, sb.ToString());
-                }
-                else if (sb.Length == 0)
-                {
-                    OutputWriter.WriteOneLineMessage(
-                        CustomMessages.FilesAreIdentical);
-                }
+                throw new ArgumentException();
             }
-            catch (DirectoryNotFoundException ex)
+            string[] userOutputLines = File.ReadAllLines(userOutputPath);
+            string[] expectedOutputLines = File.ReadAllLines(expectedOutputPath);
+
+            string mismatchPath = GetMismatchPath(expectedOutputPath);
+            bool isMismatch;
+            string[] mismatches = GetMismates(userOutputLines, expectedOutputLines, out isMismatch);
+
+            PrintMismatches(mismatches, isMismatch, mismatchPath);
+            OutputWriter.WriteOneLineMessage("Files readed");
+        }
+
+        private static void PrintMismatches(string[] mismatches, bool isMismatch, string mismatchPath)
+        {
+            if (isMismatch)
             {
-                OutputWriter.WriteExeption(ex.Message);
+                foreach (string line in mismatches)
+                {
+                    OutputWriter.WriteOneLineMessage(line);
+                }
+
+                File.WriteAllLines(mismatchPath, mismatches);
+            }
+            else
+            {
+                OutputWriter.WriteOneLineMessage(
+                    "Files are identical. There are no mismatches.");
             }
         }
 
-        private static string PathForMismatchFile(string expectedOutputPath)
+        private static string[] GetMismates(string[] userOutputLines, string[] expectedOutputLines, out bool isMismatch)
         {
-            int lastIndex = expectedOutputPath.LastIndexOf('\\');
-            string path = expectedOutputPath.Substring(0, lastIndex);
-            string mismatchPath = path + @"\Mismatches.txt";
-            return mismatchPath;
+            string formatForMismatch = "Mismatch at line {0} -- expected: \"{1}\", actual: \"{2}\"";
+            isMismatch = false;
+            string[] mismatches = new string[userOutputLines.Length];
+            OutputWriter.WriteOneLineMessage("Comparing files...");
+
+            for (int index = 0; index < userOutputLines.Length; index++)
+            {
+                string output = string.Empty;
+                string userLine = userOutputLines[index];
+                string expectedLine = expectedOutputLines[index];
+                if (!userLine.Equals(expectedLine))
+                {
+                    isMismatch = true;
+                    output = string.Format(formatForMismatch, index, expectedLine, userLine);
+                }
+                else
+                {
+                    output = userLine;
+                }
+                //output += Environment.NewLine;
+                mismatches[index] = output;
+            }
+            return mismatches;
+        }
+
+        private static string GetMismatchPath(string expectedOutputPath)
+        {
+            int index = expectedOutputPath.LastIndexOf('\\');
+            string directory = expectedOutputPath.Substring(0, index);
+            //Path Combine does not work with relative paths
+            //string path = Path.Combine(directory,@"\Mismatches.txt");
+            string path = directory + @"\Mismatches.txt";
+
+            return path;
         }
     }
 }

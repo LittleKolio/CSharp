@@ -11,8 +11,8 @@ namespace SimpleJudge
         public static void Main()
         {
             Tester.CompareContent(
-                @"..\..\data\test1.txt",
-                @"..\..\data\test3.txt"
+                @"..\..\..\BashSoft2\Resources\test1.txt",
+                @"..\..\..\BashSoft2\Resources\test3.txt"
                 );
         }
     }

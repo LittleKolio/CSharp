@@ -46,14 +46,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Tester.cs" />
+    <None Include="Tester_.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BashSoft\BashSoft.csproj">
-      <Project>{F0058B56-5400-400E-BAAB-3FBDE850E346}</Project>
-      <Name>BashSoft</Name>
+    <ProjectReference Include="..\BashSoft2\BashSoft2.csproj">
+      <Project>{1f4f49ca-769a-4c33-912c-76cd389dc4f5}</Project>
+      <Name>BashSoft2</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
