@@ -43,10 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exam_01.cs" />
-    <None Include="Exam_02.cs" />
-    <None Include="Exam_03.cs" />
-    <None Include="Exam_04.cs" />
+    <None Include="Exam_01_Key_Revolver.cs" />
+    <None Include="Exam_02_Sneaking.cs" />
+    <None Include="Exam_03_Crypto_Blockchain.cs" />
+    <None Include="Exam_04_Hit_List.cs" />
+    <Compile Include="Exam_02_v2_Sneaking.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

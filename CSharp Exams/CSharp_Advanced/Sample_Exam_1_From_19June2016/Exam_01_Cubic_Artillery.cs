@@ -25,7 +25,7 @@ namespace Sample_Exam_1_From_19June2016
     /// </summary>
     /// <output>
     /// You must print a bunker, every time it overflows, after removing it.
-    /// The format is the following: {bunker} -> {weapon1}, {weapossn2}
+    /// The format is the following: {bunker} -> {weapon1}, {weapons2}
     /// In case a bunker has no weapons, just print "Empty".
     /// </output>
     /// <remarks>
