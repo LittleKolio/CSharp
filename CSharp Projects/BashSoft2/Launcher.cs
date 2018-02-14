@@ -12,12 +12,14 @@
     {
         public static void Main()
         {
-            //string path = @"../../Resources";
-            //IOManager.TraversingFileSystem(path);
+            string projects = @"D:\Repository\CSharp\CSharp Projects";
+            IOManager.TraversingFileSystem(projects);
 
-            string path = @"../../Resources/data.txt";
-            StudentsRepository.InitializeData(path);
-            StudentsRepository.GetAllStudents("Unity");
+            //string path = @"../../Resources/data.txt";
+            //StudentsRepository.InitializeData(path);
+            //StudentsRepository.GetAllStudents("Unity");
+
+            //IOManager.CreateDirectoryInCurrentFolder("TestDirectory");
         }
     }
 }

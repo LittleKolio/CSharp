@@ -11,9 +11,7 @@
     public static class IOManager
     {
         /// <summary>
-        /// Breadth-first traversal using Queue of string.
-        /// No DirectoryInfo!
-        /// No dept limit!
+        /// Breadth-first traversal using Queue of string. No DirectoryInfo!
         /// </summary>
         /// <remarks>
         /// It is too time-consuming to test every folder to determine
@@ -21,7 +19,7 @@
         /// that part of the code in try/catch block.
         /// </remarks>
         /// <param name="path"></param>
-        public static void TraversingFileSystem(string path)
+        public static void TraversingFileSystem(string path, int down = 3)
         {
             //I dont no witch is the fastest way to iterate through characters in string!
             //int indentation = Regex.Matches(path, "\\").Count;
@@ -39,10 +37,14 @@
             while (fileSystem.Count != 0)
             {
                 string currentPath = fileSystem.Dequeue();
-                int offset = currentPath.Count(c => c == '\\') - initialDepth;
-                string offsetString = '\u251C' + new string('\u2500', offset);
+                int offsetFromInitialDepth = currentPath.Count(c => c == '\\') - initialDepth;
+                if (offsetFromInitialDepth >= down)
+                {
+                    break;
+                }
 
-                OutputWriter.WriteOneLineMessage(offsetString + currentPath);
+                string offsetString = new string('\u2500', offsetFromInitialDepth) + '\u2524';
+                OutputWriter.WriteOneLineMessage(offsetFromInitialDepth + offsetString + currentPath);
 
                 string[] directories = null;
                 try
@@ -84,26 +86,47 @@
 
                 foreach (string folder in directories)
                 {
+                    //offsetString = new string(' ', offsetFromInitialDepth + 1) + "\u2514\u2500\\";
+                    //OutputWriter.WriteOneLineMessage(offsetString +
+                    //    ExtractNameFromPath(folder));
                     fileSystem.Enqueue(folder);
                 }
 
                 foreach (string file in files)
                 {
-                    try
-                    {
-                        FileInfo info = new FileInfo(file);
-                        offsetString = new string(' ', offset + 1) + "\u2514\u2500";
-                        OutputWriter.WriteOneLineMessage(offsetString + info.Name);
-                    }
-                    catch (FileNotFoundException)
-                    {
-                        OutputWriter.WriteOneLineMessage(
-                            ExceptionMessages.file_DoseNotExist);
-                        continue;
-                    }
+                    //try
+                    //{
+                    //    FileInfo info = new FileInfo(file);
+                    //    offsetString = new string(' ', offsetFromInitialDepth + 1) + "\u2514\u2500";
+                    //    OutputWriter.WriteOneLineMessage(offsetString + info.Name);
+                    //}
+                    //catch (FileNotFoundException)
+                    //{
+                    //    OutputWriter.WriteOneLineMessage(
+                    //        ExceptionMessages.file_DoseNotExist);
+                    //    continue;
+                    //}
+
+                    offsetString = new string(' ', offsetFromInitialDepth + 1) + "\u251C\u2500";
+                    OutputWriter.WriteOneLineMessage(offsetString +
+                        ExtractNameFromPath(file));
                 }
 
             }
         }
+
+        private static string ExtractNameFromPath(string path)
+        {
+            int index = path.LastIndexOf('\\');
+            return path.Substring(index + 1);
+        }
+
+        public static void CreateDirectoryInCurrentFolder(string name)
+        {
+            string path = SessionData.ParenetOfCurrentPath(2) + "\\" + name;
+            Directory.CreateDirectory(path);
+        }
+
+
     }
 }
