@@ -1,52 +1,32 @@
 ﻿namespace Defining_Classes_Exercises.Classes
 {
-    class Employee
+    public class Employee
     {
-        private string name;
-        private decimal salary;
-        private string position;
-        private string department;
-        private string email;
-        private short age;
+        public string Name { get; set; }
+        public decimal Salary { get; set; }
+        public string Position { get; set; }
+        public string Department { get; set; }
+        public string Email { get; set; }
+        public int Age { get; set; }
 
-        public Employee(
-            string name, 
-            decimal salary, 
-            string position, 
-            string department)
+        public Employee(string name, decimal salary, string position, string department, string email, int age)
         {
-            this.name = name;
-            this.salary = salary;
-            this.position = position;
-            this.department = department;
-
-            this.Email = "n/a";
-            this.Age = -1;
+            this.Name = name;
+            this.Salary = salary;
+            this.Position = position;
+            this.Department = department;
+            this.Email = email;
+            this.Age = age;
         }
 
-        public short Age
+        public Employee(string name, decimal salary, string position, string department)
+            : this(name, salary, position, department, "n/a", -1)
         {
-            set { this.age = value; }
         }
 
-        public string Email
+        public override string ToString()
         {
-            set { this.email = value; }
-        }
-
-        public string Department
-        {
-            get { return this.department; }
-        }
-
-        public decimal Salary
-        {
-            get { return this.salary; }
-        }
-
-        public string EmployeeInfo()
-        {
-            return $"{this.name} {this.salary:F2} {this.email} {this.age}";
+            return $"{this.Name} {this.Salary:F2} {this.Email} {this.Age}";
         }
     }
 }

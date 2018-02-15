@@ -45,20 +45,16 @@
 
 
             var department = listEmployees
-                .GroupBy(emp => emp.Department)
-                .Select(group => new
-                {
-                    Name = group.Key,
-                    AvgSalary = group.Average(emp => emp.Salary),
-                    Employees = group.OrderByDescending(emp => emp.Salary).ToList()
-                })
-                .OrderByDescending(dep => dep.AvgSalary)
+                .GroupBy(e => e.Department)
+                .OrderByDescending(d => d.Sum(e => e.Salary))
+                .Select(d => d.OrderByDescending(e => e.Salary))
                 .FirstOrDefault();
 
-            Console.WriteLine("Highest Average Salary: " + department.Name);
-            department
-                .Employees
-                .ForEach(emp => Console.WriteLine(emp.EmployeeInfo()));
+            Console.WriteLine("Highest Average Salary: " + department.FirstOrDefault().Department);
+            foreach (var employee in department)
+            {
+                Console.WriteLine(employee);
+            }
         }
     }
 }

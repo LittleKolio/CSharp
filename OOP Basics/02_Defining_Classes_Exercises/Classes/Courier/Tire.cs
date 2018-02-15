@@ -2,16 +2,12 @@
 {
     class Tire
     {
-        private double pressure;
-        private int age;
+        public double Pressure { get; set; }
+        public int Age { get; set; }
         public Tire(double pressure, int age)
         {
-            this.pressure = pressure;
-            this.age = age;
-        }
-        public double Pressure
-        {
-            get { return this.pressure; }
+            this.Pressure = pressure;
+            this.Age = age;
         }
     }
 }

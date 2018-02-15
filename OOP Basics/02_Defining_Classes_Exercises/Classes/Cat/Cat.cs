@@ -1,15 +1,11 @@
-﻿namespace Defining_Classes_Exercises.Classes
+﻿namespace Defining_Classes_Exercises
 {
-    class Cat
+    public class Cat
     {
-        private string name;
+        public string Name { get; private set; }
         public Cat(string name)
         {
-            this.name = name;
-        }
-        public string Name
-        {
-            get { return this.name; }
+            this.Name = name;
         }
     }
 }

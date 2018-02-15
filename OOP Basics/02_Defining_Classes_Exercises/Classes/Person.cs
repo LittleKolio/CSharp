@@ -2,32 +2,38 @@
 {
     class Person
     {
-        public string name;
-        public int age;
+        private int age;
+        private string name;
 
         public int Age
         {
             get { return this.age; }
+            set { this.age = value; }
         }
         public string Name
         {
             get { return this.name; }
+            set { this.name = value; }
         }
 
-        public Person()
-        {
-            this.name = "No name";
-            this.age = 1;
-        }
-        public Person(int age)
-        {
-            this.name = "No name";
-            this.age = age;
-        }
         public Person(int age, string name)
         {
-            this.name = name;
-            this.age = age;
+            this.Age = age;
+            this.Name = name;
+        }
+        public Person()
+            : this(1, "No name")
+        {
+        }
+
+        public Person(int age)
+            : this(age, "No name")
+        {
+        }
+
+        public override string ToString()
+        {
+            return $"{this.Name} - {this.Age}";
         }
     }
 }

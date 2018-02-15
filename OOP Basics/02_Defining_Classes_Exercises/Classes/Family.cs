@@ -21,13 +21,12 @@
                 .OrderByDescending(p => p.Age)
                 .FirstOrDefault();
         }
-        public void PeopleMoreThan30()
+        public List<Person> GetOlderThan30Members()
         {
-            people
+            return people
                 .Where(p => p.Age > 30)
                 .OrderBy(p => p.Name)
-                .ToList()
-                .ForEach(p => System.Console.WriteLine($"{p.Name} - {p.Age}"));
+                .ToList();
         }
     }
 }

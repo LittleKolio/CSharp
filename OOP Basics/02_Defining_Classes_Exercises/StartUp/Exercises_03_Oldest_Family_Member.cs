@@ -20,13 +20,14 @@
             for (int i = 0; i < count; i++)
             {
                 string[] input = Console.ReadLine()
-                    .Split(new[] { ' ' },
+                    .Split(new char[] { ' ' },
                         StringSplitOptions.RemoveEmptyEntries);
-                family.AddMember(new Person(int.Parse(input[1]), input[0]));
+
+                Person person = new Person(int.Parse(input[1]), input[0]);
+                family.AddMember(person);
             }
 
-            Person oldestMember = family.GetOldestMember();
-            Console.WriteLine(oldestMember.Name + " " + oldestMember.Age);
+            Console.WriteLine(family.GetOldestMember());
         }
     }
 }

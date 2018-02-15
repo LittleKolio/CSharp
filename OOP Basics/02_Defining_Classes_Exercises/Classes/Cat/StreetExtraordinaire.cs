@@ -1,15 +1,16 @@
-﻿namespace Defining_Classes_Exercises.Classes
+﻿namespace Defining_Classes_Exercises
 {
-    class StreetExtraordinaire : Cat
+    public class StreetExtraordinaire : Cat
     {
-        private int decibelsOfMeows;
-        public StreetExtraordinaire(string name, int decibelsOfMeows) : base(name)
+        public int DecibelsOfMeows { get; private set; }
+        public StreetExtraordinaire(string name, int decibelsOfMeows) 
+            : base (name)
         {
-            this.decibelsOfMeows = decibelsOfMeows;
+            this.DecibelsOfMeows = decibelsOfMeows;
         }
         public override string ToString()
         {
-            return $"StreetExtraordinaire {this.Name} {this.decibelsOfMeows}";
+            return $"StreetExtraordinaire {this.Name} {this.DecibelsOfMeows}";
         }
     }
 }

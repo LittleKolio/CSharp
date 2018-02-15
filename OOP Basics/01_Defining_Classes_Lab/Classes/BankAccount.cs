@@ -1,40 +1,40 @@
 ﻿using System;
 
-class BankAccount
+public class BankAccount
 {
     private int id;
-    private double balance;
+    private decimal balance;
 
-    public int ID
+    public int Id
     {
         get { return id; }
         set { this.id = value; }
     }
-    public double Balance
+    public decimal Balance
     {
         get { return balance; }
         set
         {
             if (value < 0)
             {
-                throw new ArgumentException("Balance can not be negative!");
+                throw new ArgumentException("Insufficient balance");
             }
             this.balance = value;
         }
     }
 
-    public void Deposit(double amount)
+    public void Deposit(decimal amount)
     {
         this.Balance += amount;
     }
 
-    public void Withdraw(double amount)
+    public void Withdraw(decimal amount)
     {
         this.Balance -= amount;
     }
 
     public override string ToString()
     {
-        return $"Account ID{this.id}, balance {this.balance:F2}";
+        return $"Account ID{this.Id}, balance {this.Balance:F2}";
     }
 }

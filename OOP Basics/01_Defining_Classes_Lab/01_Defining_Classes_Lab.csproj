@@ -46,6 +46,7 @@
     <Compile Include="Classes\BankAccount.cs" />
     <None Include="StartUp\Lab_02_Methods.cs" />
     <None Include="StartUp\Lab_03_Test_Client.cs" />
+    <Compile Include="Classes\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="StartUp\Lab_01_Define_Bank_Account_Class.cs" />
   </ItemGroup>

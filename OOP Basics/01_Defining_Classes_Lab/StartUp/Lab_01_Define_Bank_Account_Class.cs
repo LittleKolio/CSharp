@@ -15,7 +15,7 @@
             acc.ID = 1;
             acc.Balance = 15;
 
-            Console.WriteLine($"Account {acc.ID}, balance {acc.Balance}");
+            Console.WriteLine($"Account {acc.Id}, balance {acc.Balance}");
         }
     }
 }

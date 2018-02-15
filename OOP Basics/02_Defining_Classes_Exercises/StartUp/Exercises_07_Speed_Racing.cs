@@ -9,15 +9,18 @@
     {
         static void Main()
         {
-            List<Car> list = new List<Car>();
+            List<Car> cars = new List<Car>();
             int count = int.Parse(Console.ReadLine());
             for (int i = 0; i < count; i++)
             {
                 string[] car = Console.ReadLine()
                     .Split(new[] { ' ' },
                         StringSplitOptions.RemoveEmptyEntries);
-                list.Add(new Car(
-                    car[0], double.Parse(car[1]), double.Parse(car[2])
+                cars.Add(
+                    new Car(
+                        car[0], 
+                        double.Parse(car[1]), 
+                        double.Parse(car[2])
                     ));
             }
 
@@ -27,13 +30,12 @@
                 string[] car = input
                     .Split(new[] { ' ' },
                         StringSplitOptions.RemoveEmptyEntries);
-                list
-                    .Where(c => c.Model == car[1])
-                    .FirstOrDefault()
-                    .DistanceTraveled(double.Parse(car[2]));
+                cars
+                    .FirstOrDefault(c => c.Model == car[1])
+                    .Drive(double.Parse(car[2]));
             }
 
-            list.ForEach(car => Console.WriteLine(car.CarInfo()));
+            cars.ForEach(car => Console.WriteLine(car));
         }
     }
 }

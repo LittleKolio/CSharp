@@ -1,15 +1,16 @@
-﻿namespace Defining_Classes_Exercises.Classes
+﻿namespace Defining_Classes_Exercises
 {
-    class Siamese : Cat
+    public class Siamese : Cat
     {
-        private int earSize;
-        public Siamese(string name, int earSize) : base(name)
+        public int EarSize { get; private set; }
+        public Siamese(string name, int earSize) 
+            : base(name)
         {
-            this.earSize = earSize;
+            this.EarSize = earSize;
         }
         public override string ToString()
         {
-            return $"Siamese {this.Name} {this.earSize}";
+            return $"Siamese {this.Name} {this.EarSize}";
         }
     }
 }

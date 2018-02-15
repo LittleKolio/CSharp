@@ -1,15 +1,15 @@
-﻿namespace Defining_Classes_Exercises.Classes
+﻿namespace Defining_Classes_Exercises
 {
-    class Cymric : Cat
+    public class Cymric : Cat
     {
-        private double furLength;
+        public double FurLength { get; private set; }
         public Cymric(string name, double furLength) : base(name)
         {
-            this.furLength = furLength;
+            this.FurLength = furLength;
         }
         public override string ToString()
         {
-            return $"Cymric {this.Name} {this.furLength:F2}";
+            return $"Cymric {this.Name} {this.FurLength:F2}";
         }
     }
 }

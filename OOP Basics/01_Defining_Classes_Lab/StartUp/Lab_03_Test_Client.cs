@@ -6,74 +6,93 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    class Lab_03_Test_Client
+    public class Lab_03_Test_Client
     {
+        public static Dictionary<int, BankAccount> accounts;
         static void Main()
         {
-            Dictionary<int, BankAccount> accounts
-                = new Dictionary<int, BankAccount>();
+            accounts = new Dictionary<int, BankAccount>();
 
             string input;
             while ((input = Console.ReadLine()) != "End")
             {
-                string[] formatInput = input
+                string[] tokens = input
                     .Split(new[] { ' ' },
                         StringSplitOptions.RemoveEmptyEntries);
-                string command = formatInput[0];
-
-                switch (command)
-                {
-                    case "Create": Create(formatInput, accounts); break;
-                    case "Deposit": Deposit(formatInput, accounts); break;
-                    case "Withdraw": Withdraw(formatInput, accounts); break;
-                    case "Print": Print(formatInput, accounts); break;
-                }
+                CommandInterpreter(tokens);
             }
         }
 
-        private static void Print(string[] formatInput, Dictionary<int, BankAccount> accounts)
+        private static void CommandInterpreter(string[] tokens)
         {
-            int id = int.Parse(formatInput[1]);
-            if (accounts.ContainsKey(id))
-            { Console.WriteLine(accounts[id].ToString()); }
-            else
-            { Console.WriteLine("Account does not exist"); }
+            string command = tokens[0];
+            int id = int.Parse(tokens[1]);
+            decimal amount = tokens.Length == 3
+                ? decimal.Parse(tokens[2])
+                : 0;
+
+            switch (command)
+            {
+                case "Create": Create(id); break;
+                case "Deposit": Deposit(id, amount); break;
+                case "Withdraw": Withdraw(id, amount); break;
+                case "Print": Print(id); break;
+            }
         }
 
-        private static void Withdraw(string[] formatInput, Dictionary<int, BankAccount> accounts)
+        private static void Print(int id)
         {
-            int id = int.Parse(formatInput[1]);
-            double amount = double.Parse(formatInput[2]);
             if (accounts.ContainsKey(id))
             {
-                if (accounts[id].Balance < amount)
-                { Console.WriteLine("Insufficient balance"); }
-                else
-                { accounts[id].Withdraw(amount); }
+                Console.WriteLine(accounts[id]);
             }
             else
-            { Console.WriteLine("Account does not exist"); }
+            {
+                Console.WriteLine("Account does not exist");
+            }
         }
 
-        private static void Deposit(string[] formatInput, Dictionary<int, BankAccount> accounts)
+        private static void Withdraw(int id, decimal amount)
         {
-            int id = int.Parse(formatInput[1]);
-            double amount = double.Parse(formatInput[2]);
             if (accounts.ContainsKey(id))
-            { accounts[id].Deposit(amount); }
+            {
+                try
+                {
+                    accounts[id].Withdraw(amount);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
             else
-            { Console.WriteLine("Account does not exist"); }
+            {
+                Console.WriteLine("Account does not exist");
+            }
         }
 
-        private static void Create(string[] formatInput, Dictionary<int, BankAccount> accounts)
+        private static void Deposit(int id, decimal amount)
         {
-            int id = int.Parse(formatInput[1]);
             if (accounts.ContainsKey(id))
-            { Console.WriteLine("Account already exists"); }
+            {
+                accounts[id].Deposit(amount);
+            }
+            else
+            {
+                Console.WriteLine("Account does not exist");
+            }
+        }
+
+        private static void Create(int id)
+        {
+            if (accounts.ContainsKey(id))
+            {
+                Console.WriteLine("Account already exists");
+            }
             else
             {
                 BankAccount account = new BankAccount();
-                account.ID = id;
+                account.Id = id;
                 accounts.Add(id, account);
             }
         }

@@ -14,9 +14,15 @@
                 string[] input = Console.ReadLine()
                     .Split(new[] { ' ' },
                         StringSplitOptions.RemoveEmptyEntries);
-                family.AddMember(new Person(int.Parse(input[1]), input[0]));
+
+                Person person = new Person(int.Parse(input[1]), input[0]);
+                family.AddMember(person);
             }
-            family.PeopleMoreThan30();
+
+            foreach (Person person in family.GetOlderThan30Members())
+            {
+                Console.WriteLine(person);
+            }
         }
     }
 }

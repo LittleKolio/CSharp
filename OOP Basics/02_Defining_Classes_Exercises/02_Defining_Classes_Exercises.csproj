@@ -52,7 +52,8 @@
     <Compile Include="Classes\Cat\Siamese.cs" />
     <Compile Include="Classes\Cat\StreetExtraordinaire.cs" />
     <Compile Include="Classes\Courier\Tire.cs" />
-    <Compile Include="StartUp\Exercises_14_Cat_Lady.cs" />
+    <None Include="StartUp\Exercises_09_Rectangle_Intersection.cs" />
+    <None Include="StartUp\Exercises_14_Cat_Lady.cs" />
     <None Include="StartUp\Exercises_08_Raw_Data.cs" />
     <None Include="StartUp\Exercises_07_Speed_Racing.cs" />
     <None Include="StartUp\Exercises_03_Oldest_Family_Member.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Classes\Family.cs" />
     <Compile Include="Classes\Person.cs" />
     <None Include="StartUp\Exercises_06_Company_Roster.cs" />
+    <Compile Include="Classes\Rectangle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="StartUp\Exercises_02_Creating_Constructors.cs" />
   </ItemGroup>

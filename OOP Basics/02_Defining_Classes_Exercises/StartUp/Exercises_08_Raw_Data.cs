@@ -19,47 +19,40 @@
                     .Split(new[] { ' ' },
                         StringSplitOptions.RemoveEmptyEntries);
 
+                Engine engine = new Engine(int.Parse(line[1]), int.Parse(line[2]));
+                Cargo cargo = new Cargo(int.Parse(line[3]), line[4]);
                 List<Tire> tires = new List<Tire>();
                 for (int j = 5; j < line.Length; j += 2)
                 {
-                    tires.Add(new Tire(
-                        double.Parse(line[j]), 
-                        int.Parse(line[j + 1])));
+                    tires.Add(new Tire(double.Parse(line[j]), int.Parse(line[j + 1])));
                 }
 
-                CourierCar car = new CourierCar(
-                    line[0],
-                    new Engine(int.Parse(line[1]), int.Parse(line[2])),
-                    new Cargo(int.Parse(line[3]), line[4]),
-                    tires
-                    );
+                CourierCar car = new CourierCar(line[0], engine, cargo, tires);
 
                 list.Add(car);
             }
 
             string type = Console.ReadLine();
-
             List<CourierCar> tempList = list
                 .Where(car => car.Cargo.Type == type)
                 .ToList();
-
-            if (type == "fragile")
+            switch (type)
             {
-                tempList
-                    .Where(car =>
-                        car.Tires.Any(tire =>
-                            tire.Pressure < 1))
-                    .ToList()
-                    .ForEach(car => Console.WriteLine(car.Model));
-            }
-            if (type == "flamable")
-            {
-                tempList
-                    .Where(car => car.Engine.Power > 250)
-                    .ToList()
-                    .ForEach(car => Console.WriteLine(car.Model));
-            }
+                case "fragile":
+                    tempList.Where(car => car.Tires.Any(tire => tire.Pressure < 1))
+                        .ToList()
+                        .ForEach(car => Console.WriteLine(car.Model));
+                    break;
 
+                case "flamable":
+                    tempList.Where(car => car.Engine.Power > 250)
+                        .ToList()
+                        .ForEach(car => Console.WriteLine(car.Model));
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }
