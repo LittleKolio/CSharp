@@ -15,8 +15,12 @@
 
         public const string file_DoseNotExist = "File does not exist!";
         public const string file_DontHaveAccess = "You don't have access to tose file!";
+        public const string file_ForbiddenSymbols = "File name contains not allowed symbols.";
+
 
         public const string folder_DoseNotExist = "Folder does not exist!";
         public const string folder_DontHaveAccess = "You don't have access to tose folder!";
+        public const string folder_ForbiddenSymbols = "Folder name contains not allowed symbols.";
+
     }
 }

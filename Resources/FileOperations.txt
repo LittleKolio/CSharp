@@ -94,3 +94,9 @@
 		├─┬─────────────────────────────────────────────────────────────────┐
 			string path = @"...";
 			
+  ├─┬───────────────────────────────────────────────────────────────────┐
+    │File.AppendAllText
+    ├───────────────────────────────────────────────────────────────────┘
+		├─ appends a string to a file. It creates a text file if one does not already exist. It avoids inefficient code that would have to read in the entire file. It is ideal for log files and journal data.
+		├─ AppendAllText adds a string to a file. For lines, be careful to include newline chars in the string you add.
+		├─ AppendAllText internally calls StreamWriter, with the second parameter "append" set to true. Try not to call it in a loop, as this will create a StreamWriter and dispose it each time, reducing performance. If you need to process many lines in one append, consider StreamWriter.

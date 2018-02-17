@@ -17,6 +17,7 @@
             {
                 throw new ArgumentException();
             }
+            
             string[] userOutputLines = File.ReadAllLines(userOutputPath);
             string[] expectedOutputLines = File.ReadAllLines(expectedOutputPath);
 
@@ -37,7 +38,15 @@
                     OutputWriter.WriteOneLineMessage(line);
                 }
 
-                File.WriteAllLines(mismatchPath, mismatches);
+                try
+                {
+                    File.WriteAllLines(mismatchPath, mismatches);
+                }
+                catch
+                {
+                    OutputWriter.WriteOneLineMessage(
+                        ExceptionMessages.file_ForbiddenSymbols);
+                }
             }
             else
             {
@@ -76,12 +85,11 @@
         private static string GetMismatchPath(string expectedOutputPath)
         {
             int index = expectedOutputPath.LastIndexOf('\\');
-            string directory = expectedOutputPath.Substring(0, index);
+
             //Path Combine does not work with relative paths
             //string path = Path.Combine(directory,@"\Mismatches.txt");
-            string path = directory + @"\Mismatches.txt";
 
-            return path;
+            return expectedOutputPath.Substring(0, index) + @"\Mismatches.txt";
         }
     }
 }

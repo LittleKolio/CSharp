@@ -19,19 +19,16 @@
         /// that part of the code in try/catch block.
         /// </remarks>
         /// <param name="path"></param>
-        public static void TraversingFileSystem(string path, int down = 3)
+        public static void TraversingCurrentDirectory(int down = 3)
         {
+            string path = SessionData.currentFolder;
+
             //I dont no witch is the fastest way to iterate through characters in string!
             //int indentation = Regex.Matches(path, "\\").Count;
             //int indentation = path.Split('\\').Length;
             int initialDepth = path.Count(c => c == '\\');
 
             Queue<string> fileSystem = new Queue<string>();
-
-            if (!Directory.Exists(path))
-            {
-                throw new ArgumentException();
-            }
             fileSystem.Enqueue(path);
             
             while (fileSystem.Count != 0)
@@ -111,7 +108,6 @@
                     OutputWriter.WriteOneLineMessage(offsetString +
                         ExtractNameFromPath(file));
                 }
-
             }
         }
 
@@ -120,13 +116,5 @@
             int index = path.LastIndexOf('\\');
             return path.Substring(index + 1);
         }
-
-        public static void CreateDirectoryInCurrentFolder(string name)
-        {
-            string path = SessionData.ParenetOfCurrentPath(2) + "\\" + name;
-            Directory.CreateDirectory(path);
-        }
-
-
     }
 }
