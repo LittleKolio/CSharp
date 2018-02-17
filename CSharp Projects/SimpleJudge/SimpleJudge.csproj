@@ -46,7 +46,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Tester.cs" />
-    <None Include="Tester_.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

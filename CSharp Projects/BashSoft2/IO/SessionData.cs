@@ -9,11 +9,11 @@
 
     public static class SessionData
     {
-        public static string currentFolder = Directory.GetCurrentDirectory();
+        public static string currentDirectory = Directory.GetCurrentDirectory();
 
         public static string ParenetOfCurrentFolder(int step)
         {
-            string path = currentFolder;
+            string path = currentDirectory;
             for (int i = 0; i < step; i++)
             {
                 path = Directory
@@ -31,45 +31,51 @@
             //return path.Substring(0, index);
         }
 
-        public static void ChangeCurrentFolder(string path)
+        public static void ChangeCurrentDirectory(string path)
         {
             if (!Directory.Exists(path))
             {
-                OutputWriter.WriteOneLineMessage(
-                        ExceptionMessages.folder_DoseNotExist);
+                OutputWriter.DisplayException(
+                        ExceptionMessages.dir_DoseNotExist);
                 return;
             }
-
-            currentFolder = path;
+            currentDirectory = path;
         }
 
-        public static string CreateDirectoryInCurrentFolder(string name)
+        public static void CreateDirectoryInCurrentDirectory(string directoryName)
         {
-            string path = currentFolder + "\\" + name;
+            //if (directoryName.IndexOfAny(Path.GetInvalidPathChars()) >= 0)
+            //{
+            //    OutputWriter.DisplayException(
+            //        ExceptionMessages.dir_ForbiddenSymbols);
+            //    return null;
+            //}
+
+            string path = currentDirectory + "\\" + directoryName;
             try
             {
                 Directory.CreateDirectory(path);
             }
             catch
             {
-                OutputWriter.WriteOneLineMessage(
-                    ExceptionMessages.folder_ForbiddenSymbols);
-                return null;
+                OutputWriter.DisplayException(
+                    ExceptionMessages.dir_ForbiddenSymbols);
+                return;
             }
 
-            return path;
+            currentDirectory = path;
         }
 
-        public static string CreateTextFileInCurrentFolder(string name, string[] text)
+        public static string CreateTextFileInCurrentDirectory(string name, string[] text)
         {
-            string path = currentFolder + "\\" + name;
+            string path = currentDirectory + "\\" + name;
             try
             {
                 File.WriteAllLines(path, text);
             }
             catch
             {
-                OutputWriter.WriteOneLineMessage(
+                OutputWriter.DisplayException(
                     ExceptionMessages.file_ForbiddenSymbols);
                 return null;
             }

@@ -1,5 +1,6 @@
 ﻿namespace BashSoft2.Engine
 {
+    using IO;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -14,11 +15,37 @@
             {
                 //mkdir directoryName
                 //create a directory in the current directory
-                case "mkdir": break;
+                case "mkdir":
+                    {
+                        if (tokens.Length != 1)
+                        {
+                            OutputWriter.DisplayException(
+                                ExceptionMessages.params_InvalidNumber);
+                            return;
+                        }
+                        string directoryName = tokens[0];
+                        SessionData.CreateDirectoryInCurrentDirectory(directoryName);
+                    } break;
 
                 //ls
                 //traverse the current directory to the given depth
-                case "ls": break;
+                case "ls":
+                    {
+                        if (tokens.Length != 1)
+                        {
+                            OutputWriter.DisplayException(
+                                string.Format(ExceptionMessages.params_InvalidNumber, 1));
+                            return;
+                        }
+                        int depth;
+                        if (!int.TryParse(tokens[0], out depth))
+                        {
+                            OutputWriter.DisplayException(
+                                string.Format(ExceptionMessages.params_InvalidParameter, tokens[0]));
+                            return;
+                        }
+                        IOManager.TraversingCurrentDirectory(depth);
+                    } break;
 
                 //cmp absolutePath1 absolutePath2
                 //comparing two files by given two absolute paths
@@ -32,9 +59,19 @@
                 //change the current directory by an absolute path
                 case "changeDirAbs": break;
                 
-                //open
+                //open fileName
                 //opens a file
-                case "open": break;
+                case "open":
+                    {
+                        if (tokens.Length != 1)
+                        {
+                            OutputWriter.DisplayException(
+                                string.Format(ExceptionMessages.params_InvalidNumber, 1));
+                            return;
+                        }
+                        string fileName = tokens[0];
+                        IOManager.OpenFileWithDefaultProgram(fileName);
+                    } break;
 
                 //readDb dataBaseFileName
                 //read students database by a given name of the database file
@@ -65,6 +102,11 @@
                 default:
                     break;
             }
+        }
+
+        private static void CheckNumberOfParameters(int num, string[] tokens)
+        {
+
         }
     }
 }

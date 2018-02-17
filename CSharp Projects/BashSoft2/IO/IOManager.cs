@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -21,7 +22,7 @@
         /// <param name="path"></param>
         public static void TraversingCurrentDirectory(int down = 3)
         {
-            string path = SessionData.currentFolder;
+            string path = SessionData.currentDirectory;
 
             //I dont no witch is the fastest way to iterate through characters in string!
             //int indentation = Regex.Matches(path, "\\").Count;
@@ -50,16 +51,16 @@
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    OutputWriter.WriteOneLineMessage(
-                        ExceptionMessages.folder_DontHaveAccess);
+                    OutputWriter.DisplayException(
+                        ExceptionMessages.dir_DontHaveAccess);
                     continue;
                 }
                 // This will happen if current Dir has been deleted by
                 // another application or thread after our call to Directory.
                 catch (DirectoryNotFoundException)
                 {
-                    OutputWriter.WriteOneLineMessage(
-                        ExceptionMessages.folder_DoseNotExist);
+                    OutputWriter.DisplayException(
+                        ExceptionMessages.dir_DoseNotExist);
                     continue;
                 }
 
@@ -70,14 +71,14 @@
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    OutputWriter.WriteOneLineMessage(
+                    OutputWriter.DisplayException(
                         ExceptionMessages.file_DontHaveAccess);
                     continue;
                 }
                 catch (DirectoryNotFoundException)
                 {
-                    OutputWriter.WriteOneLineMessage(
-                        ExceptionMessages.folder_DoseNotExist);
+                    OutputWriter.DisplayException(
+                        ExceptionMessages.dir_DoseNotExist);
                     continue;
                 }
 
@@ -106,15 +107,125 @@
 
                     offsetString = new string(' ', offsetFromInitialDepth + 1) + "\u251C\u2500";
                     OutputWriter.WriteOneLineMessage(offsetString +
-                        ExtractNameFromPath(file));
+                        ExtractFileNameFromPath(file));
                 }
             }
         }
 
-        private static string ExtractNameFromPath(string path)
+        private static string ExtractFileNameFromPath(string path)
         {
             int index = path.LastIndexOf('\\');
             return path.Substring(index + 1);
+        }
+
+        public static void OpenFileWithDefaultProgram(string path)
+        {
+            if (!File.Exists(path))
+            {
+                string fileName = ExtractFileNameFromPath(path);
+                OutputWriter.DisplayException(
+                    string.Format(ExceptionMessages.file_DoseNotExist, fileName));
+                return;
+            }
+            Process.Start(path);
+        }
+
+        public static void CompareTwoFiles(string userOutputPath, string expectedOutputPath)
+        {
+            OutputWriter.WriteOneLineMessage("Reading files...");
+
+            bool fileExist = true;
+            if (!File.Exists(userOutputPath))
+            {
+                OutputWriter.DisplayException(
+                        string.Format(ExceptionMessages.file_DoseNotExist, userOutputPath));
+                fileExist = false;
+            }
+
+            if (!File.Exists(expectedOutputPath))
+            {
+                OutputWriter.DisplayException(
+                        string.Format(ExceptionMessages.file_DoseNotExist, expectedOutputPath));
+                fileExist = false;
+            }
+
+            if (!fileExist)
+            {
+                return;
+            }
+
+            string[] userOutputLines = File.ReadAllLines(userOutputPath);
+            string[] expectedOutputLines = File.ReadAllLines(expectedOutputPath);
+
+            string mismatchPath = GetMismatchPath(expectedOutputPath);
+            bool isMismatch;
+            string[] mismatches = GetMismates(userOutputLines, expectedOutputLines, out isMismatch);
+
+            PrintMismatches(mismatches, isMismatch, mismatchPath);
+            OutputWriter.WriteOneLineMessage("Files readed");
+        }
+
+        private static void PrintMismatches(string[] mismatches, bool isMismatch, string mismatchPath)
+        {
+            if (isMismatch)
+            {
+                foreach (string line in mismatches)
+                {
+                    OutputWriter.WriteOneLineMessage(line);
+                }
+
+                try
+                {
+                    File.WriteAllLines(mismatchPath, mismatches);
+                }
+                catch
+                {
+                    OutputWriter.DisplayException(
+                        ExceptionMessages.file_ForbiddenSymbols);
+                }
+            }
+            else
+            {
+                OutputWriter.WriteOneLineMessage(
+                    "Files are identical. There are no mismatches.");
+            }
+        }
+
+        private static string[] GetMismates(string[] userOutputLines, string[] expectedOutputLines, out bool isMismatch)
+        {
+            string formatForMismatch = "Mismatch at line {0} -- expected: \"{1}\", actual: \"{2}\"";
+            isMismatch = false;
+            string[] mismatches = new string[userOutputLines.Length];
+            OutputWriter.WriteOneLineMessage("Comparing files...");
+
+            for (int index = 0; index < userOutputLines.Length; index++)
+            {
+                string output = string.Empty;
+                string userLine = userOutputLines[index];
+                string expectedLine = expectedOutputLines[index];
+                if (!userLine.Equals(expectedLine))
+                {
+                    isMismatch = true;
+                    output = string.Format(formatForMismatch, index, expectedLine, userLine);
+                }
+                else
+                {
+                    output = userLine;
+                }
+                //output += Environment.NewLine;
+                mismatches[index] = output;
+            }
+            return mismatches;
+        }
+
+        private static string GetMismatchPath(string expectedOutputPath)
+        {
+            int index = expectedOutputPath.LastIndexOf('\\');
+
+            //Path Combine does not work with relative paths
+            //string path = Path.Combine(directory,@"\Mismatches.txt");
+
+            return expectedOutputPath.Substring(0, index) + @"\Mismatches.txt";
         }
     }
 }

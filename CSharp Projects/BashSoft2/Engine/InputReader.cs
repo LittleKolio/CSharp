@@ -14,7 +14,7 @@
         public static void StartReadingCommands()
         {
             OutputWriter.WriteOneLineMessage(
-                $"{SessionData.currentFolder}>");
+                $"{SessionData.currentDirectory}>");
 
             string input;
             while (!(input = Console.ReadLine()).Equals(
@@ -22,13 +22,16 @@
             {
                 if (string.IsNullOrEmpty(input))
                 {
-
+                    OutputWriter.DisplayException(
+                        ExceptionMessages.commands_Null);
+                    continue;
                 }
 
                 string[] tokens = SplitInput(input, " ");
+                string command = tokens[0];
                 string[] parameters = tokens.Skip(1).ToArray();
 
-                CommandInterpreter.InterpredCommand(tokens[0], parameters);
+                CommandInterpreter.InterpredCommand(command, parameters);
             }
         }
 
