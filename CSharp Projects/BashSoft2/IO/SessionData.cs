@@ -40,6 +40,20 @@
                 return;
             }
             currentDirectory = path;
+            OutputWriter.WriteOneLineMessage(currentDirectory);
+        }
+
+        public static void ChangeCurrentDirectoryByRelativePath(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                OutputWriter.DisplayException(
+                        ExceptionMessages.dir_DoseNotExist);
+                return;
+            }
+            currentDirectory = Path.GetFullPath(
+                Path.Combine(currentDirectory, path));
+            OutputWriter.WriteOneLineMessage(currentDirectory);
         }
 
         public static void CreateDirectoryInCurrentDirectory(string directoryName)

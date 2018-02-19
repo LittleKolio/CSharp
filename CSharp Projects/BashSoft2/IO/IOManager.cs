@@ -106,23 +106,17 @@
                     //}
 
                     offsetString = new string(' ', offsetFromInitialDepth + 1) + "\u251C\u2500";
-                    OutputWriter.WriteOneLineMessage(offsetString +
-                        ExtractFileNameFromPath(file));
+                    string fileName = Path.GetFileName(file);
+                    OutputWriter.WriteOneLineMessage(offsetString + fileName);
                 }
             }
-        }
-
-        private static string ExtractFileNameFromPath(string path)
-        {
-            int index = path.LastIndexOf('\\');
-            return path.Substring(index + 1);
         }
 
         public static void OpenFileWithDefaultProgram(string path)
         {
             if (!File.Exists(path))
             {
-                string fileName = ExtractFileNameFromPath(path);
+                string fileName = Path.GetFileName(path);
                 OutputWriter.DisplayException(
                     string.Format(ExceptionMessages.file_DoseNotExist, fileName));
                 return;
@@ -220,12 +214,10 @@
 
         private static string GetMismatchPath(string expectedOutputPath)
         {
-            int index = expectedOutputPath.LastIndexOf('\\');
-
             //Path Combine does not work with relative paths
             //string path = Path.Combine(directory,@"\Mismatches.txt");
 
-            return expectedOutputPath.Substring(0, index) + @"\Mismatches.txt";
+            return Path.GetDirectoryName(expectedOutputPath) + @"\Mismatches.txt";
         }
     }
 }

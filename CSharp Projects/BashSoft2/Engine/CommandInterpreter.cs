@@ -49,15 +49,46 @@
 
                 //cmp absolutePath1 absolutePath2
                 //comparing two files by given two absolute paths
-                case "cmp": break;
+                case "cmp":
+                    {
+                        if (tokens.Length != 2)
+                        {
+                            OutputWriter.DisplayException(
+                                string.Format(ExceptionMessages.params_InvalidNumber, 2));
+                            return;
+                        }
+                        string filePath1 = tokens[0];
+                        string filePath2 = tokens[1];
+                        IOManager.CompareTwoFiles(filePath1, filePath2);
+                    } break;
 
                 //changeDirRel relativePath
                 //change the current directory by a relative path
-                case "changeDirRel": break;
+                case "changeDirRel":
+                    {
+                        if (tokens.Length != 1)
+                        {
+                            OutputWriter.DisplayException(
+                                string.Format(ExceptionMessages.params_InvalidNumber, 1));
+                            return;
+                        }
+                        string relativePath = tokens[0];
+                        SessionData.ChangeCurrentDirectoryByRelativePath(relativePath);
+                    } break;
 
                 //changeDirAbs absolutePath
                 //change the current directory by an absolute path
-                case "changeDirAbs": break;
+                case "changeDirAbs":
+                    {
+                        if (tokens.Length != 1)
+                        {
+                            OutputWriter.DisplayException(
+                                string.Format(ExceptionMessages.params_InvalidNumber, 1));
+                            return;
+                        }
+                        string absolutPath = tokens[0];
+                        SessionData.ChangeCurrentDirectory(absolutPath);
+                    } break;
                 
                 //open fileName
                 //opens a file
@@ -76,7 +107,10 @@
                 //readDb dataBaseFileName
                 //read students database by a given name of the database file
                 //which is placed in the current folder
-                case "readDb": break;
+                case "readDb":
+                    {
+
+                    } break;
 
                 //filter courseName poor/average/excellent take 2/10/42/all
                 //filter students from а given course by a given filter option

@@ -43,7 +43,8 @@
         {
             if (!File.Exists(path))
             {
-                throw new ArgumentException();
+                OutputWriter.DisplayException(
+                    ExceptionMessages.file_DoseNotExist);
             }
 
             string[] input = File.ReadAllLines(path);
@@ -92,13 +93,13 @@
                 }
                 else
                 {
-                    OutputWriter.WriteOneLineMessage(
+                    OutputWriter.DisplayException(
                         ExceptionMessages.data_CoursDoseNotExist);
                 }
             }
             else
             {
-                OutputWriter.WriteOneLineMessage(
+                OutputWriter.DisplayException(
                     ExceptionMessages.data_IsNotInitialized);
             }
 
@@ -113,7 +114,7 @@
             }
             else
             {
-                OutputWriter.WriteOneLineMessage(
+                OutputWriter.DisplayException(
                     ExceptionMessages.data_StudentDoseNotExist);
             }
 
