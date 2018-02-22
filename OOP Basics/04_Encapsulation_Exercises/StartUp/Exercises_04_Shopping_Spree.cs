@@ -19,70 +19,67 @@
             {
                 AddPeople(Console.ReadLine());
                 AddProducts(Console.ReadLine());
-
-                string input;
-                while ((input = Console.ReadLine()) != "END")
-                {
-                    string[] formatInput = input.Split();
-
-                    Person currentPerson = people
-                        .Where(p => p.Name == formatInput[0])
-                        .FirstOrDefault();
-
-                    Product currentProduct = products
-                        .Where(p => p.Name == formatInput[1])
-                        .FirstOrDefault();
-                    try
-                    {
-                        currentPerson.BuyingProduct(currentProduct);
-
-                        Console.WriteLine(
-                            $"{formatInput[0]} bought {formatInput[1]}");
-                    }
-                    catch (ArgumentException ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                }
-
-                foreach (var person in people)
-                {
-                    Console.WriteLine(person.ToString());
-                }
             }
             catch (ArgumentException ex)
             {
                 Console.WriteLine(ex.Message);
             }
 
+            string input;
+            while ((input = Console.ReadLine()) != "END")
+            {
+                string[] tokens = SplitInput(input, " ");
+
+                try
+                {
+                    people
+                    .FirstOrDefault(p => p.Name == tokens[0])
+                    .BuyingProduct(
+                        products .FirstOrDefault(p => p.Name == tokens[1])
+                    );
+
+                    Console.WriteLine($"{tokens[0]} bought {tokens[1]}");
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            foreach (var person in people)
+            {
+                Console.WriteLine(person);
+            }
+
+
         }
 
         private static void AddProducts(string inputProducts)
         {
-            products = inputProducts
-                .Split(new[] { ';' },
-                    StringSplitOptions.RemoveEmptyEntries)
+            products = SplitInput(inputProducts, ";")
                 .Select(str =>
                 {
-                    string[] info = str.Split('=');
-                    return new Product(
-                        info[0], decimal.Parse(info[1]));
+                    string[] info = SplitInput(str, "=");
+                    return new Product(info[0], decimal.Parse(info[1]));
                 })
                 .ToList();
         }
 
         private static void AddPeople(string inputPeople)
         {
-            people = inputPeople
-                .Split(new[] { ';' },
-                    StringSplitOptions.RemoveEmptyEntries)
+            people = SplitInput(inputPeople, ";")
                 .Select(str =>
                 {
-                    string[] info = str.Split('=');
-                    return new Person(
-                        info[0], decimal.Parse(info[1]));
+                    string[] info = SplitInput(str, "=");
+                    return new Person(info[0], decimal.Parse(info[1]));
                 })
                 .ToList();
+        }
+
+        private static string[] SplitInput(string input, string delimiter)
+        {
+            return input.Split(delimiter.ToCharArray(),
+                StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }

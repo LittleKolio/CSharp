@@ -15,19 +15,19 @@
         //Course name, student name, list of grades
         private static Dictionary<string, Dictionary<string, List<int>>> studentsByCourse;
 
-        public static void InitializeData(string path = null)
+        public static void InitializeData(string name = null)
         {
             if (!isDataInitialized)
             {
                 OutputWriter.WriteOneLineMessage("Reading data...");
                 studentsByCourse = new Dictionary<string, Dictionary<string, List<int>>>();
-                if (path == null)
+                if (name == null)
                 {
                     ReadDataFromConsole();
                 }
                 else
                 {
-                    ReadDataFromFile(path);
+                    ReadDataFromFile(name);
                 }
 
                 isDataInitialized = true;
@@ -39,12 +39,15 @@
                     ExceptionMessages.data_IsInitialized);
             }
         }
-        private static void ReadDataFromFile(string path)
+        public static void ReadDataFromFile(string name)
         {
+            string path = Path.Combine(SessionData.currentDirectory, name);
+
             if (!File.Exists(path))
             {
                 OutputWriter.DisplayException(
-                    ExceptionMessages.file_DoseNotExist);
+                    string.Format(ExceptionMessages.file_DoseNotExist, name));
+                return;
             }
 
             string[] input = File.ReadAllLines(path);
@@ -70,13 +73,13 @@
             string student = tokens[1];
             int mark = int.Parse(tokens[2]);
 
-            if (!studentsByCourse.ContainsKey(course))
+            if (!IsQueryForCoursePossible(course))
             {
                 studentsByCourse.Add(course,
                     new Dictionary<string, List<int>>());
             }
 
-            if (!studentsByCourse[course].ContainsKey(student))
+            if (!IsQueryForStudentPossiblе(course, student))
             {
                 studentsByCourse[course].Add(student, new List<int>());
             }

@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    class Person
+    public class Person
     {
         private string name;
         private decimal money;
@@ -61,17 +61,21 @@
             this.money -= product.Cost;
         }
 
+        private string FilterProducts()
+        {
+            return string.Join(", ", this.Bag.Select(p => p.Name));
+        }
+
         public override string ToString()
         {
-            if (this.bag.Count == 0)
+            string bought = "Nothing bought";
+
+            if (this.Bag.Count > 0)
             {
-                return $"{this.Name} - Nothing bought";
+                bought = FilterProducts();
             }
-            else
-            {
-                return $"{this.Name} - " + 
-                    string.Join(", ", bag.Select(p => p.Name));
-            }
+
+            return $"{this.Name} - {bought}";
         }
     }
 }

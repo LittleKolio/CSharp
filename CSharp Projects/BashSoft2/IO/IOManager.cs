@@ -112,8 +112,9 @@
             }
         }
 
-        public static void OpenFileWithDefaultProgram(string path)
+        public static void OpenFileWithDefaultProgram(string name)
         {
+            string path = Path.Combine(SessionData.currentDirectory, name);
             if (!File.Exists(path))
             {
                 string fileName = Path.GetFileName(path);

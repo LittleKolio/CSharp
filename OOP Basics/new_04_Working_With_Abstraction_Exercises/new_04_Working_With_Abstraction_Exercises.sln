@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_01_Raw_Data", "Exe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_05_Greedy_Times", "Exercise_05_Greedy_Times\Exercise_05_Greedy_Times.csproj", "{2C722CC2-9982-42E6-9AE1-3CB2A259A524}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_07_Family_Tree", "Exercise_07_Family_Tree\Exercise_07_Family_Tree.csproj", "{C927BFAA-15BF-4281-A19D-C0973ACDFFC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2C722CC2-9982-42E6-9AE1-3CB2A259A524}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C722CC2-9982-42E6-9AE1-3CB2A259A524}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C722CC2-9982-42E6-9AE1-3CB2A259A524}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C927BFAA-15BF-4281-A19D-C0973ACDFFC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C927BFAA-15BF-4281-A19D-C0973ACDFFC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C927BFAA-15BF-4281-A19D-C0973ACDFFC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C927BFAA-15BF-4281-A19D-C0973ACDFFC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

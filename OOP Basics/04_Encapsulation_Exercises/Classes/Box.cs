@@ -2,11 +2,51 @@
 {
     using System;
 
-    class Box
+    public class Box
     {
         private double length;
         private double width;
         private double height;
+
+        public double Length
+        {
+            get { return this.length; }
+            private set
+            {
+                if (value <= 0)
+                {
+                    throw new Exception(
+                        "Length cannot be zero or negative.");
+                }
+                this.length = value;
+            }
+        }
+        public double Width
+        {
+            get { return this.width; }
+            private set
+            {
+                if (value <= 0)
+                {
+                    throw new Exception(
+                        "Width cannot be zero or negative.");
+                }
+                this.width = value;
+            }
+        }
+        public double Height
+        {
+            get { return this.height; }
+            private set
+            {
+                if (value <= 0)
+                {
+                    throw new Exception(
+                        "Height cannot be zero or negative.");
+                }
+                this.height = value;
+            }
+        }
 
         public Box(double length, double width, double height)
         {
@@ -15,61 +55,22 @@
             this.Height = height;
         }
 
-        private double Length
-        {
-            set
-            {
-                if (value <= 0)
-                {
-                    throw new ArgumentException(
-                        "Length cannot be zero or negative.");
-                }
-                this.length = value;
-            }
-        }
-
-        private double Width
-        {
-            set
-            {
-                if (value <= 0)
-                {
-                    throw new ArgumentException(
-                        "Width cannot be zero or negative.");
-                }
-                this.width = value;
-            }
-        }
-
-        private double Height
-        {
-            set
-            {
-                if (value <= 0)
-                {
-                    throw new ArgumentException(
-                        "Height cannot be zero or negative.");
-                }
-                this.height = value;
-            }
-        }
-
         public double SurfaceArea()
         {
-            return 2 * this.length * this.width +
-                2 * this.width * this.height +
-                2 * this.height * this.length;
+            return 2 * this.Length * this.Width +
+                2 * this.Length * this.Height +
+                2 * this.Width * this.Height;
         }
 
         public double LateralSurfaceArea()
         {
-            return 2 * this.width * this.height +
-                2 * this.height * this.length;
+            return 2 * this.Width * this.Height +
+               2 * this.Length * this.Height;
         }
 
         public double Volume()
         {
-            return this.length * this.width * this.height;
+            return this.Length * this.Width * this.Height;
         }
     }
 }

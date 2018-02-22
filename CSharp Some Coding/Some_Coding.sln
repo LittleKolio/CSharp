@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearchTree", "BinaryS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTableChaining", "HashTableChaining\HashTableChaining.csproj", "{33A5E593-1A68-4351-A006-8696C9136D8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex02_Defining_Classes", "Ex02_Defining_Classes\Ex02_Defining_Classes.csproj", "{659F8160-E99C-47E0-B7FE-928DC06EABEE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,10 +63,6 @@ Global
 		{33A5E593-1A68-4351-A006-8696C9136D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33A5E593-1A68-4351-A006-8696C9136D8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33A5E593-1A68-4351-A006-8696C9136D8E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{659F8160-E99C-47E0-B7FE-928DC06EABEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{659F8160-E99C-47E0-B7FE-928DC06EABEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{659F8160-E99C-47E0-B7FE-928DC06EABEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{659F8160-E99C-47E0-B7FE-928DC06EABEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

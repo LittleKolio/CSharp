@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace Encapsulation_Exercises.Classes
+﻿namespace Encapsulation_Exercises.Classes
 {
-    class Product
+    using System;
+
+    public class Product
     {
         private string name;
         private decimal cost;

@@ -17,10 +17,8 @@
                 //create a directory in the current directory
                 case "mkdir":
                     {
-                        if (tokens.Length != 1)
+                        if (!CheckNumberOfParameters(1, tokens.Length))
                         {
-                            OutputWriter.DisplayException(
-                                ExceptionMessages.params_InvalidNumber);
                             return;
                         }
                         string directoryName = tokens[0];
@@ -31,10 +29,8 @@
                 //traverse the current directory to the given depth
                 case "ls":
                     {
-                        if (tokens.Length != 1)
+                        if (!CheckNumberOfParameters(1, tokens.Length))
                         {
-                            OutputWriter.DisplayException(
-                                string.Format(ExceptionMessages.params_InvalidNumber, 1));
                             return;
                         }
                         int depth;
@@ -51,10 +47,8 @@
                 //comparing two files by given two absolute paths
                 case "cmp":
                     {
-                        if (tokens.Length != 2)
+                        if (!CheckNumberOfParameters(2, tokens.Length))
                         {
-                            OutputWriter.DisplayException(
-                                string.Format(ExceptionMessages.params_InvalidNumber, 2));
                             return;
                         }
                         string filePath1 = tokens[0];
@@ -66,10 +60,8 @@
                 //change the current directory by a relative path
                 case "changeDirRel":
                     {
-                        if (tokens.Length != 1)
+                        if (!CheckNumberOfParameters(1, tokens.Length))
                         {
-                            OutputWriter.DisplayException(
-                                string.Format(ExceptionMessages.params_InvalidNumber, 1));
                             return;
                         }
                         string relativePath = tokens[0];
@@ -80,10 +72,8 @@
                 //change the current directory by an absolute path
                 case "changeDirAbs":
                     {
-                        if (tokens.Length != 1)
+                        if (!CheckNumberOfParameters(1, tokens.Length))
                         {
-                            OutputWriter.DisplayException(
-                                string.Format(ExceptionMessages.params_InvalidNumber, 1));
                             return;
                         }
                         string absolutPath = tokens[0];
@@ -94,10 +84,8 @@
                 //opens a file
                 case "open":
                     {
-                        if (tokens.Length != 1)
+                        if (!CheckNumberOfParameters(1, tokens.Length))
                         {
-                            OutputWriter.DisplayException(
-                                string.Format(ExceptionMessages.params_InvalidNumber, 1));
                             return;
                         }
                         string fileName = tokens[0];
@@ -109,7 +97,12 @@
                 //which is placed in the current folder
                 case "readDb":
                     {
-
+                        if (!CheckNumberOfParameters(1, tokens.Length))
+                        {
+                            return;
+                        }
+                        string fileName = tokens[0];
+                        StudentsRepository.ReadDataFromFile(fileName);
                     } break;
 
                 //filter courseName poor/average/excellent take 2/10/42/all
@@ -138,9 +131,15 @@
             }
         }
 
-        private static void CheckNumberOfParameters(int num, string[] tokens)
+        private static bool CheckNumberOfParameters(int num, int tokens)
         {
-
+            if (tokens != num)
+            {
+                OutputWriter.DisplayException(
+                    string.Format(ExceptionMessages.params_InvalidNumber, num));
+                return false;
+            }
+            return true;
         }
     }
 }
