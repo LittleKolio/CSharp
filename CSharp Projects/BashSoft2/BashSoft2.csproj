@@ -63,6 +63,7 @@
     <Compile Include="IO\ExceptionMessages.cs" />
     <Compile Include="IO\IOManager.cs" />
     <Compile Include="IO\OutputWriter.cs" />
+    <Compile Include="IO\RepositoryFilters.cs" />
     <Compile Include="IO\SessionData.cs" />
     <Compile Include="Launcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

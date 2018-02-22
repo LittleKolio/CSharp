@@ -40,7 +40,7 @@
                 return;
             }
             currentDirectory = path;
-            OutputWriter.WriteOneLineMessage(currentDirectory);
+            OutputWriter.WriteOneLineMessage($"{currentDirectory}>");
         }
 
         public static void ChangeCurrentDirectoryByRelativePath(string path)
@@ -53,7 +53,8 @@
             }
             currentDirectory = Path.GetFullPath(
                 Path.Combine(currentDirectory, path));
-            OutputWriter.WriteOneLineMessage(currentDirectory);
+
+            OutputWriter.WriteOneLineMessage($"{currentDirectory}>");
         }
 
         public static void CreateDirectoryInCurrentDirectory(string directoryName)

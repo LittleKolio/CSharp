@@ -17,79 +17,73 @@
                 //create a directory in the current directory
                 case "mkdir":
                     {
-                        if (!CheckNumberOfParameters(1, tokens.Length))
+                        if (CheckNumberOfParameters(1, tokens.Length))
                         {
-                            return;
+                            string directoryName = tokens[0];
+                            SessionData.CreateDirectoryInCurrentDirectory(directoryName);
                         }
-                        string directoryName = tokens[0];
-                        SessionData.CreateDirectoryInCurrentDirectory(directoryName);
                     } break;
 
                 //ls
                 //traverse the current directory to the given depth
                 case "ls":
                     {
-                        if (!CheckNumberOfParameters(1, tokens.Length))
+                        if (CheckNumberOfParameters(1, tokens.Length))
                         {
-                            return;
+                            int depth;
+                            if (!int.TryParse(tokens[0], out depth))
+                            {
+                                OutputWriter.DisplayException(
+                                    string.Format(ExceptionMessages.params_InvalidParameter, tokens[0]));
+                                return;
+                            }
+                            IOManager.TraversingCurrentDirectory(depth);
                         }
-                        int depth;
-                        if (!int.TryParse(tokens[0], out depth))
-                        {
-                            OutputWriter.DisplayException(
-                                string.Format(ExceptionMessages.params_InvalidParameter, tokens[0]));
-                            return;
-                        }
-                        IOManager.TraversingCurrentDirectory(depth);
                     } break;
 
                 //cmp absolutePath1 absolutePath2
                 //comparing two files by given two absolute paths
                 case "cmp":
                     {
-                        if (!CheckNumberOfParameters(2, tokens.Length))
+                        if (CheckNumberOfParameters(2, tokens.Length))
                         {
-                            return;
+                            string filePath1 = tokens[0];
+                            string filePath2 = tokens[1];
+                            IOManager.CompareTwoFiles(filePath1, filePath2);
                         }
-                        string filePath1 = tokens[0];
-                        string filePath2 = tokens[1];
-                        IOManager.CompareTwoFiles(filePath1, filePath2);
                     } break;
 
                 //changeDirRel relativePath
                 //change the current directory by a relative path
                 case "changeDirRel":
                     {
-                        if (!CheckNumberOfParameters(1, tokens.Length))
+                        if (CheckNumberOfParameters(1, tokens.Length))
                         {
-                            return;
+                            string relativePath = tokens[0];
+                            SessionData.ChangeCurrentDirectoryByRelativePath(relativePath);
                         }
-                        string relativePath = tokens[0];
-                        SessionData.ChangeCurrentDirectoryByRelativePath(relativePath);
                     } break;
 
                 //changeDirAbs absolutePath
                 //change the current directory by an absolute path
                 case "changeDirAbs":
                     {
-                        if (!CheckNumberOfParameters(1, tokens.Length))
+                        if (CheckNumberOfParameters(1, tokens.Length))
                         {
-                            return;
+                            string absolutPath = tokens[0];
+                            SessionData.ChangeCurrentDirectory(absolutPath);
                         }
-                        string absolutPath = tokens[0];
-                        SessionData.ChangeCurrentDirectory(absolutPath);
                     } break;
                 
                 //open fileName
                 //opens a file
                 case "open":
                     {
-                        if (!CheckNumberOfParameters(1, tokens.Length))
+                        if (CheckNumberOfParameters(1, tokens.Length))
                         {
-                            return;
+                            string fileName = tokens[0];
+                            IOManager.OpenFileWithDefaultProgram(fileName);
                         }
-                        string fileName = tokens[0];
-                        IOManager.OpenFileWithDefaultProgram(fileName);
                     } break;
 
                 //readDb dataBaseFileName
@@ -97,12 +91,34 @@
                 //which is placed in the current folder
                 case "readDb":
                     {
-                        if (!CheckNumberOfParameters(1, tokens.Length))
+                        if (CheckNumberOfParameters(1, tokens.Length))
                         {
-                            return;
+                            string fileName = tokens[0];
+                            StudentsRepository.ReadDataFromFile(fileName);
                         }
-                        string fileName = tokens[0];
-                        StudentsRepository.ReadDataFromFile(fileName);
+                    } break;
+
+                //show courseName (studentName)
+                //search database by a given course name or course and student name
+                //print the result
+                case "show":
+                    {
+                        if (tokens.Length == 1)
+                        {
+                            string courseName = tokens[0];
+                            StudentsRepository.GetAllStudents(courseName);
+                        }
+                        else if (tokens.Length == 2)
+                        {
+                            string courseName = tokens[0];
+                            string studentName = tokens[1];
+                            StudentsRepository.GetStudent(courseName, studentName);
+                        }
+                        else
+                        {
+                            OutputWriter.DisplayException(
+                                string.Format(ExceptionMessages.params_InvalidNumber, tokens.Length));
+                        }
                     } break;
 
                 //filter courseName poor/average/excellent take 2/10/42/all
