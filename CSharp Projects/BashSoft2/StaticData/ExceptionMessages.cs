@@ -1,11 +1,5 @@
-﻿namespace BashSoft2.IO
+﻿namespace BashSoft2
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
     public static class ExceptionMessages
     {
         public const string data_IsInitialized = "Data structure is already initialized!";

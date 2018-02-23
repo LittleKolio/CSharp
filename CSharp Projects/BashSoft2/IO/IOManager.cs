@@ -1,4 +1,4 @@
-﻿namespace BashSoft2.IO
+﻿namespace BashSoft2
 {
     using System;
     using System.Collections.Generic;
@@ -22,7 +22,7 @@
         /// <param name="path"></param>
         public static void TraversingCurrentDirectory(int down = 3)
         {
-            string path = SessionData.currentDirectory;
+            string path = FilesystemOperations.currentDirectory;
 
             //I dont no witch is the fastest way to iterate through characters in string!
             //int indentation = Regex.Matches(path, "\\").Count;
@@ -114,7 +114,7 @@
 
         public static void OpenFileWithDefaultProgram(string name)
         {
-            string path = Path.Combine(SessionData.currentDirectory, name);
+            string path = Path.Combine(FilesystemOperations.currentDirectory, name);
             if (!File.Exists(path))
             {
                 string fileName = Path.GetFileName(path);

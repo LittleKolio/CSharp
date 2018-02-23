@@ -1,13 +1,9 @@
 ﻿namespace BashSoft2
 {
-    using IO;
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
-    using System.Text;
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
 
     public static class StudentsRepository
     {
@@ -17,13 +13,22 @@
         //Course name, student name, list of grades
         private static Dictionary<string, Dictionary<string, List<int>>> studentsByCourse;
 
-        public static void ReadDataFromConsole()
+        private static void Initialize()
         {
             if (!isDataInitialized)
             {
                 studentsByCourse = new Dictionary<string, Dictionary<string, List<int>>>();
                 isDataInitialized = true;
+
+                OutputWriter.WriteOneLineMessage(
+                    ExceptionMessages.data_IsInitialized);
             }
+        }
+
+        public static void ReadDataFromConsole()
+        {
+            Initialize();
+
             OutputWriter.WriteOneLineMessage("Reading data...");
 
             string input;
@@ -36,7 +41,7 @@
         }
         public static void ReadDataFromFile(string name)
         {
-            string path = Path.Combine(SessionData.currentDirectory, name);
+            string path = Path.Combine(FilesystemOperations.currentDirectory, name);
 
             if (!File.Exists(path))
             {
@@ -45,13 +50,9 @@
                 return;
             }
 
-            OutputWriter.WriteOneLineMessage("Reading data...");
+            Initialize();
 
-            if (!isDataInitialized)
-            {
-                studentsByCourse = new Dictionary<string, Dictionary<string, List<int>>>();
-                isDataInitialized = true;
-            }
+            OutputWriter.WriteOneLineMessage("Reading data...");
 
             string[] input = File.ReadAllLines(path);
             for (int i = 0; i < input.Length; i++)

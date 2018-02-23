@@ -1,11 +1,6 @@
-﻿namespace BashSoft2.Engine
+﻿namespace BashSoft2
 {
-    using IO;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public static class CommandInterpreter
     {
@@ -20,7 +15,7 @@
                         if (CheckNumberOfParameters(1, tokens.Length))
                         {
                             string directoryName = tokens[0];
-                            SessionData.CreateDirectoryInCurrentDirectory(directoryName);
+                            FilesystemOperations.CreateDirectoryInCurrentDirectory(directoryName);
                         }
                     } break;
 
@@ -60,7 +55,7 @@
                         if (CheckNumberOfParameters(1, tokens.Length))
                         {
                             string relativePath = tokens[0];
-                            SessionData.ChangeCurrentDirectoryByRelativePath(relativePath);
+                            FilesystemOperations.ChangeCurrentDirectoryByRelativePath(relativePath);
                         }
                     } break;
 
@@ -71,7 +66,7 @@
                         if (CheckNumberOfParameters(1, tokens.Length))
                         {
                             string absolutPath = tokens[0];
-                            SessionData.ChangeCurrentDirectory(absolutPath);
+                            FilesystemOperations.ChangeCurrentDirectory(absolutPath);
                         }
                     } break;
                 
@@ -163,7 +158,7 @@
                             string take = tokens[2];
 
                             Dictionary<string, List<int>> sortedStudents 
-                                = RepositoryFilters.OrderInterpreter(courseName, order, take);
+                                = RepositoryOrder.OrderInterpreter(courseName, order, take);
 
                             if (sortedStudents != null)
                             {

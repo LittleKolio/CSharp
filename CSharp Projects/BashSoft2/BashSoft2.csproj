@@ -60,14 +60,15 @@
   <ItemGroup>
     <Compile Include="Engine\CommandInterpreter.cs" />
     <Compile Include="Engine\InputReader.cs" />
-    <Compile Include="IO\ExceptionMessages.cs" />
+    <Compile Include="Repository\RepositoryOrder.cs" />
+    <Compile Include="StaticData\ExceptionMessages.cs" />
     <Compile Include="IO\IOManager.cs" />
     <Compile Include="IO\OutputWriter.cs" />
-    <Compile Include="IO\RepositoryFilters.cs" />
-    <Compile Include="IO\SessionData.cs" />
+    <Compile Include="Repository\RepositoryFilters.cs" />
+    <Compile Include="IO\FilesystemOperations.cs" />
     <Compile Include="Launcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StudentsRepository.cs" />
+    <Compile Include="Repository\StudentsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

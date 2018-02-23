@@ -1,4 +1,4 @@
-﻿namespace BashSoft2.IO
+﻿namespace BashSoft2
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +7,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public static class SessionData
+    public static class FilesystemOperations
     {
         public static string currentDirectory = Directory.GetCurrentDirectory();
 
@@ -40,7 +40,6 @@
                 return;
             }
             currentDirectory = path;
-            OutputWriter.WriteOneLineMessage($"{currentDirectory}>");
         }
 
         public static void ChangeCurrentDirectoryByRelativePath(string path)
@@ -51,10 +50,7 @@
                         ExceptionMessages.dir_DoseNotExist);
                 return;
             }
-            currentDirectory = Path.GetFullPath(
-                Path.Combine(currentDirectory, path));
-
-            OutputWriter.WriteOneLineMessage($"{currentDirectory}>");
+            currentDirectory = Path.GetFullPath(Path.Combine(currentDirectory, path));
         }
 
         public static void CreateDirectoryInCurrentDirectory(string directoryName)
@@ -66,7 +62,7 @@
             //    return null;
             //}
 
-            string path = currentDirectory + "\\" + directoryName;
+            string path = Path.Combine(currentDirectory, directoryName);
             try
             {
                 Directory.CreateDirectory(path);
@@ -83,7 +79,7 @@
 
         public static string CreateTextFileInCurrentDirectory(string name, string[] text)
         {
-            string path = currentDirectory + "\\" + name;
+            string path = Path.Combine(currentDirectory, name);
             try
             {
                 File.WriteAllLines(path, text);

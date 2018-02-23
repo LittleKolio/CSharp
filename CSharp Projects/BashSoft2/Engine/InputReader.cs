@@ -1,11 +1,7 @@
-﻿namespace BashSoft2.Engine
+﻿namespace BashSoft2
 {
-    using IO;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public static class InputReader
     {
@@ -13,8 +9,8 @@
 
         public static void StartReadingCommands()
         {
-            OutputWriter.WriteOneLineMessage(
-                $"{SessionData.currentDirectory}>");
+            OutputWriter.WriteMessage(
+                $"{FilesystemOperations.currentDirectory}> ");
 
             string input;
             while (!(input = Console.ReadLine()).Equals(
@@ -32,6 +28,9 @@
                 string[] parameters = tokens.Skip(1).ToArray();
 
                 CommandInterpreter.InterpredCommand(command, parameters);
+
+                OutputWriter.WriteMessage(
+                    $"{FilesystemOperations.currentDirectory}> ");
             }
         }
 

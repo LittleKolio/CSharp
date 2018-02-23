@@ -1,4 +1,4 @@
-﻿namespace BashSoft2.IO
+﻿namespace BashSoft2
 {
     using System;
     using System.Collections.Generic;
