@@ -9,54 +9,64 @@
 
     public static class RepositoryFilters
     {
-        public static void OrderBy(string courseName, string filter, string take)
+        public static Dictionary<string, List<int>> OrderInterpreter(string courseName, string order, string take)
         {
             Dictionary<string, List<int>> data = StudentsRepository.GetAllStudents(courseName);
-            Dictionary<string, List<int>> sorted = new Dictionary<string, List<int>>();
 
-            int takenCount = 0;
-            bool isSorted = false;
-
-            while (true)
+            int numberOfStudents;
+            bool isNumber = int.TryParse(take, out numberOfStudents);
+            if (!isNumber)
             {
-                isSorted = true;
-                KeyValuePair<string, List<int>> temp = new KeyValuePair<string, List<int>>();
-                foreach (KeyValuePair<string, List<int>> student in data)
-                {
-                    if (!string.IsNullOrEmpty(temp.Key))
-                    {
-                        int compareResult = student.Value.Sum().CompareTo(temp.Value.Sum());
-                        if (compareResult >= 0 && !sorted.ContainsKey(student.Key))
-                        {
-                            temp = student;
-                            isSorted = false;
-                        }
-                    }
-                    else
-                    {
-                        if (!sorted.ContainsKey(student.Key))
-                        {
-                            temp = student;
-                            isSorted = false;
-                        }
-                    }
-                }
+                numberOfStudents = data.Count;
+            }
 
-                if (isSorted)
-                {
-                    sorted.Add(temp.Key, temp.Value);
-                    takenCount++;
-                    temp = new KeyValuePair<string, List<int>>();
-                }
+            switch (order)
+            {
+                case "ascending": return OrderByScore(data, CompareByScoresAscending, numberOfStudents);
+                case "descending": return OrderByScore(data, CompareByScoresDescending, numberOfStudents);
+                default: OutputWriter.DisplayException(
+                    ExceptionMessages.data_InvalidOrder);
+                    return null;
             }
         }
 
-        private static int CompareStudentsByScores(List<int> fistStudent, List<int> secondStudent)
+        private static Dictionary<string, List<int>> OrderByScore(
+            Dictionary<string, List<int>> data,
+            Func<List<int>, List<int>, int> orderFunc,
+            int numberOfStudents
+            )
         {
-            return fistStudent.Sum().CompareTo(secondStudent.Sum());
+            Dictionary<string, List<int>> sortedStudents = new Dictionary<string, List<int>>();
+            int count = 0;
+
+            while (count < numberOfStudents)
+            {
+                KeyValuePair<string, List<int>> prevStudent = new KeyValuePair<string, List<int>>();
+
+                foreach (KeyValuePair<string, List<int>> currentStudent in data)
+                {
+                    if (!string.IsNullOrEmpty(prevStudent.Key) && !sortedStudents.ContainsKey(currentStudent.Key))
+                    {
+                        int compareResult = orderFunc(currentStudent.Value, prevStudent.Value);
+                        if (compareResult >= 0)
+                        {
+                            prevStudent = currentStudent;
+                        }
+                    }
+                    else if (!sortedStudents.ContainsKey(currentStudent.Key))
+                    {
+                        prevStudent = currentStudent;
+                    }
+                }
+
+                sortedStudents.Add(prevStudent.Key, prevStudent.Value);
+                count++;
+            }
+
+            return sortedStudents;
         }
 
-        public static void FilterInterpreter(string courseName, string filter, string take)
+        public static Dictionary<string, List<int>> FilterInterpreter(string courseName, string filter, string take)
         {
             Dictionary<string, List<int>> data = StudentsRepository.GetAllStudents(courseName);
 
@@ -69,21 +79,22 @@
 
             switch (filter)
             {
-                case "excellent": FilterByScore(data, ExcellentFilter, numberOfStudents); break;
-                case "average": FilterByScore(data, AverageFilter, numberOfStudents); break;
-                case "poor": FilterByScore(data, PoorFilter, numberOfStudents); break;
-                default:
-                    OutputWriter.DisplayException(
-               ExceptionMessages.data_InvalidFilter);
-                    break;
+                case "excellent": return FilterByScore(data, ExcellentFilter, numberOfStudents);
+                case "average": return FilterByScore(data, AverageFilter, numberOfStudents);
+                case "poor": return FilterByScore(data, PoorFilter, numberOfStudents);
+                default: OutputWriter.DisplayException(
+                    ExceptionMessages.data_InvalidFilter);
+                    return null;
             }
         }
-        private static void FilterByScore(
+        private static Dictionary<string, List<int>> FilterByScore(
             Dictionary<string, List<int>> data,
             Predicate<double> filter,
             int numberOfStudents
             )
         {
+            Dictionary<string, List<int>> filteredStudents = new Dictionary<string, List<int>>();
+
             int count = 0;
             foreach (KeyValuePair<string, List<int>> student in data)
             {
@@ -95,10 +106,12 @@
                 double mark = Average(student.Value);
                 if (filter(mark))
                 {
-                    OutputWriter.PrintStudent(student);
+                    filteredStudents.Add(student.Key, student.Value);
                     count++;
                 }
             }
+
+            return filteredStudents;
         }
 
         private static bool ExcellentFilter(double mark)
@@ -117,6 +130,16 @@
         {
             double percentTotalScore = scores.Average() / 100;
             return percentTotalScore * 4 + 2;
+        }
+
+        private static int CompareByScoresAscending(List<int> fistStudent, List<int> secondStudent)
+        {
+            return secondStudent.Average().CompareTo(fistStudent.Average());
+        }
+
+        private static int CompareByScoresDescending(List<int> fistStudent, List<int> secondStudent)
+        {
+            return fistStudent.Average().CompareTo(secondStudent.Average());
         }
     }
 }

@@ -127,7 +127,7 @@
                         }
                     } break;
 
-                //filter courseName poor/average/excellent take 2/10/42/all
+                //filter courseName poor/average/excellent 2/10/42/all
                 //filter students from а given course by a given filter option
                 //and add quantity of students to take
                 case "filter":
@@ -138,14 +138,42 @@
                             string filter = tokens[1];
                             string take = tokens[2];
 
-                            RepositoryFilters.FilterInterpreter(courseName, filter, take);
+                            Dictionary<string, List<int>> filteredStudents
+                                = RepositoryFilters.FilterInterpreter(courseName, filter, take);
+
+                            if (filteredStudents != null)
+                            {
+                                foreach (KeyValuePair<string, List<int>> student in filteredStudents)
+                                {
+                                    OutputWriter.PrintStudent(student);
+                                }
+                            }
                         }
                     } break;
 
-                //order courseName ascending/descending take 3/26/52/all
+                //order courseName ascending/descending 3/26/52/all
                 //order student from a given course by ascending or descending order
                 //and then take some of them or all that match it
-                case "order": break;
+                case "order":
+                    {
+                        if (CheckNumberOfParameters(3, tokens.Length))
+                        {
+                            string courseName = tokens[0];
+                            string order = tokens[1];
+                            string take = tokens[2];
+
+                            Dictionary<string, List<int>> sortedStudents 
+                                = RepositoryFilters.OrderInterpreter(courseName, order, take);
+
+                            if (sortedStudents != null)
+                            {
+                                foreach (KeyValuePair<string, List<int>> student in sortedStudents)
+                                {
+                                    OutputWriter.PrintStudent(student);
+                                }
+                            }
+                        }
+                    } break;
 
                 //download pathOfFile
                 //download a file
