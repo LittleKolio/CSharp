@@ -12,6 +12,7 @@
         public const string data_IsNotInitialized = "The data structure must be initialized first.";
         public const string data_CoursDoseNotExist = "The course does not exist in the data base!";
         public const string data_StudentDoseNotExist = "The student does not exist in this cours!";
+        public const string data_InvalidFilter = "Filter is not one of the following: excellent/average/poor";
 
         public const string file_DoseNotExist = "File '{0}' does not exist!";
         public const string file_DontHaveAccess = "You don't have access to tose file!";

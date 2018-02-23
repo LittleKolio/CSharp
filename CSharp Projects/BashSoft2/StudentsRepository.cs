@@ -133,25 +133,31 @@
             return false;
         }
 
-        public static void GetStudent(string courseName, string studentName)
+        public static List<int> GetStudent(string courseName, string studentName)
         {
             if (IsQueryForStudentPossiblе(courseName, studentName))
             {
-                OutputWriter.PrintStudent(
-                    new KeyValuePair<string, List<int>>(
-                        studentName, studentsByCourse[courseName][studentName]));
+                return studentsByCourse[courseName][studentName];
+
+                //OutputWriter.PrintStudent(
+                //    new KeyValuePair<string, List<int>>(
+                //        studentName, studentsByCourse[courseName][studentName]));
             }
+            return null;
         }
-        public static void GetAllStudents(string courseName)
+        public static Dictionary<string, List<int>> GetAllStudents(string courseName)
         {
             if (IsQueryForCoursePossible(courseName))
             {
-                OutputWriter.WriteOneLineMessage(courseName);
-                foreach (var student in studentsByCourse[courseName])
-                {
-                    OutputWriter.PrintStudent(student);
-                }
+                return studentsByCourse[courseName];
+
+                //OutputWriter.WriteOneLineMessage(courseName);
+                //foreach (var student in studentsByCourse[courseName])
+                //{
+                //    OutputWriter.PrintStudent(student);
+                //}
             }
+            return null;
         }
     }
 }
