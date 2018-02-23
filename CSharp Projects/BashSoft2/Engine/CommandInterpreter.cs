@@ -106,13 +106,19 @@
                         if (tokens.Length == 1)
                         {
                             string courseName = tokens[0];
-                            StudentsRepository.GetAllStudents(courseName);
+                            Dictionary<string, List<int>> course = StudentsRepository.GetAllStudents(courseName);
+                            foreach (KeyValuePair<string, List<int>> student in course)
+                            {
+                                OutputWriter.PrintStudent(student);
+                            }
                         }
                         else if (tokens.Length == 2)
                         {
                             string courseName = tokens[0];
                             string studentName = tokens[1];
-                            StudentsRepository.GetStudent(courseName, studentName);
+                            List<int> scoresList = StudentsRepository.GetStudent(courseName, studentName);
+                            OutputWriter.PrintStudent(new KeyValuePair<string, List<int>>(
+                                studentName, scoresList));
                         }
                         else
                         {
@@ -124,7 +130,17 @@
                 //filter courseName poor/average/excellent take 2/10/42/all
                 //filter students from а given course by a given filter option
                 //and add quantity of students to take
-                case "filter": break;
+                case "filter":
+                    {
+                        if (CheckNumberOfParameters(3, tokens.Length))
+                        {
+                            string courseName = tokens[0];
+                            string filter = tokens[1];
+                            string take = tokens[2];
+
+                            RepositoryFilters.FilterInterpreter(courseName, filter, take);
+                        }
+                    } break;
 
                 //order courseName ascending/descending take 3/26/52/all
                 //order student from a given course by ascending or descending order
