@@ -69,6 +69,7 @@
     <Compile Include="Launcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\StudentsRepository.cs" />
+    <Compile Include="Tester\Tester.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
