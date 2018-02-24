@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BashSoft", "BashSoft\BashSo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleJudge", "SimpleJudge\SimpleJudge.csproj", "{685BC7C1-F9F6-4FB0-9479-55A49A974DDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BashSoft2", "BashSoft2\BashSoft2.csproj", "{1F4F49CA-769A-4C33-912C-76CD389DC4F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BashSoft_OOP", "BashSoft_OOP\BashSoft_OOP.csproj", "{284471E9-9175-4D4E-A8AC-58B9253844E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BashSoft_Basic", "BashSoft_Basic\BashSoft_Basic.csproj", "{1F4F49CA-769A-4C33-912C-76CD389DC4F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{685BC7C1-F9F6-4FB0-9479-55A49A974DDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{685BC7C1-F9F6-4FB0-9479-55A49A974DDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{685BC7C1-F9F6-4FB0-9479-55A49A974DDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{284471E9-9175-4D4E-A8AC-58B9253844E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{284471E9-9175-4D4E-A8AC-58B9253844E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{284471E9-9175-4D4E-A8AC-58B9253844E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{284471E9-9175-4D4E-A8AC-58B9253844E5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F4F49CA-769A-4C33-912C-76CD389DC4F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1F4F49CA-769A-4C33-912C-76CD389DC4F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F4F49CA-769A-4C33-912C-76CD389DC4F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
