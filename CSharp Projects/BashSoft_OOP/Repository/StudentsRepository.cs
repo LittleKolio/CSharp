@@ -21,10 +21,12 @@
             this.filter = filter;
             this.sorter = sorter;
             this.studentsByCourse = new Dictionary<string, Dictionary<string, List<int>>>();
+
         }
 
         public void ReadDataFromConsole()
         {
+            int count = studentsByCourse.Count;
             OutputWriter.WriteOneLineMessage("Reading data...");
 
             string input;
@@ -33,7 +35,17 @@
                 ProcessingInput(input);
             }
 
-            OutputWriter.WriteOneLineMessage("Data read!");
+            if (studentsByCourse.Count > count)
+            {
+                OutputWriter.WriteOneLineMessage("Data imported.");
+                this.isDataInitialized = true;
+            }
+            else
+            {
+                OutputWriter.WriteOneLineMessage(
+                    "Nothing imported!");
+            }
+
         }
         public void ReadDataFromFile(string name)
         {
@@ -46,6 +58,7 @@
                 return;
             }
 
+            int count = studentsByCourse.Count;
             OutputWriter.WriteOneLineMessage("Reading data...");
 
             string[] input = File.ReadAllLines(path);
@@ -54,7 +67,16 @@
                 ProcessingInput(input[i]);
             }
 
-            OutputWriter.WriteOneLineMessage("Data read!");
+            if (studentsByCourse.Count > count)
+            {
+                OutputWriter.WriteOneLineMessage("Data imported.");
+                this.isDataInitialized = true;
+            }
+            else
+            {
+                OutputWriter.WriteOneLineMessage(
+                    "Nothing imported!");
+            }
         }
 
         //Input format – {Course Name}_{Course Instance}{One or more white spaces}{Username}{One or more white spaces}{Score}

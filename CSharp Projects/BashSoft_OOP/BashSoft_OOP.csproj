@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\CommandInterpreter.cs" />
+    <Compile Include="Engine\InputReader.cs" />
     <Compile Include="IO\FilesystemOperations.cs" />
     <Compile Include="IO\IOManager.cs" />
     <Compile Include="IO\OutputWriter.cs" />
