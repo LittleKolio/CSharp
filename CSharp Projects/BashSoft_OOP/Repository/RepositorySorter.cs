@@ -6,35 +6,48 @@
     
     public class RepositorySorter
     {
-        private Dictionary<string, List<int>> data;
-        public Dictionary<string, List<int>> OrderInterpreter(
-            string courseName, string order, string take)
+        public Dictionary<string, List<int>> SortInterpreter(
+            Dictionary<string, List<int>> course,
+            string order, 
+            string take)
         {
-            this.data = StudentsRepository.GetAllStudents(courseName);
-
             int numberOfStudents;
             bool isNumber = int.TryParse(take, out numberOfStudents);
             if (!isNumber)
             {
-                numberOfStudents = data.Count;
+                numberOfStudents = course.Count;
             }
+
+            Dictionary<string, List<int>> sortedStudents
+                = new Dictionary<string, List<int>>();
 
             switch (order)
             {
                 case "ascending":
-                    return data.OrderBy(s => AverageOfList(s.Value))
+                    sortedStudents = course.OrderBy(s => AverageOfList(s.Value))
                         .Take(numberOfStudents)
                         .ToDictionary(s => s.Key, s => s.Value);
+                    break;
 
                 case "descending":
-                    return data.OrderByDescending(s => AverageOfList(s.Value))
+                    sortedStudents = course.OrderByDescending(s => AverageOfList(s.Value))
                         .Take(numberOfStudents)
                         .ToDictionary(s => s.Key, s => s.Value);
+                    break;
+
                 default:
                     OutputWriter.DisplayException(
-               ExceptionMessages.data_InvalidOrder);
-                    return null;
+                        ExceptionMessages.data_InvalidOrder);
+                    break;
             }
+
+            if (sortedStudents.Count == 0)
+            {
+                OutputWriter.WriteOneLineMessage(
+                    ExceptionMessages.data_NoStudent);
+            }
+
+            return sortedStudents;
         }
 
         private Func<List<int>, double> AverageOfList = s => s.Average();

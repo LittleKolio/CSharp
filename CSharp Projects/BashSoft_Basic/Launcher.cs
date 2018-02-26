@@ -1,4 +1,4 @@
-﻿namespace BashSoft2
+﻿namespace BashSoft_Basic
 {
     public class Launcher
     {

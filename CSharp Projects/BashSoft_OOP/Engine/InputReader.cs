@@ -3,11 +3,17 @@
     using System;
     using System.Linq;
 
-    public static class InputReader
+    public class InputReader
     {
         private const string endCommand = "quit";
+        private CommandInterpreter commandInterpreter;
 
-        public static void StartReadingCommands()
+        public InputReader(CommandInterpreter commandInterpreter)
+        {
+            this.commandInterpreter = commandInterpreter;
+        }
+
+        public void StartReadingCommands()
         {
             OutputWriter.WriteMessage(
                 $"{FilesystemOperations.currentDirectory}> ");
@@ -23,18 +29,18 @@
                     continue;
                 }
 
-                string[] tokens = SplitInput(input, " ");
+                string[] tokens = this.SplitInput(input, " ");
                 string command = tokens[0];
                 string[] parameters = tokens.Skip(1).ToArray();
 
-                CommandInterpreter.InterpredCommand(command, parameters);
+                this.commandInterpreter.InterpredCommand(command, parameters);
 
                 OutputWriter.WriteMessage(
                     $"{FilesystemOperations.currentDirectory}> ");
             }
         }
 
-        private static string[] SplitInput(string input, string delimiter)
+        private string[] SplitInput(string input, string delimiter)
         {
             return input.Split(delimiter.ToCharArray(),
                 StringSplitOptions.RemoveEmptyEntries)

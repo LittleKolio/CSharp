@@ -6,43 +6,61 @@
 
     public class RepositoryFilter
     {
-        private Dictionary<string, List<int>> data;
         public Dictionary<string, List<int>> FilterInterpreter(
-            string courseName, string filter, string take)
+            Dictionary<string, List<int>> course,
+            string filter, 
+            string take)
         {
-            this.data = StudentsRepository.GetAllStudents(courseName);
-
             int numberOfStudents;
             bool isNumber = int.TryParse(take, out numberOfStudents);
             if (!isNumber)
             {
-                numberOfStudents = this.data.Count;
+                numberOfStudents = course.Count;
             }
+
+            Dictionary<string, List<int>> filteredStudents
+                = new Dictionary<string, List<int>>();
 
             switch (filter)
             {
-                case "excellent": return FilterByScoreAndTake(
-                    ExcellentFilter, numberOfStudents);
+                case "excellent":
+                    filteredStudents = FilterByScoreAndTake(
+                    course, ExcellentFilter, numberOfStudents);
+                    break;
 
-                case "average": return FilterByScoreAndTake(
-                    AverageFilter, numberOfStudents);
+                case "average":
+                    filteredStudents = FilterByScoreAndTake(
+                    course, AverageFilter, numberOfStudents);
+                    break;
 
-                case "poor": return FilterByScoreAndTake(
-                    PoorFilter, numberOfStudents);
+                case "poor":
+                    filteredStudents = FilterByScoreAndTake(
+                    course, PoorFilter, numberOfStudents);
+                    break;
 
                 default: OutputWriter.DisplayException(
                     ExceptionMessages.data_InvalidFilter);
-                    return null;
+                    break;
             }
+
+            if (filteredStudents.Count == 0)
+            {
+                OutputWriter.WriteOneLineMessage(
+                    ExceptionMessages.data_NoStudent);
+            }
+
+            return filteredStudents;
         }
         private Dictionary<string, List<int>> FilterByScoreAndTake(
-            Predicate<double> filter, int numberOfStudents)
+            Dictionary<string, List<int>> course,
+            Predicate<double> filter, 
+            int numberOfStudents)
         {
             Dictionary<string, List<int>> filteredStudents 
                 = new Dictionary<string, List<int>>();
 
             int count = 0;
-            foreach (KeyValuePair<string, List<int>> student in this.data)
+            foreach (KeyValuePair<string, List<int>> student in course)
             {
                 if (count == numberOfStudents)
                 {

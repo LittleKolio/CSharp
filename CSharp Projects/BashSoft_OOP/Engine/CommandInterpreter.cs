@@ -2,9 +2,27 @@
 {
     using System.Collections.Generic;
 
-    public static class CommandInterpreter
+    public class CommandInterpreter
     {
-        public static void InterpredCommand(string cmd, string[] tokens)
+        private StudentsRepository studentsRepository;
+        private IOManager ioManager;
+        private RepositoryFilter repositoryFilter;
+        private RepositorySorter repositorySorter;
+
+        public CommandInterpreter(
+            StudentsRepository studentsRepository,
+            IOManager ioManager,
+            RepositoryFilter repositoryFilter,
+            RepositorySorter repositorySorter
+            )
+        {
+            this.studentsRepository = studentsRepository;
+            this.ioManager = ioManager;
+            this.repositoryFilter = repositoryFilter;
+            this.repositorySorter = repositorySorter;
+        }
+
+        public void InterpredCommand(string cmd, string[] tokens)
         {
             switch (cmd)
             {
@@ -32,7 +50,7 @@
                                     string.Format(ExceptionMessages.params_InvalidParameter, tokens[0]));
                                 return;
                             }
-                            IOManager.TraversingCurrentDirectory(depth);
+                            this.ioManager.TraversingCurrentDirectory(depth);
                         }
                     } break;
 
@@ -44,7 +62,7 @@
                         {
                             string filePath1 = tokens[0];
                             string filePath2 = tokens[1];
-                            IOManager.CompareTwoFiles(filePath1, filePath2);
+                            this.ioManager.CompareTwoFiles(filePath1, filePath2);
                         }
                     } break;
 
@@ -77,7 +95,7 @@
                         if (CheckNumberOfParameters(1, tokens.Length))
                         {
                             string fileName = tokens[0];
-                            IOManager.OpenFileWithDefaultProgram(fileName);
+                            this.ioManager.OpenFileWithDefaultProgram(fileName);
                         }
                     } break;
 
@@ -89,7 +107,7 @@
                         if (CheckNumberOfParameters(1, tokens.Length))
                         {
                             string fileName = tokens[0];
-                            StudentsRepository.ReadDataFromFile(fileName);
+                            this.studentsRepository.ReadDataFromFile(fileName);
                         }
                     } break;
 
@@ -101,7 +119,8 @@
                         if (tokens.Length == 1)
                         {
                             string courseName = tokens[0];
-                            Dictionary<string, List<int>> course = StudentsRepository.GetAllStudents(courseName);
+                            Dictionary<string, List<int>> course 
+                                = this.studentsRepository.GetCourse(courseName);
                             foreach (KeyValuePair<string, List<int>> student in course)
                             {
                                 OutputWriter.PrintStudent(student);
@@ -111,7 +130,8 @@
                         {
                             string courseName = tokens[0];
                             string studentName = tokens[1];
-                            List<int> scoresList = StudentsRepository.GetStudent(courseName, studentName);
+                            List<int> scoresList 
+                                = this.studentsRepository.GetStudent(courseName, studentName);
                             OutputWriter.PrintStudent(new KeyValuePair<string, List<int>>(
                                 studentName, scoresList));
                         }
@@ -133,10 +153,12 @@
                             string filter = tokens[1];
                             string take = tokens[2];
 
-                            Dictionary<string, List<int>> filteredStudents
-                                = RepositoryFilters.FilterInterpreter(courseName, filter, take);
+                            Dictionary<string, List<int>> course = this.studentsRepository.GetCourse(courseName);
 
-                            if (filteredStudents != null)
+                            Dictionary<string, List<int>> filteredStudents
+                                = this.repositoryFilter.FilterInterpreter(course, filter, take);
+
+                            if (filteredStudents.Count > 0)
                             {
                                 foreach (KeyValuePair<string, List<int>> student in filteredStudents)
                                 {
@@ -157,10 +179,12 @@
                             string order = tokens[1];
                             string take = tokens[2];
 
-                            Dictionary<string, List<int>> sortedStudents 
-                                = RepositoryOrder.OrderInterpreter(courseName, order, take);
+                            Dictionary<string, List<int>> course = this.studentsRepository.GetCourse(courseName);
 
-                            if (sortedStudents != null)
+                            Dictionary<string, List<int>> sortedStudents 
+                                = this.repositorySorter.SortInterpreter(course, order, take);
+
+                            if (sortedStudents.Count > 0)
                             {
                                 foreach (KeyValuePair<string, List<int>> student in sortedStudents)
                                 {
@@ -186,7 +210,7 @@
             }
         }
 
-        private static bool CheckNumberOfParameters(int num, int tokens)
+        private bool CheckNumberOfParameters(int num, int tokens)
         {
             if (tokens != num)
             {

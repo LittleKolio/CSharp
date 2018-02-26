@@ -9,7 +9,7 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
-    public static class IOManager
+    public class IOManager
     {
         /// <summary>
         /// Breadth-first traversal using Queue<string>, no DirectoryInfo!
@@ -20,13 +20,15 @@
         /// that part of the code in try/catch block.
         /// </remarks>
         /// <param name="path"></param>
-        public static void TraversingCurrentDirectory(int down = 3)
+        
+        public void TraversingCurrentDirectory(int down = 3)
         {
             string path = FilesystemOperations.currentDirectory;
 
             //I dont no witch is the fastest way to iterate through characters in string!
             //int indentation = Regex.Matches(path, "\\").Count;
             //int indentation = path.Split('\\').Length;
+
             int initialDepth = path.Count(c => c == '\\');
             
             Queue<string> fileSystem = new Queue<string>();
@@ -114,20 +116,21 @@
             }
         }
 
-        public static void OpenFileWithDefaultProgram(string name)
+        public void OpenFileWithDefaultProgram(string name)
         {
-            string path = Path.Combine(FilesystemOperations.currentDirectory, name);
-            if (!File.Exists(path))
+            string path = FilesystemOperations.currentDirectory;
+
+            string filePath = Path.Combine(path, name);
+            if (!File.Exists(filePath))
             {
-                string fileName = Path.GetFileName(path);
                 OutputWriter.DisplayException(
-                    string.Format(ExceptionMessages.file_DoseNotExist, fileName));
+                    string.Format(ExceptionMessages.file_DoseNotExist, name));
                 return;
             }
-            Process.Start(path);
+            Process.Start(filePath);
         }
 
-        public static void CompareTwoFiles(string userOutputPath, string expectedOutputPath)
+        public void CompareTwoFiles(string userOutputPath, string expectedOutputPath)
         {
             OutputWriter.WriteOneLineMessage("Reading files...");
 
@@ -162,7 +165,7 @@
             OutputWriter.WriteOneLineMessage("Files readed");
         }
 
-        private static void PrintMismatches(string[] mismatches, bool isMismatch, string mismatchPath)
+        private void PrintMismatches(string[] mismatches, bool isMismatch, string mismatchPath)
         {
             if (isMismatch)
             {
@@ -188,7 +191,7 @@
             }
         }
 
-        private static string[] GetMismates(string[] userOutputLines, string[] expectedOutputLines, out bool isMismatch)
+        private string[] GetMismates(string[] userOutputLines, string[] expectedOutputLines, out bool isMismatch)
         {
             string formatForMismatch = "Mismatch at line {0} -- expected: \"{1}\", actual: \"{2}\"";
             isMismatch = false;
@@ -215,7 +218,7 @@
             return mismatches;
         }
 
-        private static string GetMismatchPath(string expectedOutputPath)
+        private string GetMismatchPath(string expectedOutputPath)
         {
             //Path Combine does not work with relative paths
             //string path = Path.Combine(directory,@"\Mismatches.txt");

@@ -12,16 +12,11 @@
         //Dictionary<CourseName, Dictionary<StudentName, List<grade>>>
         private Dictionary<string, Dictionary<string, List<int>>> studentsByCourse;
         private bool isDataInitialized = false;
-        private RepositoryFilter filter;
-        private RepositorySorter sorter;
 
-
-        public StudentsRepository(RepositoryFilter filter, RepositorySorter sorter)
+        public StudentsRepository()
         {
-            this.filter = filter;
-            this.sorter = sorter;
             this.studentsByCourse = new Dictionary<string, Dictionary<string, List<int>>>();
-
+            this.isDataInitialized = true;
         }
 
         public void ReadDataFromConsole()
@@ -38,7 +33,6 @@
             if (studentsByCourse.Count > count)
             {
                 OutputWriter.WriteOneLineMessage("Data imported.");
-                this.isDataInitialized = true;
             }
             else
             {
@@ -70,7 +64,6 @@
             if (studentsByCourse.Count > count)
             {
                 OutputWriter.WriteOneLineMessage("Data imported.");
-                this.isDataInitialized = true;
             }
             else
             {
@@ -162,7 +155,7 @@
             }
             return null;
         }
-        public Dictionary<string, List<int>> GetAllStudents(string courseName)
+        public Dictionary<string, List<int>> GetCourse(string courseName)
         {
             if (IsQueryForCoursePossible(courseName))
             {
