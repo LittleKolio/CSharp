@@ -159,13 +159,109 @@
 ╠═══════════════════════════════════════════════════════════════════════╝
 ╟─ Achieved with access modifiers (private, public…). Encapsulation is used to hide the code and data inside a single unit to protect the data from the outside the world 
 
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Encapsulate Collection
+	├─┬───────────────────────────────────────────────────────────────────┘
+		├─ There are many different ways of exposing a collection, the correct method always depends on the situation.
+	
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│Collection which can be changed
+		├─┬─────────────────────────────────────────────────────────────────┘
+			private List<T> collection;
+			public List<T> Collection
+			{
+				get { return this.collection; }
+				set
+				{
+						if (value == null)
+						{
+								throw new ArgumentNullException();
+						}
+						this.collection = value;
+				}
+			}
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│Collection that can be modified, but not swapped
+		├─┬─────────────────────────────────────────────────────────────────┘
+			private ObservableCollection<T> collection;
+			public IList<T> Collection
+			{
+				get { return this.collection; }
+			}
+			
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│Expose a read-only copy of a collection
+		├─┬─────────────────────────────────────────────────────────────────┘
+			private List<T> collection;
+			public ReadOnlyCollection<T> Collection
+			{
+				get { return new ReadOnlyCollection<T>(this.collection); }
+			}
+			┌─────────────────────────────────────────────────────────────────┐
+			├─ When exposing collections that are read only always be aware that the items in the control can still be modified. Again this might be a good thing, but if you want the exposed collection to be "completely" unmodifiable then make sure that the items in the collection are also read-only / immutable (e.g. System.String).
+			
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│Collections that can be modified, but only in a certain way
+		├─┬─────────────────────────────────────────────────────────────────┘
+			private List<T> collection;
+			public ReadOnlyCollection<T> Collection
+			{
+				get { return new ReadOnlyCollection<T>(this.collection); }
+			}
+			public AddItem(T item);
+			
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│Custom collection that encapsulates your "real" collection
+		├─┬─────────────────────────────────────────────────────────────────┘
+			public sealed class CustomCollection<T> : IList<T>
+			{
+				private IList<T> wrappedCollection;
+
+				public CustomCollection(IList<T> wrappedCollection)
+				{
+						if (wrappedCollection == null)
+						{
+								throw new ArgumentNullException("wrappedCollection");
+						}
+						this.wrappedCollection = wrappedCollection;
+				}
+
+				// "hide" methods that don't make sense by explicitly implementing them and
+				// throwing a NotSupportedException
+				void IList<T>.RemoveAt(int index)
+				{
+						throw new NotSupportedException();
+				}
+
+				// Implement methods that do make sense by passing the call to the wrapped collection
+				public void Add(T item)
+				{
+						this.wrappedCollection.Add(item);
+				}
+			}
+			
+			
+			public class MyClass
+			{
+				private CustomCollection<T> wrappedCollection;
+				private List<T> collection = new List<T>();
+				
+				public CustomCollection<T> Collection
+				{
+					get { return this.wrappedCollection; }
+				}
+				
+				public MyClass()
+				{
+					this.wrappedCollection = new CustomCollection<T>(this.collection)
+				}
+			}
 
 
 
 
-
-
-
+			
 ╔═══════════════════════════════════════════════════════════════════════╗
 ║ Abstraction
 ╠═══════════════════════════════════════════════════════════════════════╝
