@@ -9,6 +9,8 @@
         public const string data_InvalidFilter = "Filter is not one of the following: excellent/average/poor";
         public const string data_InvalidOrder = "Order is not one of the following: ascending/descending";
         public const string data_NoStudent = "No student meets the requirements.";
+        public const string data_AlreadyInCourse = "The {0} already exists in {1}.";
+        public const string data_NotEnrolledInCourse = "Student must be enrolled in a course before you set his score.";
 
         public const string file_DoseNotExist = "File '{0}' does not exist!";
         public const string file_DontHaveAccess = "You don't have access to tose file!";
