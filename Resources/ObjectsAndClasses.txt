@@ -427,6 +427,8 @@ The classes in the System.Reflection namespace, together with System.Type, enabl
 		├─ if the name is unknown
 		
 		Type myType = Type.GetType("Namespace.ClassName")
+		Type myType = Assembly.GetExecutingAssembly()
+			.GetType("Namespace.ClassName");
 
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│ Fields

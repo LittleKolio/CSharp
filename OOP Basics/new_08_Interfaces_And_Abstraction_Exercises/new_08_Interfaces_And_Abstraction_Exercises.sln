@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_02_Multiple_Implem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_08_Military_Elite", "Exercise_08_Military_Elite\Exercise_08_Military_Elite.csproj", "{B3CC138D-0839-46EA-9F16-90C868165C41}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_09_Collection_Hierarchy", "Exercise_09_Collection_Hierarchy\Exercise_09_Collection_Hierarchy.csproj", "{754D6AC2-1E59-4606-867B-D05F8D2A5066}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B3CC138D-0839-46EA-9F16-90C868165C41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3CC138D-0839-46EA-9F16-90C868165C41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3CC138D-0839-46EA-9F16-90C868165C41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{754D6AC2-1E59-4606-867B-D05F8D2A5066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{754D6AC2-1E59-4606-867B-D05F8D2A5066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{754D6AC2-1E59-4606-867B-D05F8D2A5066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{754D6AC2-1E59-4606-867B-D05F8D2A5066}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
