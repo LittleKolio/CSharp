@@ -59,12 +59,13 @@ public class StartUp
                     try
                     {
                         vehicle.Drive(param);
-                        Console.WriteLine($"{vehicle.GetType().Name} travelled {param} km");
                     }
                     catch (ArgumentException ex)
                     {
                         Console.WriteLine(ex.Message);
                     }
+
+                    Console.WriteLine($"{vehicle.GetType().Name} travelled {param} km");
                 } break;
 
             case "Refuel": vehicle.Refuel(param); break;

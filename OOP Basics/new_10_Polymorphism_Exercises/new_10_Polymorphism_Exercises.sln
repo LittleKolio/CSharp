@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_01_Vehicles", "Exercise_01_Vehicles\Exercise_01_Vehicles.csproj", "{D151C500-A9A5-454B-A8AA-2A5E5395F7E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_02_Vehicles_Extension", "Exercise_02_Vehicles_Extension\Exercise_02_Vehicles_Extension.csproj", "{FDB70549-0E61-4032-9153-12AB28825791}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_03_Wild_Farm", "Exercise_03_Wild_Farm\Exercise_03_Wild_Farm.csproj", "{1049B9FF-5D61-4E7E-A2B2-C366EE274223}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{D151C500-A9A5-454B-A8AA-2A5E5395F7E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D151C500-A9A5-454B-A8AA-2A5E5395F7E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D151C500-A9A5-454B-A8AA-2A5E5395F7E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDB70549-0E61-4032-9153-12AB28825791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDB70549-0E61-4032-9153-12AB28825791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDB70549-0E61-4032-9153-12AB28825791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDB70549-0E61-4032-9153-12AB28825791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1049B9FF-5D61-4E7E-A2B2-C366EE274223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1049B9FF-5D61-4E7E-A2B2-C366EE274223}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1049B9FF-5D61-4E7E-A2B2-C366EE274223}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1049B9FF-5D61-4E7E-A2B2-C366EE274223}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
