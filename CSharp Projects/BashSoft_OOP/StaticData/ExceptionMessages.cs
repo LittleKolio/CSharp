@@ -15,6 +15,7 @@
         public const string file_DoseNotExist = "File '{0}' does not exist!";
         public const string file_DontHaveAccess = "You don't have access to tose file!";
         public const string file_ForbiddenSymbols = "File name contains not allowed symbols.";
+        public const string file_WriteMismatche = "Line {0} -- expected: \"{1}\", actual: \"{2}\"";
 
 
         public const string dir_DoseNotExist = "Folder does not exist!";

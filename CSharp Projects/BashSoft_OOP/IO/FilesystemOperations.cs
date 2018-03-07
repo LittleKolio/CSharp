@@ -25,7 +25,7 @@
         {
             if (!Directory.Exists(path))
             {
-                OutputWriter.DisplayException(
+                OutputWriter.WriteException(
                         ExceptionMessages.dir_DoseNotExist);
                 return;
             }
@@ -36,7 +36,7 @@
         {
             if (!Directory.Exists(path))
             {
-                OutputWriter.DisplayException(
+                OutputWriter.WriteException(
                         ExceptionMessages.dir_DoseNotExist);
                 return;
             }
@@ -60,7 +60,7 @@
             }
             catch
             {
-                OutputWriter.DisplayException(
+                OutputWriter.WriteException(
                     ExceptionMessages.dir_ForbiddenSymbols);
                 return;
             }
@@ -77,7 +77,7 @@
             }
             catch
             {
-                OutputWriter.DisplayException(
+                OutputWriter.WriteException(
                     ExceptionMessages.file_ForbiddenSymbols);
                 return null;
             }

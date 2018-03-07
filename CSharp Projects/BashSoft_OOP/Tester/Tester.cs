@@ -12,9 +12,13 @@
         public void CompareContent(
             string userOutputPath, string expectedOutputPath)
         {
-            if (!File.Exists(userOutputPath) || !File.Exists(expectedOutputPath))
+            if (!ValidatePath(userOutputPath))
             {
-                throw new ArgumentException();
+                return;
+            }
+            if (!ValidatePath(expectedOutputPath))
+            {
+                return;
             }
 
             OutputWriter.WriteOneLineMessage("Reading files...");
@@ -30,6 +34,17 @@
             PrintMismatches(mismatches, isMismatch, mismatchPath);
 
             OutputWriter.WriteOneLineMessage("Files readed");
+        }
+
+        private bool ValidatePath(string filePath)
+        {
+            bool exists = File.Exists(filePath);
+            if (!exists)
+            {
+                OutputWriter.WriteException(
+                    string.Format(ExceptionMessages.file_DoseNotExist, filePath));
+            }
+            return exists;
         }
 
         private void PrintMismatches(
@@ -65,8 +80,6 @@
             out bool isMismatch
             )
         {
-            string formatForMismatch 
-                = "Mismatch at line {0} -- expected: \"{1}\", actual: \"{2}\"";
             isMismatch = false;
             string[] mismatches = new string[userOutputLines.Length];
             OutputWriter.WriteOneLineMessage("Comparing files...");
@@ -79,12 +92,13 @@
                 if (!userLine.Equals(expectedLine))
                 {
                     isMismatch = true;
-                    output = string.Format(
-                        formatForMismatch, index, expectedLine, userLine);
+                    output = string.Format(ExceptionMessages.file_WriteMismatche,
+                        index, expectedLine, userLine);
                 }
                 else
                 {
-                    output = userLine;
+                    output = string.Format("Line {0} -- {1}",
+                        index, userLine);
                 }
                 //output += Environment.NewLine;
                 mismatches[index] = output;

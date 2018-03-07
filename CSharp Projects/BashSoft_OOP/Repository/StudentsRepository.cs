@@ -47,7 +47,7 @@
 
             if (!File.Exists(path))
             {
-                OutputWriter.DisplayException(
+                OutputWriter.WriteException(
                     string.Format(ExceptionMessages.file_DoseNotExist, name));
                 return;
             }
@@ -114,7 +114,7 @@
             }
             else
             {
-                OutputWriter.DisplayException(
+                OutputWriter.WriteException(
                     ExceptionMessages.data_IsNotInitialized);
             }
             return false;
@@ -130,13 +130,13 @@
                 }
                 else
                 {
-                    OutputWriter.DisplayException(
+                    OutputWriter.WriteException(
                         ExceptionMessages.data_CoursDoseNotExist);
                 }
             }
             else
             {
-                OutputWriter.DisplayException(
+                OutputWriter.WriteException(
                     ExceptionMessages.data_IsNotInitialized);
             }
 

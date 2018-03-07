@@ -11,7 +11,7 @@
         public static void WriteMessage(string message) => Console.Write(message);
         public static void WriteOneLineMessage(string message) => Console.WriteLine(message);
         public static void WriteEmptyLine() => Console.WriteLine();
-        public static void DisplayException(string message)
+        public static void WriteException(string message)
         {
             ConsoleColor currentColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Red;

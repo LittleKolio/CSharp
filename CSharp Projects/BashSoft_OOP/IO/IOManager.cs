@@ -55,7 +55,7 @@
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    OutputWriter.DisplayException(
+                    OutputWriter.WriteException(
                         ExceptionMessages.dir_DontHaveAccess);
                     continue;
                 }
@@ -63,7 +63,7 @@
                 // another application or thread after our call to Directory.
                 catch (DirectoryNotFoundException)
                 {
-                    OutputWriter.DisplayException(
+                    OutputWriter.WriteException(
                         ExceptionMessages.dir_DoseNotExist);
                     continue;
                 }
@@ -75,13 +75,13 @@
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    OutputWriter.DisplayException(
+                    OutputWriter.WriteException(
                         ExceptionMessages.file_DontHaveAccess);
                     continue;
                 }
                 catch (DirectoryNotFoundException)
                 {
-                    OutputWriter.DisplayException(
+                    OutputWriter.WriteException(
                         ExceptionMessages.dir_DoseNotExist);
                     continue;
                 }
@@ -123,7 +123,7 @@
             string filePath = Path.Combine(path, name);
             if (!File.Exists(filePath))
             {
-                OutputWriter.DisplayException(
+                OutputWriter.WriteException(
                     string.Format(ExceptionMessages.file_DoseNotExist, name));
                 return;
             }
@@ -137,14 +137,14 @@
             bool fileExist = true;
             if (!File.Exists(userOutputPath))
             {
-                OutputWriter.DisplayException(
+                OutputWriter.WriteException(
                         string.Format(ExceptionMessages.file_DoseNotExist, userOutputPath));
                 fileExist = false;
             }
 
             if (!File.Exists(expectedOutputPath))
             {
-                OutputWriter.DisplayException(
+                OutputWriter.WriteException(
                         string.Format(ExceptionMessages.file_DoseNotExist, expectedOutputPath));
                 fileExist = false;
             }
@@ -180,7 +180,7 @@
                 }
                 catch
                 {
-                    OutputWriter.DisplayException(
+                    OutputWriter.WriteException(
                         ExceptionMessages.file_ForbiddenSymbols);
                 }
             }

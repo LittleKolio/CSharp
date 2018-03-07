@@ -24,7 +24,7 @@
             {
                 if (string.IsNullOrEmpty(input))
                 {
-                    OutputWriter.DisplayException(
+                    OutputWriter.WriteException(
                         ExceptionMessages.commands_Null);
                     continue;
                 }

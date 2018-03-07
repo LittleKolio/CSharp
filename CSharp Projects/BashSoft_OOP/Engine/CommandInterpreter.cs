@@ -46,7 +46,7 @@
                             int depth;
                             if (!int.TryParse(tokens[0], out depth))
                             {
-                                OutputWriter.DisplayException(
+                                OutputWriter.WriteException(
                                     string.Format(ExceptionMessages.params_InvalidParameter, tokens[0]));
                                 return;
                             }
@@ -137,7 +137,7 @@
                         }
                         else
                         {
-                            OutputWriter.DisplayException(
+                            OutputWriter.WriteException(
                                 string.Format(ExceptionMessages.params_InvalidNumber, tokens.Length));
                         }
                     } break;
@@ -214,7 +214,7 @@
         {
             if (tokens != num)
             {
-                OutputWriter.DisplayException(
+                OutputWriter.WriteException(
                     string.Format(ExceptionMessages.params_InvalidNumber, num));
                 return false;
             }

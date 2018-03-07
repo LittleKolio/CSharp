@@ -36,7 +36,7 @@
                     break;
 
                 default:
-                    OutputWriter.DisplayException(
+                    OutputWriter.WriteException(
                         ExceptionMessages.data_InvalidOrder);
                     break;
             }

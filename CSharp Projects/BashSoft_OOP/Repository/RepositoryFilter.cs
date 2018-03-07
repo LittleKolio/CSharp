@@ -38,7 +38,7 @@
                     course, PoorFilter, numberOfStudents);
                     break;
 
-                default: OutputWriter.DisplayException(
+                default: OutputWriter.WriteException(
                     ExceptionMessages.data_InvalidFilter);
                     break;
             }

@@ -46,7 +46,7 @@
         {
             if (this.courses.ContainsKey(course.Name))
             {
-                OutputWriter.DisplayException(string.Format(
+                OutputWriter.WriteException(string.Format(
                     ExceptionMessages.data_AlreadyInCourse, this.name, course.Name));
                 return;
             }
@@ -57,7 +57,7 @@
         {
             if (!courses.ContainsKey(courseName))
             {
-                OutputWriter.DisplayException(
+                OutputWriter.WriteException(
                     ExceptionMessages.data_NotEnrolledInCourse);
                 return;
             }
