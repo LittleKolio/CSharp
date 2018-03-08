@@ -131,7 +131,7 @@
                 else
                 {
                     OutputWriter.WriteException(
-                        ExceptionMessages.data_CoursDoseNotExist);
+                        ExceptionMessages.data_Cours_NotExist);
                 }
             }
             else

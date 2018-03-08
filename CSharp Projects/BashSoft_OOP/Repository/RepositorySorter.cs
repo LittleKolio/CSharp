@@ -37,14 +37,14 @@
 
                 default:
                     OutputWriter.WriteException(
-                        ExceptionMessages.data_InvalidOrder);
+                        ExceptionMessages.data_Order_Invalid);
                     break;
             }
 
             if (sortedStudents.Count == 0)
             {
                 OutputWriter.WriteOneLineMessage(
-                    ExceptionMessages.data_NoStudent);
+                    ExceptionMessages.data_Student_Requirements);
             }
 
             return sortedStudents;

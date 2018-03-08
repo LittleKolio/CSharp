@@ -39,14 +39,14 @@
                     break;
 
                 default: OutputWriter.WriteException(
-                    ExceptionMessages.data_InvalidFilter);
+                    ExceptionMessages.data_Filter_Invalid);
                     break;
             }
 
             if (filteredStudents.Count == 0)
             {
                 OutputWriter.WriteOneLineMessage(
-                    ExceptionMessages.data_NoStudent);
+                    ExceptionMessages.data_Student_Requirements);
             }
 
             return filteredStudents;
