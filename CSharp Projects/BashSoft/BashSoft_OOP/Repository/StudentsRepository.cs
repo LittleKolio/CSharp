@@ -3,25 +3,36 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Text.RegularExpressions;
 
     public class StudentsRepository
     {
-        private const string pattern = @"([A-Z][#\+a-zA-Z]*_[A-Z][a-z]{2}_\d{4})\s+([A-Z][a-z]{3,}\d{2}_\d{2,4})\s+(\d+)";
+        private const string pattern = @"([A-Z][a-zA-Z#\+]*_[A-Z][a-z]{2}_\d{4})\s+([A-Za-z]+\d{2}_\d{2,4})\s([\s0-9]+)";
 
-        //Dictionary<CourseName, Dictionary<StudentName, List<grade>>>
-        private Dictionary<string, Dictionary<string, List<int>>> studentsByCourse;
+        //Dictionary<CourseName, Course>
+        private Dictionary<string, Course> courses;
         private bool isDataInitialized = false;
 
         public StudentsRepository()
         {
-            this.studentsByCourse = new Dictionary<string, Dictionary<string, List<int>>>();
+            this.courses = new Dictionary<string, Course>();
             this.isDataInitialized = true;
+        }
+
+        public IDictionary<string, Course> Courses
+        {
+            get { return this.courses; }
+        }
+
+        public int CoursesCount
+        {
+            get { return this.courses.Count; }
         }
 
         public void ReadDataFromConsole()
         {
-            int count = studentsByCourse.Count;
+            int prevCount = this.CoursesCount;
             OutputWriter.WriteOneLineMessage("Reading data...");
 
             string input;
@@ -30,7 +41,7 @@
                 ProcessingInput(input);
             }
 
-            if (studentsByCourse.Count > count)
+            if (this.CoursesCount > prevCount)
             {
                 OutputWriter.WriteOneLineMessage("Data imported.");
             }
@@ -52,7 +63,7 @@
                 return;
             }
 
-            int count = studentsByCourse.Count;
+            int count = courses.Count;
             OutputWriter.WriteOneLineMessage("Reading data...");
 
             string[] input = File.ReadAllLines(path);
@@ -61,7 +72,7 @@
                 ProcessingInput(input[i]);
             }
 
-            if (studentsByCourse.Count > count)
+            if (courses.Count > count)
             {
                 OutputWriter.WriteOneLineMessage("Data imported.");
             }
@@ -84,70 +95,51 @@
 
             string courseName = match.Groups[1].Value;
             string studentName = match.Groups[2].Value;
-            int score;
-            bool isScore = int.TryParse(match.Groups[3].Value, out score);
+            List<int> scores;
+            try
+            {
+                scores = new List<int>(
+                    this.SplitInput(match.Groups[3].Value, " "));
+
+            }
+            catch ()
+            {
+
+            }
 
             if (!isScore || score < 0 || score > 100)
             {
                 return;
             }
 
-            if (!IsQueryForCoursePossible(courseName))
+            Course course = new Course(courseName);
+            Student student = new Student(studentName);
+            student.Courses.Add(courseName, course);
+            student.TestScorByCourse(courseName, score);
+
+            if (!courses.ContainsKey(courseName))
             {
-                studentsByCourse.Add(courseName,
-                    new Dictionary<string, List<int>>());
+                courses.Add(courseName, course);
             }
 
-            if (!IsQueryForStudentPossiblе(courseName, studentName))
-            {
-                studentsByCourse[courseName].Add(studentName, new List<int>());
-            }
-
-            studentsByCourse[courseName][studentName].Add(score);
+            courses[courseName].EnrollStudent(student);
         }
 
-        private bool IsQueryForCoursePossible(string courseName)
+        private List<int> SplitInput(string input, string delimiter)
         {
-            if (isDataInitialized)
-            {
-                return studentsByCourse.ContainsKey(courseName);
-            }
-            else
-            {
-                OutputWriter.WriteException(
-                    ExceptionMessages.data_IsNotInitialized);
-            }
-            return false;
+            return input.Split(delimiter.ToCharArray(),
+                StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse)
+                .ToList();
         }
 
-        private bool IsQueryForStudentPossiblе(string courseName, string studentName)
-        {
-            if (isDataInitialized)
-            {
-                if (studentsByCourse.ContainsKey(courseName))
-                {
-                    return studentsByCourse[courseName].ContainsKey(studentName);
-                }
-                else
-                {
-                    OutputWriter.WriteException(
-                        ExceptionMessages.data_Cours_NotExist);
-                }
-            }
-            else
-            {
-                OutputWriter.WriteException(
-                    ExceptionMessages.data_IsNotInitialized);
-            }
-
-            return false;
-        }
+        private Func<int, bool> 
 
         public List<int> GetStudent(string courseName, string studentName)
         {
             if (IsQueryForStudentPossiblе(courseName, studentName))
             {
-                return studentsByCourse[courseName][studentName];
+                return courses[courseName][studentName];
 
                 //OutputWriter.PrintStudent(
                 //    new KeyValuePair<string, List<int>>(
@@ -159,7 +151,7 @@
         {
             if (IsQueryForCoursePossible(courseName))
             {
-                return studentsByCourse[courseName];
+                return courses[courseName];
 
                 //OutputWriter.WriteOneLineMessage(courseName);
                 //foreach (var student in studentsByCourse[courseName])

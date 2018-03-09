@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
 
     public class Student
     {
@@ -28,7 +29,7 @@
             get { return this.courses; }
         }
 
-        public IDictionary<string, double> MyProperty
+        public IDictionary<string, double> TestScorByCourse
         {
             get { return this.testScorByCourse; }
         }
@@ -42,28 +43,40 @@
 
         public void EnrollInCourse(Course course)
         {
-            if (this.courses.ContainsKey(course.Name))
+            if (this.Courses.ContainsKey(course.Name))
             {
                 OutputWriter.WriteException(string.Format(
-                    ExceptionMessages.data_Student_InCourse, this.name, course.Name));
+                    ExceptionMessages.data_Student_InCourse, this.Name, course.Name));
                 return;
             }
-            this.courses.Add(course.Name, course);
+            this.Courses.Add(course.Name, course);
         }
 
         public void AddTestScorByCourse(string courseName, params int[] scores)
         {
-            if (!courses.ContainsKey(courseName))
+            if (!this.Courses.ContainsKey(courseName))
             {
-                OutputWriter.WriteException(
-                    ExceptionMessages.data_Student_NotInCourse);
+                OutputWriter.WriteException(string.Format(
+                    ExceptionMessages.data_Student_NotInCourse, this.Name, courseName));
                 return;
             }
 
-            if ()
+            if (scores.Length > Course.numberOfTasksOnExam)
             {
-
+                OutputWriter.WriteException(string.Format(
+                    ExceptionMessages.params_InvalidNumber, Course.numberOfTasksOnExam));
+                return;
             }
+
+            this.TestScorByCourse.Add(courseName, CalculateTestScore(scores));
+        }
+
+        private double CalculateTestScore(int[] scores)
+        {
+            double precentage = scores.Sum() / 
+                (double)(Course.numberOfTasksOnExam * Course.maxScoreOnExam);
+            double testScore = precentage * 4 + 2;
+            return testScore;
         }
     }
 }

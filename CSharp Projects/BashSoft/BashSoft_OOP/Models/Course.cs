@@ -5,8 +5,8 @@
 
     public class Course
     {
-        private const int numberOfTasksOnExam = 5;
-        private const int maxScoreOnExam = 5;
+        public const int numberOfTasksOnExam = 5;
+        public const int maxScoreOnExam = 100;
 
         private string name;
         private Dictionary<string, Student> students;
