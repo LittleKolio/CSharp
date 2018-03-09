@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Forum.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -59,6 +60,43 @@ namespace Forum.Data
         private static void WriteLines(string path, string[] lines)
         {
             File.WriteAllLines(path, lines);
+        }
+
+        public static List<Category> LoadCategories()
+        {
+            List<Category> categories = new List<Category>();
+            var dataLines = ReadLines(config["categories"]);
+
+            foreach (var line in dataLines)
+            {
+                var args = line.Split(';', StringSplitOptions.RemoveEmptyEntries);
+                var id = int.Parse(args[0]);
+                var name = args[1];
+                var postIds = args[2]
+                    .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(int.Parse)
+                    .ToArray();
+                Category category = new Category(id, name, postIds);
+                categories.Add(category);
+            }
+            return categories;
+        }
+
+        public static void SaveCategories(List<Category> categories)
+        {
+            List<string> lines = new List<string>();
+            string categoryFormat = "{0};{1};{2}";
+            foreach (var category in categories)
+            {
+                string line = string.Format(
+                    categoryFormat, 
+                    category.Id, 
+                    category.Name, 
+                    string.Join(',', category.Posts)
+                    );
+                lines.Add(line);
+            }
+            WriteLines(config["categories"], lines.ToArray());
         }
     }
 }
