@@ -5,9 +5,11 @@ namespace Forum.Models
 {
     public class Category
     {
-        public Category()
+        public Category(int id, string name, IEnumerable<int> posts)
         {
-
+            this.Id = id;
+            this.Name = name;
+            this.Posts = new List<int>(posts);
         }
 
         public int Id { get; set; }
