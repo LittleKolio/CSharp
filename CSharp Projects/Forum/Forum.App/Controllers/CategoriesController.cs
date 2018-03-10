@@ -10,7 +10,11 @@
         public const int PAGE_OFFSET = 10;
         private const int COMMAND_COUNT = PAGE_OFFSET + 3;
 
-        public int CurrentPage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int CurrentPage
+        {
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
+        }
 
         public MenuState ExecuteCommand(int index)
         {
