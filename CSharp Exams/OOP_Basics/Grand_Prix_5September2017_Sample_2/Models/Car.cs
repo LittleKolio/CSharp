@@ -1,27 +1,37 @@
 ﻿using System;
 
-public abstract class Car
+public class Car
 {
-    private const double tankCapacity = 160;
-    private double fuelAmount;
+    private const double tankMaxCapacity = 160;
+    private const double tankMinCapacity = 0;
+
+    public Car(int horsepower, double fuelAmount, Tyre tyre)
+    {
+        this.Hp = horsepower;
+        this.FuelAmount = fuelAmount;
+        this.Tyre = tyre;
+    }
 
     public int Hp { get; set; }
+
+    private double fuelAmount;
     public double FuelAmount
     {
         get { return this.fuelAmount; }
         set
         {
-            if (value < 0)
+            if (value < tankMinCapacity)
             {
                 throw new ArgumentException();
             }
-            if (value > tankCapacity)
+            if (value > tankMaxCapacity)
             {
-                this.FuelAmount = tankCapacity;
+                this.FuelAmount = tankMaxCapacity;
                 return;
             }
             this.FuelAmount = value;
         }
     }
+
     public Tyre Tyre { get; set; }
 }

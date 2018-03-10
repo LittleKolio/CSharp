@@ -42,13 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\AggressiveDriver.cs" />
+    <Compile Include="Models\Drivers\AggressiveDriver.cs" />
     <Compile Include="Models\Car.cs" />
-    <Compile Include="Models\Driver.cs" />
-    <Compile Include="Models\EnduranceDriver.cs" />
-    <Compile Include="Models\Tyre.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Models\Drivers\Driver.cs" />
+    <Compile Include="Models\Drivers\EnduranceDriver.cs" />
+    <Compile Include="Models\Tyres\HardTyre.cs" />
+    <Compile Include="Models\Tyres\Tyre.cs" />
+    <Compile Include="Models\Tyres\UltrasoftTyre.cs" />
+    <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RaceTower.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
