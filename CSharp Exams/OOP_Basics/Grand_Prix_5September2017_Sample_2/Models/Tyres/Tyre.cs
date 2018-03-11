@@ -10,7 +10,6 @@ public abstract class Tyre
         this.Hardness = hardness;
         this.Degradation = startDegradation;
         this.minDegradation = 0;
-
     }
 
     public double Hardness { get; private set; }
@@ -23,13 +22,13 @@ public abstract class Tyre
         {
             if (value < minDegradation)
             {
-                throw new ArgumentException();
+                throw new Exception("Blown Tyre");
             }
             this.degradation = value;
         }
     }
 
-    public virtual void ReduceDegradation()
+    public virtual void DecreaseDegradation()
     {
         this.Degradation -= this.Hardness;
     }

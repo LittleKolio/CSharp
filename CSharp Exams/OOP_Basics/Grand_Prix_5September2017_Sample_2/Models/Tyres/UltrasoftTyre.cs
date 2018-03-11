@@ -1,15 +1,16 @@
-﻿public class Ultrasoft : Tyre
+﻿public class UltrasoftTyre : Tyre
 {
-    public Ultrasoft(double hardness, double grip) 
+    public UltrasoftTyre(double hardness, double grip) 
         : base(hardness)
     {
         base.minDegradation = 30;
+        this.Grip = grip;
     }
 
     public double Grip { get; set; }
 
-    public override void ReduceDegradation()
+    public override void DecreaseDegradation()
     {
-        base.Degradation -= (this.Hardness + this.Grip);
+        base.Degradation -= (base.Hardness + this.Grip);
     }
 }

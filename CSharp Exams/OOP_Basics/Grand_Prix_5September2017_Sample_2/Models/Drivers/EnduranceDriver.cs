@@ -1,5 +1,8 @@
-﻿//This type of drivers have FuelConsumptionPerKm equal to 1.5 liters.
-public class EnduranceDriver : Driver
+﻿public class EnduranceDriver : Driver
 {
-    
+    public EnduranceDriver(string name, Car car) 
+        : base(name, car)
+    {
+        base.fuelConsumptionPerKm = 1.5;
+    }
 }

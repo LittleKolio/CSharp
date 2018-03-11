@@ -1,6 +1,6 @@
-﻿public class Hard : Tyre
+﻿public class HardTyre : Tyre
 {
-    public Hard(double hardness) 
+    public HardTyre(double hardness) 
         : base(hardness)
     {
     }

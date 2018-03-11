@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D7584F34-E2A5-4922-BA32-2C1ECDE0B29A}</ProjectGuid>
+    <ProjectGuid>{31256738-F5B7-4518-B8BF-86DAF5BA114B}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Grand_Prix_5September2017_Sample_2</RootNamespace>
-    <AssemblyName>Grand_Prix_5September2017_Sample_2</AssemblyName>
+    <RootNamespace>Minedraft_16July2017_Sample_2</RootNamespace>
+    <AssemblyName>Minedraft_16July2017_Sample_2</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,25 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine\Engine.cs" />
-    <Compile Include="Factories\CarFactory.cs" />
-    <Compile Include="Factories\DriversFactory.cs" />
-    <Compile Include="Factories\TyreFactory.cs" />
-    <Compile Include="Models\Drivers\AggressiveDriver.cs" />
-    <Compile Include="Models\Car.cs" />
-    <Compile Include="Models\Drivers\Driver.cs" />
-    <Compile Include="Models\Drivers\EnduranceDriver.cs" />
-    <Compile Include="Models\Tyres\HardTyre.cs" />
-    <Compile Include="Models\Tyres\Tyre.cs" />
-    <Compile Include="Models\Tyres\UltrasoftTyre.cs" />
+    <Compile Include="Models\Harvesters\Harvester.cs" />
+    <Compile Include="Models\Harvesters\SonicHarvester.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Engine\RaceTower.cs" />
-    <Compile Include="Util\InputParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Engine\" />
+    <Folder Include="Factories\" />
+    <Folder Include="Util\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

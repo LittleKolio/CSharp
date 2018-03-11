@@ -7,12 +7,12 @@ public class Car
 
     public Car(int horsepower, double fuelAmount, Tyre tyre)
     {
-        this.Hp = horsepower;
+        this.Horsepower = horsepower;
         this.FuelAmount = fuelAmount;
         this.Tyre = tyre;
     }
 
-    public int Hp { get; set; }
+    public int Horsepower { get; private set; }
 
     private double fuelAmount;
     public double FuelAmount
@@ -22,16 +22,17 @@ public class Car
         {
             if (value < tankMinCapacity)
             {
-                throw new ArgumentException();
+                throw new Exception("Out of fuel");
             }
             if (value > tankMaxCapacity)
             {
-                this.FuelAmount = tankMaxCapacity;
+                this.fuelAmount = tankMaxCapacity;
                 return;
             }
-            this.FuelAmount = value;
+            this.fuelAmount = value;
         }
     }
 
     public Tyre Tyre { get; set; }
+
 }
