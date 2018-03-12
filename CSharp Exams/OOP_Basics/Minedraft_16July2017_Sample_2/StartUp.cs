@@ -1,6 +1,8 @@
 ﻿public class StartUp
 {
-    static void Main(string[] args)
+    static void Main()
     {
+        Engine engine = new Engine();
+        engine.Run();
     }
 }
