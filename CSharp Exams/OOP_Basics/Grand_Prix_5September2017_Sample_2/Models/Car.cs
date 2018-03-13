@@ -2,9 +2,6 @@
 
 public class Car
 {
-    private const double tankMaxCapacity = 160;
-    private const double tankMinCapacity = 0;
-
     public Car(int horsepower, double fuelAmount, Tyre tyre)
     {
         this.Horsepower = horsepower;
@@ -20,13 +17,13 @@ public class Car
         get { return this.fuelAmount; }
         set
         {
-            if (value < tankMinCapacity)
+            if (value < 0)
             {
                 throw new Exception("Out of fuel");
             }
-            if (value > tankMaxCapacity)
+            if (value > 160)
             {
-                this.fuelAmount = tankMaxCapacity;
+                this.fuelAmount = 160;
                 return;
             }
             this.fuelAmount = value;
@@ -35,4 +32,6 @@ public class Car
 
     public Tyre Tyre { get; set; }
 
+    public virtual double Speed
+        => (this.Horsepower + this.Tyre.Degradation) / this.FuelAmount;
 }

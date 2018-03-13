@@ -1,6 +1,5 @@
 ﻿public abstract class Driver
 {
-    protected double fuelConsumptionPerKm;
     public string failureReason;
 
     public Driver(string name, Car car)
@@ -11,18 +10,19 @@
     }
 
     public string Name { get; private set; }
-    public Car Car { get; set; }
+    public Car Car { get; protected set; }
     public double TotalTime { get; set; }
-    public virtual double Speed 
-        => ((double)this.Car.Horsepower + this.Car.Tyre.Degradation) / this.Car.FuelAmount;
+    public double FuelConsumptionPerKm { get; protected set; }
+
+    public virtual double Speed => this.Car.Speed;
 
     public void IncreaseTotalTime(int trackLength)
     {
-        this.TotalTime += (60 / ((double)trackLength / this.Speed));
+        this.TotalTime += 60 / (trackLength / this.Speed);
     }
 
     public void DecreaseFuelAmount(int trackLength)
     {
-        this.Car.FuelAmount -= (trackLength * this.fuelConsumptionPerKm);
+        this.Car.FuelAmount -= trackLength * this.FuelConsumptionPerKm;
     }
 }
