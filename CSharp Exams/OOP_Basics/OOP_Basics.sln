@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grand_Prix_5September2017_S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minedraft_16July2017_Sample_2", "Minedraft_16July2017_Sample_2\Minedraft_16July2017_Sample_2.csproj", "{31256738-F5B7-4518-B8BF-86DAF5BA114B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Need_For_Speed_11July2017_Sample_2", "Need_For_Speed_11July2017_Sample_2\Need_For_Speed_11July2017_Sample_2.csproj", "{2A859990-2E8C-413B-ACBB-A3048BE59443}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{31256738-F5B7-4518-B8BF-86DAF5BA114B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31256738-F5B7-4518-B8BF-86DAF5BA114B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31256738-F5B7-4518-B8BF-86DAF5BA114B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A859990-2E8C-413B-ACBB-A3048BE59443}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A859990-2E8C-413B-ACBB-A3048BE59443}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A859990-2E8C-413B-ACBB-A3048BE59443}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A859990-2E8C-413B-ACBB-A3048BE59443}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
