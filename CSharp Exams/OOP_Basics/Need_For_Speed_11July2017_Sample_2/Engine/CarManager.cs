@@ -24,7 +24,6 @@ public class CarManager
             case "Show": car = new ShowCar(brand, model, yearOfProduction, horsepower, acceleration, suspension, durability); break;
             default: break;
         }
-        car.State = CarState.waiting;
         this.participants.Add(id, car);
     }
 
@@ -48,8 +47,7 @@ public class CarManager
 
     public void Participate(int carId, int raceId)
     {
-        CarState state = this.participants[carId].State;
-        if (state != CarState.waiting)
+        if (this.garage.ParkedCars.Contains(carId))
         {
             return;
         }
@@ -64,49 +62,48 @@ public class CarManager
         {
             return "Cannot start the race with zero participants.";
         }
-        race.DetermineWinners(this.participants);
+        race.DetermineWinners(this.Cars(race.Participants));
+        this.races.Remove(id);
 
         return race.ToString();
     }
 
     public void Park(int id)
     {
-        Car car = this.participants[id];
-        if (car.State != CarState.waiting)
+        if (this.IsInRace(id))
         {
             return;
         }
-        car.State = CarState.park;
+        this.garage.ParkedCars.Add(id);
     }
 
     public void Unpark(int id)
     {
-        Car car = this.participants[id];
-        if (car.State != CarState.park)
+        if (!this.garage.ParkedCars.Contains(id))
         {
             return;
         }
-        car.State = CarState.waiting;
-    }
-    public void Tune(int tuneIndex, string addOn)
-    {
-        this.participants.Where(r => r.Value.State == CarState.park)
-            .Select(r => r.Value)
-            .ToList()
-            .ForEach(r => TuneCar(r, tuneIndex, addOn));
+        this.garage.ParkedCars.Remove(id);
     }
 
-    private void TuneCar(Car car, int tuneIndex, string addOn)
+    public void Tune(int tuneIndex, string addOn)
     {
-        car.Horsepower += tuneIndex;
-        car.Suspension += tuneIndex / 2;
-        if (car.GetType().Name == "ShowCar")
-        {
-            ((ShowCar)car).Stars += tuneIndex;
-        }
-        if (car.GetType().Name == "PerformanceCar")
-        {
-            ((PerformanceCar)car).AddOns.Add(addOn);
-        }
+        this.garage.TuneCars(
+            this.Cars(this.garage.ParkedCars), tuneIndex, addOn);
+    }
+
+    private List<Car> Cars(List<int> carsId)
+    {
+        return this.participants
+            .Where(r => carsId.Contains(r.Key))
+            .Select(r => r.Value)
+            .ToList();
+    }
+
+    private bool IsInRace(int id)
+    {
+        return this.races.Values
+            .Select(r => r.Participants)
+            .Any(p => p.Contains(id));
     }
 }

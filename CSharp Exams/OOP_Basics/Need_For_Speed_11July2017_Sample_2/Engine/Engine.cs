@@ -6,18 +6,23 @@ using System.Linq;
 public class Engine
 {
     private CarManager carManager;
-    private MethodInfo[] methods;
+    private ConsoleReader inputReader;
+    private ConsoleWriter outputWriter;
+    //private MethodInfo[] methods;
 
     public Engine()
     {
         this.carManager = new CarManager();
-        this.methods = typeof(CarManager).GetMethods();
+        this.inputReader = new ConsoleReader();
+        this.outputWriter = new ConsoleWriter();
+        //this.methods = typeof(CarManager).GetMethods();
     }
 
     public void Run()
     {
         string input;
-        while ((input = Console.ReadLine()) != "Cops Are Here")
+        while ((input = this.inputReader.ReadLine()) != 
+            Constants.INPUT_TERMINAOR)
         {
             string[] arguments = InputParser.SplitInput(input, " ");
             string command = arguments[0];
@@ -105,25 +110,25 @@ public class Engine
 
             if (result != string.Empty)
             {
-                Console.WriteLine(result);
+                this.outputWriter.WriteLine(result);
             }
         }
     }
 
-    private object[] MethodParameters(string methodName, string[] arguments)
-    {
-        ParameterInfo[] parameters = this.methods
-            .FirstOrDefault(m => m.Name == methodName)
-            .GetParameters();
+    //private object[] MethodParameters(string methodName, string[] arguments)
+    //{
+    //    ParameterInfo[] parameters = this.methods
+    //        .FirstOrDefault(m => m.Name == methodName)
+    //        .GetParameters();
 
-        object[] currentParameters = new object[parameters.Length];
+    //    object[] currentParameters = new object[parameters.Length];
 
-        for (int i = 0; i < parameters.Length; i++)
-        {
-            Type parameter = parameters[i].ParameterType;
-            currentParameters[i] = Convert.ChangeType(arguments[i], parameter);
-        }
+    //    for (int i = 0; i < parameters.Length; i++)
+    //    {
+    //        Type parameter = parameters[i].ParameterType;
+    //        currentParameters[i] = Convert.ChangeType(arguments[i], parameter);
+    //    }
 
-        return currentParameters;
-    }
+    //    return currentParameters;
+    //}
 }

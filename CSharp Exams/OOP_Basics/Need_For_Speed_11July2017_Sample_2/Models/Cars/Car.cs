@@ -39,7 +39,6 @@ public abstract class Car
     public int Acceleration { get; private set; }
     public virtual int Suspension { get; set; }
     public int Durability { get; private set; }
-    public CarState State { get; set; }
 
     public double OverallPerformance => this.Horsepower / this.Acceleration + this.Suspension + this.Durability;
     public double EnginePerformance => this.Horsepower / this.Acceleration;

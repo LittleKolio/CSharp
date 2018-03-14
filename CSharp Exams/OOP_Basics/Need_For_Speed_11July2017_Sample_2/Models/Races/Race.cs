@@ -21,7 +21,7 @@ public abstract class Race
     public List<int> Participants { get; set; }
     protected List<string> Winners { get; set; }
 
-    public abstract void DetermineWinners(Dictionary<int, Car> racers);
+    public abstract void DetermineWinners(List<Car> racers);
 
     public override string ToString()
     {
@@ -31,7 +31,7 @@ public abstract class Race
         for (int i = 1; i <= this.Winners.Count; i++)
         {
             double prize = this.PrizePool * this.prizeModifiers[i - 1];
-            sb.AppendLine($"{i}. " + this.Winners[i - 1] + "$" + prize);
+            sb.AppendLine($"{i}. " + this.Winners[i - 1] + " - $" + prize);
         }
 
         return sb.ToString().TrimEnd();

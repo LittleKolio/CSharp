@@ -10,25 +10,12 @@ public class DragRace : Race
     {
     }
 
-    public override void DetermineWinners(Dictionary<int, Car> racers)
+    public override void DetermineWinners(List<Car> cars)
     {
-        base.Winners = racers
-            .Where(r =>
-                {
-                    bool isInRace = base.Participants.Contains(r.Key);
-                    if (isInRace)
-                    {
-                        r.Value.State = CarState.waiting;
-                    }
-                    return isInRace;
-                }
-            )
-            .OrderByDescending(r => r.Value.SuspensionPerformance)
+        base.Winners = cars
+            .OrderByDescending(c => c.EnginePerformance)
             .Take(3)
-            .Select(r => string.Format("{0} {1} {2}PP - ",
-                r.Value.Brand,
-                r.Value.Model,
-                r.Value.EnginePerformance))
+            .Select(c => string.Format("{0} {1} {2}PP", c.Brand, c.Model, c.EnginePerformance))
             .ToList();
 
         base.isOver = true;
