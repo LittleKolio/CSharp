@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 public class PerformanceCar : Car
 {
@@ -9,22 +11,29 @@ public class PerformanceCar : Car
         int horsepower, 
         int acceliration, 
         int suspension, 
-        int durability,
-        IEnumerable<string> addOns) 
-        : base(brand, model, yearOfProduction, horsepower, acceliration, suspension, durability)
+        int durability) 
+        : base(brand, model, yearOfProduction, acceliration, durability)
     {
-        this.AddOns = new List<string>(addOns);
+        base.Horsepower = horsepower + (horsepower * 50) / 100;
+        this.Suspension = suspension - (suspension * 25) / 100;
+        this.AddOns = new List<string>();
     }
 
-    public List<string> AddOns { get; private set; }
-    public override int Horsepower
+    public List<string> AddOns { get; set; }
+
+    public override string ToString()
     {
-        get => base.Horsepower;
-        protected set => base.Horsepower = value + value / 2;
-    }
-    public override int Suspension
-    {
-        get => base.Suspension;
-        protected set => base.Suspension = value - value / 4;
+        StringBuilder sb = new StringBuilder(base.ToString() + Environment.NewLine);
+        sb.Append("Add-ons: ");
+
+        string addOns = "None";
+        if (this.AddOns.Count > 0)
+        {
+            addOns = string.Join(", ", this.AddOns);
+        }
+
+        sb.AppendLine(addOns);
+
+        return sb.ToString().TrimEnd();
     }
 }

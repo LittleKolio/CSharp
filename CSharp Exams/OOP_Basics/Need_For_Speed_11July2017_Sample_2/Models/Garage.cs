@@ -4,8 +4,8 @@ public class Garage
 {
     public Garage()
     {
-
+        this.ParkedCars = new Dictionary<int, Car>();
     }
 
-    public List<Car> ParkedCars { get; set; }
+    public Dictionary<int, Car> ParkedCars { get; set; }
 }

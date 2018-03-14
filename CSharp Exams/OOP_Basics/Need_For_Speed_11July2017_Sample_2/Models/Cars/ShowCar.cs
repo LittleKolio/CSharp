@@ -1,4 +1,7 @@
-﻿public class ShowCar : Car
+﻿using System;
+using System.Text;
+
+public class ShowCar : Car
 {
     public ShowCar(
         string brand, 
@@ -7,12 +10,18 @@
         int horsepower, 
         int acceliration, 
         int suspension, 
-        int durability,
-        int stars) 
+        int durability) 
         : base(brand, model, yearOfProduction, horsepower, acceliration, suspension, durability)
     {
-        this.Stars = stars;
     }
 
-    public int Stars { get; private set; }
+    public int Stars { get; set; }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder(base.ToString() + Environment.NewLine);
+        sb.AppendLine($"{this.Stars} *");
+
+        return sb.ToString().TrimEnd();
+    }
 }

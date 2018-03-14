@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 public static class InputParser
 {
-    public static List<string> SplitInput(string input, string delimiter)
+    public static string[] SplitInput(string input, string delimiter)
     {
         return input.Split(delimiter.ToCharArray(),
-            StringSplitOptions.RemoveEmptyEntries)
-            .ToList();
+            StringSplitOptions.RemoveEmptyEntries);
     }
 }
