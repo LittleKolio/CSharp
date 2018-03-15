@@ -2,16 +2,15 @@
 
 public abstract class Tyre
 {
-    public Tyre(double hardness)
+    private double hardness;
+    private double degradation;
+
+    protected Tyre(double hardness)
     {
         this.Hardness = hardness;
         this.Degradation = 100;
     }
 
-    public string Name { get; protected set; }
-    public double Hardness { get; private set; }
-
-    protected double degradation;
     public virtual double Degradation
     {
         get { return this.degradation; }
@@ -19,13 +18,21 @@ public abstract class Tyre
         {
             if (value < 0)
             {
-                throw new Exception("Blown Tyre");
+                throw new ArgumentException("Blown Tyre");
             }
             this.degradation = value;
         }
     }
 
-    public virtual void DecreaseDegradation()
+    public double Hardness
+    {
+        get { return this.hardness; }
+        protected set { this.hardness = value; }
+    }
+
+    public abstract string Name { get; }
+
+    public virtual void ReducedDegradation()
     {
         this.Degradation -= this.Hardness;
     }

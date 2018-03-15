@@ -81,6 +81,7 @@ public class RaceTower
             case "Refuel":
                 {
                     double fuel = double.Parse(args[2]);
+
                     driver.Car.FuelAmount += fuel;
                 }
                 break;
@@ -151,25 +152,26 @@ public class RaceTower
     public string GetLeaderboard()
     {
         StringBuilder sb = new StringBuilder();
-        sb.AppendFormat("Lap {0}/{1}" + Environment.NewLine, this.CurrentLap, this.LapsNumber);
+        sb.AppendLine($"Lap {this.CurrentLap}/{this.LapsNumber}");
+
         for (int i = 0; i < this.drivers.Count; i++)
         {
             int position = i + 1;
             string name = this.drivers[i].Name;
             double time = this.drivers[i].TotalTime;
 
-            sb.AppendFormat("{0} {1} {2:F3}" + Environment.NewLine, 
-                position, name, time);
+            sb.AppendLine($"{position} {name} {time:F3}");
         }
+
         for (int i = this.dropoutDrivers.Count - 1; i >= 0; i--)
         {
             int position = this.dropoutDrivers.Count - i + this.drivers.Count;
             string name = this.dropoutDrivers[i].Name;
             string failure = this.dropoutDrivers[i].failureReason;
 
-            sb.AppendFormat("{0} {1} {2}" + Environment.NewLine, 
-                position, name, failure);
+            sb.AppendLine($"{position} {name} {failure}");
         }
+
         return sb.ToString().TrimEnd(); ;
     }
 
