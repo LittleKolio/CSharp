@@ -4,34 +4,35 @@ public class Car
 {
     public Car(int horsepower, double fuelAmount, Tyre tyre)
     {
-        this.horsepower = horsepower;
+        this.Horsepower = horsepower;
         this.FuelAmount = fuelAmount;
         this.Tyre = tyre;
     }
 
-    private int horsepower;
+    public int Horsepower { get;}
     private double fuelAmount;
 
     public double FuelAmount
     {
         get { return this.fuelAmount; }
-        set
+        private set
         {
             if (value < 0)
             {
                 throw new Exception("Out of fuel");
             }
-            if (value > 160)
-            {
-                this.fuelAmount = 160;
-                return;
-            }
-            this.fuelAmount = value;
+
+            this.fuelAmount = Math.Min(value, 160);
         }
     }
 
     public Tyre Tyre { get; set; }
 
     public virtual double Speed
-        => (this.horsepower + this.Tyre.Degradation) / this.FuelAmount;
+        => (this.Horsepower + this.Tyre.Degradation) / this.FuelAmount;
+
+    public void ChangeFuelAmount(double amount)
+    {
+        this.FuelAmount += amount;
+    }
 }

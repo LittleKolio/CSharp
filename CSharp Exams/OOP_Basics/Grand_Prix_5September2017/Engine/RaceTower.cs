@@ -76,7 +76,7 @@ public class RaceTower
                 {
                     double fuel = double.Parse(commandArgs[2]);
 
-                    driver.Car.FuelAmount += fuel;
+                    driver.Car.ChangeFuelAmount(fuel);
                 }
                 break;
             default:

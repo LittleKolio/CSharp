@@ -5,14 +5,14 @@ public abstract class Tyre
     protected Tyre(string name, double hardness)
     {
         this.Name = name;
-        this.hardness = hardness;
+        this.Hardness = hardness;
         this.Degradation = 100;
     }
 
-    protected double hardness;
-    protected double degradation;
+    private double degradation;
 
-    public string Name { get; private set; }
+    public double Hardness { get; }
+    public string Name { get; }
     public virtual double Degradation
     {
         get { return this.degradation; }
@@ -28,6 +28,6 @@ public abstract class Tyre
 
     public virtual void DecreaseDegradation()
     {
-        this.Degradation -= this.hardness;
+        this.Degradation -= this.Hardness;
     }
 }

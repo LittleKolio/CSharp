@@ -15,7 +15,7 @@ public abstract class Harvester
         this.OreOutput = oreOutput;
     }
 
-    public string Id { get; private set; }
+    public string Id { get; }
 
     private double oreOutput;
     public virtual double OreOutput

@@ -7,7 +7,7 @@
 
     public override double EnergyOutput
     {
-        get => base.EnergyOutput;
-        protected set => base.EnergyOutput = value * 1.5;
+        get { return base.EnergyOutput; }
+        protected set { base.EnergyOutput = value * 1.5; }
     }
 }

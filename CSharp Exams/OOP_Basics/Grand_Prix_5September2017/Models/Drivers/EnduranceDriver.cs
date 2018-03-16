@@ -1,8 +1,7 @@
 ﻿public class EnduranceDriver : Driver
 {
     public EnduranceDriver(string name, Car car) 
-        : base(name, car)
+        : base(name, 1.5, car)
     {
-        base.fuelConsumptionPerKm = 1.5;
     }
 }

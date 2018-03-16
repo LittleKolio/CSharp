@@ -9,7 +9,7 @@ public abstract class Provider
         this.EnergyOutput = energyOutput;
     }
 
-    public string Id { get; private set; }
+    public string Id { get; }
 
     private double energyOutput;
     public virtual double EnergyOutput

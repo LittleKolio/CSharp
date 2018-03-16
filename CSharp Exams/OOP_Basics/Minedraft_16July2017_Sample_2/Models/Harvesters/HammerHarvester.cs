@@ -7,13 +7,13 @@
 
     public override double OreOutput
     {
-        get => base.OreOutput;
-        protected set => base.OreOutput = value * 3;
+        get { return base.OreOutput; }
+        protected set { base.OreOutput = value * 3; }
     }
 
     public override double EnergyRequirement
     {
-        get => base.EnergyRequirement;
-        protected set => base.EnergyRequirement = value * 2;
+        get { return base.EnergyRequirement; }
+        protected set { base.EnergyRequirement = value * 2; }
     }
 }

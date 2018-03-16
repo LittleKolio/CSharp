@@ -11,10 +11,10 @@
         this.EnergyRequirement = energyRequirement;
     }
 
-    public int SonicFactor { get; private set; }
+    public int SonicFactor { get; }
     public override double EnergyRequirement
     {
-        get => base.EnergyRequirement;
-        protected set => base.EnergyRequirement = (value / this.SonicFactor);
+        get { return base.EnergyRequirement; }
+        protected set { base.EnergyRequirement = (value / this.SonicFactor); }
     }
 }
