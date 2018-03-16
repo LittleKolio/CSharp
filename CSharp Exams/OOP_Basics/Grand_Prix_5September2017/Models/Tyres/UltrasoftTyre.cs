@@ -3,9 +3,8 @@
 public class UltrasoftTyre : Tyre
 {
     public UltrasoftTyre(double hardness, double grip) 
-        : base(hardness)
+        : base("Ultrasoft", hardness)
     {
-        base.Name = "Ultrasoft";
         this.grip = grip;
     }
 

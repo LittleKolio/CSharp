@@ -7,15 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample_Exam_2", "Sample_Exa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practical_Exam_16Jul2017", "Practical_Exam_16Jul2017\Practical_Exam_16Jul2017.csproj", "{BEA6EDD4-9E61-4F79-BB92-6444D80F584B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grand_Prix_5September2017_Sample_2", "Grand_Prix_5September2017_Sample_2\Grand_Prix_5September2017_Sample_2.csproj", "{D7584F34-E2A5-4922-BA32-2C1ECDE0B29A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minedraft_16July2017_Sample_2", "Minedraft_16July2017_Sample_2\Minedraft_16July2017_Sample_2.csproj", "{31256738-F5B7-4518-B8BF-86DAF5BA114B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Need_For_Speed_11July2017_Sample_2", "Need_For_Speed_11July2017_Sample_2\Need_For_Speed_11July2017_Sample_2.csproj", "{2A859990-2E8C-413B-ACBB-A3048BE59443}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grand_Prix_5September2017", "Grand_Prix_5September2017\Grand_Prix_5September2017.csproj", "{B5739997-A90E-47A4-A6FC-61735C0C7343}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{7AEDE349-5C76-46DD-AE36-F3C0D0820EF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +27,6 @@ Global
 		{BEA6EDD4-9E61-4F79-BB92-6444D80F584B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEA6EDD4-9E61-4F79-BB92-6444D80F584B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEA6EDD4-9E61-4F79-BB92-6444D80F584B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7584F34-E2A5-4922-BA32-2C1ECDE0B29A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7584F34-E2A5-4922-BA32-2C1ECDE0B29A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7584F34-E2A5-4922-BA32-2C1ECDE0B29A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7584F34-E2A5-4922-BA32-2C1ECDE0B29A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{31256738-F5B7-4518-B8BF-86DAF5BA114B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{31256738-F5B7-4518-B8BF-86DAF5BA114B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31256738-F5B7-4518-B8BF-86DAF5BA114B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,10 +39,6 @@ Global
 		{B5739997-A90E-47A4-A6FC-61735C0C7343}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5739997-A90E-47A4-A6FC-61735C0C7343}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5739997-A90E-47A4-A6FC-61735C0C7343}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7AEDE349-5C76-46DD-AE36-F3C0D0820EF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7AEDE349-5C76-46DD-AE36-F3C0D0820EF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7AEDE349-5C76-46DD-AE36-F3C0D0820EF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7AEDE349-5C76-46DD-AE36-F3C0D0820EF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

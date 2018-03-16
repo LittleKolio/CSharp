@@ -2,17 +2,17 @@
 
 public abstract class Tyre
 {
-    protected Tyre(double hardness)
+    protected Tyre(string name, double hardness)
     {
+        this.Name = name;
         this.hardness = hardness;
         this.Degradation = 100;
     }
 
-    //private string name;
     protected double hardness;
     protected double degradation;
 
-    public string Name { get; protected set; }
+    public string Name { get; private set; }
     public virtual double Degradation
     {
         get { return this.degradation; }

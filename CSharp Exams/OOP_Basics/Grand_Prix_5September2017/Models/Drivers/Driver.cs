@@ -32,6 +32,6 @@
 
     public override string ToString()
     {
-        return $"{this.name} {this.totalTime}";
+        return $"{this.name} {this.totalTime:F3}";
     }
 }

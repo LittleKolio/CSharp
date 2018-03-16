@@ -8,6 +8,7 @@ public class Engine
     {
         this.inputReader = new ConsoleReader();
         this.outputWriter = new ConsoleWriter();
+        this.raceTower = new RaceTower();
     }
 
     private ConsoleReader inputReader;
@@ -24,7 +25,7 @@ public class Engine
 
     public void Run()
     {
-        InitialiseTrack();
+        this.InitialiseTrack();
 
         string input;
         while (!string.IsNullOrEmpty(input = this.inputReader.ReadLine()))
@@ -65,7 +66,7 @@ public class Engine
             }
         }
 
-        //Driver winner = this.raceTower.drivers.First();
-        //Console.WriteLine($"{winner.Name} wins the race for {winner.TotalTime:F3} seconds.");
+        Driver winner = this.raceTower.drivers.First();
+        Console.WriteLine($"{winner.Name} wins the race for {winner.TotalTime:F3} seconds.");
     }
 }
