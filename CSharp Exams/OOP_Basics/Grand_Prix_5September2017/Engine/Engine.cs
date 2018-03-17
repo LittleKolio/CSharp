@@ -44,20 +44,8 @@ public class Engine
                     } break;
                 case "CompleteLaps":
                     {
-                        string result = string.Empty;
-                        try
-                        {
-                            result = this.raceTower.CompleteLaps(commandArgs);
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
-
-                        if (result != string.Empty)
-                        {
-                            Console.WriteLine(result);
-                        }
+                        string result = this.raceTower.CompleteLaps(commandArgs);
+                        Console.WriteLine(result);
                     } break;
                 case "Box": this.raceTower.DriverBoxes(commandArgs); break;
                 case "ChangeWeather": this.raceTower.ChangeWeather(commandArgs); break;
@@ -66,7 +54,9 @@ public class Engine
             }
         }
 
-        Driver winner = this.raceTower.drivers.First();
+        Driver winner = this.raceTower.drivers
+            .OrderBy(d => d.TotalTime)
+            .First();
         Console.WriteLine($"{winner.Name} wins the race for {winner.TotalTime:F3} seconds.");
     }
 }

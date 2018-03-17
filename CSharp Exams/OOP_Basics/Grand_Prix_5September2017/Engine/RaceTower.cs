@@ -8,7 +8,7 @@ public class RaceTower
     public RaceTower()
     {
         this.drivers = new List<Driver>();
-        this.dropoutDrivers = new List<string>();
+        this.dropoutDrivers = new Stack<Driver>();
 
         this.driverFactory = new DriverFactory();
         this.carFactory = new CarFactory();
@@ -18,7 +18,7 @@ public class RaceTower
     }
 
     public List<Driver> drivers;
-    public List<string> dropoutDrivers;
+    public Stack<Driver> dropoutDrivers;
 
     private Track track;
     private DriverFactory driverFactory;
@@ -62,25 +62,30 @@ public class RaceTower
     public void DriverBoxes(List<string> commandArgs)
     {
         string command = commandArgs[0];
-        Driver driver = this.drivers.Find(d => d.Name == commandArgs[1]);
-        driver.TotalTime += 20;
-        switch (command)
-        {
-            case "ChangeTyres":
-                {
-                    List<string> tyreArgs = commandArgs.Skip(2).ToList();
-                    driver.Car.Tyre = this.tyreFactory.GetTyre(tyreArgs);
-                }
-                break;
-            case "Refuel":
-                {
-                    double fuel = double.Parse(commandArgs[2]);
 
-                    driver.Car.ChangeFuelAmount(fuel);
-                }
-                break;
-            default:
-                break;
+        Driver driver = this.drivers
+            .FirstOrDefault(d => d.Name == commandArgs[1]);
+
+        if (driver != null)
+        {
+            driver.TotalTime += 20;
+            switch (command)
+            {
+                case "ChangeTyres":
+                    {
+                        List<string> tyreArgs = commandArgs.Skip(2).ToList();
+                        driver.Car.Tyre = this.tyreFactory.GetTyre(tyreArgs);
+                    }
+                    break;
+                case "Refuel":
+                    {
+                        double fuel = double.Parse(commandArgs[2]);
+
+                        driver.Car.ChangeFuelAmount(fuel);
+                    }
+                    break;
+                default: return;
+            }
         }
     }
 
@@ -91,14 +96,16 @@ public class RaceTower
         {
             return null;
         }
+
         if (completeLaps > this.track.LapsNumber - this.track.CurrentLap)
         {
-            throw new Exception(
-                $"There is no time! On lap {this.track.CurrentLap}.");
+            return $"There is no time! On lap {this.track.CurrentLap}.";
         }
 
         StringBuilder result = new StringBuilder();
+
         int trLength = this.track.TrackLength;
+
         for (int l = 0; l < completeLaps; l++)
         {
             this.track.CurrentLap++;
@@ -108,24 +115,19 @@ public class RaceTower
                 Driver currentDriver = this.drivers[d];
 
                 currentDriver.IncreaseTotalTime(trLength);
+                currentDriver.DecreaseCarFuelAmount(trLength);
+                currentDriver.DecreaseTyreDegradation();
 
-                try
+                if (!currentDriver.isRasing)
                 {
-                    //1
-                    currentDriver.DecreaseFuelAmount(trLength);
-
-                    //2
-                    currentDriver.Car.Tyre.DecreaseDegradation();
-                }
-                catch (Exception ex)
-                {
-                    this.dropoutDrivers.Add($"{currentDriver.Name} {ex.Message}");
+                    this.dropoutDrivers.Push(currentDriver);
                     this.drivers[d] = null;
-                    continue;
                 }
             }
+
             this.drivers.RemoveAll(d => d == null);
-            result.Append(this.Overtaking());
+            string result2 = this.Overtaking();
+            result.Append(result2);
         }
 
         return result.ToString().TrimEnd();
@@ -135,15 +137,14 @@ public class RaceTower
     {
         StringBuilder sb = new StringBuilder(this.track + Environment.NewLine);
 
-        for (int i = 0; i < this.drivers.Count; i++)
-        {
-            sb.AppendLine($"{i + 1} " + this.drivers[i]);
-        }
+        List<Driver> currentDrivers = this.drivers
+            .OrderBy(d => d.TotalTime)
+            .Concat(this.dropoutDrivers)
+            .ToList();
 
-        for (int i = this.dropoutDrivers.Count - 1; i >= 0; i--)
+        for (int i = 0; i < currentDrivers.Count; i++)
         {
-            int position = this.dropoutDrivers.Count - i + this.drivers.Count;
-            sb.AppendLine($"{position} " + this.dropoutDrivers[i]);
+            sb.AppendLine($"{i + 1} " + currentDrivers[i]);
         }
 
         return sb.ToString().TrimEnd(); ;
@@ -156,59 +157,50 @@ public class RaceTower
 
     private string Overtaking()
     {
+        List<Driver> overtakingList = this.drivers
+            .OrderByDescending(d => d.TotalTime)
+            .ToList();
+
         StringBuilder sb = new StringBuilder();
 
-        for (int d = this.drivers.Count - 1; d >= 1; d--)
+        for (int d = 0; d < overtakingList.Count - 1; d++)
         {
-            double interval = 2;
-            Driver behindDriver = this.drivers[d];
-            Driver aheadDriver = this.drivers[d - 1];
+            
+            Driver behindDriver = overtakingList[d];
+            Driver aheadDriver = overtakingList[d + 1];
+
+            bool crazyDriver = behindDriver is AggressiveDriver &&
+                    behindDriver.Car.Tyre is UltrasoftTyre;
+            bool stupidDriver = behindDriver is EnduranceDriver &&
+                    behindDriver.Car.Tyre is HardTyre;
+
+            double interval = (crazyDriver || stupidDriver) ? 3 : 2;
 
             double difference = behindDriver.TotalTime - aheadDriver.TotalTime;
 
             if (difference <= interval)
             {
-                if (behindDriver.GetType().Name == "AggressiveDriver" &&
-                    behindDriver.Car.Tyre.Name == "Ultrasoft")
+                if (interval == 3)
                 {
-                    if (this.weather == "Foggy")
+                    if ((crazyDriver && this.weather == "Foggy") ||
+                        (stupidDriver && this.weather == "Rainy"))
                     {
-                        this.dropoutDrivers.Add($"{behindDriver.Name} Crashed");
-                        this.drivers[d] = null;
+                        behindDriver.Crashed();
+                        this.dropoutDrivers.Push(behindDriver);
+                        this.drivers.Remove(behindDriver);
                         continue;
                     }
-                    interval = 3;
                 }
 
-                if (behindDriver.GetType().Name == "EnduranceDriver" &&
-                    behindDriver.Car.Tyre.Name == "Hard")
-                {
-                    if (this.weather == "Rainy")
-                    {
-                        this.dropoutDrivers.Add($"{behindDriver.Name} Crashed");
-                        this.drivers[d] = null;
-                        continue;
-                    }
-                    interval = 3;
-                }
+                behindDriver.TotalTime -= interval;
+                aheadDriver.TotalTime += interval;
 
-
-                if (difference >= 0)
-                {
-                    behindDriver.TotalTime -= interval;
-                    aheadDriver.TotalTime += interval;
-
-                    sb.AppendFormat("{0} has overtaken {1} on lap {2}." + Environment.NewLine,
-                        behindDriver.Name, aheadDriver.Name, this.track.CurrentLap);
-                }
-
-                this.drivers[d] = null;
-                this.drivers.Insert(d - 1, behindDriver);
-                //d--;
+                sb.AppendFormat("{0} has overtaken {1} on lap {2}." + Environment.NewLine,
+                    behindDriver.Name, aheadDriver.Name, this.track.CurrentLap);
+                d++;
             }
         }
 
-        this.drivers.RemoveAll(d => d == null);
-        return sb.ToString();
+        return sb.ToString().TrimEnd();
     }
 }
