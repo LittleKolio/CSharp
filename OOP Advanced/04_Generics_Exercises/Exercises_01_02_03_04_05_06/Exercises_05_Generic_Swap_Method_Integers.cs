@@ -24,7 +24,7 @@
                 .Select(int.Parse)
                 .ToArray();
 
-            SwapElements<int>(list, idexes);
+            Swap<string>(list, idexes[0], indexes[1]);
 
             foreach (var item in list)
             {
@@ -32,11 +32,12 @@
             }
         }
 
-        private static void SwapElements<T>(IList<Box<T>> list, int[] idexes)
+        public static void Swap<U>(List<U> list, int index1, int index2)
+            where U : class
         {
-            Box<T> element = list[idexes[0]];
-            list[idexes[0]] = list[idexes[1]];
-            list[idexes[1]] = element;
+            U item1 = list[index1];
+            list[index1] = list[index2];
+            list[index2] = item1;
         }
     }
 }

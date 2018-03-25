@@ -11,8 +11,6 @@
 
         public const string AppenderToString = "Appender type: {0}, Layout type: {1}, Report level: {2}, Messages appended: {3}";
 
-        public const string LogFilePath = "./data/";
-
         public const string LogFileToString = AppenderToString + ", File size {4}";
     }
 }

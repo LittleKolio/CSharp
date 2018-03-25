@@ -10,24 +10,24 @@
     {
         static void Main()
         {
-            IList<Box<string>> list = new List<Box<string>>();
+            IList<string> list = new List<string>();
 
             int numberOfLines = int.Parse(Console.ReadLine());
             for (int i = 0; i < numberOfLines; i++)
             {
-                list.Add(new Box<string>(Console.ReadLine()));
+                list.Add(Console.ReadLine());
             }
 
             string element = Console.ReadLine();
 
-            Console.WriteLine(CountElements<string>(list, element));
+            Console.WriteLine(CountElements(list, element));
         }
 
         private static int CountElements<T>
-            (IList<Box<T>> list, T element)
+            (IList<T> list, T element)
             where T : IComparable
         {
-            return list.Count(b => b.Value.CompareTo(element) > 0);
+            return list.Count(b => b.CompareTo(element) > 0);
         }
     }
 }

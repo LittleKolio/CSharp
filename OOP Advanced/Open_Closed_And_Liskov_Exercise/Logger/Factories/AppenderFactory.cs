@@ -11,7 +11,7 @@ namespace Logger
                 case "ConsoleAppender": return new ConsoleAppender(layout, level);
                 case "FileAppender":
                     {
-                        ILoggFile loggFile = new LoggFile("test.txt");
+                        ILoggFile loggFile = new LoggFile("LogTest.txt");
                         return new FileAppender(layout, level, loggFile);
                     }
                 default: throw new ArgumentException("Invalide Appender Type!");

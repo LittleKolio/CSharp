@@ -9,6 +9,7 @@ namespace Logger
             switch (type)
             {
                 case "SimpleLayout": return new SimpleLayout();
+                case "XmlLayout": return new XmlLayout();
                 default: throw new ArgumentException("Invalid Layout Type!");
             }
         }

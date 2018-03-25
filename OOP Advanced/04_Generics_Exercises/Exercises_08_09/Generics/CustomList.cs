@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class CustomList<T> : ICustomList<T>
-    where T : IComparable<T>
+    where T : IComparable
 {
     private IList<T> list;
 
@@ -12,8 +12,8 @@ public class CustomList<T> : ICustomList<T>
     {
         this.list = new List<T>(collection);
     }
-    public CustomList()
-        : this (Enumerable.Empty<T>())
+
+    public CustomList() : this (Enumerable.Empty<T>())
     {
     }
 

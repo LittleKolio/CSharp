@@ -1,0 +1,90 @@
+12|            |
+08|        |
+04|    |
+02|  |
+
+─ │ ═ ║
+
+┌ ┐ └ ┘ ┬ ┴ ├ ┤ ┼
+
+╔ ╗ ╚ ╝ ╦ ╩ ╠ ╣ ╬
+
+╒ ╕ ╘ ╛ ╤ ╧ ╞ ╡ ╪
+
+╓ ╖ ╙ ╜ ╥ ╨ ╟ ╢ ╫
+
+▀ ▄ █ ▌ ▐ ░ ▒ ▓ ■ □ ▪ ▫ ▬ ▲ ► ▼ ◄ ◊ ○ ☺ ☻
+██
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─
+╟─┐
+╟─┬─────────────────────────────────────────────────────────────────────┐
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│
+	├─────────────────────────────────────────────────────────────────────┘
+	├─
+	├─┐
+	├─┬───────────────────────────────────────────────────────────────────┐
+	├─┬───────────────────────────────────────────────────────────────────┐
+		│
+		├───────────────────────────────────────────────────────────────────┘
+		├─┬─────────────────────────────────────────────────────────────────┐
+			├─┬───────────────────────────────────────────────────────────────┐
+				│
+				├───────────────────────────────────────────────────────────────┘
+				├─┬─────────────────────────────────────────────────────────────┐
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║Constraints on Type
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─ When you define a generic class, you can apply restrictions to the kinds of types that client code can use for type arguments. If client code tries to instantiate your class by using a type that is not allowed by a constraint, the result is a compile-time error. These restrictions are called constraints. Constraints are specified by using the "where" contextual keyword. 
+
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│where T: struct
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ The type argument must be a value type. Any value type except Nullable can be specified.
+	
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│where T: class
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ The type argument must be a reference type; this applies also to any class, interface, delegate, or array type.
+	├─ When applying the where T : class constraint, avoid the == and != operators on the type parameter because these operators will test for reference identity only, not for value equality. 
+	
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│where T: new()
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ The type argument must have a public parameterless constructor. When used together with other constraints, the new() constraint must be specified last.
+	
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│where T: <base class name>
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ The type argument must be or derive from the specified base class.
+	
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│where T: <interface name>
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ The type argument must be or implement the specified interface. Multiple interface constraints can be specified. The constraining interface can also be generic.
+	
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│where T: U
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ The type argument supplied for T must be or derive from the argument supplied for U.
