@@ -14,7 +14,7 @@
             {
                 case "ArmorRepairKit": return new ArmorRepairKit();
                 case "PoisonPotion": return new PoisonPotion();
-                case "HealthPotion": return new ArmorRepairKit();
+                case "HealthPotion": return new HealthPotion();
                 default:
                     throw new ArgumentException(
                         string.Format(Constants.Exception_InvalidItem, type));

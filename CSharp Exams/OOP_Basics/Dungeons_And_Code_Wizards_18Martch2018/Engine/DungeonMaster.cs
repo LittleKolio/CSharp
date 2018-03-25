@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Text;
 
@@ -13,22 +14,32 @@
         private List<Character> party;
         private List<Item> pool;
 
+        private int lastSurvivors;
+        private bool isOver;
+
         public DungeonMaster()
         {
             this.characterFactory = new CharacterFactory();
             this.itemFactory = new ItemFactory();
             this.party = new List<Character>();
             this.pool = new List<Item>();
+            this.isOver = false;
         }
+
+        public ReadOnlyCollection<Character> Party => new ReadOnlyCollection<Character>(
+            this.party
+                .OrderByDescending(c => c.IsAlive)
+                .ThenByDescending(c => c.Health)
+                .ToList()
+            );
+        public List<Character> Survivors => this.party.Where(c => c.IsAlive).ToList();
+        public int CurrentSurvivors => this.Survivors.Count;
 
         public string JoinParty(string[] args)
         {
-            string type = args[1];
-            args = args.Take(1).Skip(1).ToArray();
-
-            Character character = characterFactory.CreateCharacter(type, args);
+            Character character = characterFactory.CreateCharacter(args);
             this.party.Add(character);
-            return string.Format(Constants.DungeonMaster_JoinParty, type);
+            return string.Format(Constants.DungeonMaster_JoinParty, character.Name);
         }
 
         public string AddItemToPool(string[] args)
@@ -46,7 +57,9 @@
 
             Character character = Validation.CharacterInCollection(this.party, name);
             Item item = Validation.ItemInPool(this.pool);
+
             character.ReceiveItem(item);
+            this.pool.RemoveAt(this.pool.Count - 1);
 
             return string.Format(Constants.DungeonMaster_PickUpItem, 
                 name, item.GetType().Name);
@@ -90,8 +103,7 @@
             Character giver = Validation.CharacterInCollection(this.party, giverName);
             Character receiver = Validation.CharacterInCollection(this.party, receiverName);
             Item item = giver.Bag.GetItem(itemName);
-
-            receiver.ReceiveItem(item);
+            giver.GiveCharacterItem(item, receiver);
 
             return string.Format(Constants.DungeonMaster_GiveCharacterItem,
                 giverName, receiverName, itemName);
@@ -101,12 +113,7 @@
         {
             StringBuilder sb = new StringBuilder();
 
-            List<Character> sortedParty = party
-                .OrderByDescending(c => c.IsAlive)
-                .ThenByDescending(c => c.Health)
-                .ToList();
-
-            foreach (Character character in sortedParty)
+            foreach (Character character in this.Party)
             {
                 sb.AppendLine(character.ToString());
             }
@@ -167,14 +174,28 @@
                 healer.Name, receiver.Name, healer.AbilityPoints, receiver.Name, receiver.Health);
         }
 
-        public string EndTurn(string[] args)
+        public string EndTurn()
         {
-            throw new NotImplementedException();
+            if ((this.CurrentSurvivors == 1 && this.lastSurvivors == 1) ||
+                this.CurrentSurvivors < 1)
+            {
+                this.isOver = true;
+            }
+
+            this.lastSurvivors = this.CurrentSurvivors;
+
+            StringBuilder sb = new StringBuilder();
+            foreach (Character character in this.Survivors)
+            {
+                double healthBeforeRest = character.Health;
+                character.Rest();
+                sb.AppendLine(string.Format(Constants.DungeonMaster_Rest,
+                    character.Name, healthBeforeRest, character.Health));
+            }
+
+            return sb.ToString().TrimEnd();
         }
 
-        public bool IsGameOver()
-        {
-            throw new NotImplementedException();
-        }
+        public bool IsGameOver() => this.isOver;
     }
 }

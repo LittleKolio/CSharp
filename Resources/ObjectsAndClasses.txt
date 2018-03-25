@@ -204,6 +204,8 @@
 ╟─├─┬───────────────────────────────────────────────────────────────────┐
 		│Collections that can be modified, but only in a certain way
 		├─┬─────────────────────────────────────────────────────────────────┘
+			using System.Collections.ObjectModel;
+		
 			private List<T> collection;
 			public ReadOnlyCollection<T> Collection
 			{

@@ -51,12 +51,20 @@
             get { return this.healt; }
             private set
             {
-                if (value <= 0 || value > this.BaseHealth)
+                if (value <= 0)
                 {
+                    this.healt = 0;
                     throw new ArgumentOutOfRangeException(
                         "Healt ... ArgumentException");
                 }
-                this.healt = value;
+                if (value > this.BaseHealth)
+                {
+                    this.healt = this.BaseHealth;
+                }
+                else
+                {
+                    this.healt = value;
+                }
             }
         }
 
@@ -66,12 +74,19 @@
             get { return this.armor; }
             private set
             {
-                if (value < 0 || value > this.BaseArmor)
+                if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException(
                         "Armor ... ArgumentException");
                 }
-                this.armor = value;
+                if (value > this.BaseArmor)
+                {
+                    this.armor = this.BaseArmor;
+                }
+                else
+                {
+                    this.armor = value;
+                }
             }
         }
 
@@ -88,7 +103,6 @@
         public void TakeDamage(double hitPoints)
         {
             Validation.IsCharacterAlive(this);
-
             try
             {
                 this.ChangeArmor(-1 * hitPoints);
@@ -146,6 +160,14 @@
         public void ChangeArmor(double amount)
         {
             this.Armor += amount;
+        }
+
+        public void GiveCharacterItem(Item item, Character character)
+        {
+            Validation.IsCharacterAlive(this);
+            Validation.IsCharacterAlive(character);
+
+            character.ReceiveItem(item);
         }
 
         private string Status => this.IsAlive ? "Alive" : "Dead";

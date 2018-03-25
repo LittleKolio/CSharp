@@ -63,11 +63,16 @@
         /// </summary>
         public static string DungeonMaster_Heal = "{0} heals {1} for {2}! {3} has {4} health now!";
 
+        /// <summary>
+        /// "{0_characterName} rests ({1_healthBeforeRest} => {2_currentHealth})"
+        /// </summary>
+        public static string DungeonMaster_Rest = "{0} rests ({1} => {2})";
+
         public static string Exception_Argument = "Parameter Error: {0}";
         public static string Exception_InvalidOperation = "Invalid Operation: {0}";
         public static string Exception_Faction = "Invalid faction \"{0}\"!";
         public static string Exception_InvalidCharacter = "Invalid character type \"{0}\"!";
-        public static string Exception_InvalidItem = "Invalid item type \"{0}\"!";
+        public static string Exception_InvalidItem = "Invalid item \"{0}\"!";
         public static string Exception_CharacterNotFound = "Character {0} not found!";
         public static string Exception_NoItemsInPool = "No items left in pool!";
 

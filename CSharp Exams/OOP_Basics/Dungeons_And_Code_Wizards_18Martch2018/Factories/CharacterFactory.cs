@@ -8,10 +8,11 @@
 
     public class CharacterFactory
     {
-        public Character CreateCharacter(string type, string[] args)
+        public Character CreateCharacter(string[] args)
         {
             string inFaction = args[0];
-            string name = args[1];
+            string type = args[1];
+            string name = args[2];
 
             Faction faction;
             if (!Enum.TryParse(inFaction, out faction))

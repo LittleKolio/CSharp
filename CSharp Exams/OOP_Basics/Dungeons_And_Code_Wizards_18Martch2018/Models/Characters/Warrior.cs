@@ -28,7 +28,7 @@ namespace DungeonsAndCodeWizards
 
             if (this.Faction == character.Faction)
             {
-                throw new InvalidOperationException(
+                throw new ArgumentException(
                     string.Format(Constants.Warrior_FriendlyFire, this.Faction));
             }
 

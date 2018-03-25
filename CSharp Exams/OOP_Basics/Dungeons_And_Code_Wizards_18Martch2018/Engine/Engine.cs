@@ -31,17 +31,25 @@
                 }
                 catch (ArgumentException ex)
                 {
-                    Console.WriteLine(
+                    Console.Write(
                         string.Format(Constants.Exception_Argument, ex.Message));
                 }
                 catch (InvalidOperationException ex)
                 {
-                    Console.WriteLine(
+                    Console.Write(
                         string.Format(Constants.Exception_InvalidOperation, ex.Message));
                 }
 
                 Console.WriteLine(result);
+
+                if (this.dungeonMaster.IsGameOver())
+                {
+                    break;
+                }
             }
+
+            Console.WriteLine("Final stats:");
+            Console.WriteLine(this.dungeonMaster.GetStats());
         }
 
         private string CommandSwitcher(string[] args)
@@ -52,7 +60,6 @@
             switch (commsnd)
             {
                 case "JoinParty": return this.dungeonMaster.JoinParty(args);
-
                 case "AddItemToPool": return this.dungeonMaster.AddItemToPool(args);
                 case "PickUpItem": return this.dungeonMaster.PickUpItem(args);
                 case "UseItem": return this.dungeonMaster.UseItem(args);
@@ -60,8 +67,11 @@
                 case "GiveCharacterItem": return dungeonMaster.GiveCharacterItem(args);
                 case "GetStats": return this.dungeonMaster.GetStats();
                 case "Attack": return this.dungeonMaster.Attack(args);
+                case "Heal": return this.dungeonMaster.Heal(args);
+                case "EndTurn": return this.dungeonMaster.EndTurn();
                 default: return null;
             }
+
         }
     }
 }
