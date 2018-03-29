@@ -11,6 +11,13 @@
         private Dictionary<string, Course> courses;
         private Dictionary<string, double> testScorByCourse;
 
+        public Student(string name)
+        {
+            this.Name = name;
+            this.courses = new Dictionary<string, Course>();
+            this.testScorByCourse = new Dictionary<string, double>();
+        }
+
         public string Name
         {
             get { return this.name; }
@@ -24,22 +31,9 @@
             }
         }
  
-        public IDictionary<string, Course> Courses
-        {
-            get { return this.courses; }
-        }
+        public IDictionary<string, Course> Courses => this.courses;
 
-        public IDictionary<string, double> TestScorByCourse
-        {
-            get { return this.testScorByCourse; }
-        }
-
-        public Student(string name)
-        {
-            this.Name = name;
-            this.courses = new Dictionary<string, Course>();
-            this.testScorByCourse = new Dictionary<string, double>();
-        }
+        public IDictionary<string, double> TestScorByCourse => this.testScorByCourse;
 
         public void EnrollInCourse(Course course)
         {

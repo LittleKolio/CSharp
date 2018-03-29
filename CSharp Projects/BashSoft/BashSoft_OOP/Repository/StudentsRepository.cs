@@ -20,15 +20,9 @@
             this.isDataInitialized = true;
         }
 
-        public IDictionary<string, Course> Courses
-        {
-            get { return this.courses; }
-        }
+        public IDictionary<string, Course> Courses =>  this.courses;
 
-        public int CoursesCount
-        {
-            get { return this.courses.Count; }
-        }
+        public int CoursesCount => this.courses.Count;
 
         public void ReadDataFromConsole()
         {
@@ -83,7 +77,7 @@
             }
         }
 
-        //Input format – {Course Name}_{Course Instance}{One or more white spaces}{Username}{One or more white spaces}{Score}
+        //Input format – {1_CourseName_CourseInstance}{WhiteSpaces}{2_Username}{WhiteSpaces}{3_Scores}
         private void ProcessingInput(string input)
         {
             Match match = Regex.Match(input, pattern);
@@ -95,19 +89,17 @@
 
             string courseName = match.Groups[1].Value;
             string studentName = match.Groups[2].Value;
-            List<int> scores;
+            int[] scores;
             try
             {
-                scores = new List<int>(
-                    this.SplitInput(match.Groups[3].Value, " "));
-
+                scores = this.SplitInput(match.Groups[3].Value, " ");
             }
-            catch ()
+            catch
             {
-
+                throw new ArgumentException("Invalid score!");
             }
 
-            if (!isScore || score < 0 || score > 100)
+            if (scores.Length == 0)
             {
                 return;
             }
@@ -115,7 +107,8 @@
             Course course = new Course(courseName);
             Student student = new Student(studentName);
             student.Courses.Add(courseName, course);
-            student.TestScorByCourse(courseName, score);
+            student.AddTestScorByCourse(courseName, scores);
+
 
             if (!courses.ContainsKey(courseName))
             {
@@ -125,12 +118,12 @@
             courses[courseName].EnrollStudent(student);
         }
 
-        private List<int> SplitInput(string input, string delimiter)
+        private int[] SplitInput(string input, string delimiter)
         {
             return input.Split(delimiter.ToCharArray(),
                 StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
-                .ToList();
+                .ToArray();
         }
 
         private Func<int, bool> 
