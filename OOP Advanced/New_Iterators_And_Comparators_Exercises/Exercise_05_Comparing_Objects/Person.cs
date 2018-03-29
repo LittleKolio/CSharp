@@ -8,6 +8,13 @@
 
     public class Person : IComparable<Person>
     {
+        public Person(string name, int age, string town)
+        {
+            this.Name = name;
+            this.Age = age;
+            this.Town = town;
+        }
+
         public string Name { get; }
         public int Age { get; }
         public string Town { get; }

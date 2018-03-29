@@ -1,4 +1,4 @@
-﻿namespace Exercise_05_Comparing_Objects
+﻿namespace Exercise_06_Strategy_Pattern
 {
     using System;
     using System.Collections.Generic;

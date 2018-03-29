@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_04_Froggy", "Exerc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_05_Comparing_Objects", "Exercise_05_Comparing_Objects\Exercise_05_Comparing_Objects.csproj", "{301BDAA2-49F3-49EB-AACF-E0A8596BC075}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_06_Strategy_Pattern", "Exercise_06_Strategy_Pattern\Exercise_06_Strategy_Pattern.csproj", "{49DE7839-C20B-4B4B-A096-2DF8CBAA9113}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_07_Equality_Logic", "Exercise_07_Equality_Logic\Exercise_07_Equality_Logic.csproj", "{C141B44D-5108-48D8-91AB-B5A3D84CFB66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{301BDAA2-49F3-49EB-AACF-E0A8596BC075}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{301BDAA2-49F3-49EB-AACF-E0A8596BC075}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{301BDAA2-49F3-49EB-AACF-E0A8596BC075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49DE7839-C20B-4B4B-A096-2DF8CBAA9113}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49DE7839-C20B-4B4B-A096-2DF8CBAA9113}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49DE7839-C20B-4B4B-A096-2DF8CBAA9113}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49DE7839-C20B-4B4B-A096-2DF8CBAA9113}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C141B44D-5108-48D8-91AB-B5A3D84CFB66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C141B44D-5108-48D8-91AB-B5A3D84CFB66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C141B44D-5108-48D8-91AB-B5A3D84CFB66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C141B44D-5108-48D8-91AB-B5A3D84CFB66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

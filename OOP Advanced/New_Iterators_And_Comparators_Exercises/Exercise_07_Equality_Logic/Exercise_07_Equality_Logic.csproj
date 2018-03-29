@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{301BDAA2-49F3-49EB-AACF-E0A8596BC075}</ProjectGuid>
+    <ProjectGuid>{C141B44D-5108-48D8-91AB-B5A3D84CFB66}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Exercise_05_Comparing_Objects</RootNamespace>
-    <AssemblyName>Exercise_05_Comparing_Objects</AssemblyName>
+    <RootNamespace>Exercise_07_Equality_Logic</RootNamespace>
+    <AssemblyName>Exercise_07_Equality_Logic</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,9 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="StartUp.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

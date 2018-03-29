@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{301BDAA2-49F3-49EB-AACF-E0A8596BC075}</ProjectGuid>
+    <ProjectGuid>{49DE7839-C20B-4B4B-A096-2DF8CBAA9113}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Exercise_05_Comparing_Objects</RootNamespace>
-    <AssemblyName>Exercise_05_Comparing_Objects</AssemblyName>
+    <RootNamespace>Exercise_06_Strategy_Pattern</RootNamespace>
+    <AssemblyName>Exercise_06_Strategy_Pattern</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgeComparer.cs" />
     <Compile Include="Engine.cs" />
+    <Compile Include="NameComparer.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
