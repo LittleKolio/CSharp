@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C141B44D-5108-48D8-91AB-B5A3D84CFB66}</ProjectGuid>
+    <ProjectGuid>{31B108C6-BE6B-4787-8A77-4C2536FEE0A0}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Exercise_07_Equality_Logic</RootNamespace>
-    <AssemblyName>Exercise_07_Equality_Logic</AssemblyName>
+    <RootNamespace>Exercise_01_Harvesting_Fields</RootNamespace>
+    <AssemblyName>Exercise_01_Harvesting_Fields</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="HarvestingFields.cs" />
+    <Compile Include="HarvestingFieldsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

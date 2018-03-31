@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercise_07_Equality_Logic
+namespace Exercise_03_BarracksWars_A_New_Factory
 {
     class Program
     {

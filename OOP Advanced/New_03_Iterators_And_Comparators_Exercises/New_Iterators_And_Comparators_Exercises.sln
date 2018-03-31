@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_06_Strategy_Patter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_07_Equality_Logic", "Exercise_07_Equality_Logic\Exercise_07_Equality_Logic.csproj", "{C141B44D-5108-48D8-91AB-B5A3D84CFB66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise_08_Pet_Clinics", "Exercise_08_Pet_Clinics\Exercise_08_Pet_Clinics.csproj", "{1D63BB5F-D18F-4C51-A416-559BB039CB62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{C141B44D-5108-48D8-91AB-B5A3D84CFB66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C141B44D-5108-48D8-91AB-B5A3D84CFB66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C141B44D-5108-48D8-91AB-B5A3D84CFB66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D63BB5F-D18F-4C51-A416-559BB039CB62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D63BB5F-D18F-4C51-A416-559BB039CB62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D63BB5F-D18F-4C51-A416-559BB039CB62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D63BB5F-D18F-4C51-A416-559BB039CB62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
