@@ -54,7 +54,7 @@
             FieldInfo[] fields = currentCommand
                 .GetType()
                 .GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
-                .Where(f => f.GetCustomAttribute<InjectAttribute>() != null)
+                .Where(f => f.GetCustomAttribute<InjectAttribute>().Count() != 0)
                 .ToArray();
 
             FieldInfo[] fieldsType = this.GetType()

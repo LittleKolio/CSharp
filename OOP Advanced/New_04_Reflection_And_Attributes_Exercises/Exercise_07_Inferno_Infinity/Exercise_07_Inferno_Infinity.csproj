@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F3E09776-1CC0-4D41-B74E-6D87EBF69D78}</ProjectGuid>
+    <ProjectGuid>{3B4DC995-05B0-4A8F-9843-FA137CEEC91B}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Exercise_03_BarracksWars_A_New_Factory</RootNamespace>
-    <AssemblyName>Exercise_03_BarracksWars_A_New_Factory</AssemblyName>
+    <RootNamespace>Exercise_07_Inferno_Infinity</RootNamespace>
+    <AssemblyName>Exercise_07_Inferno_Infinity</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -48,32 +48,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppEntryPoint.cs" />
-    <Compile Include="Attributes\InjectAttribute.cs" />
-    <Compile Include="Contracts\IAttacker.cs" />
-    <Compile Include="Contracts\ICommandInterpreter.cs" />
-    <Compile Include="Contracts\IDestroyable.cs" />
-    <Compile Include="Contracts\IExecutable.cs" />
-    <Compile Include="Contracts\IRepository.cs" />
-    <Compile Include="Contracts\IRunnable.cs" />
-    <Compile Include="Contracts\IUnit.cs" />
-    <Compile Include="Contracts\IUnitFactory.cs" />
-    <Compile Include="Core\CommandInterpreter.cs" />
-    <Compile Include="Core\Commands\AddCommand.cs" />
-    <Compile Include="Core\Commands\Command.cs" />
-    <Compile Include="Core\Commands\FightCommand.cs" />
-    <Compile Include="Core\Commands\ReportCommand.cs" />
-    <Compile Include="Core\Commands\RetireCommand.cs" />
+    <Compile Include="Contracts\IEngine.cs" />
+    <Compile Include="Contracts\IFormat.cs" />
+    <Compile Include="Contracts\IGemFactory.cs" />
+    <Compile Include="Contracts\IMagicalStats.cs" />
+    <Compile Include="Contracts\IWeapon.cs" />
+    <Compile Include="Contracts\IWeaponFactory.cs" />
+    <Compile Include="Contracts\IWriter.cs" />
     <Compile Include="Core\Engine.cs" />
-    <Compile Include="Core\Factories\UnitFactory.cs" />
-    <Compile Include="Data\UnitRepository.cs" />
-    <Compile Include="Models\Units\Archer.cs" />
-    <Compile Include="Models\Units\Gunner.cs" />
-    <Compile Include="Models\Units\Horseman.cs" />
-    <Compile Include="Models\Units\Pikeman.cs" />
-    <Compile Include="Models\Units\SwordsMan.cs" />
-    <Compile Include="Models\Units\Unit.cs" />
+    <Compile Include="Core\Factories\GemFactory.cs" />
+    <Compile Include="Core\Factories\WeaponFactory.cs" />
+    <Compile Include="IO\InputReader.cs" />
+    <Compile Include="Contracts\IReader.cs" />
+    <Compile Include="IO\OutputWriter.cs" />
+    <Compile Include="Models\Clarity.cs" />
+    <Compile Include="Models\Gems\Amethyst.cs" />
+    <Compile Include="Models\Gems\Emerald.cs" />
+    <Compile Include="Models\Gems\Gem.cs" />
+    <Compile Include="Models\Gems\Ruby.cs" />
+    <Compile Include="Models\Rarity.cs" />
+    <Compile Include="Models\Weapons\Axe.cs" />
+    <Compile Include="Models\Weapons\Knife.cs" />
+    <Compile Include="Models\Weapons\Sword.cs" />
+    <Compile Include="Models\Weapons\Weapon.cs" />
+    <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IO\FormatInput.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
