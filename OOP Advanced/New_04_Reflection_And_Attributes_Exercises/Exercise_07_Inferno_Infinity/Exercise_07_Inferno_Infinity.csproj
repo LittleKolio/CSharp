@@ -48,16 +48,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ICommandInterpreter.cs" />
     <Compile Include="Contracts\IEngine.cs" />
+    <Compile Include="Contracts\IExecutable.cs" />
     <Compile Include="Contracts\IFormat.cs" />
     <Compile Include="Contracts\IGemFactory.cs" />
     <Compile Include="Contracts\IMagicalStats.cs" />
     <Compile Include="Contracts\IWeapon.cs" />
     <Compile Include="Contracts\IWeaponFactory.cs" />
+    <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Contracts\IWriter.cs" />
+    <Compile Include="Core\CommandInterpreter.cs" />
+    <Compile Include="Core\Commands\Command.cs" />
+    <Compile Include="Core\Commands\CreateCommand.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Factories\GemFactory.cs" />
     <Compile Include="Core\Factories\WeaponFactory.cs" />
+    <Compile Include="Data\WeaponRepository.cs" />
     <Compile Include="IO\InputReader.cs" />
     <Compile Include="Contracts\IReader.cs" />
     <Compile Include="IO\OutputWriter.cs" />

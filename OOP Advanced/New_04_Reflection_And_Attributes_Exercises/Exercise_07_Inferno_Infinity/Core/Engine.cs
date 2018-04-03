@@ -13,12 +13,14 @@
         private IReader reader;
         private IWriter writer;
         private IFormat format;
+        private ICommandInterpreter commandInterpreter;
 
-        public Engine(IReader reader, IWriter writer, IFormat format)
+        public Engine(IReader reader, IWriter writer, IFormat format, ICommandInterpreter commandInterpreter)
         {
             this.reader = reader;
             this.writer = writer;
             this.format = format;
+            this.commandInterpreter = commandInterpreter;
         }
 
         public void Run()
@@ -26,11 +28,11 @@
             while (true)
             {
                 string[] tokens = this.format.Format(
-                    this.reader.Read(), ";");
-
-                //Console.WriteLine(string.Join("-", tokens));
+                    this.reader.Read(), "; ");
 
                 
+
+                Console.WriteLine(string.Join("-", tokens));
             }
         }
     }

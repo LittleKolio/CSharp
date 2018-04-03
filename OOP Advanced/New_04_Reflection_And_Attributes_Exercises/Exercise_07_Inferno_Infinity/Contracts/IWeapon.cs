@@ -2,7 +2,8 @@
 {
     public interface IWeapon
     {
-        void Add(IMagicalStats gem, int socket);
-        void Remove(int socket);
+        string Name { get; }
+        void AddGem(IMagicalStats gem, int socket);
+        void RemoveGem(int socket);
     }
 }

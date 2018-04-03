@@ -30,7 +30,8 @@
 
             collection.AddSingleton<IReader, InputReader>();
             collection.AddSingleton<IWriter, OutputWriter>();
-            collection.AddSingleton<IFormat, FormatInput>();
+            collection.AddTransient<IFormat, FormatInput>();
+            collection.AddTransient<ICommandInterpreter, CommandInterpreter>();
 
             collection.AddTransient<IEngine, Engine>();
             //collection.AddTransient<Engine>();

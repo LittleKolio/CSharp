@@ -8,8 +8,12 @@
 
     public class WeaponFactory : IWeaponFactory
     {
-        public IWeapon CreateWeapon(string weaponType, string[] args)
+        public IWeapon CreateWeapon(string[] data)
         {
+            string weaponType = data[0];
+            string weaponName = data[1];
+            string weaponRarity = data[2];
+
             Type type = Assembly
                 .GetExecutingAssembly()
                 .GetTypes()
@@ -21,16 +25,14 @@
                     "Invalid WeaponType!");
             }
 
-            string weaponName = args[0];
-
-            Rarity weaponRarity;
-            if (!Enum.TryParse<Rarity>(args[1], out weaponRarity))
+            Rarity rarity;
+            if (!Enum.TryParse<Rarity>(weaponRarity, out rarity))
             {
                 throw new ArgumentException(
                     "Invalid WeaponRarity!");
             }
 
-            object[] parameters = new object[] { weaponName, weaponRarity };
+            object[] parameters = new object[] { weaponName, rarity };
 
             if (!typeof(IWeapon).IsAssignableFrom(type))
             {

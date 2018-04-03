@@ -8,8 +8,10 @@
 
     public class GemFactory : IGemFactory
     {
-        public IMagicalStats CreateGem(string gemType, string[] args)
+        public IMagicalStats CreateGem(string[] data)
         {
+            string gemType = data[0];
+
             Type type = Assembly
                 .GetExecutingAssembly()
                 .GetTypes()
@@ -22,7 +24,7 @@
             }
 
             Clarity gemClarity;
-            if (!Enum.TryParse<Clarity>(args[0], out gemClarity))
+            if (!Enum.TryParse<Clarity>(data[1], out gemClarity))
             {
                 throw new ArgumentException(
                     "Invalid GemClarity!");

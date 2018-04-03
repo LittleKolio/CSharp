@@ -16,7 +16,6 @@
         private const int AgiModMinDamage = 1;
         private const int AgiModMaxDamage = 4;
 
-        private string name;
         private int minDamage;
         private int maxDamage;
         private Rarity rarity;
@@ -25,12 +24,14 @@
 
         protected Weapon(string name, int minDamage, int maxDamage, Rarity rarity, IMagicalStats[] gems)
         {
-            this.name = name;
+            this.Name = name;
             this.minDamage = minDamage;
             this.maxDamage = maxDamage;
             this.rarity = rarity;
             this.gems = gems;
         }
+
+        public string Name { get; }
 
         private int MinDamage => 
             (int)this.rarity * this.minDamage + 
@@ -46,7 +47,7 @@
         public int Agility => this.gems.Sum(g => g.Agility);
         public int Vitality => this.gems.Sum(g => g.Vitality);
 
-        public void Add(IMagicalStats gem, int socket)
+        public void AddGem(IMagicalStats gem, int socket)
         {
             if (socket < 0 || socket >= this.gems.Length)
             {
@@ -56,7 +57,7 @@
             this.gems[socket] = gem;
         }
 
-        public void Remove(int socket)
+        public void RemoveGem(int socket)
         {
             if (socket < 0 || socket >= this.gems.Length)
             {
@@ -73,7 +74,7 @@
 
         public override string ToString()
         {
-            return $"{this.name}: {this.MinDamage}-{this.MaxDamage} Damage, +{this.Strength} Strength, +{this.Agility} Agility, +{this.Vitality} Vitality";
+            return $"{this.Name}: {this.MinDamage}-{this.MaxDamage} Damage, +{this.Strength} Strength, +{this.Agility} Agility, +{this.Vitality} Vitality";
         }
     }
 }

@@ -36,20 +36,5 @@
                 }
             }
         }
-
-        // TODO: refactor for Problem 4
-        //private string InterpredCommand(string[] data, string commandName)
-        //{
-        //    string result = string.Empty;
-        //    switch (commandName)
-        //    {
-        //        case "fight":
-        //            Environment.Exit(0);
-        //            break;
-        //        default:
-        //            throw new InvalidOperationException("Invalid command!");
-        //    }
-        //    return result;
-        //}
     }
 }

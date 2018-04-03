@@ -2,6 +2,6 @@
 {
     public interface IWeaponFactory
     {
-        IWeapon CreateWeapon(string weaponType, string[] args);
+        IWeapon CreateWeapon(string[] data);
     }
 }

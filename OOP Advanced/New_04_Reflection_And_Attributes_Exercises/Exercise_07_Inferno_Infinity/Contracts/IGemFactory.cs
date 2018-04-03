@@ -2,6 +2,6 @@
 {
     public interface IGemFactory
     {
-        IMagicalStats CreateGem(string gemType, string[] args);
+        IMagicalStats CreateGem(string[] data);
     }
 }
