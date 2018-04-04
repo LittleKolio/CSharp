@@ -8,14 +8,13 @@
 
     public class Database
     {
-        private const int capacity = 5;
+        private const int capacity = 16;
 
         private IList<int> integers;
 
         public Database()
         {
             this.integers = new List<int>();
-            this.Count = 0;
         }
 
         public Database(params int[] integers) : this()
@@ -23,7 +22,7 @@
             this.FillArray(integers);
         }
 
-        public int Count { get; private set; }
+        public int Count => this.integers.Count;
 
         private void FillArray(params int[] integers)
         {
@@ -41,14 +40,13 @@
 
         public void Add(int element)
         {
-            if (this.Count == capacity - 1)
+            if (this.Count == capacity)
             {
                 throw new InvalidOperationException(
                     $"Capacity limit has been reached!");
             }
 
             this.integers.Add(element);
-            this.Count++;
         }
 
         public void Remove()
@@ -60,7 +58,6 @@
             }
 
             this.integers.RemoveAt(this.Count - 1);
-            this.Count--;
         }
 
         public int[] Fetch()

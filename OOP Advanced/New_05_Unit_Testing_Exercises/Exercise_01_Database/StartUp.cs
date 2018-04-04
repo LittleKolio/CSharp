@@ -1,16 +1,15 @@
-﻿namespace Exercise_01_Database
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-    public class StartUp
+namespace Exercise_01_Database
+{
+    class StartUp
     {
-        public static void Main()
+        static void Main(string[] args)
         {
-            Database data = new Database(1,2);
         }
     }
 }
