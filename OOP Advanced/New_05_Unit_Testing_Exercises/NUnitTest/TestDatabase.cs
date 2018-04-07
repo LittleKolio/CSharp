@@ -1,10 +1,36 @@
 ﻿using Exercise_01_Database;
 using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace NUnitTest
 {
     public class TestDatabase
     {
+        [Test]
+        public void Constructor_CreateArray()
+        {
+            //Arrange
+            int capacity = 16;
+            int[] args = new int[capacity];
+            for (int i = 0; i < capacity; i++)
+            {
+                args[i] = i + 1;
+            }
+
+            //Act
+            Database data = new Database(args);
+
+            //Assert
+            FieldInfo fieldInfo = typeof(Database)
+                .GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
+                .First(f => f.FieldType == typeof(IList<int>));
+            IList<int> fieldValues = (IList<int>)fieldInfo.GetValue(data);
+
+            Assert.That(fieldValues,Is.EquivalentTo(args));
+        }
+
         [Test]
         [TestCase(30)]
         [TestCase(6)]

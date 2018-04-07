@@ -51,8 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestDatabase.cs" />
+    <Compile Include="TestDynamicList.cs" />
+    <None Include="TestDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="TestPeopleDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -64,6 +66,14 @@
     <ProjectReference Include="..\Exercise_01_Database\Exercise_01_Database.csproj">
       <Project>{B9E86268-7E54-4034-B0C7-123E3188E1C2}</Project>
       <Name>Exercise_01_Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exercise_02_Extended_Database\Exercise_02_Extended_Database.csproj">
+      <Project>{CC22CD21-DFFF-40C0-A932-61F63BA0E431}</Project>
+      <Name>Exercise_02_Extended_Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exercise_08_Custom_Linked_List\Exercise_08_Custom_Linked_List.csproj">
+      <Project>{80e76f15-f03e-4e77-acca-d10cd65a0436}</Project>
+      <Name>Exercise_08_Custom_Linked_List</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
