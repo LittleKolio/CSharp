@@ -19,52 +19,6 @@ public class DraftManager
         this.providersById = new Dictionary<string, IProvider>();
     }
 
-    public string RegisterHarvester(List<string> arguments)
-    {
-        string type = arguments[0];
-        int id = int.Parse(arguments[1]);
-        var oreOutput = double.Parse(arguments[2]);
-        var energyRequirement = double.Parse(arguments[3]);
-
-        var sonicFactor = 0;
-        if (arguments.Count == 5)
-        {
-            sonicFactor = int.Parse(arguments[4]);
-        }
-
-        try
-        {
-            IHarvester harvester = HarvesterFactory.GenerateHarvester(arguments);
-            this.harvestersById.Add(id, harvester);
-        }
-        catch (ArgumentException e)
-        {
-            return e.Message;
-        }
-
-        return $"Successfully registered {type} Harvester - {id}";
-    }
-
-    public string RegisterProvider(List<string> arguments)
-    {
-        var type = arguments[0];
-        var id = arguments[1];
-        var energyOutput = int.Parse(arguments[2]);
-
-        try
-        {
-            ProviderFactory fac = new ProviderFactory();
-            IProvider provider = fac.GenerateProvider(arguments);
-            this.providersById.Add(id, provider);
-        }
-        catch (ArgumentException e)
-        {
-            return e.Message;
-        }
-
-        return $"Successfully registered {type} Provider - {id}";
-    }
-
     public string Day()
     {
         //calculate provided power for the day

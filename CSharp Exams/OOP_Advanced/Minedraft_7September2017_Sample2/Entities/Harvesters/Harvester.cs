@@ -26,8 +26,5 @@
         throw new System.NotImplementedException();
     }
 
-    public double Produce()
-    {
-        throw new System.NotImplementedException();
-    }
+    public double Produce() => this.OreOutput;
 }

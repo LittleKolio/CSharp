@@ -44,17 +44,21 @@
   <ItemGroup>
     <Compile Include="Attributes\RefreshEntitiesAttribute.cs" />
     <Compile Include="Constants\Constants.cs" />
+    <Compile Include="Core\CommandInterpreter.cs" />
     <Compile Include="Core\Commands\Command.cs" />
+    <Compile Include="Core\Commands\DayCommand.cs" />
     <Compile Include="Core\Commands\RegisterCommand.cs" />
     <Compile Include="Core\DraftManager.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\HarvesterController.cs" />
     <Compile Include="Core\ProviderController.cs" />
+    <Compile Include="Entities\EnergyRepository.cs" />
     <Compile Include="Entities\Harvesters\HammerHarvester.cs" />
     <Compile Include="Entities\Harvesters\Harvester.cs" />
     <Compile Include="Entities\Harvesters\InfinityHarvester.cs" />
     <Compile Include="Entities\Harvesters\SonicHarvester.cs" />
     <Compile Include="Entities\Harvesters\StandartHarvester.cs" />
+    <Compile Include="Entities\Mode.cs" />
     <Compile Include="Entities\Providers\PressureProvider.cs" />
     <Compile Include="Entities\Providers\Provider.cs" />
     <Compile Include="Entities\Providers\SolarProvider.cs" />
@@ -74,7 +78,7 @@
     <Compile Include="Interfaces\Factories\IProviderFactory.cs" />
     <Compile Include="Interfaces\IO\IReader.cs" />
     <Compile Include="Interfaces\IO\IWriter.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

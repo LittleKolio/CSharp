@@ -5,7 +5,7 @@ public abstract class Command : ICommand
 {
     private IList<string> arguments;
 
-    protected Command(IEnumerable<string> arguments)
+    protected Command(IList<string> arguments)
     {
         this.arguments = new List<string>(arguments);
     }

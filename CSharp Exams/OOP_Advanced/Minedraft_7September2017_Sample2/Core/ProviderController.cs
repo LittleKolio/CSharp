@@ -19,10 +19,11 @@ public class ProviderController : IProviderController
 
     public IReadOnlyCollection<IEntity> Entities => this.providers.AsReadOnly();
 
-    public string Register(IList<string> arguments)
+    public string Register(IList<string> args)
     {
-        var provider = this.factory.GenerateProvider(arguments);
+        var provider = this.factory.GenerateProvider(args);
         this.providers.Add(provider);
+
         return string.Format(Constants.SuccessfullRegistration, 
             provider.GetType().Name);
     }
@@ -31,7 +32,9 @@ public class ProviderController : IProviderController
     {
         double energyProduced = this.providers.Select(n => n.Produce()).Sum();
         this.energyRepository.StoreEnergy(energyProduced);
+
         this.TotalEnergyProduced += energyProduced;
+
         List<IProvider> reminder = new List<IProvider>();
 
         foreach (var provider in this.providers)
@@ -55,8 +58,7 @@ public class ProviderController : IProviderController
             this.providers.Remove(entity);
         }
 
-        //return string.Format(Constants.EnergyProducedToday, energyProduced);
-        return string.Empty;
+        return string.Format(Constants.EnergyOutputToday, energyProduced);
     }
 
     public string Repair(double val)

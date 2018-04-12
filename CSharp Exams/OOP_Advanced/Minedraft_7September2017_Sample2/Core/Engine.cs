@@ -4,59 +4,41 @@ using System.Linq;
 
 public class Engine
 {
-    private DraftManager manager;
+    private ICommandInterpreter commandInterpreter;
 
-    public Engine()
+    public Engine(ICommandInterpreter commandInterpreter)
     {
-        this.manager = new DraftManager();
+        this.commandInterpreter = commandInterpreter;
     }
 
     public void Run()
     {
         while (true)
         {
-            List<string> data = Console.ReadLine().Split().ToList();
-            string command = data[0];
-
-            switch (command)
+            IList<string> args = this.SplitInput(Console.ReadLine(), " ");
+            string result = string.Empty;
+            try
             {
-                case "Register":
-                    {
-                        string type = data[1];
-                        List<string> args = data.Skip(2).ToList();
-                        if (type == "Harvester")
-                        {
-                            manager.RegisterHarvester(args);
-                        }
-                        else if (type == "Provider")
-                        {
-                            manager.RegisterProvider(args);
-                        }
-                    }
-                    break;
+                result = this.commandInterpreter
+                    .ProcessCommand(args);
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
 
-                //case "RegisterProvider":
-                //    manager.RegisterProvider(args);
-                //    break;
-
-                case "Day": manager.Day(); break;
-
-                case "Mode":
-                    {
-                        List<string> args = data.Skip(1).ToList();
-                        manager.Mode(args);
-                    }
-                    break;
-
-                case "Check":
-                    //Console.WriteLine(manager.Check(args));
-                    break;
-
-                default:
-                    manager.ShutDown();
-                    Environment.Exit(0);
-                    break;
+            if (!string.IsNullOrEmpty(result))
+            {
+                Console.WriteLine(result);
             }
         }
+    }
+
+    private IList<string> SplitInput(string input, string delimiter)
+    {
+        return input
+            .Split(delimiter.ToCharArray(), 
+                StringSplitOptions.RemoveEmptyEntries)
+            .ToList();
     }
 }

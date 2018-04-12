@@ -2,8 +2,8 @@
 {
     private const int extraDurability = 500;
 
-    public SolarProvider(int id, double energyOutput, double energyRequirement)
-        : base(id, energyOutput, energyRequirement)
+    public SolarProvider(int id, double energyOutput)
+        : base(id, energyOutput)
     {
         base.Durability += extraDurability;
     }

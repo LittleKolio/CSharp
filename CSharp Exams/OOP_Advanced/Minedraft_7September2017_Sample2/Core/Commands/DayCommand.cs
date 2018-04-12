@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 
-public class RegisterCommand : Command
+public class DayCommand : Command
 {
     private IHarvesterController harvesterController;
     private IProviderController providerController;
 
-    public RegisterCommand(
+    public DayCommand(
         IList<string> arguments,
         IHarvesterController harvesterController,
         IProviderController providerController) 
@@ -19,14 +19,10 @@ public class RegisterCommand : Command
 
     public override string Execute()
     {
-        string type = base.Arguments[0];
-        IList<string> args = base.Arguments.Skip(1).ToList();
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine(this.providerController.Produce())
+            .AppendLine(this.harvesterController.Produce());
 
-        switch (type)
-        {
-            case "Harvester": return this.harvesterController.Register(args);
-            case "Provider": return this.providerController.Register(args);
-            default: throw new ArgumentException("Invalide RegisterCommand!");
-        }
+        return sb.ToString().TrimEnd();
     }
 }

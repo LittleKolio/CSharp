@@ -1,8 +1,11 @@
-﻿public class Provider : IProvider
+﻿using System;
+
+public class Provider : IProvider
 {
     private const int InitialDurability = 1000;
+    private const int durabilityLossPerDay = 100;
 
-    protected Provider(int id, double energyOutput, double energyRequirement)
+    protected Provider(int id, double energyOutput)
     {
         this.ID = id;
         this.EnergyOutput = energyOutput;
@@ -17,16 +20,20 @@
 
     public void Broke()
     {
-        throw new System.NotImplementedException();
-    }
+        //this.Durability = Math.Max(0, this.Durability - durabilityLossPerDay);
 
-    public double Produce()
-    {
-        throw new System.NotImplementedException();
+        this.Durability -= durabilityLossPerDay;
+        if (this.Durability < 0)
+        {
+            throw new ArgumentOutOfRangeException(
+                "Provider broke!");
+        }
     }
 
     public void Repair(double val)
     {
         throw new System.NotImplementedException();
     }
+
+    public double Produce() => this.EnergyOutput;
 }
