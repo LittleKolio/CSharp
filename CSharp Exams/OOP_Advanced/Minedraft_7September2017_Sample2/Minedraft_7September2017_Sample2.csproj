@@ -45,8 +45,10 @@
     <Compile Include="Attributes\RefreshEntitiesAttribute.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Core\Commands\Command.cs" />
+    <Compile Include="Core\Commands\RegisterCommand.cs" />
     <Compile Include="Core\DraftManager.cs" />
     <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\HarvesterController.cs" />
     <Compile Include="Core\ProviderController.cs" />
     <Compile Include="Entities\Harvesters\HammerHarvester.cs" />
     <Compile Include="Entities\Harvesters\Harvester.cs" />
