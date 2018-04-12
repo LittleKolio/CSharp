@@ -603,22 +603,45 @@ The classes in the System.Reflection namespace, together with System.Type, enabl
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│ Event
 	├─────────────────────────────────────────────────────────────────────┘
-	├─ Events in C# are special delegate instances declared by the keyword event. Event can be member of an interface - Delegates cannot.
+	├─ Events in C# are special delegate instances declared by the keyword "event". Event can be member of an interface - Delegates cannot.
 	
 	├─ An event can only be called in the class where it is defined. By default the access to the events is synchronized (thread-safe).
 
 ╟─├─┬───────────────────────────────────────────────────────────────────┐
-		public delegate void DeathDelegate();
-		
-		public class Player
-		{
-			public event DeathDelegate DeathEvent;
+		public event WorkPerformedHandler WorkPerformed;
+
+		//1.
+		if (WorkPerformed != null) 
+			WorkPerformed(8, WorkType.GenerateReports);
+
+		//2.
+		WorkPerformedHandler del = WorkPerformed as WorkPerformedHandler; 
+		if (del != null)
+			del(8, WorkType.GenerateReports);
+
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		public delegate void WorkPerfHandler (int hours, WorkType workType); 
+
+		public class Worker 
+		{     
+			public event WorkPerfHandler WorkPerformed;
 			
-			private 
-		}
-
-
-
+			public virtual void DoWork(int hours, WorkType workType)     
+			{         
+				// Do work here and notify consumer that work has been performed
+				OnWorkPerformed(hours, workType);     
+			} 
+			
+			protected virtual void OnWorkPerformed (int hours, WorkType workType)
+			{
+				WorkPerfHandler del = WorkPerformed as WorkPerfHandler;
+				
+				if (del != null) //Listeners are attached
+				{
+					del(hours, workType);
+				}
+			}
+		} 
 
 
 
