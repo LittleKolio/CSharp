@@ -32,7 +32,7 @@ public class Provider : IProvider
 
     public void Repair(double val)
     {
-        throw new System.NotImplementedException();
+        this.Durability += val;
     }
 
     public double Produce() => this.EnergyOutput;

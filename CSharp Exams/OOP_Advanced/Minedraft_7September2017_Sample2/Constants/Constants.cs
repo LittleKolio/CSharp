@@ -7,4 +7,6 @@
     public const string OreOutputToday = "Produced {0} ore today!";
 
     public const string EnergyOutputToday = "Produced {0} energy today!";
+
+    public const string ModeChange = "Mode changed to {0}!";
 }

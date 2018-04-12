@@ -17,11 +17,20 @@ public class HarvesterController : IHarvesterController
         this.mode = Mode.Full;
     }
 
+    public IReadOnlyCollection<IHarvester> Entities => this.harvesters.AsReadOnly();
+
     public double OreProduced { get; private set; }
 
     public string ChangeMode(string mode)
     {
-        throw new NotImplementedException();
+        bool isMode = Enum.TryParse(mode, true, out this.mode);
+
+        if (!isMode)
+        {
+            throw new ArgumentException("Invalide ModeType!");
+        }
+
+        return string.Format(Constants.ModeChange, this.mode);
     }
 
     public string Produce()
