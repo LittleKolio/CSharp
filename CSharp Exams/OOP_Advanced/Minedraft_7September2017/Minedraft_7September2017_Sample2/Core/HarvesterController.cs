@@ -9,15 +9,15 @@ public class HarvesterController : IHarvesterController
     private IEnergyRepository energyRepository;
     private Mode mode;
 
-    public HarvesterController(IEnergyRepository energyRepository)
+    public HarvesterController(IEnergyRepository energyRepository, IHarvesterFactory factory)
     {
-        this.harvesters = new List<IHarvester>();
-        this.factory = new HarvesterFactory();
         this.energyRepository = energyRepository;
+        this.factory = factory;
+        this.harvesters = new List<IHarvester>();
         this.mode = Mode.Full;
     }
 
-    public IReadOnlyCollection<IHarvester> Entities => this.harvesters.AsReadOnly();
+    public IReadOnlyCollection<IEntity> Entities => this.harvesters.AsReadOnly();
 
     public double OreProduced { get; private set; }
 

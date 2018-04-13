@@ -12,6 +12,8 @@ public class InspectCommand : Command
         IProviderController providerController) 
         : base(arguments)
     {
+        this.harvesterController = harvesterController;
+        this.providerController = providerController;
     }
 
     public override string Execute()

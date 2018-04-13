@@ -8,11 +8,11 @@ public class ProviderController : IProviderController
     private IEnergyRepository energyRepository;
     private IProviderFactory factory;
 
-    public ProviderController(IEnergyRepository energyRepository)
+    public ProviderController(IEnergyRepository energyRepository, IProviderFactory factory)
     {
         this.energyRepository = energyRepository;
+        this.factory = factory;
         this.providers = new List<IProvider>();
-        this.factory = new ProviderFactory();
     }
 
     public double TotalEnergyProduced { get; private set; }
