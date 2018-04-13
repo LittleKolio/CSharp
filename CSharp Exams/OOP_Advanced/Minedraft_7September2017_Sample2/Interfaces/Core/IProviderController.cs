@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-public interface IProviderController : IController
+﻿public interface IProviderController : IController
 {
     double TotalEnergyProduced { get; }
 

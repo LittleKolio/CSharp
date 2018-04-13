@@ -1,4 +1,6 @@
-﻿public abstract class Harvester : IHarvester
+﻿using System;
+
+public abstract class Harvester : IHarvester
 {
     private const int InitialDurability = 1000;
     
@@ -27,4 +29,10 @@
     }
 
     public double Produce() => this.OreOutput;
+
+    public override string ToString()
+    {
+        return string.Format(Constants.Entity,
+            this.GetType().Name, Environment.NewLine, this.Durability);
+    }
 }

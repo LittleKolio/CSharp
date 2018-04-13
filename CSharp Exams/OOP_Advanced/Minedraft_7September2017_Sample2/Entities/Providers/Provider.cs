@@ -36,4 +36,10 @@ public class Provider : IProvider
     }
 
     public double Produce() => this.EnergyOutput;
+
+    public override string ToString()
+    {
+        return string.Format(Constants.Entity,
+            this.GetType().Name, Environment.NewLine, this.Durability);
+    }
 }
