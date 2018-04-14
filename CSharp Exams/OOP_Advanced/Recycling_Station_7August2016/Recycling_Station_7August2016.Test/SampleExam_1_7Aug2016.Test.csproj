@@ -61,7 +61,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SampleExam_1_7Aug2016\SampleExam_1_7Aug2016.csproj">
+    <ProjectReference Include="..\Recycling_Station_7August2016_Sample1\SampleExam_1_7Aug2016.csproj">
       <Project>{15f7acb3-1792-4dad-b763-723f0acfd7ef}</Project>
       <Name>SampleExam_1_7Aug2016</Name>
     </ProjectReference>
