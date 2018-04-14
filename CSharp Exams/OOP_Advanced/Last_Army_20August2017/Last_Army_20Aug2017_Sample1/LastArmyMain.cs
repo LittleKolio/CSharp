@@ -1,33 +1,21 @@
-﻿using System;
-using System.Text;
-using Last_Army.Core;
-using Last_Army.IO;
-
-namespace Last_Army
+﻿public class LastArmyMain
 {
-    class LastArmyMain
+    public static void Main()
     {
-        static void Main()
-        {
-            var input = ConsoleReader.ReadLine();
-            var gameController = new GameController();
-            var result = new StringBuilder();
+        Army army = new Army();
+        WearHouse wearHouse = new WearHouse();
+        SoldiersFactory soldiersFactory = new SoldiersFactory();
+        AmmunitionFactory ammunitionFactory = new AmmunitionFactory();
+        MissionController missionController = new MissionController();
 
-            while (!input.Equals("Enough! Pull back!"))
-            {
-                try
-                {
-                    gameController.GiveInputToGameController(input);
-                }
-                catch (ArgumentException arg)
-                {
-                    result.AppendLine(arg.Message);
-                }
-                input = ConsoleReader.ReadLine();
-            }
+        GameController gameController = new GameController(
+            missionController,
+            soldiersFactory,
+            ammunitionFactory,
+            army, 
+            wearHouse);
 
-            gameController.RequestResult(result);
-            ConsoleWriter.WriteLine(result.ToString());
-        }
+        Engine engine = new Engine(gameController);
+        engine.Run();
     }
 }

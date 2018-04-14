@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-public class SpecialForce : Soldier
+public class Ranker : Soldier
 {
-    private const double OverallSkillMiltiplier = 3.5;
-    private const double increaseEndurance = 30;
+    private const double OverallSkillMiltiplier = 1.5;
+    private const double increaseEndurance = 10;
 
     protected override IReadOnlyList<string> WeaponsAllowed => new List<string>
     {
         "Gun",
         "AutomaticMachine",
         "MachineGun",
-        "RPG",
-        "Helmet",
-        "Knife",
-        "NightVision"
     };
 
-    public SpecialForce(string name, int age, double experience, double endurance)
+    public Ranker(string name, int age, double experience, double endurance)
         : base(name, age, experience, endurance)
     {
         base.OverallSkill *= OverallSkillMiltiplier;

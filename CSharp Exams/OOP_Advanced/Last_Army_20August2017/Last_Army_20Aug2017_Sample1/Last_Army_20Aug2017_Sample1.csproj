@@ -44,24 +44,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\AmmunitionsController.cs" />
+    <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\GameController.cs" />
     <Compile Include="Core\MissionController.cs" />
     <Compile Include="Core\Output.cs" />
     <Compile Include="Core\SoldierController.cs" />
+    <Compile Include="Entities\Ammunitions\Ammunition.cs" />
     <Compile Include="Entities\Ammunitions\AutomaticMachine.cs" />
-    <Compile Include="Entities\Ammunitions\BulletproofVest.cs" />
-    <Compile Include="Entities\Ammunitions\Grenades.cs" />
     <Compile Include="Entities\Ammunitions\Gun.cs" />
     <Compile Include="Entities\Ammunitions\Helmet.cs" />
     <Compile Include="Entities\Ammunitions\Knife.cs" />
     <Compile Include="Entities\Ammunitions\MachineGun.cs" />
     <Compile Include="Entities\Ammunitions\NightVision.cs" />
     <Compile Include="Entities\Ammunitions\RPG.cs" />
-    <Compile Include="Entities\Ammunitions\Shield.cs" />
-    <Compile Include="Entities\Ammunitions\Weapons.cs" />
+    <Compile Include="Entities\Army.cs" />
+    <Compile Include="Entities\Missions\Easy.cs" />
+    <Compile Include="Entities\Missions\Hard.cs" />
+    <Compile Include="Entities\Missions\Medium.cs" />
+    <Compile Include="Entities\Missions\Mission.cs" />
+    <Compile Include="Entities\Soldiers\Corporal.cs" />
+    <Compile Include="Entities\Soldiers\Ranker.cs" />
     <Compile Include="Entities\Soldiers\Soldier.cs" />
     <Compile Include="Entities\Soldiers\SpecialForce.cs" />
+    <Compile Include="Entities\WearHouse.cs" />
     <Compile Include="Factory\AmmunitionFactory.cs" />
+    <Compile Include="Factory\MissionFactory.cs" />
     <Compile Include="Factory\SoldierFactory.cs" />
     <Compile Include="Interfaces\IAmmunition.cs" />
     <Compile Include="Interfaces\IAmmunitionFactory.cs" />
@@ -70,6 +77,7 @@
     <Compile Include="Interfaces\IMissionFactory.cs" />
     <Compile Include="Interfaces\ISoldier.cs" />
     <Compile Include="Interfaces\ISoldierFactory.cs" />
+    <Compile Include="Interfaces\IWearHouse.cs" />
     <Compile Include="IO\ConsoleReader.cs" />
     <Compile Include="IO\ConsoleWriter.cs" />
     <Compile Include="LastArmyMain.cs" />

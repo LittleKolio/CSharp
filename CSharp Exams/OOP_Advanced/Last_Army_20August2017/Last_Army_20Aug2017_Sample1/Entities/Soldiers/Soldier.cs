@@ -1,35 +1,52 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public abstract class Soldier : ISoldier
 {
-    private double endurance;
-    
-    public IDictionary<string, IAmmunition> Weapons { get; }
-    
-    protected abstract IReadOnlyList<string> WeaponsAllowed { get; }
-    
-    public bool ReadyForMission(IMission mission)
+    //public override string ToString() => string.Format(OutputMessages.SoldierToString, this.Name, this.OverallSkill);
+
+    private const double maxEndurance = 100;
+
+    protected Soldier(string name, int age, double experience, double endurance)
     {
-        if (this.Endurance < mission.EnduranceRequired)
-        {
-            return false;
-        }
-
-        bool hasAllEquipment = this.Weapons.Values.Count(weapon => weapon == null) == 0;
-
-        if (!hasAllEquipment)
-        {
-            return false;
-        }
-
-        return this.Weapons.Values.Count(weapon => weapon.WearLevel <= 0) == 0;
+        this.Name = name;
+        this.Age = age;
+        this.Experience = experience;
+        this.Endurance = endurance;
+        this.OverallSkill = age + experience;
     }
 
-    private void AmmunitionRevision(double missionWearLevelDecrement)
+    public int Age { get; private set; }
+
+    public string Name { get; private set; }
+
+    private double endurance;
+    public double Endurance
     {
-        IEnumerable<string> keys = this.Weapons.Keys.ToList();
-        foreach (string weaponName in keys)
+        get { return this.endurance; }
+        protected set
+        {
+            this.endurance = Math.Min(maxEndurance, value);
+        }
+    }
+
+    public double Experience { get; private set; }
+
+    public double OverallSkill { get; protected set; }
+
+    protected abstract IReadOnlyList<string> WeaponsAllowed { get; }
+
+    public IDictionary<string, IAmmunition> Weapons { get; private set; }
+
+    public void CompleteMission(IMission mission)
+    {
+        this.DecreaseAmmunitionWearLevel(mission.WearLevelDecrement);
+    }
+
+    private void DecreaseAmmunitionWearLevel(double missionWearLevelDecrement)
+    {
+        foreach (string weaponName in this.Weapons.Keys)
         {
             this.Weapons[weaponName].DecreaseWearLevel(missionWearLevelDecrement);
 
@@ -40,5 +57,29 @@ public abstract class Soldier : ISoldier
         }
     }
 
-    public override string ToString() => string.Format(OutputMessages.SoldierToString, this.Name, this.OverallSkill);
+    public bool ReadyForMission(IMission mission)
+    {
+        bool enoughEndurance = this.Endurance < mission.EnduranceRequired;
+
+        if (enoughEndurance)
+            return false;
+
+        bool neededAmmunitions = 
+            this.Weapons.Values.Count(w => w != null) != 
+            this.WeaponsAllowed.Count();
+
+        if (neededAmmunitions)
+            return false;
+
+        bool positiveWearLevel = 
+            this.Weapons.Values.Count(w => w.WearLevel < 0) != 
+            this.WeaponsAllowed.Count();
+
+        if (positiveWearLevel)
+            return false;
+
+        return true;
+    }
+
+    public abstract void Regenerate();
 }

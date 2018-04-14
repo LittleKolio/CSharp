@@ -1,30 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-namespace Last_Army.Core
+using System.Reflection;
+
+public class SoldiersFactory : ISoldierFactory
 {
-    public class SoldiersFactory
+    public ISoldier CreateSoldier(
+        string soldierTypeName, string name, int age, double experience, double endurance)
     {
-        public SoldiersFactory()
+        Type soldierType = Assembly
+            .GetExecutingAssembly()
+            .GetTypes()
+            .FirstOrDefault(t => t.Name == soldierTypeName);
+
+        if (soldierType == null)
         {
-        }
-        //name, age, experience, speed, endurance, motivation, maxWeight
-        public static Soldier GenerateRanker(string name, int age, int experience, double speed, double endurance,
-            double motivation, double maxWeight)
-        {
-            return new Ranker(name, age, experience, speed, endurance, motivation, maxWeight);
+            throw new ArgumentException(
+                "Invalid SoldierType!");
         }
 
-        public static Soldier GenerateCorporal(string name, int age, int experience, double speed, double endurance,
-            double motivation, double maxWeight)
+        if (!typeof(ISoldier).IsAssignableFrom(soldierType))
         {
-            return new Corporal(name, age, experience, speed, endurance, motivation, maxWeight);
+            throw new InvalidOperationException(
+                "SoldierType don't inherit ISoldier!");
         }
 
-        public static Soldier GenerateSpecialForce(string name, int age, int experience, double speed, double endurance,
-            double motivation, double maxWeight)
+        object[] parameters = new object[]
         {
-            return new SpecialForce(name, age, experience, speed, endurance, motivation, maxWeight);
-        }
+            name, age, experience, endurance
+        };
+
+        ISoldier soldier = (ISoldier)Activator.CreateInstance(
+            soldierType, parameters);
+
+        return soldier;
     }
 }

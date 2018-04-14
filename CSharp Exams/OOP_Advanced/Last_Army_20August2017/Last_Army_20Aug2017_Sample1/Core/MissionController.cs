@@ -8,13 +8,18 @@ public class MissionController
     public int SuccessMissionCounter { get; private set; }
     public int FailedMissionCounter { get; private set; }
 
-    private IArmy army;
-    private IWareHouse wareHouse;
+    //private IArmy army;
+    //private IWareHouse wareHouse;
 
-    public MissionController(IArmy army, IWareHouse wareHouse)
+    //public MissionController(IArmy army, IWareHouse wareHouse)
+    //{
+    //    this.army = army;
+    //    this.wareHouse = wareHouse;
+    //    this.missionQueue = new Queue<IMission>();
+    //}
+
+    public MissionController()
     {
-        this.army = army;
-        this.wareHouse = wareHouse;
         this.missionQueue = new Queue<IMission>();
     }
 

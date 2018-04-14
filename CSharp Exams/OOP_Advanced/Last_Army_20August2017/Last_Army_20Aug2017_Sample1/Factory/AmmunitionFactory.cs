@@ -1,63 +1,33 @@
-﻿namespace Last_Army.Factory
+﻿using System;
+using System.Linq;
+using System.Reflection;
+
+public class AmmunitionFactory : IAmmunitionFactory
 {
-    public class AmmunitionFactory
+    public IAmmunition CreateAmmunition(string ammunitionName)
     {
-        public AmmunitionFactory()
+        Type ammunitionType = Assembly
+            .GetExecutingAssembly()
+            .GetTypes()
+            .FirstOrDefault(t => t.Name == ammunitionName);
+
+        if (ammunitionType == null)
         {
+            throw new ArgumentException(
+                "Invalid AmmunitionType!");
         }
 
-        public static IAmmunition CreateAmmunition(string name)
+        if (!typeof(IAmmunition).IsAssignableFrom(ammunitionType))
         {
-            switch (name)
-            {
-                case "BulletproofVest":
-                    return new BulletproofVest(name);
-                case "Grenades":
-                    return new Grenades(name);
-                case "Helmet":
-                    return new Helmet(name);
-                case "Knife":
-                    return new Knife(name);
-                case "NightVision":
-                    return new NightVision(name);
-                case "Shield":
-                    return new Shield(name);
-                case "AutomaticMachine":
-                    return new AutomaticMachine(name);
-                case "Gun":
-                    return new Gun(name);
-                case "MachineGun":
-                    return new MachineGun(name);
-            }
-            //if none of the above did not match it will be RPG
-            return new RPG(name);
+            throw new InvalidOperationException(
+                "AmmunitionType don't inherit IAmmunition!");
         }
 
-        public static Ammunition CreateAmmunitions(string name, int number)
-        {
-            switch (name)
-            {
-                case "BulletproofVest":
-                    return new BulletproofVest(name, number);
-                case "Grenades":
-                    return new Grenades(name, number);
-                case "Helmet":
-                    return new Helmet(name, number);
-                case "Knife":
-                    return new Knife(name, number);
-                case "NightVision":
-                    return new NightVision(name, number);
-                case "Shield":
-                    return new Shield(name, number);
-                case "AutomaticMachine":
-                    return new AutomaticMachine(name, number);
-                case "Gun":
-                    return new Gun(name, number);
-                case "MachineGun":
-                    return new MachineGun(name, number);
-            }
-            //if none of the above did not match it will be RPG
-            return new RPG(name, number);
-        }
+        object[] parameters = new object[] { ammunitionName };
+
+        IAmmunition ammunition = (IAmmunition)Activator.CreateInstance(
+            ammunitionType, parameters);
+
+        return ammunition;
     }
 }

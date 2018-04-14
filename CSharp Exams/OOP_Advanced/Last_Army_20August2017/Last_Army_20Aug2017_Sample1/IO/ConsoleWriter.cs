@@ -1,12 +1,6 @@
 ﻿using System;
 
-namespace Last_Army.IO
+public static class ConsoleWriter
 {
-    class ConsoleWriter
-    {
-        public static void WriteLine(string output)
-        {
-            Console.WriteLine(output);
-        }
-    }
+    public static void WriteLine(string output) => Console.WriteLine(output);
 }
