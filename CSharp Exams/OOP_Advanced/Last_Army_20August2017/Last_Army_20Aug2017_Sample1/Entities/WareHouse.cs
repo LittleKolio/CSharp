@@ -4,10 +4,10 @@ using System.Linq;
 
 public class WareHouse : IWareHouse
 {
-    private AmmunitionFactory ammunitionFactory;
+    private IAmmunitionFactory ammunitionFactory;
     private Dictionary<string, int> ammunitions;
 
-    public WareHouse(AmmunitionFactory ammunitionFactory)
+    public WareHouse(IAmmunitionFactory ammunitionFactory)
     {
         this.ammunitionFactory = ammunitionFactory;
         this.ammunitions = new Dictionary<string, int>();
@@ -42,9 +42,10 @@ public class WareHouse : IWareHouse
     {
         bool equipped = true;
 
-        IEnumerable<string> ammoNeeded = soldier.Weapons
+        IList<string> ammoNeeded = soldier.Weapons
             .Where(a => a.Value == null)
-            .Select(a => a.Key);
+            .Select(a => a.Key)
+            .ToList();
 
         foreach (string ammo in ammoNeeded)
         {

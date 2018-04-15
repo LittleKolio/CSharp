@@ -44,13 +44,27 @@
 	NuGet Packages
 	1 NUnit 
 	2 NUnit3TestAdapter
-	(optional) 3 Microsoft.Net.Test.Sdk
+	3 (optional) Microsoft.Net.Test.Sdk
+	4 (optional) Moq
 	
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│Test Explorer 
 	├─────────────────────────────────────────────────────────────────────┘
 	Ctrl + E, T
-	Test -> Windows -> TestExplorer)
+	Test -> Windows -> TestExplorer
+	
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│Attributes
+	├─────────────────────────────────────────────────────────────────────┘
+	using NUnit.Framework;
+	
+	[TestFixture]
+	public class TestClassName
+	{
+		[Test]
+		publc void MethodName() { }
+	}
+	
 	
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│Assert

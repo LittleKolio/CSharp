@@ -3,21 +3,25 @@
     public static void Main()
     {
         //Facttories
-        MissionFactory missionFactory = new MissionFactory();
-        SoldiersFactory soldiersFactory = new SoldiersFactory();
-        AmmunitionFactory ammunitionFactory = new AmmunitionFactory();
+        IMissionFactory missionFactory = new MissionFactory();
+        ISoldierFactory soldiersFactory = new SoldierFactory();
+        IAmmunitionFactory ammunitionFactory = new AmmunitionFactory();
 
-        MissionController missionController = new MissionController(missionFactory);
 
         //Repositories
-        Army army = new Army(soldiersFactory);
-        WareHouse wearHouse = new WareHouse(ammunitionFactory);
+        IArmy army = new Army();
+        IWareHouse wearHouse = new WareHouse(ammunitionFactory);
 
-        GameController gameController = new GameController(
+        //Controllers
+        IMissionController missionController = new MissionController(army, wearHouse);
+        IGameController gameController = new GameController(
             missionController,
+            soldiersFactory,
+            missionFactory,
             army, 
             wearHouse);
 
+        //Engine
         Engine engine = new Engine(gameController);
         engine.Run();
     }

@@ -45,9 +45,8 @@
   <ItemGroup>
     <Compile Include="Constants\Message.cs" />
     <Compile Include="Core\Engine.cs" />
-    <Compile Include="Core\GameController.cs" />
-    <Compile Include="Core\MissionController.cs" />
-    <Compile Include="Core\Output.cs" />
+    <Compile Include="Core\Controllers\GameController.cs" />
+    <Compile Include="Core\Controllers\MissionController.cs" />
     <Compile Include="Entities\Ammunitions\Ammunition.cs" />
     <Compile Include="Entities\Ammunitions\AutomaticMachine.cs" />
     <Compile Include="Entities\Ammunitions\Gun.cs" />
@@ -69,14 +68,16 @@
     <Compile Include="Factory\AmmunitionFactory.cs" />
     <Compile Include="Factory\MissionFactory.cs" />
     <Compile Include="Factory\SoldierFactory.cs" />
-    <Compile Include="Interfaces\IAmmunition.cs" />
-    <Compile Include="Interfaces\IAmmunitionFactory.cs" />
-    <Compile Include="Interfaces\IArmy.cs" />
-    <Compile Include="Interfaces\IMission.cs" />
-    <Compile Include="Interfaces\IMissionFactory.cs" />
-    <Compile Include="Interfaces\ISoldier.cs" />
-    <Compile Include="Interfaces\ISoldierFactory.cs" />
-    <Compile Include="Interfaces\IWareHouse.cs" />
+    <Compile Include="Interfaces\Entities\IAmmunition.cs" />
+    <Compile Include="Interfaces\Factories\IAmmunitionFactory.cs" />
+    <Compile Include="Interfaces\Repos\IArmy.cs" />
+    <Compile Include="Interfaces\Controllers\IGameController.cs" />
+    <Compile Include="Interfaces\Entities\IMission.cs" />
+    <Compile Include="Interfaces\Factories\IMissionFactory.cs" />
+    <Compile Include="Interfaces\Controllers\IMissionController.cs" />
+    <Compile Include="Interfaces\Entities\ISoldier.cs" />
+    <Compile Include="Interfaces\Factories\ISoldierFactory.cs" />
+    <Compile Include="Interfaces\Repos\IWareHouse.cs" />
     <Compile Include="IO\ConsoleReader.cs" />
     <Compile Include="IO\ConsoleWriter.cs" />
     <Compile Include="LastArmyMain.cs" />

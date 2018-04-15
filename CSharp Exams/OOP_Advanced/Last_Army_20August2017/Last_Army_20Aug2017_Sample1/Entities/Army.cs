@@ -8,7 +8,7 @@ public class Army : IArmy
 {
     private List<ISoldier> soldiers;
 
-    public Army(SoldiersFactory soldiersFactory)
+    public Army()
     {
         this.soldiers = new List<ISoldier>();
     }
@@ -29,5 +29,17 @@ public class Army : IArmy
         {
             soldier.Regenerate();
         }
+    }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder("Soldiers:" + Environment.NewLine);
+
+        foreach (ISoldier soldier in 
+            this.soldiers.OrderByDescending(s => s.OverallSkill))
+        {
+            sb.AppendLine(soldier.ToString());
+        }
+        return sb.ToString().TrimEnd();
     }
 }

@@ -23,10 +23,7 @@ public class AmmunitionFactory : IAmmunitionFactory
                 "AmmunitionType don't inherit IAmmunition!");
         }
 
-        object[] parameters = new object[] { ammunitionName };
-
-        IAmmunition ammunition = (IAmmunition)Activator.CreateInstance(
-            ammunitionType, parameters);
+        IAmmunition ammunition = (IAmmunition)Activator.CreateInstance(ammunitionType, null);
 
         return ammunition;
     }

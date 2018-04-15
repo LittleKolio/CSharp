@@ -4,20 +4,20 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-public class GameController
+public class GameController : IGameController
 {
-    private MissionController missionController;
-    private SoldiersFactory soldiersFactory;
-    private MissionFactory missionFactory;
-    private Army army;
-    private WareHouse wareHouse;
+    private IMissionController missionController;
+    private ISoldierFactory soldiersFactory;
+    private IMissionFactory missionFactory;
+    private IArmy army;
+    private IWareHouse wareHouse;
 
     public GameController(
-        MissionController missionController,
-        SoldiersFactory soldiersFactory,
-        MissionFactory missionFactory,
-        Army army, 
-        WareHouse wareHouse)
+        IMissionController missionController,
+        ISoldierFactory soldiersFactory,
+        IMissionFactory missionFactory,
+        IArmy army, 
+        IWareHouse wareHouse)
     {
         this.missionController = missionController;
         this.soldiersFactory = soldiersFactory;
@@ -41,7 +41,14 @@ public class GameController
 
         object[] parameters = new object[] { data.Skip(1).ToArray() };
 
-        method.Invoke(this, parameters);
+        try
+        {
+            method.Invoke(this, parameters);
+        }
+        catch (TargetInvocationException tie)
+        {
+            throw tie.InnerException;
+        }
     }
 
     private void MissionCommand(string[] data)
@@ -51,7 +58,8 @@ public class GameController
 
         IMission mission = this.missionFactory.CreateMission(level, points);
 
-        this.missionController.PerformMission(mission);
+        Console.WriteLine(
+            this.missionController.PerformMission(mission));
     }
 
     private void WareHouseCommand(string[] data)
@@ -92,22 +100,11 @@ public class GameController
         }
     }
 
-    //public string RequestResult()
-    //{
-    //    return Output.GiveOutput(result, army, wearHouse, this.MissionController.MissionQueue.Count);
-    //}
+    public void RequestResult()
+    {
+        this.missionController.CalcFailMissions();
 
-    //private void AddSoldierToArmy(ISoldier soldier, string type)
-    //{
-    //    if (!soldier.CheckIfSoldierCanJoinTeam())
-    //    {
-    //        throw new ArgumentException($"The soldier {soldier.Name} is not skillful enough {type} team");
-    //    }
-
-    //    if (!this.Army.ContainsKey(type))
-    //    {
-    //        this.Army[type] = new List<Soldier>();
-    //    }
-    //    this.Army[type].Add(soldier);
-    //}
+        ConsoleWriter.WriteLine(this.missionController.ToString());
+        ConsoleWriter.WriteLine(this.army.ToString());
+    }
 }

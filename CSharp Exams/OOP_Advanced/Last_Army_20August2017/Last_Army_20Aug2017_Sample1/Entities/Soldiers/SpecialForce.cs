@@ -21,8 +21,9 @@ public class SpecialForce : Soldier
     public SpecialForce(string name, int age, double experience, double endurance)
         : base(name, age, experience, endurance)
     {
-        base.OverallSkill *= OverallSkillMiltiplier;
     }
+
+    public override double OverallSkill => base.OverallSkill * OverallSkillMiltiplier;
 
     public override void Regenerate()
     {

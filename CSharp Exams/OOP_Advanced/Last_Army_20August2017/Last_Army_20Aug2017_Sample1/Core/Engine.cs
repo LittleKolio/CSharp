@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 public class Engine
 {
-    private GameController gameController;
+    private IGameController gameController;
 
-    public Engine(GameController gameController)
+    public Engine(IGameController gameController)
     {
         this.gameController = gameController;
     }
@@ -21,19 +21,23 @@ public class Engine
         {
             string[] tokens = SplitInput(input, " ");
 
+            string result = string.Empty;
+
             try
             {
-                gameController.GiveInputToGameController(tokens);
+                this.gameController.GiveInputToGameController(tokens);
             }
-            catch (ArgumentException arg)
-            {
-                //result.AppendLine(arg.Message);
-            }
+            //catch (ArgumentException arg)
+            //{
+            //    ConsoleWriter.WriteLine(arg.Message);
+            //}
             catch (Exception ex)
             {
                 ConsoleWriter.WriteLine(ex.Message);
             }
         }
+
+        this.gameController.RequestResult();
     }
 
     private string[] SplitInput(string input, string delimiter)

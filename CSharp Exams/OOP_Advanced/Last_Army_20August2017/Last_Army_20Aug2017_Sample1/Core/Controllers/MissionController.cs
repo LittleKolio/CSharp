@@ -1,18 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class MissionController
+public class MissionController : IMissionController
 {
     private Queue<IMission> missionQueue;
-    private Army army;
-    private WareHouse wareHouse;
+    private IArmy army;
+    private IWareHouse wareHouse;
 
-    public MissionController(Army army, WareHouse wareHouse)
+
+    public MissionController(IArmy army, IWareHouse wareHouse)
     {
         this.army = army;
         this.wareHouse = wareHouse;
         this.missionQueue = new Queue<IMission>();
+        this.SuccessMissionCounter = 0;
+        this.FailedMissionCounter = 0;
     }
 
     public int SuccessMissionCounter { get; private set; }
@@ -25,10 +29,9 @@ public class MissionController
     {
         StringBuilder sb = new StringBuilder();
 
-        IMission oldesMission = this.missionQueue.Dequeue();
-
         if (this.missionQueue.Count >= 3)
         {
+            IMission oldesMission = this.missionQueue.Dequeue();
             sb.AppendLine(string.Format(Message.MissionDeclined, oldesMission.Name));
             this.FailedMissionCounter++;
         }
@@ -37,19 +40,18 @@ public class MissionController
 
         for (int i = 0; i < this.missionQueue.Count; i++)
         {
-            IList<ISoldier> army = this.army.Soldiers.ToList();
+            IList<ISoldier> soldiers = this.army.Soldiers.ToList();
 
-            this.wareHouse.EquipArmy(army);
+            this.wareHouse.EquipArmy(soldiers);
 
             IMission currentMission = this.missionQueue.Dequeue();
 
-            IList<ISoldier> missionTeam = army.Where(s => s.ReadyForMission(mission)).ToList();
+            IList<ISoldier> missionTeam = soldiers.Where(s => s.ReadyForMission(currentMission)).ToList();
 
             bool successful = this.ExecuteMission(currentMission, missionTeam);
 
             if (successful)
             {
-                this.SuccessMissionCounter++;
                 sb.AppendLine(string.Format(Message.MissionSuccessful, currentMission.Name));
             }
             else
@@ -59,10 +61,10 @@ public class MissionController
             }
         }
 
-        return sb.ToString();
+        return sb.ToString().TrimEnd();
     }
 
-    public bool ExecuteMission(IMission mission, IList<ISoldier> missionTeam)
+    private bool ExecuteMission(IMission mission, IList<ISoldier> missionTeam)
     {
         double teamOverallSkill = missionTeam
             .Select(s => s.OverallSkill)
@@ -81,12 +83,21 @@ public class MissionController
         return false;
     }
 
-    public void FailMissionsOnHold()
+    public void CalcFailMissions()
     {
         while (this.missionQueue.Count > 0)
         {
             this.FailedMissionCounter++;
             this.missionQueue.Dequeue();
         }
+    }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder("Results:" + Environment.NewLine);
+        sb.AppendLine($"Successful missions - {this.SuccessMissionCounter}")
+            .AppendLine($"Failed missions - {this.FailedMissionCounter}");
+
+        return sb.ToString().TrimEnd();
     }
 }

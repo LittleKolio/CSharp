@@ -13,7 +13,6 @@ public abstract class Soldier : ISoldier
         this.Age = age;
         this.Experience = experience;
         this.Endurance = endurance;
-        this.OverallSkill = age + experience;
         InitializeWeapons();
     }
 
@@ -33,7 +32,7 @@ public abstract class Soldier : ISoldier
 
     public double Experience { get; private set; }
 
-    public double OverallSkill { get; protected set; }
+    public virtual double OverallSkill => this.Age + this.Experience;
 
     public abstract IReadOnlyList<string> WeaponsAllowed { get; }
 
@@ -57,7 +56,9 @@ public abstract class Soldier : ISoldier
 
     private void DecreaseAmmunitionWearLevel(double missionWearLevelDecrement)
     {
-        foreach (string weaponName in this.Weapons.Keys)
+        IList<string> weaponNames = this.Weapons.Keys.ToList();
+
+        foreach (string weaponName in weaponNames)
         {
             this.Weapons[weaponName].DecreaseWearLevel(missionWearLevelDecrement);
 
@@ -80,13 +81,6 @@ public abstract class Soldier : ISoldier
             this.WeaponsAllowed.Count();
 
         if (neededAmmunitions)
-            return false;
-
-        bool positiveWearLevel = 
-            this.Weapons.Values.Count(w => w.WearLevel < 0) != 
-            this.WeaponsAllowed.Count();
-
-        if (positiveWearLevel)
             return false;
 
         return true;
