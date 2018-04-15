@@ -6,5 +6,5 @@ public interface IWearHouse
 
     void AddAmmunition(string ammunition, int amount);
 
-    bool GetAmmonition(string ammunition)
+    bool GetAmmonition(string ammunition);
 }

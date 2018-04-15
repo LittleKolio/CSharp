@@ -12,6 +12,7 @@ public class Engine
     {
         this.gameController = gameController;
     }
+
     public void Run()
     {
         string input;
@@ -22,13 +23,16 @@ public class Engine
 
             try
             {
-                gameController.GiveInputToGameController(input);
+                gameController.GiveInputToGameController(tokens);
             }
             catch (ArgumentException arg)
             {
-                result.AppendLine(arg.Message);
+                //result.AppendLine(arg.Message);
             }
-            input = ConsoleReader.ReadLine();
+            catch (Exception ex)
+            {
+                ConsoleWriter.WriteLine(ex.Message);
+            }
         }
     }
 

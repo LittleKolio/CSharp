@@ -7,7 +7,7 @@ public class SpecialForce : Soldier
     private const double OverallSkillMiltiplier = 3.5;
     private const double increaseEndurance = 30;
 
-    protected override IReadOnlyList<string> WeaponsAllowed => new List<string>
+    public override IReadOnlyList<string> WeaponsAllowed => new List<string>
     {
         "Gun",
         "AutomaticMachine",

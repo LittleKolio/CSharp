@@ -43,12 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\AmmunitionsController.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\GameController.cs" />
     <Compile Include="Core\MissionController.cs" />
     <Compile Include="Core\Output.cs" />
-    <Compile Include="Core\SoldierController.cs" />
     <Compile Include="Entities\Ammunitions\Ammunition.cs" />
     <Compile Include="Entities\Ammunitions\AutomaticMachine.cs" />
     <Compile Include="Entities\Ammunitions\Gun.cs" />

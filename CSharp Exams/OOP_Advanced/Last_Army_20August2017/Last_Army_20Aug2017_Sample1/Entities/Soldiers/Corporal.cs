@@ -6,7 +6,7 @@ public class Corporal : Soldier
     private const double OverallSkillMiltiplier = 2.5;
     private const double increaseEndurance = 10;
 
-    protected override IReadOnlyList<string> WeaponsAllowed => new List<string>
+    public override IReadOnlyList<string> WeaponsAllowed => new List<string>
     {
         "Gun",
         "AutomaticMachine",

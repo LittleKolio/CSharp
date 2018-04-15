@@ -2,16 +2,19 @@
 {
     public static void Main()
     {
-        Army army = new Army();
-        WearHouse wearHouse = new WearHouse();
+        //Facttories
+        MissionFactory missionFactory = new MissionFactory();
         SoldiersFactory soldiersFactory = new SoldiersFactory();
         AmmunitionFactory ammunitionFactory = new AmmunitionFactory();
-        MissionController missionController = new MissionController();
+
+        MissionController missionController = new MissionController(missionFactory);
+
+        //Repositories
+        Army army = new Army(soldiersFactory);
+        WearHouse wearHouse = new WearHouse(ammunitionFactory);
 
         GameController gameController = new GameController(
             missionController,
-            soldiersFactory,
-            ammunitionFactory,
             army, 
             wearHouse);
 

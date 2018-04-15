@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class WearHouse : IWearHouse
 {
@@ -27,13 +28,18 @@ public class WearHouse : IWearHouse
             return false;
         }
 
-        if (this.ammunitions[ammunition] == 0)
-        {
-            return false;
-        }
-
         this.ammunitions[ammunition]--;
 
+        if (this.ammunitions[ammunition] == 0)
+        {
+            this.ammunitions.Remove(ammunition);
+        }
+
         return true;
+    }
+
+    public bool AmmunitionsNeeded(string[] ammunitionsNeeded)
+    {
+        return ammunitionsNeeded.All(a => this.ammunitions.ContainsKey(a));
     }
 }

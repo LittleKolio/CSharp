@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 public class GameController
 {
     private MissionController missionController;
-    private AmmunitionFactory ammunitionFactory;
     private WearHouse wearHouse;
     private Army army;
 
     public GameController(
         MissionController missionController,
-        AmmunitionFactory ammunitionFactory,
         Army army, 
         WearHouse wearHouse)
     {
@@ -26,16 +25,16 @@ public class GameController
         {
             case "Soldier":
                 {
-                    string type = data[1];
-                    string name = data[2];
-                    int age = int.Parse(data[3]);
-                    double experience = int.Parse(data[4]);
-                    double endurance = double.Parse(data[5]);
+                    data = data.Skip(1).ToArray();
 
-                    ISoldier soldier = this.soldiersFactory.CreateSoldier(
-                        type, name, age, experience, endurance);
+                    ISoldier soldier = this.soldierController.CreateSoldier(data);
+                    string weaponsAllowed = soldier.WeaponsAllowed
+                    bool ammunitionNeeded = this.wearHouse.AmmunitionsNeeded()
+                    if ()
+                    {
 
-                    this.AddSoldierToArmy(soldier);
+                    }
+                    this.army.AddSoldier(soldier);
                 }
                 break;
 

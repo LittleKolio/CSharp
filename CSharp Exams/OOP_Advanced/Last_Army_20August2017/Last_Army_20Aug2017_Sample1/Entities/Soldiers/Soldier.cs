@@ -35,7 +35,7 @@ public abstract class Soldier : ISoldier
 
     public double OverallSkill { get; protected set; }
 
-    protected abstract IReadOnlyList<string> WeaponsAllowed { get; }
+    public abstract IReadOnlyList<string> WeaponsAllowed { get; }
 
     public IDictionary<string, IAmmunition> Weapons { get; private set; }
 

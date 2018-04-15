@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 public class Army : IArmy
 {
+    private SoldiersFactory soldiersFactory;
     private List<ISoldier> soldiers;
 
-    public Army()
+    public Army(SoldiersFactory soldiersFactory)
     {
+        this.soldiersFactory = soldiersFactory;
         this.soldiers = new List<ISoldier>();
     }
 
@@ -17,6 +19,15 @@ public class Army : IArmy
 
     public void AddSoldier(ISoldier soldier)
     {
+        string type = data[0];
+        string name = data[1];
+        int age = int.Parse(data[2]);
+        double experience = int.Parse(data[3]);
+        double endurance = double.Parse(data[4]);
+
+        ISoldier soldier = this.soldiersFactory.CreateSoldier(
+            type, name, age, experience, endurance);
+
         this.soldiers.Add(soldier);
     }
 
