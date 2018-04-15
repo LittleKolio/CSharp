@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\Message.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\GameController.cs" />
     <Compile Include="Core\MissionController.cs" />
@@ -64,7 +65,7 @@
     <Compile Include="Entities\Soldiers\Ranker.cs" />
     <Compile Include="Entities\Soldiers\Soldier.cs" />
     <Compile Include="Entities\Soldiers\SpecialForce.cs" />
-    <Compile Include="Entities\WearHouse.cs" />
+    <Compile Include="Entities\WareHouse.cs" />
     <Compile Include="Factory\AmmunitionFactory.cs" />
     <Compile Include="Factory\MissionFactory.cs" />
     <Compile Include="Factory\SoldierFactory.cs" />
@@ -75,7 +76,7 @@
     <Compile Include="Interfaces\IMissionFactory.cs" />
     <Compile Include="Interfaces\ISoldier.cs" />
     <Compile Include="Interfaces\ISoldierFactory.cs" />
-    <Compile Include="Interfaces\IWearHouse.cs" />
+    <Compile Include="Interfaces\IWareHouse.cs" />
     <Compile Include="IO\ConsoleReader.cs" />
     <Compile Include="IO\ConsoleWriter.cs" />
     <Compile Include="LastArmyMain.cs" />

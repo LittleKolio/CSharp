@@ -17,7 +17,7 @@ public class Engine
     {
         string input;
         while (!(input = ConsoleReader.ReadLine())
-            .Equals("Enough! Pull back!"))
+            .Equals(Message.InputTerminateString))
         {
             string[] tokens = SplitInput(input, " ");
 

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 public class MissionFactory : IMissionFactory
 {
-    public IMission CreateMission(string difficultyLevel, double neededPoints)
+    public IMission CreateMission(string level, double points)
     {
         Type missionType = Assembly
             .GetExecutingAssembly()
             .GetTypes()
-            .FirstOrDefault(t => t.Name == difficultyLevel);
+            .FirstOrDefault(t => t.Name == level);
 
         if (missionType == null)
         {
@@ -26,7 +26,7 @@ public class MissionFactory : IMissionFactory
                 "MissionType don't inherit IMission!");
         }
 
-        object[] parameters = new object[] { neededPoints };
+        object[] parameters = new object[] { points };
 
         IMission mission = (IMission)Activator.CreateInstance(
             missionType, parameters);

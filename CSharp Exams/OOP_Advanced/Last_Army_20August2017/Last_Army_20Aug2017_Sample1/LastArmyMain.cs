@@ -11,7 +11,7 @@
 
         //Repositories
         Army army = new Army(soldiersFactory);
-        WearHouse wearHouse = new WearHouse(ammunitionFactory);
+        WareHouse wearHouse = new WareHouse(ammunitionFactory);
 
         GameController gameController = new GameController(
             missionController,

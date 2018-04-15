@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 
-public interface IWearHouse
+public interface IWareHouse
 {
-    //IReadOnlyDictionary<string, int> Ammunitions { get; }
-
     void AddAmmunition(string ammunition, int amount);
 
     bool GetAmmonition(string ammunition);
+
+    bool TryEquipSoldier(ISoldier soldier);
+
+    void EquipArmy(IList<ISoldier> army);
 }

@@ -4,22 +4,14 @@ using System.Text;
 
 public class MissionController
 {
-    private MissionFactory missionFactory;
     private Queue<IMission> missionQueue;
+    private Army army;
+    private WareHouse wareHouse;
 
-    //private IArmy army;
-    //private IWareHouse wareHouse;
-
-    //public MissionController(IArmy army, IWareHouse wareHouse)
-    //{
-    //    this.army = army;
-    //    this.wareHouse = wareHouse;
-    //    this.missionQueue = new Queue<IMission>();
-    //}
-
-    public MissionController(MissionFactory missionFactory)
+    public MissionController(Army army, WareHouse wareHouse)
     {
-        this.missionFactory = missionFactory;
+        this.army = army;
+        this.wareHouse = wareHouse;
         this.missionQueue = new Queue<IMission>();
     }
 
@@ -27,69 +19,74 @@ public class MissionController
 
     public int FailedMissionCounter { get; private set; }
 
-    //public Queue<IMission> Missions => this.missionQueue;
+    public Queue<IMission> Missions => this.missionQueue;
 
-    //public string PerformMission(IMission mission)
-    //{
-    //    StringBuilder sb = new StringBuilder();
-    //    if (this.missionQueue.Count >= 3)
-    //    {
-    //        sb.AppendLine(string.Format(OutputMessages.MissionDeclined, this.missionQueue.Dequeue().Name));
-    //        this.FailedMissionCounter++;
-    //    }
+    public string PerformMission(IMission mission)
+    {
+        StringBuilder sb = new StringBuilder();
 
-    //    this.missionQueue.Enqueue(mission);
+        IMission oldesMission = this.missionQueue.Dequeue();
 
-    //    int currentMissionsCount = this.missionQueue.Count;
-    //    for (int i = 0; i < currentMissionsCount; i++)
-    //    {
-    //        this.wareHouse.EquipArmy(this.army);
-    //        IMission currentMission = this.missionQueue.Dequeue();
-    //        List<ISoldier> missionTeam = this.CollectMissionTeam(mission);
+        if (this.missionQueue.Count >= 3)
+        {
+            sb.AppendLine(string.Format(Message.MissionDeclined, oldesMission.Name));
+            this.FailedMissionCounter++;
+        }
 
-    //        bool successful = this.ExecuteMission(currentMission, missionTeam);
+        this.missionQueue.Enqueue(mission);
 
-    //        if (successful)
-    //        {
-    //            sb.AppendLine(string.Format(OutputMessages.MissionSuccessful, currentMission.Name));
-    //        }
-    //        else
-    //        {
-    //            this.missionQueue.Enqueue(currentMission);
-    //            sb.AppendLine(string.Format(OutputMessages.MissionOnHold, currentMission.Name));
-    //        }
-    //    }
+        for (int i = 0; i < this.missionQueue.Count; i++)
+        {
+            IList<ISoldier> army = this.army.Soldiers.ToList();
 
-    //    return sb.ToString();
-    //}
+            this.wareHouse.EquipArmy(army);
 
-    //private bool ExecuteMission(IMission mission, List<ISoldier> missionTeam)
-    //{
-    //    if (missionTeam.Sum(w => w.OverallSkill) >= mission.ScoreToComplete)
-    //    {
-    //        foreach (ISoldier soldier in missionTeam)
-    //        {
-    //            soldier.CompleteMission(mission);
-    //        }
-    //        this.SuccessMissionCounter++;
-    //        return true;
-    //    }
+            IMission currentMission = this.missionQueue.Dequeue();
 
-    //    return false;
-    //}
+            IList<ISoldier> missionTeam = army.Where(s => s.ReadyForMission(mission)).ToList();
 
-    //private List<ISoldier> CollectMissionTeam(IMission mission)
-    //{
-    //    List<ISoldier> missionTeam = this.army.Soldiers.Where(s => s.ReadyForMission(mission)).ToList();
-    //    return missionTeam;
-    //}
+            bool successful = this.ExecuteMission(currentMission, missionTeam);
 
-    //public void FailMissionsOnHold()
-    //{
-    //    while (this.missionQueue.Count > 0)
-    //    {
-    //        this.FailedMissionCounter++;
-    //        this.missionQueue.Dequeue();
-    //    }
-    //}
+            if (successful)
+            {
+                this.SuccessMissionCounter++;
+                sb.AppendLine(string.Format(Message.MissionSuccessful, currentMission.Name));
+            }
+            else
+            {
+                this.missionQueue.Enqueue(currentMission);
+                sb.AppendLine(string.Format(Message.MissionOnHold, currentMission.Name));
+            }
+        }
+
+        return sb.ToString();
+    }
+
+    public bool ExecuteMission(IMission mission, IList<ISoldier> missionTeam)
+    {
+        double teamOverallSkill = missionTeam
+            .Select(s => s.OverallSkill)
+            .Sum();
+
+        if (teamOverallSkill >= mission.ScoreToComplete)
+        {
+            foreach (ISoldier soldier in missionTeam)
+            {
+                soldier.CompleteMission(mission);
+            }
+            this.SuccessMissionCounter++;
+            return true;
+        }
+
+        return false;
+    }
+
+    public void FailMissionsOnHold()
+    {
+        while (this.missionQueue.Count > 0)
+        {
+            this.FailedMissionCounter++;
+            this.missionQueue.Dequeue();
+        }
+    }
 }

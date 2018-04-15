@@ -4,7 +4,6 @@ using System.Linq;
 
 public abstract class Soldier : ISoldier
 {
-    //public override string ToString() => string.Format(OutputMessages.SoldierToString, this.Name, this.OverallSkill);
 
     private const double maxEndurance = 100;
 
@@ -15,6 +14,7 @@ public abstract class Soldier : ISoldier
         this.Experience = experience;
         this.Endurance = endurance;
         this.OverallSkill = age + experience;
+        InitializeWeapons();
     }
 
     public int Age { get; private set; }
@@ -39,8 +39,19 @@ public abstract class Soldier : ISoldier
 
     public IDictionary<string, IAmmunition> Weapons { get; private set; }
 
+    private void InitializeWeapons()
+    {
+        this.Weapons = new Dictionary<string, IAmmunition>(this.WeaponsAllowed.Count);
+        foreach (string ammo in this.WeaponsAllowed)
+        {
+            this.Weapons.Add(ammo, null);
+        }
+    }
+
     public void CompleteMission(IMission mission)
     {
+        this.Endurance -= mission.EnduranceRequired;
+        this.Experience += mission.EnduranceRequired;
         this.DecreaseAmmunitionWearLevel(mission.WearLevelDecrement);
     }
 
@@ -82,4 +93,7 @@ public abstract class Soldier : ISoldier
     }
 
     public abstract void Regenerate();
+
+    public override string ToString() => string.Format(Message.SoldierToString, this.Name, this.OverallSkill);
+
 }
