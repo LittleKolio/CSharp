@@ -15,4 +15,8 @@ public static class Constants
     public const string NoEntity = "No entity found with id - {0}";
 
     public const string Entity = "{0}{1}Durability: {2}";
+
+    public const string TotalEnergyProduced = "Total Energy Produced: {0}";
+
+    public const string TotalOreMined = "Total Mined Plumbus Ore: {0}";
 }

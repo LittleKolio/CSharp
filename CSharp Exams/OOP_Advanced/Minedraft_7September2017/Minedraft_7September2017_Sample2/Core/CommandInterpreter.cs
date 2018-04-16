@@ -45,11 +45,10 @@ public class CommandInterpreter : ICommandInterpreter
             .First()
             .GetParameters();
 
-        PropertyInfo[] cmdInterpreterParams = this
-            .GetType()
-            .GetProperties(BindingFlags.Instance | BindingFlags.Public);
-
         object[] cmdParamsToPass = new object[cmdParams.Length];
+
+        PropertyInfo[] cmdInterpreterParams = this.GetType()
+            .GetProperties(BindingFlags.Instance | BindingFlags.Public);
 
         cmdParamsToPass[0] = args.Skip(1).ToList();
 

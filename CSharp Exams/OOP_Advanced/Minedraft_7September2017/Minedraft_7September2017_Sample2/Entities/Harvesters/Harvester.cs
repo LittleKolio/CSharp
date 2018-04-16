@@ -3,9 +3,7 @@
 public abstract class Harvester : IHarvester
 {
     private const int InitialDurability = 1000;
-    
-    //private double oreOutput;
-    //private double energyRequirement;
+    private const int durabilityLossPerMode = 100;
 
     protected Harvester(int id, double oreOutput, double energyRequirement)
     {
@@ -25,7 +23,12 @@ public abstract class Harvester : IHarvester
 
     public void Broke()
     {
-        throw new System.NotImplementedException();
+        this.Durability -= durabilityLossPerMode;
+        if (this.Durability < 0)
+        {
+            throw new ArgumentOutOfRangeException(
+                "Harvester broke!");
+        }
     }
 
     public double Produce() => this.OreOutput;

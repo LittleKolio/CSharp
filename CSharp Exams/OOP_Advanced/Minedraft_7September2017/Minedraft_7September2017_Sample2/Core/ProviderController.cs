@@ -37,23 +37,19 @@ public class ProviderController : IProviderController
 
         List<IProvider> reminder = new List<IProvider>();
 
-        foreach (var provider in this.providers)
+        foreach (IProvider provider in this.providers)
         {
             try
             {
                 provider.Broke();
             }
-            //catch (Exception ex)
-            //{
-            //    reminder.Add(provider);
-            //}
             catch
             {
                 reminder.Add(provider);
             }
         }
 
-        foreach (var entity in reminder)
+        foreach (IProvider entity in reminder)
         {
             this.providers.Remove(entity);
         }
@@ -61,13 +57,12 @@ public class ProviderController : IProviderController
         return string.Format(Constants.EnergyOutputToday, energyProduced);
     }
 
-    public string Repair(double val)
+    public string Repair(int id, double value)
     {
-        foreach (var provider in this.providers)
-        {
-            provider.Repair(val);
-        }
+        this.providers
+            .FirstOrDefault(p => p.ID == id)
+            .Repair(value);
 
-        return string.Format(Constants.ProvidersRepaired, val);
+        return string.Format(Constants.ProvidersRepaired, value);
     }
 }

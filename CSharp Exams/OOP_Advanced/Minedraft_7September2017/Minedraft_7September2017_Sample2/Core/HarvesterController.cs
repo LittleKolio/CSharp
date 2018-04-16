@@ -30,15 +30,35 @@ public class HarvesterController : IHarvesterController
             throw new ArgumentException("Invalide ModeType!");
         }
 
+        List<IHarvester> reminder = new List<IHarvester>();
+
+        foreach (IHarvester harvester in this.harvesters)
+        {
+            try
+            {
+                harvester.Broke();
+            }
+            catch
+            {
+                reminder.Add(harvester);
+            }
+        }
+
+        foreach (IHarvester entity in reminder)
+        {
+            this.harvesters.Remove(entity);
+        }
+
         return string.Format(Constants.ModeChange, this.mode);
     }
 
     public string Produce()
     {
-        Func<double, double> energyReqByMode = energyReq => energyReq * (int)this.mode / 100D;
+        Func<double, double> modifier = 
+            energyOrOre => energyOrOre * (int)this.mode / 100D;
 
         double energyNeeded = this.harvesters
-            .Select(h => energyReqByMode(h.EnergyRequirement))
+            .Select(h => modifier(h.EnergyRequirement))
             .Sum();
 
         string result = string.Empty;
@@ -46,7 +66,9 @@ public class HarvesterController : IHarvesterController
 
         if (this.energyRepository.TakeEnergy(energyNeeded))
         {
-            oreProducedToday = this.harvesters.Select(h => h.Produce()).Sum();
+            oreProducedToday = this.harvesters
+                .Select(h => modifier(h.Produce())).Sum();
+
             this.OreProduced += oreProducedToday;
         }
 

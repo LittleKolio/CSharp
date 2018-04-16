@@ -4,7 +4,9 @@ public class RepairCommand : Command
 {
     private IProviderController providerController;
 
-    protected RepairCommand(IList<string> arguments, IProviderController providerController) 
+    protected RepairCommand(
+        IList<string> arguments, 
+        IProviderController providerController) 
         : base(arguments)
     {
         this.providerController = providerController;
@@ -12,6 +14,9 @@ public class RepairCommand : Command
 
     public override string Execute()
     {
-        throw new System.NotImplementedException();
+        int id = int.Parse(base.Arguments[0]);
+        double value = double.Parse(base.Arguments[1]);
+
+        return this.providerController.Repair(id, value);
     }
 }
