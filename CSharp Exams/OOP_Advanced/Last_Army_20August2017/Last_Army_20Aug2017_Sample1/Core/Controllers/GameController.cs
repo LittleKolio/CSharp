@@ -102,7 +102,7 @@ public class GameController : IGameController
 
     public void RequestResult()
     {
-        this.missionController.CalcFailMissions();
+        this.missionController.FailMissionsOnHold();
 
         ConsoleWriter.WriteLine(this.missionController.ToString());
         ConsoleWriter.WriteLine(this.army.ToString());

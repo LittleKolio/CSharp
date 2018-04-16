@@ -46,9 +46,9 @@ public class MissionController : IMissionController
 
             IMission currentMission = this.missionQueue.Dequeue();
 
-            IList<ISoldier> missionTeam = soldiers.Where(s => s.ReadyForMission(currentMission)).ToList();
+            IList<ISoldier> currentMissionTeam = this.CollectMissionTeam(currentMission);
 
-            bool successful = this.ExecuteMission(currentMission, missionTeam);
+            bool successful = this.ExecuteMission(currentMission, currentMissionTeam);
 
             if (successful)
             {
@@ -83,7 +83,17 @@ public class MissionController : IMissionController
         return false;
     }
 
-    public void CalcFailMissions()
+    private List<ISoldier> CollectMissionTeam(IMission mission)
+    {
+        List<ISoldier> missionTeam = this.army
+            .Soldiers
+            .Where(s => s.ReadyForMission(mission))
+            .ToList();
+
+        return missionTeam;
+    }
+
+    public void FailMissionsOnHold()
     {
         while (this.missionQueue.Count > 0)
         {

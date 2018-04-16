@@ -10,5 +10,5 @@ public interface IMissionController
 
     string PerformMission(IMission mission);
 
-    void CalcFailMissions();
+    void FailMissionsOnHold();
 }
