@@ -4,7 +4,9 @@ public class ModeCommand : Command
 {
     private IHarvesterController harvesterController;
 
-    protected ModeCommand(IList<string> arguments, IHarvesterController harvesterController) 
+    public ModeCommand(
+        IList<string> arguments, 
+        IHarvesterController harvesterController) 
         : base(arguments)
     {
         this.harvesterController = harvesterController;

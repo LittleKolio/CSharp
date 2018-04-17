@@ -15,7 +15,5 @@ public class StartUp
 
         Engine engine = new Engine(commandInterpreter);
         engine.Run();
-
-        Console.WriteLine("ddddd");
     }
 }

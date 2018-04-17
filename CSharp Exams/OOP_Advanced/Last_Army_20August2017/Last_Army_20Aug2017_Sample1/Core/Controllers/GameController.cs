@@ -11,19 +11,22 @@ public class GameController : IGameController
     private IMissionFactory missionFactory;
     private IArmy army;
     private IWareHouse wareHouse;
+    private IWriter writer;
 
     public GameController(
         IMissionController missionController,
         ISoldierFactory soldiersFactory,
         IMissionFactory missionFactory,
         IArmy army, 
-        IWareHouse wareHouse)
+        IWareHouse wareHouse,
+        IWriter writer)
     {
         this.missionController = missionController;
         this.soldiersFactory = soldiersFactory;
         this.missionFactory = missionFactory;
         this.wareHouse = wareHouse;
         this.army = army;
+        this.writer = writer;
     }
 
     public void GiveInputToGameController(string[] data)
@@ -58,8 +61,9 @@ public class GameController : IGameController
 
         IMission mission = this.missionFactory.CreateMission(level, points);
 
-        Console.WriteLine(
-            this.missionController.PerformMission(mission));
+        string result = this.missionController.PerformMission(mission);
+
+        this.writer.WriteLine(result);
     }
 
     private void WareHouseCommand(string[] data)
@@ -104,7 +108,7 @@ public class GameController : IGameController
     {
         this.missionController.FailMissionsOnHold();
 
-        ConsoleWriter.WriteLine(this.missionController.ToString());
-        ConsoleWriter.WriteLine(this.army.ToString());
+        this.writer.WriteLine(this.missionController.ToString());
+        this.writer.WriteLine(this.army.ToString());
     }
 }

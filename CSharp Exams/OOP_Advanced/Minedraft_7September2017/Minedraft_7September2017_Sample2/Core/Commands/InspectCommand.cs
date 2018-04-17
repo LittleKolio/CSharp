@@ -6,7 +6,7 @@ public class InspectCommand : Command
     private IHarvesterController harvesterController;
     private IProviderController providerController;
 
-    protected InspectCommand(
+    public InspectCommand(
         IList<string> arguments,
         IHarvesterController harvesterController,
         IProviderController providerController) 

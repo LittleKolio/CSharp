@@ -31,6 +31,11 @@ public class Engine
             {
                 Console.WriteLine(result);
             }
+
+            if ("Shutdown" == args[0])
+            {
+                break;
+            }
         }
     }
 

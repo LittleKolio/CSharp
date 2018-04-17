@@ -2,5 +2,5 @@
 {
     double TotalEnergyProduced { get; }
 
-    string Repair(int id, double val);
+    string Repair(double val);
 }

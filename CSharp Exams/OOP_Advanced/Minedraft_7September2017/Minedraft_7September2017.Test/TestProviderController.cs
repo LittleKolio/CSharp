@@ -1,74 +1,111 @@
-﻿namespace Minedraft_7September2017.Test
+﻿using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+[TestFixture]
+public class TestProviderController
 {
-    using Moq;
-    using NUnit.Framework;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
-    [TestFixture]
-    public class TestProviderController
+    private IProviderController controller;
+    private IEnergyRepository energy;
+    private IProviderFactory factory;
+
+    [SetUp]
+    public void Initialize()
     {
-        private class FakeEnergyRepository : IEnergyRepository
+        factory = new ProviderFactory();
+        energy = new EnergyRepository();
+        controller = new ProviderController(energy, factory);
+    }
+
+    [TestCase("Standart 20 60")]
+    public void Register_StandartProvider_ValidInput(string input)
+    {
+        //Arrange
+        List<string> testArgs = input
+            .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+            .ToList();
+
+        //Assert
+        Assert.That(controller.Register(testArgs), 
+            Is.EqualTo("Successfully registered StandartProvider"));
+
+        Assert.That(controller.Entities.Count(), Is.EqualTo(1));
+    }
+
+    [TestCase("Solar 80 80")]
+    public void Register_SolarProvider_ValidInput(string input)
+    {
+        //Arrange
+        List<string> testArgs = input
+            .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+            .ToList();
+
+        //Assert
+        Assert.That(controller.Register(testArgs),
+            Is.EqualTo("Successfully registered SolarProvider"));
+
+        Assert.That(controller.Entities.Count(), Is.EqualTo(1));
+    }
+
+    [TestCase("Pressure 40 100")]
+    public void Register_PressureProvider_ValidInput(string input)
+    {
+        //Arrange
+        List<string> testArgs = input
+            .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+            .ToList();
+
+        //Assert
+        Assert.That(controller.Register(testArgs),
+            Is.EqualTo("Successfully registered PressureProvider"));
+
+        Assert.That(controller.Entities.Count(), Is.EqualTo(1));
+    }
+
+    [Test]
+    public void Produce_EnergyProducedToday()
+    {
+        //Arrange
+        List<List<string>> list = new List<List<string>>()
         {
-            private double customField = 1200.12;
+            new List<string>() { "Pressure", "40", "100" },
+            new List<string>() { "Solar", "80", "80" },
+            new List<string>() { "Standart", "20", "60" }
+        };
 
-            //It can return anything what we need
-            public double EnergyStored
-            {
-                get { return this.customField; }
-            }
-
-            public void StoreEnergy(double energy)
-            {
-                throw new NotImplementedException();
-            }
-
-            public bool TakeEnergy(double energyNeeded)
-            {
-                throw new NotImplementedException();
-            }
+        foreach (IList<string> args in list)
+        {
+            controller.Register(args);
         }
 
-        private IProviderController testProviderController;
+        //Assert
+        Assert.That(controller.Produce(),
+            Is.EqualTo("Produced 340 energy today!"));
+    }
 
-        [SetUp]
-        public void Initialize()
+    [Test]
+    public void Produce_TotalEnergyProduced()
+    {
+        //Arrange
+        List<List<string>> list = new List<List<string>>()
         {
-            IProviderFactory providerFactory = new ProviderFactory();
-            //IEnergyRepository energyRepository = new EnergyRepository();
-            IEnergyRepository energyRepository = new FakeEnergyRepository();
-            testProviderController = new ProviderController(energyRepository, providerFactory);
+            new List<string>() { "Pressure", "40", "100" },
+            new List<string>() { "Solar", "80", "80" },
+            new List<string>() { "Standart", "20", "60" }
+        };
+
+        foreach (IList<string> args in list)
+        {
+            controller.Register(args);
         }
 
-        //public IProviderController ProviderControllerFactory()
-        //{
-        //    IProviderFactory providerFactory = new ProviderFactory();
-        //    IEnergyRepository energyRepository = new EnergyRepository();
-        //    return new ProviderController(energyRepository, providerFactory);
-        //}
+        //Act
+        controller.Produce();
+        controller.Produce();
 
-        [TestCase("Pressure 40 100")]
-        public void RegisterProvider_ValidInput(string input)
-        {
-            //Arrange
-
-            Mock<IEnergyRepository> energyRepositoryMoq = new Mock<IEnergyRepository>();
-            energyRepositoryMoq.Setup(e => e.EnergyStored).Returns(1200.12);
-
-            //IProviderController testProviderController = ProviderControllerFactory();
-
-            List<string> testArgs = input
-                .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
-                .ToList();
-
-            //Act
-
-            //Assert
-            Assert.That(testProviderController.Register(testArgs), 
-                Is.EqualTo("Successfully registered PressureProvider"));
-
-            Assert.That(testProviderController.Entities.Count(), Is.EqualTo(1));
-        }
+        //Assert
+        Assert.That(controller.TotalEnergyProduced, Is.EqualTo(680));
     }
 }

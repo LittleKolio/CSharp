@@ -57,11 +57,12 @@ public class ProviderController : IProviderController
         return string.Format(Constants.EnergyOutputToday, energyProduced);
     }
 
-    public string Repair(int id, double value)
+    public string Repair(double value)
     {
-        this.providers
-            .FirstOrDefault(p => p.ID == id)
-            .Repair(value);
+        foreach (IProvider pro in this.providers)
+        {
+            pro.Repair(value);
+        }
 
         return string.Format(Constants.ProvidersRepaired, value);
     }

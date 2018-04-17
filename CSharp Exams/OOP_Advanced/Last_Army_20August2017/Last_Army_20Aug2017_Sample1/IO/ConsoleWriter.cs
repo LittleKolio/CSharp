@@ -1,6 +1,6 @@
 ﻿using System;
 
-public static class ConsoleWriter
+public class ConsoleWriter : IWriter
 {
-    public static void WriteLine(string output) => Console.WriteLine(output);
+    public void WriteLine(string output) => Console.WriteLine(output);
 }

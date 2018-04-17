@@ -2,6 +2,10 @@
 {
     public static void Main()
     {
+        //IO
+        IReader reader = new ConsoleReader();
+        IWriter writer = new ConsoleWriter();
+
         //Facttories
         IMissionFactory missionFactory = new MissionFactory();
         ISoldierFactory soldiersFactory = new SoldierFactory();
@@ -19,10 +23,11 @@
             soldiersFactory,
             missionFactory,
             army, 
-            wearHouse);
+            wearHouse,
+            writer);
 
         //Engine
-        Engine engine = new Engine(gameController);
+        Engine engine = new Engine(gameController, reader, writer);
         engine.Run();
     }
 }

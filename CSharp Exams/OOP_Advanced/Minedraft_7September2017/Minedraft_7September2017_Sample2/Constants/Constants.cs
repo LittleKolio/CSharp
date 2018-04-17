@@ -4,7 +4,7 @@ public static class Constants
 {
     public const string SuccessfullRegistration = "Successfully registered {0}";
     
-    public const string ProvidersRepaired = "Providers were repaired by {0}";
+    public const string ProvidersRepaired = "Providers are repaired by {0}";
 
     public const string OreOutputToday = "Produced {0} ore today!";
 
@@ -16,7 +16,9 @@ public static class Constants
 
     public const string Entity = "{0}{1}Durability: {2}";
 
-    public const string TotalEnergyProduced = "Total Energy Produced: {0}";
+    public const string Shutdown = "System Shutdown{0}Total Energy Produced: {1}{2}Total Mined Plumbus Ore: {3}";
 
-    public const string TotalOreMined = "Total Mined Plumbus Ore: {0}";
+    //public const string TotalEnergyProduced = "Total Energy Produced: {0}";
+
+    //public const string TotalOreMined = "Total Mined Plumbus Ore: {0}";
 }

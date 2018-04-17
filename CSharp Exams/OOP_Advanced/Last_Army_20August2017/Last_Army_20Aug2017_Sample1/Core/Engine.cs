@@ -7,16 +7,20 @@ using System.Threading.Tasks;
 public class Engine
 {
     private IGameController gameController;
+    private IReader reader;
+    private IWriter writer;
 
-    public Engine(IGameController gameController)
+    public Engine(IGameController gameController, IReader reader, IWriter writer)
     {
         this.gameController = gameController;
+        this.reader = reader;
+        this.writer = writer;
     }
 
     public void Run()
     {
         string input;
-        while (!(input = ConsoleReader.ReadLine())
+        while (!(input = this.reader.ReadLine())
             .Equals(Message.InputTerminateString))
         {
             string[] tokens = SplitInput(input, " ");
@@ -33,7 +37,7 @@ public class Engine
             //}
             catch (Exception ex)
             {
-                ConsoleWriter.WriteLine(ex.Message);
+                this.writer.WriteLine(ex.Message);
             }
         }
 

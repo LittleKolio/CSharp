@@ -70,6 +70,8 @@
     <Compile Include="Factory\SoldierFactory.cs" />
     <Compile Include="Interfaces\Entities\IAmmunition.cs" />
     <Compile Include="Interfaces\Factories\IAmmunitionFactory.cs" />
+    <Compile Include="Interfaces\IO\IReader.cs" />
+    <Compile Include="Interfaces\IO\IWriter.cs" />
     <Compile Include="Interfaces\Repos\IArmy.cs" />
     <Compile Include="Interfaces\Controllers\IGameController.cs" />
     <Compile Include="Interfaces\Entities\IMission.cs" />

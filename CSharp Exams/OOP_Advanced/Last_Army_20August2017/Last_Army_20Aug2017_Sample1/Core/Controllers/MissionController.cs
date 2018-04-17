@@ -38,7 +38,8 @@ public class MissionController : IMissionController
 
         this.missionQueue.Enqueue(mission);
 
-        for (int i = 0; i < this.missionQueue.Count; i++)
+        int missionCount = this.missionQueue.Count;
+        for (int i = 0; i < missionCount; i++)
         {
             IList<ISoldier> soldiers = this.army.Soldiers.ToList();
 

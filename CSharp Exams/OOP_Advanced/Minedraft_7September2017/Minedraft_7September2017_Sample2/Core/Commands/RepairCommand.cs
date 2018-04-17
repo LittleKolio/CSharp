@@ -4,7 +4,7 @@ public class RepairCommand : Command
 {
     private IProviderController providerController;
 
-    protected RepairCommand(
+    public RepairCommand(
         IList<string> arguments, 
         IProviderController providerController) 
         : base(arguments)
@@ -14,9 +14,8 @@ public class RepairCommand : Command
 
     public override string Execute()
     {
-        int id = int.Parse(base.Arguments[0]);
-        double value = double.Parse(base.Arguments[1]);
+        double value = double.Parse(base.Arguments[0]);
 
-        return this.providerController.Repair(id, value);
+        return this.providerController.Repair(value);
     }
 }
