@@ -5,13 +5,14 @@ public class Ranker : Soldier
 {
     private const double OverallSkillMiltiplier = 1.5;
     private const double increaseEndurance = 10;
-
-    public override IReadOnlyList<string> WeaponsAllowed => new List<string>
+    private readonly List<string> weaponsAllowed = new List<string>
     {
         "Gun",
         "AutomaticMachine",
         "Helmet",
     };
+
+    protected override IReadOnlyList<string> WeaponsAllowed => this.weaponsAllowed;
 
     public Ranker(string name, int age, double experience, double endurance)
         : base(name, age, experience, endurance)

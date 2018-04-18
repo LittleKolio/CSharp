@@ -21,7 +21,7 @@ public class Engine
     {
         string input;
         while (!(input = this.reader.ReadLine())
-            .Equals(Message.InputTerminateString))
+            .Equals(OutputMessages.InputTerminateString))
         {
             string[] tokens = SplitInput(input, " ");
 

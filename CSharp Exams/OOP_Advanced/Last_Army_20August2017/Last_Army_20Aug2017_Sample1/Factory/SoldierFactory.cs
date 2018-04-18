@@ -9,7 +9,8 @@ public class SoldierFactory : ISoldierFactory
         string soldierTypeName, string name, int age, double experience, double endurance)
     {
         Type soldierType = Assembly
-            .GetExecutingAssembly()
+            .GetCallingAssembly()
+            //.GetExecutingAssembly()
             .GetTypes()
             .FirstOrDefault(t => t.Name == soldierTypeName);
 

@@ -5,4 +5,6 @@
     public RPG() : base(weight)
     {
     }
+
+    //public override string NameTest => nameof(RPG);
 }

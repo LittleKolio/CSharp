@@ -6,8 +6,7 @@ public class SpecialForce : Soldier
 {
     private const double OverallSkillMiltiplier = 3.5;
     private const double increaseEndurance = 30;
-
-    public override IReadOnlyList<string> WeaponsAllowed => new List<string>
+    private readonly List<string> weaponsAllowed = new List<string>
     {
         "Gun",
         "AutomaticMachine",
@@ -17,6 +16,8 @@ public class SpecialForce : Soldier
         "Knife",
         "NightVision"
     };
+
+    protected override IReadOnlyList<string> WeaponsAllowed => this.weaponsAllowed;
 
     public SpecialForce(string name, int age, double experience, double endurance)
         : base(name, age, experience, endurance)

@@ -32,7 +32,7 @@ public class MissionController : IMissionController
         if (this.missionQueue.Count >= 3)
         {
             IMission oldesMission = this.missionQueue.Dequeue();
-            sb.AppendLine(string.Format(Message.MissionDeclined, oldesMission.Name));
+            sb.AppendLine(string.Format(OutputMessages.MissionDeclined, oldesMission.Name));
             this.FailedMissionCounter++;
         }
 
@@ -53,12 +53,12 @@ public class MissionController : IMissionController
 
             if (successful)
             {
-                sb.AppendLine(string.Format(Message.MissionSuccessful, currentMission.Name));
+                sb.AppendLine(string.Format(OutputMessages.MissionSuccessful, currentMission.Name));
             }
             else
             {
                 this.missionQueue.Enqueue(currentMission);
-                sb.AppendLine(string.Format(Message.MissionOnHold, currentMission.Name));
+                sb.AppendLine(string.Format(OutputMessages.MissionOnHold, currentMission.Name));
             }
         }
 

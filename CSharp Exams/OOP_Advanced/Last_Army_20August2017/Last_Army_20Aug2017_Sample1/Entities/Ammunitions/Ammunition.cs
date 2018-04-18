@@ -8,6 +8,8 @@ public abstract class Ammunition : IAmmunition
         this.WearLevel = weight * 100;
     }
 
+    //public abstract string NameTest { get; }
+
     public string Name => this.GetType().Name;
 
     public double WearLevel { get; private set; }

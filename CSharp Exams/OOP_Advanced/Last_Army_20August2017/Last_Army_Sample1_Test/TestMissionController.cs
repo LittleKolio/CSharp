@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using NUnit.Framework;
-using Moq;
 
 [TestFixture]
 public class TestMissionController
@@ -65,35 +64,35 @@ public class TestMissionController
 
 
     //[Test]
-    public void SuccessfulMission_Mock()
-    {
-        IDictionary<string, IAmmunition> Weaps =
-            new Dictionary<string, IAmmunition>()
-        {
-            { "Gun", new Gun() },
-            { "AutomaticMachine", new AutomaticMachine() },
-            { "Helmet", new Helmet() }
-        };
+    //public void SuccessfulMission_Mock()
+    //{
+    //    IDictionary<string, IAmmunition> Weaps =
+    //        new Dictionary<string, IAmmunition>()
+    //    {
+    //        { "Gun", new Gun() },
+    //        { "AutomaticMachine", new AutomaticMachine() },
+    //        { "Helmet", new Helmet() }
+    //    };
 
-        Mock<ISoldier> soldier1 = new Mock<ISoldier>();
-        soldier1.Setup(s => s.ReadyForMission(It.IsAny<Mission>())).Returns(true);
-        soldier1.Setup(s => s.OverallSkill).Returns(100);
-        soldier1.Setup(s => s.Weapons).Returns(Weaps);
+    //    Mock<ISoldier> soldier1 = new Mock<ISoldier>();
+    //    soldier1.Setup(s => s.ReadyForMission(It.IsAny<Mission>())).Returns(true);
+    //    soldier1.Setup(s => s.OverallSkill).Returns(100);
+    //    soldier1.Setup(s => s.Weapons).Returns(Weaps);
 
-        IArmy army = new Army();
-        army.AddSoldier(soldier1.Object);
+    //    IArmy army = new Army();
+    //    army.AddSoldier(soldier1.Object);
 
-        IWareHouse wareHouse = new WareHouse(new AmmunitionFactory());
+    //    IWareHouse wareHouse = new WareHouse(new AmmunitionFactory());
 
-        Mock<IMission> mission = new Mock<IMission>();
-        mission.Setup(m => m.ScoreToComplete).Returns(600);
+    //    Mock<IMission> mission = new Mock<IMission>();
+    //    mission.Setup(m => m.ScoreToComplete).Returns(600);
 
-        IMissionController controller = new MissionController(army, wareHouse);
+    //    IMissionController controller = new MissionController(army, wareHouse);
 
-        controller.PerformMission(mission.Object);
+    //    controller.PerformMission(mission.Object);
 
-        Assert.That(controller.SuccessMissionCounter, Is.EqualTo(1));
-    }
+    //    Assert.That(controller.SuccessMissionCounter, Is.EqualTo(1));
+    //}
 
     [Test]
     public void SuccessfulMissions()

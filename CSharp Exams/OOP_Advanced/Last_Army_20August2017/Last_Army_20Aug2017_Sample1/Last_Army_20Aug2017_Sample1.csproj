@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\Message.cs" />
+    <Compile Include="Constants\OutputMessages.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Controllers\GameController.cs" />
     <Compile Include="Core\Controllers\MissionController.cs" />

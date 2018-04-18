@@ -5,4 +5,6 @@
     public Helmet() : base(weight)
     {
     }
+
+    //public override string NameTest => nameof(Helmet);
 }

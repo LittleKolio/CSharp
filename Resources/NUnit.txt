@@ -61,8 +61,22 @@
 	[TestFixture]
 	public class TestClassName
 	{
+		[SetUp]
+		publc void Initialize() { }
+	
 		[Test]
-		publc void MethodName() { }
+		publc void MethodName()
+		{
+			//Arrange
+			
+			//Act
+			
+			//Assert
+			Assert.That(...);
+		}
+		
+		[TearDown]
+		publc void Cleanup() { }
 	}
 	
 	

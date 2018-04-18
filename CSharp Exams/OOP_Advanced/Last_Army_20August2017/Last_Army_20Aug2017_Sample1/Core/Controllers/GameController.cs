@@ -97,7 +97,7 @@ public class GameController : IGameController
             if (!equipped)
             {
                 throw new ArgumentException(
-                    string.Format(Message.SoldierNotAddedToTheArmy, type, name));
+                    string.Format(OutputMessages.SoldierNotAddedToTheArmy, type, name));
             }
 
             this.army.AddSoldier(soldier);

@@ -5,4 +5,6 @@
     public MachineGun() : base(weight)
     {
     }
+
+    //public override string NameTest => nameof(MachineGun);
 }

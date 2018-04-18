@@ -1,4 +1,4 @@
-﻿public static class Message
+﻿public static class OutputMessages
 {
     public const string SoldierNotAddedToTheArmy  = "There is no weapon for {0} {1}!";
     public const string MissionDeclined = "Mission declined - {0}";

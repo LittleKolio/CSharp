@@ -5,4 +5,6 @@
     public Knife() : base(weight)
     {
     }
+
+    //public override string NameTest => nameof(Knife);
 }

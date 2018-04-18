@@ -5,4 +5,6 @@
     public AutomaticMachine() : base(weight)
     {
     }
+
+    //public override string NameTest => nameof(AutomaticMachine);
 }

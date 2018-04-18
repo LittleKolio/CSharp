@@ -5,4 +5,6 @@
     public NightVision() : base(weight)
     {
     }
+
+    //public override string NameTest => nameof(NightVision);
 }

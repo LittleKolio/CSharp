@@ -5,8 +5,7 @@ public class Corporal : Soldier
 {
     private const double OverallSkillMiltiplier = 2.5;
     private const double increaseEndurance = 10;
-
-    public override IReadOnlyList<string> WeaponsAllowed => new List<string>
+    private readonly List<string> weaponsAllowed = new List<string>
     {
         "Gun",
         "AutomaticMachine",
@@ -14,6 +13,8 @@ public class Corporal : Soldier
         "Helmet",
         "Knife",
     };
+
+    protected override IReadOnlyList<string> WeaponsAllowed => this.weaponsAllowed;
 
     public Corporal(string name, int age, double experience, double endurance)
         : base(name, age, experience, endurance)

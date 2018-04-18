@@ -10,7 +10,8 @@ public class MissionFactory : IMissionFactory
     public IMission CreateMission(string level, double points)
     {
         Type missionType = Assembly
-            .GetExecutingAssembly()
+            .GetCallingAssembly()
+            //.GetExecutingAssembly()
             .GetTypes()
             .FirstOrDefault(t => t.Name == level);
 
@@ -26,10 +27,13 @@ public class MissionFactory : IMissionFactory
                 "MissionType don't inherit IMission!");
         }
 
-        object[] parameters = new object[] { points };
+        //object[] parameters = new object[] { points };
+
+        //IMission mission = (IMission)Activator.CreateInstance(
+        //    missionType, parameters);
 
         IMission mission = (IMission)Activator.CreateInstance(
-            missionType, parameters);
+            missionType, points);
 
         return mission;
     }

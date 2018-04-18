@@ -7,7 +7,8 @@ public class AmmunitionFactory : IAmmunitionFactory
     public IAmmunition CreateAmmunition(string ammunitionName)
     {
         Type ammunitionType = Assembly
-            .GetExecutingAssembly()
+            .GetCallingAssembly()
+            //.GetExecutingAssembly()
             .GetTypes()
             .FirstOrDefault(t => t.Name == ammunitionName);
 
@@ -23,7 +24,7 @@ public class AmmunitionFactory : IAmmunitionFactory
                 "AmmunitionType don't inherit IAmmunition!");
         }
 
-        IAmmunition ammunition = (IAmmunition)Activator.CreateInstance(ammunitionType, null);
+        IAmmunition ammunition = (IAmmunition)Activator.CreateInstance(ammunitionType);
 
         return ammunition;
     }

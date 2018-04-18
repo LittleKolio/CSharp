@@ -34,7 +34,7 @@ public abstract class Soldier : ISoldier
 
     public virtual double OverallSkill => this.Age + this.Experience;
 
-    public abstract IReadOnlyList<string> WeaponsAllowed { get; }
+    protected abstract IReadOnlyList<string> WeaponsAllowed { get; }
 
     public IDictionary<string, IAmmunition> Weapons { get; private set; }
 
@@ -71,16 +71,14 @@ public abstract class Soldier : ISoldier
 
     public bool ReadyForMission(IMission mission)
     {
-        bool enoughEndurance = this.Endurance < mission.EnduranceRequired;
+        bool enoughEndurance = this.Endurance >= mission.EnduranceRequired;
 
-        if (enoughEndurance)
+        if (!enoughEndurance)
             return false;
 
-        bool neededAmmunitions = 
-            this.Weapons.Values.Count(w => w != null) != 
-            this.WeaponsAllowed.Count();
+        bool neededAmmunitions = this.Weapons.Values.All(w => w != null);
 
-        if (neededAmmunitions)
+        if (!neededAmmunitions)
             return false;
 
         return true;
@@ -88,6 +86,6 @@ public abstract class Soldier : ISoldier
 
     public abstract void Regenerate();
 
-    public override string ToString() => string.Format(Message.SoldierToString, this.Name, this.OverallSkill);
+    public override string ToString() => string.Format(OutputMessages.SoldierToString, this.Name, this.OverallSkill);
 
 }
