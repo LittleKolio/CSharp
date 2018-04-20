@@ -214,6 +214,17 @@
 			public AddItem(T item);
 			
 ╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│
+		├─┬─────────────────────────────────────────────────────────────────┘
+			using System.Collections.ObjectModel;
+		
+			private List<T> collection;
+			public ReadOnlyCollection<T> Collection
+			{
+				get { return this.collection.AsReadOnly(); }
+			}
+			
+╟─├─┬───────────────────────────────────────────────────────────────────┐
 		│Custom collection that encapsulates your "real" collection
 		├─┬─────────────────────────────────────────────────────────────────┘
 			public sealed class CustomCollection<T> : IList<T>
@@ -465,6 +476,14 @@ The classes in the System.Reflection namespace, together with System.Type, enabl
 			{ "all", () => fields }
 		};
 
+		
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ Validation of Type
+	├─┬───────────────────────────────────────────────────────────────────┘
+		Type type = typeof(ClassName);
+		
+		type.Is... //bool
+		
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│ Properties and Methods
 	├─┬───────────────────────────────────────────────────────────────────┘
@@ -482,7 +501,7 @@ The classes in the System.Reflection namespace, together with System.Type, enabl
 		foreach (MethodInfo method in 
 			propsSetter.Where(p => p.Name.StartsWith("set")))
 		{
-			// some code
+			//some code
 		}
 		
 		MethodInfo[] propsGetter = type.GetMethods(
@@ -492,7 +511,7 @@ The classes in the System.Reflection namespace, together with System.Type, enabl
 		foreach (MethodInfo method in 
 			propsGetter.Where(p => p.Name.StartsWith("get")))
 		{
-			// some code
+			//some code
 		}
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│ Factory for classes
@@ -529,8 +548,9 @@ The classes in the System.Reflection namespace, together with System.Type, enabl
 		{
 			string[] tokens = message.Split('|');
 			string methodName = this.ToTitleCase(tokens[0]);
+			
 			MethodInfo currentMethod = typeof(Logger)
-				.GetMethod(methodName);
+				.GetMethod(methodName, new[] { typeof(string), typeof(int), ... });
 				
 			currentMethod.Invoke(
 				this.logger, 
