@@ -43,9 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AbstractCommand.cs" />
+    <Compile Include="Commands\IExecutable.cs" />
+    <Compile Include="Commands\QuitCommand.cs" />
+    <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\HeroManager.cs" />
+    <Compile Include="Interfaces\IHeroFactory.cs" />
+    <Compile Include="Interfaces\IManager.cs" />
     <Compile Include="Entities\Heroes\AbstractHero.cs" />
     <Compile Include="Entities\Heroes\Assassin.cs" />
     <Compile Include="Entities\Heroes\Barbarian.cs" />
+    <Compile Include="Factories\HeroFactory.cs" />
     <Compile Include="Interfaces\IHero.cs" />
     <Compile Include="Entities\Heroes\Wizard.cs" />
     <Compile Include="Entities\Items\CommonItem.cs" />
@@ -55,8 +63,13 @@
     <Compile Include="Interfaces\IInventory.cs" />
     <Compile Include="Entities\Miscellaneous\ItemAttribute.cs" />
     <Compile Include="Interfaces\IItem.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="IO\ConsoleReader.cs" />
+    <Compile Include="IO\ConsoleWriter.cs" />
+    <Compile Include="Interfaces\IO\IInputReader.cs" />
+    <Compile Include="Interfaces\IO\IOutputWriter.cs" />
+    <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Constants.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

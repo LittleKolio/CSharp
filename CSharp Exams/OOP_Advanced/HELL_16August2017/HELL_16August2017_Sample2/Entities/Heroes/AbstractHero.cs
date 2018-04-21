@@ -88,7 +88,6 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
 
             if (fieldInfo.GetType().IsAssignableFrom(typeof(Dictionary<,>)))
             {
-                //Type[] 
                 Dictionary<string, IItem> itemsDictionary = 
                     fieldInfo.GetValue(this.inventory) as Dictionary<string, IItem>;
                 items = itemsDictionary.Values.ToList();
