@@ -230,13 +230,40 @@
 
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│ Padding
-	├─┬───────────────────────────────────────────────────────────────────┘
-		str.PadLeft(int length, char symbol)
-		str.PadRight(int totalWidth, char symbol)
+	├─────────────────────────────────────────────────────────────────────┘
+	string.PadLeft(int length, char symbol)
+	string.PadRight(int totalWidth, char symbol)
+	
+╟─├─────────────────────────────────────────────────────────────────────┐
+	Console.Write("Key".PadRight(15));
+	Console.WriteLine("Value");
 
+	//"Key            Value"
 
+╟─├─────────────────────────────────────────────────────────────────────┐
+	foreach (string animal in collection)
+	{
+		Console.Write(animal.PadRight(15));
+		Console.WriteLine("noun");
+	}
+	
+	//"cat            noun"
+	//"poodle         noun"
+	//"lizard         noun"
+	//"frog           noun"
+	//"photon         noun"
 
+	
+╟─├─────────────────────────────────────────────────────────────────────┐
+	Console.Write("Sam".PadRight(10, '.'));
+	Console.WriteLine("535".PadLeft(4, '.'));
 
+	//"Sam........535"
+		
+	Console.Write("Jason".PadRight(10, '.'));
+	Console.WriteLine("1".PadLeft(4, '.'));
+
+	//"Jason........1"
 
 ╟─┬─────────────────────────────────────────────────────────────────────┐
   │ StringBuilder
