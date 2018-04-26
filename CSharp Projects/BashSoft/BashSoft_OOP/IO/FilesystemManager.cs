@@ -1,5 +1,6 @@
 ﻿namespace BashSoft_OOP
 {
+    using BashSoft_OOP.Interface;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -7,9 +8,16 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public static class FilesystemOperations
+    public class FilesystemManager : IFilesystemManager
     {
-        public static string currentDirectory = Directory.GetCurrentDirectory();
+        private string currentDirectory;
+
+        public FilesystemManager()
+        {
+            this.currentDirectory = Directory.GetCurrentDirectory();
+        }
+
+        public string CurrentDirectory => this.currentDirectory;
 
         //public static string ParenetOfCurrentFolder(int step)
         //{
@@ -21,34 +29,32 @@
         //    return path;
         //}
 
-        public static void ChangeCurrentDirectory(string path)
+        public void ChangeDirectory(string path)
         {
             if (!Directory.Exists(path))
             {
-                OutputWriter.WriteException(
+                throw new ArgumentException(
                         ExceptionMessages.dir_DoseNotExist);
-                return;
             }
-            currentDirectory = path;
+            this.currentDirectory = path;
         }
 
-        public static void ChangeCurrentDirectoryByRelativePath(string path)
+        public void ChangeDirectoryByRelativePath(string path)
         {
             if (!Directory.Exists(path))
             {
-                OutputWriter.WriteException(
+                throw new ArgumentException(
                         ExceptionMessages.dir_DoseNotExist);
-                return;
             }
-            currentDirectory = Path.GetFullPath(
+            this.currentDirectory = Path.GetFullPath(
                 Path.Combine(currentDirectory, path));
         }
 
-        public static void CreateDirectoryInCurrentDirectory(string directoryName)
+        public void CreateDirectory(string directoryName)
         {
             //if (directoryName.IndexOfAny(Path.GetInvalidPathChars()) >= 0)
             //{
-            //    OutputWriter.DisplayException(
+            //    throw new ArgumentException(
             //        ExceptionMessages.dir_ForbiddenSymbols);
             //    return null;
             //}
@@ -60,26 +66,39 @@
             }
             catch
             {
-                OutputWriter.WriteException(
+                throw new ArgumentException(
                     ExceptionMessages.dir_ForbiddenSymbols);
-                return;
             }
 
-            currentDirectory = path;
+            this.currentDirectory = path;
         }
 
-        public static string CreateTextFileInCurrentDirectory(string name, string[] text)
+        //public string CreateTextFile(string name, string[] text)
+        //{
+        //    string path = Path.Combine(currentDirectory, name);
+        //    try
+        //    {
+        //        File.WriteAllLines(path, text);
+        //    }
+        //    catch
+        //    {
+        //        throw new ArgumentException(
+        //            ExceptionMessages.file_ForbiddenSymbols);
+        //    }
+        //    return path;
+        //}
+
+        public string CreateTextFile(string fileName, string extension)
         {
-            string path = Path.Combine(currentDirectory, name);
+            string path = Path.Combine(currentDirectory, fileName, extension);
             try
             {
-                File.WriteAllLines(path, text);
+                File.CreateText(path);
             }
             catch
             {
-                OutputWriter.WriteException(
+                throw new ArgumentException(
                     ExceptionMessages.file_ForbiddenSymbols);
-                return null;
             }
             return path;
         }

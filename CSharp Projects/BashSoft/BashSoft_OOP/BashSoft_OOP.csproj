@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BashSoft_OOP</RootNamespace>
     <AssemblyName>BashSoft_OOP</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,24 +50,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine\CommandInterpreter.cs" />
-    <Compile Include="Engine\InputReader.cs" />
-    <Compile Include="IO\FilesystemOperations.cs" />
-    <Compile Include="IO\IOManager.cs" />
-    <Compile Include="IO\OutputWriter.cs" />
+    <Compile Include="Core\CommandInterpreter.cs" />
+    <Compile Include="Core\Commands\Command.cs" />
+    <Compile Include="Core\Engine.cs" />
+    <Compile Include="Interface\IExecutable.cs" />
+    <Compile Include="Interface\ICommandInterpreter.cs" />
+    <Compile Include="Interface\IEngine.cs" />
+    <Compile Include="Interface\IReader.cs" />
+    <Compile Include="IO\ConsoleReader.cs" />
+    <Compile Include="IO\FilesystemManager.cs" />
+    <Compile Include="Interface\IFilesystemManager.cs" />
+    <Compile Include="IO\FileWriter.cs" />
+    <Compile Include="IO\TraversingDirectory.cs" />
+    <Compile Include="Interface\IWriter.cs" />
+    <Compile Include="IO\ConsoleWriter.cs" />
     <Compile Include="Launcher.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Interface\ICourse.cs" />
+    <Compile Include="Interface\IStudent.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Interface\IStudentsRepository.cs" />
     <Compile Include="Repository\RepositoryFilter.cs" />
     <Compile Include="Repository\RepositorySorter.cs" />
     <Compile Include="Repository\StudentsRepository.cs" />
     <Compile Include="StaticData\ExceptionMessages.cs" />
     <Compile Include="Tester\Tester.cs" />
+    <Compile Include="StaticData\Constants.cs" />
+    <Compile Include="Util\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

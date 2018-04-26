@@ -38,14 +38,14 @@
                     course, PoorFilter, numberOfStudents);
                     break;
 
-                default: OutputWriter.WriteException(
+                default: ConsoleWriter.WriteException(
                     ExceptionMessages.data_Filter_Invalid);
                     break;
             }
 
             if (filteredStudents.Count == 0)
             {
-                OutputWriter.WriteOneLineMessage(
+                ConsoleWriter.WriteOneLineMessage(
                     ExceptionMessages.data_Student_Requirements);
             }
 

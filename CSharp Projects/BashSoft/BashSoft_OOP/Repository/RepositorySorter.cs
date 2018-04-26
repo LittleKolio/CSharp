@@ -36,14 +36,14 @@
                     break;
 
                 default:
-                    OutputWriter.WriteException(
+                    ConsoleWriter.WriteException(
                         ExceptionMessages.data_Order_Invalid);
                     break;
             }
 
             if (sortedStudents.Count == 0)
             {
-                OutputWriter.WriteOneLineMessage(
+                ConsoleWriter.WriteOneLineMessage(
                     ExceptionMessages.data_Student_Requirements);
             }
 

@@ -21,7 +21,7 @@
                 return;
             }
 
-            OutputWriter.WriteOneLineMessage("Reading files...");
+            ConsoleWriter.WriteOneLineMessage("Reading files...");
 
             string[] userOutputLines = File.ReadAllLines(userOutputPath);
             string[] expectedOutputLines = File.ReadAllLines(expectedOutputPath);
@@ -33,7 +33,7 @@
 
             PrintMismatches(mismatches, isMismatch, mismatchPath);
 
-            OutputWriter.WriteOneLineMessage("Files readed");
+            ConsoleWriter.WriteOneLineMessage("Files readed");
         }
 
         private bool ValidatePath(string filePath)
@@ -41,7 +41,7 @@
             bool exists = File.Exists(filePath);
             if (!exists)
             {
-                OutputWriter.WriteException(
+                ConsoleWriter.WriteException(
                     string.Format(ExceptionMessages.file_DoseNotExist, filePath));
             }
             return exists;
@@ -54,7 +54,7 @@
             {
                 foreach (string line in mismatches)
                 {
-                    OutputWriter.WriteOneLineMessage(line);
+                    ConsoleWriter.WriteOneLineMessage(line);
                 }
 
                 try
@@ -63,13 +63,13 @@
                 }
                 catch
                 {
-                    OutputWriter.WriteOneLineMessage(
+                    ConsoleWriter.WriteOneLineMessage(
                         ExceptionMessages.file_ForbiddenSymbols);
                 }
             }
             else
             {
-                OutputWriter.WriteOneLineMessage(
+                ConsoleWriter.WriteOneLineMessage(
                     "Files are identical. There are no mismatches.");
             }
         }
@@ -82,7 +82,7 @@
         {
             isMismatch = false;
             string[] mismatches = new string[userOutputLines.Length];
-            OutputWriter.WriteOneLineMessage("Comparing files...");
+            ConsoleWriter.WriteOneLineMessage("Comparing files...");
 
             for (int index = 0; index < userOutputLines.Length; index++)
             {

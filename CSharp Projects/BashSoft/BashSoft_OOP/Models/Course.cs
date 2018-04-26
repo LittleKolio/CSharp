@@ -1,26 +1,27 @@
 ﻿namespace BashSoft_OOP
 {
+    using BashSoft_OOP.Interface;
     using System;
     using System.Collections.Generic;
 
-    public class Course
+    public class Course : ICourse
     {
         public const int numberOfTasksOnExam = 5;
         public const int maxScoreOnExam = 100;
 
         private string name;
-        private Dictionary<string, Student> students;
+        private Dictionary<string, IStudent> students;
 
         public Course(string name)
         {
             this.Name = name;
-            this.students = new Dictionary<string, Student>();
+            this.students = new Dictionary<string, IStudent>();
         }
 
         public string Name
         {
             get { return this.name; }
-            set
+            private set
             {
                 if (string.IsNullOrEmpty(value))
                 {
@@ -30,13 +31,14 @@
             }
         }
 
-        public void EnrollStudent(Student student)
+        public IReadOnlyDictionary<string, IStudent> Students => this.students;
+
+        public void EnrollStudent(IStudent student)
         {
             if (students.ContainsKey(student.Name))
             {
-                OutputWriter.WriteException(string.Format(
+                throw new InvalidOperationException(string.Format(
                     ExceptionMessages.data_Student_InCourse, student.Name, this.Name));
-                return;
             }
             this.students.Add(student.Name, student);
         }

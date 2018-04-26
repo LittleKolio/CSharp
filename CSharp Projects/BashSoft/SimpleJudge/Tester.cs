@@ -1,6 +1,5 @@
 ﻿namespace SimpleJudge
 {
-    using BashSoft2;
     using System;
     using System.IO;
 
@@ -8,7 +7,7 @@
     {
         public static void CompareContent(string userOutputPath, string expectedOutputPath)
         {
-            OutputWriter.WriteOneLineMessage("Reading files...");
+            Console.WriteLine("Reading files...");
             if (!File.Exists(userOutputPath) || !File.Exists(expectedOutputPath))
             {
                 throw new ArgumentException();
@@ -22,7 +21,7 @@
             string[] mismatches = GetMismates(userOutputLines, expectedOutputLines, out isMismatch);
 
             PrintMismatches(mismatches, isMismatch, mismatchPath);
-            OutputWriter.WriteOneLineMessage("Files readed");
+            Console.WriteLine("Files readed");
         }
 
         private static void PrintMismatches(string[] mismatches, bool isMismatch, string mismatchPath)
@@ -31,7 +30,7 @@
             {
                 foreach (string line in mismatches)
                 {
-                    OutputWriter.WriteOneLineMessage(line);
+                    Console.WriteLine(line);
                 }
 
                 try
@@ -40,13 +39,12 @@
                 }
                 catch
                 {
-                    OutputWriter.WriteOneLineMessage(
-                        ExceptionMessages.file_ForbiddenSymbols);
+                    Console.WriteLine("Forbidden Symbols!");
                 }
             }
             else
             {
-                OutputWriter.WriteOneLineMessage(
+                Console.WriteLine(
                     "Files are identical. There are no mismatches.");
             }
         }
@@ -56,7 +54,7 @@
             string formatForMismatch = "Mismatch at line {0} -- expected: \"{1}\", actual: \"{2}\"";
             isMismatch = false;
             string[] mismatches = new string[userOutputLines.Length];
-            OutputWriter.WriteOneLineMessage("Comparing files...");
+            Console.WriteLine("Comparing files...");
 
             for (int index = 0; index < userOutputLines.Length; index++)
             {
