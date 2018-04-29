@@ -96,7 +96,7 @@
             string courseName = match.Groups[1].Value;
             string studentName = match.Groups[2].Value;
 
-            int[] scores;
+            int[] scores = null;
 
             try
             {
@@ -106,7 +106,8 @@
             }
             catch
             {
-                throw new ArgumentException("Invalid scores!");
+                this.consoleWriter.WriteException(
+                    string.Format(ExceptionMessages.data_Student_InvalidScores, studentName));
             }
 
             //if (scores.Length == 0)
@@ -114,8 +115,16 @@
 
             ICourse course = new Course(courseName);
             IStudent student = new Student(studentName);
-            student.EnrollInCourse(course);
-            student.AddTestScorByCourse(courseName, scores);
+
+            try
+            {
+                student.EnrollInCourse(course);
+                student.AddTestScorByCourse(courseName, scores);
+            }
+            catch (Exception ex)
+            {
+                this.consoleWriter.WriteException(ex.Message);
+            }
 
             if (!this.courses.ContainsKey(courseName))
             {

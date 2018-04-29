@@ -31,6 +31,11 @@
 
         public void WriteMessage(params string[] arguments)
         {
+            Console.Write(string.Join(" ", arguments));
+        }
+
+        public void WriteOneLineMessage(params string[] arguments)
+        {
             foreach (string message in arguments)
             {
                 Console.WriteLine(message);

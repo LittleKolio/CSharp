@@ -10,6 +10,7 @@
         public const string data_Student_Requirements = "No student meets the requirements.";
         public const string data_Student_InCourse = "Student: \"{0}\" already exists in course: \"{1}\".";
         public const string data_Student_NotInCourse = "Student: \"{0}\" does not exist in this course: \"{1}\".";
+        public const string data_Student_InvalidScores = "Student: \"{0}\" has invalid scores.";
 
         public const string file_DoseNotExist = "File: \"{0}\" does not exist!";
         public const string file_DontHaveAccess = "You don't have access to tose file!";

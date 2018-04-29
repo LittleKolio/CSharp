@@ -47,7 +47,15 @@
 
                 string[] arguments = Utility.SplitInput(input, " ");
 
-                this.commandInterpreter.Interpreter(arguments);
+                try
+                {
+                    IExecutable executable = this.commandInterpreter.Interpreter(arguments);
+                    executable.Execute();
+                }
+                catch (Exception ex)
+                {
+                    this.writer.WriteException(ex.Message);
+                }
             }
         }
 

@@ -2,6 +2,6 @@
 {
     public interface ICommandInterpreter
     {
-        void Interpreter(string[] arguments);
+        IExecutable Interpreter(string[] arguments);
     }
 }

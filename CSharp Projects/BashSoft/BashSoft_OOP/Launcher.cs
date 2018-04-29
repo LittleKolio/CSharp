@@ -10,30 +10,41 @@
     {
         public static void Main()
         {
+
+            ////IO
+            //IWriter consoleWriter = new ConsoleWriter();
+            //IReader consoleReader = new ConsoleReader();
+
+            ////Repo
+            //IStudentsRepository studentsRepository = new StudentsRepository(consoleWriter, consoleReader);
+
+            //ICommandInterpreter commandInterpreter = new CommandInterpreter(studentsRepository);
+            //IFilesystemManager filesystemManager = new FilesystemManager();
+
+            //IEngine engine = new Engine(commandInterpreter, filesystemManager, consoleWriter, consoleReader);
+
             IServiceProvider serviceProvider = ConfigureService();
 
-            //IO
-            IWriter consoleWriter = new ConsoleWriter();
-            IReader consoleReader = new ConsoleReader();
+            IEngine engine = serviceProvider.GetService<IEngine>();
 
-            //Repo
-            IStudentsRepository studentsRepository = new StudentsRepository(
-                consoleWriter, consoleReader);
-
-            ICommandInterpreter commandInterpreter = new CommandInterpreter(studentsRepository);
-            IFilesystemManager filesystemManager = new FilesystemManager();
-
-            IEngine engine = new Engine(
-                commandInterpreter, filesystemManager, consoleWriter, consoleReader);
-
-            //engine.Run();
+            engine.Run();
         }
 
         private static IServiceProvider ConfigureService()
         {
-            IServiceCollection service = new ServiceCollection();
+            IServiceCollection collection = new ServiceCollection();
 
-            service.
+            //Singleton
+            collection.AddSingleton<IReader, ConsoleReader>();
+            collection.AddSingleton<IWriter, ConsoleWriter>();
+            collection.AddSingleton<IStudentsRepository, StudentsRepository>();
+            collection.AddSingleton<IFilesystemManager, FilesystemManager>();
+
+            //Transient
+            collection.AddTransient<ICommandInterpreter, CommandInterpreter>();
+            collection.AddTransient<IEngine, Engine>();
+
+            return collection.BuildServiceProvider();
         }
     }
 }

@@ -4,6 +4,7 @@
     {
         //Console
         void WriteMessage(params string[] arguments);
+        void WriteOneLineMessage(params string[] arguments);
         void WriteException(params string[] arguments);
 
         //File

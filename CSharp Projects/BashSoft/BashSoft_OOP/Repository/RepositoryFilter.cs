@@ -6,94 +6,94 @@
 
     public class RepositoryFilter
     {
-        public Dictionary<string, List<int>> FilterInterpreter(
-            Dictionary<string, List<int>> course,
-            string filter, 
-            string take)
-        {
-            int numberOfStudents;
-            bool isNumber = int.TryParse(take, out numberOfStudents);
-            if (!isNumber)
-            {
-                numberOfStudents = course.Count;
-            }
+        //public Dictionary<string, List<int>> FilterInterpreter(
+        //    Dictionary<string, List<int>> course,
+        //    string filter, 
+        //    string take)
+        //{
+        //    int numberOfStudents;
+        //    bool isNumber = int.TryParse(take, out numberOfStudents);
+        //    if (!isNumber)
+        //    {
+        //        numberOfStudents = course.Count;
+        //    }
 
-            Dictionary<string, List<int>> filteredStudents
-                = new Dictionary<string, List<int>>();
+        //    Dictionary<string, List<int>> filteredStudents
+        //        = new Dictionary<string, List<int>>();
 
-            switch (filter)
-            {
-                case "excellent":
-                    filteredStudents = FilterByScoreAndTake(
-                    course, ExcellentFilter, numberOfStudents);
-                    break;
+        //    switch (filter)
+        //    {
+        //        case "excellent":
+        //            filteredStudents = FilterByScoreAndTake(
+        //            course, ExcellentFilter, numberOfStudents);
+        //            break;
 
-                case "average":
-                    filteredStudents = FilterByScoreAndTake(
-                    course, AverageFilter, numberOfStudents);
-                    break;
+        //        case "average":
+        //            filteredStudents = FilterByScoreAndTake(
+        //            course, AverageFilter, numberOfStudents);
+        //            break;
 
-                case "poor":
-                    filteredStudents = FilterByScoreAndTake(
-                    course, PoorFilter, numberOfStudents);
-                    break;
+        //        case "poor":
+        //            filteredStudents = FilterByScoreAndTake(
+        //            course, PoorFilter, numberOfStudents);
+        //            break;
 
-                default: ConsoleWriter.WriteException(
-                    ExceptionMessages.data_Filter_Invalid);
-                    break;
-            }
+        //        default: ConsoleWriter.WriteException(
+        //            ExceptionMessages.data_Filter_Invalid);
+        //            break;
+        //    }
 
-            if (filteredStudents.Count == 0)
-            {
-                ConsoleWriter.WriteOneLineMessage(
-                    ExceptionMessages.data_Student_Requirements);
-            }
+        //    if (filteredStudents.Count == 0)
+        //    {
+        //        ConsoleWriter.WriteOneLineMessage(
+        //            ExceptionMessages.data_Student_Requirements);
+        //    }
 
-            return filteredStudents;
-        }
-        private Dictionary<string, List<int>> FilterByScoreAndTake(
-            Dictionary<string, List<int>> course,
-            Predicate<double> filter, 
-            int numberOfStudents)
-        {
-            Dictionary<string, List<int>> filteredStudents 
-                = new Dictionary<string, List<int>>();
+        //    return filteredStudents;
+        //}
+        //private Dictionary<string, List<int>> FilterByScoreAndTake(
+        //    Dictionary<string, List<int>> course,
+        //    Predicate<double> filter, 
+        //    int numberOfStudents)
+        //{
+        //    Dictionary<string, List<int>> filteredStudents 
+        //        = new Dictionary<string, List<int>>();
 
-            int count = 0;
-            foreach (KeyValuePair<string, List<int>> student in course)
-            {
-                if (count == numberOfStudents)
-                {
-                    break;
-                }
+        //    int count = 0;
+        //    foreach (KeyValuePair<string, List<int>> student in course)
+        //    {
+        //        if (count == numberOfStudents)
+        //        {
+        //            break;
+        //        }
 
-                double mark = Average(student.Value);
-                if (filter(mark))
-                {
-                    filteredStudents.Add(student.Key, student.Value);
-                    count++;
-                }
-            }
+        //        double mark = Average(student.Value);
+        //        if (filter(mark))
+        //        {
+        //            filteredStudents.Add(student.Key, student.Value);
+        //            count++;
+        //        }
+        //    }
 
-            return filteredStudents;
-        }
+        //    return filteredStudents;
+        //}
 
-        private bool ExcellentFilter(double mark)
-        {
-            return mark >= 5.0;
-        }
-        private bool AverageFilter(double mark)
-        {
-            return mark < 5.0 && mark >= 3.5;
-        }
-        private bool PoorFilter(double mark)
-        {
-            return mark < 3.5;
-        }
-        private double Average(List<int> scores)
-        {
-            double percentTotalScore = scores.Average() / 100;
-            return percentTotalScore * 4 + 2;
-        }
+        //private bool ExcellentFilter(double mark)
+        //{
+        //    return mark >= 5.0;
+        //}
+        //private bool AverageFilter(double mark)
+        //{
+        //    return mark < 5.0 && mark >= 3.5;
+        //}
+        //private bool PoorFilter(double mark)
+        //{
+        //    return mark < 3.5;
+        //}
+        //private double Average(List<int> scores)
+        //{
+        //    double percentTotalScore = scores.Average() / 100;
+        //    return percentTotalScore * 4 + 2;
+        //}
     }
 }

@@ -51,7 +51,7 @@
                 string offsetString = new string(
                     '\u2500', offsetFromInitialDepth) + '\u2524';
 
-                this.writer.WriteOneLineMessage(
+                this.writer.WriteMessage(
                     offsetFromInitialDepth + offsetString + currentPath);
 
                 string[] directories = null;
@@ -119,7 +119,7 @@
 
                     string fileName = Path.GetFileName(file);
 
-                    this.writer.WriteOneLineMessage(offsetString + fileName);
+                    this.writer.WriteMessage(offsetString + fileName);
                 }
             }
         }

@@ -4,12 +4,12 @@
 
     public abstract class Command : IExecutable
     {
-        private string[] arguments;
-
-        public Command(string[] arguments)
+        protected Command(string[] arguments)
         {
-            this.arguments = arguments;
+            this.Arguments = arguments;
         }
+
+        public string[] Arguments { get; }
 
         public abstract void Execute();
     }

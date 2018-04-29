@@ -9,28 +9,60 @@
 
     public class CommandInterpreter : ICommandInterpreter
     {
-        private IStudentsRepository studentsRepository;
+        private IServiceProvider serviceProvider;
+        private Type[] commandTypes;
 
-        public CommandInterpreter(
-            IStudentsRepository studentsRepository
-            )
+        public CommandInterpreter(IServiceProvider serviceProvider)
         {
-            this.studentsRepository = studentsRepository;
+            this.serviceProvider = serviceProvider;
+            this.commandTypes = Assembly
+                .GetExecutingAssembly()
+                .GetTypes();
         }
 
         public IExecutable Interpreter(string[] arguments)
         {
-            string command = CultureInfo
+            string commandInput = this.InputCommandformat(arguments[0]);
+
+            Type commandType = this.commandTypes
+                .FirstOrDefault(t => t.Name == commandInput);
+
+            if (commandType == null)
+            {
+                throw new ArgumentException();
+            }
+
+            if (!typeof(IExecutable).IsAssignableFrom(commandType))
+            {
+                throw new InvalidOperationException();
+            }
+
+            ParameterInfo[] commandTypeParameters = commandType
+                .GetConstructors()
+                .FirstOrDefault()
+                .GetParameters();
+
+            object[] parameters = new object[commandTypeParameters.Length];
+            parameters[0] = arguments.Skip(1).ToArray();
+
+            for (int i = 1; i < commandTypeParameters.Length; i++)
+            {
+                Type parameterType = commandTypeParameters[i].ParameterType;
+                parameters[i] = this.serviceProvider.GetService(parameterType);
+            }
+
+            IExecutable command = (IExecutable)Activator.CreateInstance(commandType, parameters);
+
+            return command;
+        }
+
+        private string InputCommandformat(string input)
+        {
+            return CultureInfo
                 .CurrentCulture
                 .TextInfo
-                .ToTitleCase(arguments[0])
+                .ToTitleCase(input)
                 + "Command";
-
-            Type commandType = Assembly
-                .GetExecutingAssembly()
-                .GetType(command);
-
-            return null;
         }
 
         //public void Interpreter(string cmd, string[] tokens)
@@ -77,17 +109,6 @@
         //                }
         //            } break;
 
-        //        //changeDirRel relativePath
-        //        //change the current directory by a relative path
-        //        case "changeDirRel":
-        //            {
-        //                if (CheckNumberOfParameters(1, tokens.Length))
-        //                {
-        //                    string relativePath = tokens[0];
-        //                    FilesystemManager.ChangeDirectoryByRelativePath(relativePath);
-        //                }
-        //            } break;
-
         //        //changeDirAbs absolutePath
         //        //change the current directory by an absolute path
         //        case "changeDirAbs":
@@ -107,18 +128,6 @@
         //                {
         //                    string fileName = tokens[0];
         //                    this.ioManager.OpenFileWithDefaultProgram(fileName);
-        //                }
-        //            } break;
-
-        //        //readDb dataBaseFileName
-        //        //read students database by a given name of the database file
-        //        //which is placed in the current folder
-        //        case "readDb":
-        //            {
-        //                if (CheckNumberOfParameters(1, tokens.Length))
-        //                {
-        //                    string fileName = tokens[0];
-        //                    this.studentsRepository.ReadDataFromFile(fileName);
         //                }
         //            } break;
 

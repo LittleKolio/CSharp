@@ -21,7 +21,7 @@
                 return;
             }
 
-            ConsoleWriter.WriteOneLineMessage("Reading files...");
+            Console.WriteLine("Reading files...");
 
             string[] userOutputLines = File.ReadAllLines(userOutputPath);
             string[] expectedOutputLines = File.ReadAllLines(expectedOutputPath);
@@ -33,7 +33,7 @@
 
             PrintMismatches(mismatches, isMismatch, mismatchPath);
 
-            ConsoleWriter.WriteOneLineMessage("Files readed");
+            Console.WriteLine("Files readed");
         }
 
         private bool ValidatePath(string filePath)
@@ -41,7 +41,7 @@
             bool exists = File.Exists(filePath);
             if (!exists)
             {
-                ConsoleWriter.WriteException(
+                Console.WriteLine(
                     string.Format(ExceptionMessages.file_DoseNotExist, filePath));
             }
             return exists;
@@ -54,7 +54,7 @@
             {
                 foreach (string line in mismatches)
                 {
-                    ConsoleWriter.WriteOneLineMessage(line);
+                    Console.WriteLine(line);
                 }
 
                 try
@@ -63,13 +63,13 @@
                 }
                 catch
                 {
-                    ConsoleWriter.WriteOneLineMessage(
+                    Console.WriteLine(
                         ExceptionMessages.file_ForbiddenSymbols);
                 }
             }
             else
             {
-                ConsoleWriter.WriteOneLineMessage(
+                Console.WriteLine(
                     "Files are identical. There are no mismatches.");
             }
         }
@@ -82,7 +82,7 @@
         {
             isMismatch = false;
             string[] mismatches = new string[userOutputLines.Length];
-            ConsoleWriter.WriteOneLineMessage("Comparing files...");
+            Console.WriteLine("Comparing files...");
 
             for (int index = 0; index < userOutputLines.Length; index++)
             {

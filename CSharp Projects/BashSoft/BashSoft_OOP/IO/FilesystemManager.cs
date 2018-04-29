@@ -52,13 +52,6 @@
 
         public void CreateDirectory(string directoryName)
         {
-            //if (directoryName.IndexOfAny(Path.GetInvalidPathChars()) >= 0)
-            //{
-            //    throw new ArgumentException(
-            //        ExceptionMessages.dir_ForbiddenSymbols);
-            //    return null;
-            //}
-
             string path = Path.Combine(currentDirectory, directoryName);
             try
             {
