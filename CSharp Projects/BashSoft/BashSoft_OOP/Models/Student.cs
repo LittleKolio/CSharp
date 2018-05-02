@@ -6,17 +6,17 @@
     using System.Collections.ObjectModel;
     using System.Linq;
 
-    public class Student : IStudent
+    public class Student : IStudent, IComparable<KeyValuePair<string, List<int>>>
     {
         private string name;
         private Dictionary<string, ICourse> courses;
-        private Dictionary<string, List<int>> testScorByCourse;
+        private Dictionary<string, List<int>> testScorsByCourse;
 
         public Student(string name)
         {
             this.Name = name;
             this.courses = new Dictionary<string, ICourse>();
-            this.testScorByCourse = new Dictionary<string, List<int>>();
+            this.testScorsByCourse = new Dictionary<string, List<int>>();
         }
 
         public string Name
@@ -34,7 +34,7 @@
  
         public IReadOnlyDictionary<string, ICourse> Courses => this.courses;
 
-        public IReadOnlyDictionary<string, List<int>> TestScorByCourse => this.testScorByCourse;
+        public IReadOnlyDictionary<string, List<int>> TestScorsByCourse => this.testScorsByCourse;
 
         public void EnrollInCourse(ICourse course)
         {
@@ -60,15 +60,15 @@
                     ExceptionMessages.params_InvalidNumber, Course.numberOfTasksOnExam));
             }
 
-            this.testScorByCourse.Add(courseName, new List<int>(scores));
+            this.testScorsByCourse.Add(courseName, new List<int>(scores));
         }
 
-        //private double CalculateTestScore(int[] scores)
-        //{
-        //    double precentage = scores.Sum() / 
-        //        (double)(Course.numberOfTasksOnExam * Course.maxScoreOnExam);
-        //    double testScore = precentage * 4 + 2;
-        //    return testScore;
-        //}
+        public int CompareTo(KeyValuePair<string, List<int>> other)
+        {
+            double thisAverage = this.testScorsByCourse[other.Key].Average();
+            double otherAverage = other.Value.Average();
+
+            return thisAverage.CompareTo(otherAverage);
+        }
     }
 }

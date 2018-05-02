@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 namespace BashSoft_OOP.Core.Commands
 {
     /// <summary>
-    /// Initialize (fill) the database from file by given name.
-    /// First we have to change directory
+    /// Initialize (fill) the database from a file by given name.
+    /// First we have to change current directory to file directory.
     /// </summary>
     public class ReadfileCommand : Command
     {

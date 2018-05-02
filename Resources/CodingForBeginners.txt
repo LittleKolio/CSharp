@@ -213,7 +213,7 @@
   ├
   ├─
   ├─────────────────────────────────────────────────────────────────────┤
-                                                    
+
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│CurrentCulture
 	├─────────────────────────────────────────────────────────────────────┘
@@ -942,7 +942,16 @@ using (var sequenceEnum = mySequence.GetEnumerator())
 https://visualgo.net/en
 
 
-
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│.Sort()
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ This method uses Array.Sort, which uses the QuickSort algorithm.
+	├─ This implementation performs an unstable sort: that is, if two elements are equal, their order might not be preserved.
+	
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│.OrderBy()
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ This method performs a stable sort: that is, if the keys of two elements are equal, the order of the elements is preserved.
 
 ╔═══════════════════════════════════════════════════════════════════════╗
 ║ Streams
