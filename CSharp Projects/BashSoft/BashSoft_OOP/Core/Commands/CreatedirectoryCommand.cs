@@ -6,6 +6,8 @@ namespace BashSoft_OOP.Core.Commands
     /// Creates directory in the current by given name.
     /// First we have to change current directory to location where we want to create.
     /// </summary>
+    /// <example>createdirectory {0_directoryName}</example>
+
     public class CreatedirectoryCommand : Command
     {
         private IFilesystemManager filesystemManager;

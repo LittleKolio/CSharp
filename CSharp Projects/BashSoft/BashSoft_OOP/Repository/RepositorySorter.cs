@@ -5,18 +5,17 @@
     using System.Collections.Generic;
     using System.Linq;
     
-    public class RepositorySorter
+    public class RepositorySorter : ISorter
     {
-        public List<IStudent> SortInterpreter(
-            List<IStudent> course,
+        public IList<IStudent> SortInterpreter(
+            ICourse course,
             string order,
-            string take)
+            int take)
         {
-            int numberOfStudents;
-            bool isNumber = int.TryParse(take, out numberOfStudents);
-            if (!isNumber)
+            if (course.Students.Count == 0)
             {
-                numberOfStudents = course.Count;
+                throw new InvalidOperationException(
+                    ExceptionMessages.data_Student_Requirements);
             }
 
             List<IStudent> sortedStudents = new List<IStudent>();
@@ -24,32 +23,28 @@
             switch (order)
             {
                 case "ascending":
-                    sortedStudents = course.OrderBy(s => s)
-                        .Take(numberOfStudents)
-                        .ToDictionary(s => s.Key, s => s.Value);
+                    sortedStudents = course.Students.OrderBy(s => 
+                        s.Value.TestScorsByCourse(course.Name))
+                        .Take(take)
+                        .Select(s => s.Value)
+                        .ToList();
                     break;
 
                 case "descending":
-                    sortedStudents = course.OrderByDescending(s => AverageOfList(s.Value))
-                        .Take(numberOfStudents)
-                        .ToDictionary(s => s.Key, s => s.Value);
+                    sortedStudents = course.Students.OrderByDescending(s => 
+                        s.Value.TestScorsByCourse(course.Name))
+                        .Take(take)
+                        .Select(s => s.Value)
+                        .ToList();
                     break;
 
                 default:
-                    ConsoleWriter.WriteException(
+                    throw new ArgumentException(
                         ExceptionMessages.data_Order_Invalid);
-                    break;
-            }
-
-            if (sortedStudents.Count == 0)
-            {
-                ConsoleWriter.WriteOneLineMessage(
-                    ExceptionMessages.data_Student_Requirements);
             }
 
             return sortedStudents;
         }
 
-        private Func<List<int>, double> AverageOfList = s => s.Average();
     }
 }

@@ -8,10 +8,10 @@
 
         IReadOnlyDictionary<string, ICourse> Courses { get; }
 
-        IReadOnlyDictionary<string, List<int>> TestScorsByCourse { get; }
+        KeyValuePair<string, List<int>> TestScorsByCourse(string courseName); 
 
         void EnrollInCourse(ICourse course);
 
-        void AddTestScorByCourse(string courseName, params int[] scores);
+        void AddTestScorsByCourse(string courseName, params int[] scores);
     }
 }

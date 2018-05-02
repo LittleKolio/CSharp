@@ -28,6 +28,19 @@
 
         public int CoursesCount => this.courses.Count;
 
+        public ICourse GetCourse(string courseName)
+        {
+            if (!this.courses.ContainsKey(courseName))
+            {
+                this.consoleWriter.WriteException(string.Format(
+                    ExceptionMessages.data_Cours_NotExist, courseName));
+
+                return null;
+            }
+
+            return this.courses[courseName];
+        }
+
         public void ReadDataFromConsole()
         {
             int prevCount = this.CoursesCount;
@@ -119,7 +132,7 @@
             try
             {
                 student.EnrollInCourse(course);
-                student.AddTestScorByCourse(courseName, scores);
+                student.AddTestScorsByCourse(courseName, scores);
             }
             catch (Exception ex)
             {
@@ -134,37 +147,6 @@
             this.courses[courseName].EnrollStudent(student);
         }
 
-        //public List<int> GetStudent(string courseName, string studentName)
-        //{
-        //    if (IsQueryForStudentPossiblе(courseName, studentName))
-        //    {
-        //        return courses[courseName][studentName];
-
-        //        OutputWriter.PrintStudent(
-        //            new KeyValuePair<string, List<int>>(
-        //                studentName, studentsByCourse[courseName][studentName]));
-        //    }
-        //    return null;
-        //}
-
-        //public Dictionary<string, List<int>> GetCourse(string courseName)
-        //{
-        //    if (IsQueryForCoursePossible(courseName))
-        //    {
-        //        return courses[courseName];
-
-        //        OutputWriter.WriteOneLineMessage(courseName);
-        //        foreach (var student in studentsByCourse[courseName])
-        //        {
-        //            OutputWriter.PrintStudent(student);
-        //        }
-        //    }
-        //    return null;
-        //}
-
-        private bool ShouldEnd(string input)
-        {
-            return string.IsNullOrEmpty(input);
-        }
+        private bool ShouldEnd(string input) => string.IsNullOrEmpty(input);
     }
 }

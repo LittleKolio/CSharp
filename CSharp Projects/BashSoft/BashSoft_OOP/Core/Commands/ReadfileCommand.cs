@@ -12,6 +12,8 @@ namespace BashSoft_OOP.Core.Commands
     /// Initialize (fill) the database from a file by given name.
     /// First we have to change current directory to file directory.
     /// </summary>
+    /// <example>readfile {0_fileName}</example>
+
     public class ReadfileCommand : Command
     {
         private IStudentsRepository studentsRepository;

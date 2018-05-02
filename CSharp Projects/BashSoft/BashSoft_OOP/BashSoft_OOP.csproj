@@ -76,6 +76,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interface\IStudentsRepository.cs" />
     <None Include="Repository\RepositoryFilter.cs" />
+    <Compile Include="Interface\ISorter.cs" />
     <Compile Include="Repository\RepositorySorter.cs" />
     <Compile Include="Repository\StudentsRepository.cs" />
     <Compile Include="StaticData\ExceptionMessages.cs" />

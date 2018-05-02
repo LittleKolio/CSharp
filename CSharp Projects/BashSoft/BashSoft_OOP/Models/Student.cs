@@ -6,6 +6,10 @@
     using System.Collections.ObjectModel;
     using System.Linq;
 
+    /// <summary>
+    /// One student is defined by name, courses he enrolled and test scores for the course.
+    /// </summary>
+
     public class Student : IStudent, IComparable<KeyValuePair<string, List<int>>>
     {
         private string name;
@@ -34,8 +38,6 @@
  
         public IReadOnlyDictionary<string, ICourse> Courses => this.courses;
 
-        public IReadOnlyDictionary<string, List<int>> TestScorsByCourse => this.testScorsByCourse;
-
         public void EnrollInCourse(ICourse course)
         {
             if (this.Courses.ContainsKey(course.Name))
@@ -46,7 +48,7 @@
             this.courses.Add(course.Name, course);
         }
 
-        public void AddTestScorByCourse(string courseName, params int[] scores)
+        public void AddTestScorsByCourse(string courseName, params int[] scores)
         {
             if (!this.Courses.ContainsKey(courseName))
             {
@@ -60,7 +62,23 @@
                     ExceptionMessages.params_InvalidNumber, Course.numberOfTasksOnExam));
             }
 
-            this.testScorsByCourse.Add(courseName, new List<int>(scores));
+            if (!this.testScorsByCourse.ContainsKey(courseName))
+            {
+                this.testScorsByCourse.Add(courseName, null);
+            }
+
+            this.testScorsByCourse[courseName] = new List<int>(scores);
+        }
+
+        public KeyValuePair<string, List<int>> TestScorsByCourse(string courseName)
+        {
+            if (!this.Courses.ContainsKey(courseName))
+            {
+                throw new InvalidOperationException(string.Format(
+                    ExceptionMessages.data_Student_NotInCourse, this.Name, courseName));
+            }
+
+            return this.testScorsByCourse.FirstOrDefault(s => s.Key == courseName);
         }
 
         public int CompareTo(KeyValuePair<string, List<int>> other)
