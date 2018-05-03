@@ -29,25 +29,28 @@
         //    return path;
         //}
 
-        public void ChangeDirectory(string path)
+        public void ChangeDirectory(string absolutePath)
         {
-            if (!Directory.Exists(path))
+            if (!Directory.Exists(absolutePath))
             {
-                throw new ArgumentException(
-                        ExceptionMessages.dir_DoseNotExist);
+                throw new ArgumentException(string.Format(
+                        ExceptionMessages.dir_DoseNotExist, 
+                        Path.GetDirectoryName(absolutePath)));
             }
-            this.currentDirectory = path;
+
+            this.currentDirectory = absolutePath;
         }
 
-        public void ChangeDirectoryByRelativePath(string path)
+        public void ChangeDirectoryByRelativePath(string relativePath)
         {
-            if (!Directory.Exists(path))
+            if (!Directory.Exists(relativePath))
             {
                 throw new ArgumentException(
                         ExceptionMessages.dir_DoseNotExist);
             }
+
             this.currentDirectory = Path.GetFullPath(
-                Path.Combine(currentDirectory, path));
+                Path.Combine(currentDirectory, relativePath));
         }
 
         public void CreateDirectory(string directoryName)

@@ -8,9 +8,11 @@
         public const string data_Filter_Invalid = "Filter is not one of the following: excellent/average/poor";
         public const string data_Order_Invalid = "Order is not one of the following: ascending/descending";
         public const string data_Student_Requirements = "No student meets the requirements.";
-        public const string data_Student_InCourse = "Student: \"{0}\" already exists in course: \"{1}\".";
+        //public const string data_Student_InCourse = "Student: \"{0}\" already exists in course: \"{1}\".";
         public const string data_Student_NotInCourse = "Student: \"{0}\" does not exist in this course: \"{1}\".";
         public const string data_Student_InvalidScores = "Student: \"{0}\" has invalid scores.";
+        public const string data_Student_MaxNumberOfScores = "Maximum number of scores already reached.";
+        public const string data_Student_InvalideNumberOfScores = "Only {0} number of scores left for \"{1}\" course.";
 
         public const string file_DoseNotExist = "File: \"{0}\" does not exist!";
         public const string file_DontHaveAccess = "You don't have access to tose file!";
@@ -18,11 +20,11 @@
         public const string file_WriteMismatche = "Line {0} -- expected: \"{1}\", actual: \"{2}\"";
 
 
-        public const string dir_DoseNotExist = "Folder does not exist!";
+        public const string dir_DoseNotExist = "Folder: \"{0}\" does not exist!";
         public const string dir_DontHaveAccess = "You don't have access to tose folder!";
         public const string dir_ForbiddenSymbols = "Folder name contains not allowed symbols.";
 
-        public const string params_InvalidNumber = "Expect {0} parameters.";
+        public const string params_InvalidNumber = "Expect {0} number of parameters.";
         public const string params_InvalidParameter = "The parameter: \"{0}\" is invalid.";
 
         public const string command_Null = "Insert command.";

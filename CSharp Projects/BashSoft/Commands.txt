@@ -1,0 +1,16 @@
+//changedirectory {0_relativeDirectoryPath}
+changedirectory ..\..\Resources
+
+//createdirectory {0_directoryName}
+createdirectory Test
+
+//order {0_courseName} {1_ascending/descending} {2_(int)number/(string)all}
+order
+
+//readfile {0_fileName}
+readfile dataNew.txt
+readfile dataOrderTest.txt
+
+Check number of arguments for commands in abstract Command
+Change exceptions for AddTestScorsByCourse in class Student
+Change EnrollInCourse not ot throw exception for class Student and Course
