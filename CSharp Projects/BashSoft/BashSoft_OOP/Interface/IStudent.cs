@@ -8,7 +8,7 @@
 
         IReadOnlyDictionary<string, ICourse> Courses { get; }
 
-        KeyValuePair<string, List<int>> TestScorsByCourse(string courseName); 
+        KeyValuePair<string, List<int>> GetTestScorsByCourse(string courseName); 
 
         void EnrollInCourse(ICourse course);
 

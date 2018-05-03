@@ -24,7 +24,7 @@
             {
                 case "ascending":
                     sortedStudents = course.Students.OrderBy(s => 
-                        s.Value.TestScorsByCourse(course.Name))
+                        s.Value.GetTestScorsByCourse(course.Name))
                         .Take(take)
                         .Select(s => s.Value)
                         .ToList();
@@ -32,7 +32,7 @@
 
                 case "descending":
                     sortedStudents = course.Students.OrderByDescending(s => 
-                        s.Value.TestScorsByCourse(course.Name))
+                        s.Value.GetTestScorsByCourse(course.Name))
                         .Take(take)
                         .Select(s => s.Value)
                         .ToList();

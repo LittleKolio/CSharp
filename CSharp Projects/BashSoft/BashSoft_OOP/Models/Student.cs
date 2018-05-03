@@ -40,12 +40,16 @@
 
         public void EnrollInCourse(ICourse course)
         {
-            if (this.Courses.ContainsKey(course.Name))
+            //if (this.Courses.ContainsKey(course.Name))
+            //{
+            //    throw new InvalidOperationException(string.Format(
+            //        ExceptionMessages.data_Student_InCourse, this.Name, course.Name));
+            //}
+
+            if (!this.Courses.ContainsKey(course.Name))
             {
-                throw new InvalidOperationException(string.Format(
-                    ExceptionMessages.data_Student_InCourse, this.Name, course.Name));
+                this.courses.Add(course.Name, course);
             }
-            this.courses.Add(course.Name, course);
         }
 
         public void AddTestScorsByCourse(string courseName, params int[] scores)
@@ -56,21 +60,29 @@
                     ExceptionMessages.data_Student_NotInCourse, this.Name, courseName));
             }
 
-            if (scores.Length > Course.numberOfTasksOnExam)
-            {
-                throw new InvalidOperationException(string.Format(
-                    ExceptionMessages.params_InvalidNumber, Course.numberOfTasksOnExam));
-            }
-
             if (!this.testScorsByCourse.ContainsKey(courseName))
             {
-                this.testScorsByCourse.Add(courseName, null);
+                this.testScorsByCourse.Add(courseName, new List<int>());
             }
 
-            this.testScorsByCourse[courseName] = new List<int>(scores);
+            if (this.testScorsByCourse[courseName].Count == Course.numberOfTasksOnExam)
+            {
+                throw new InvalidOperationException(
+                    ExceptionMessages.data_Student_MaxNumberOfScores);
+            }
+
+            int numberOfScoreRequired = Course.numberOfTasksOnExam - this.testScorsByCourse[courseName].Count;
+
+            if (scores.Length > numberOfScoreRequired)
+            {
+                throw new InvalidOperationException(string.Format(
+                    ExceptionMessages.data_Student_InvalideNumberOfScores, numberOfScoreRequired, courseName));
+            }
+
+            this.testScorsByCourse[courseName].AddRange(scores);
         }
 
-        public KeyValuePair<string, List<int>> TestScorsByCourse(string courseName)
+        public KeyValuePair<string, List<int>> GetTestScorsByCourse(string courseName)
         {
             if (!this.Courses.ContainsKey(courseName))
             {

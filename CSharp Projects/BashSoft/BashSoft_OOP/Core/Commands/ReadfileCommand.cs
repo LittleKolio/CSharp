@@ -9,13 +9,15 @@ using System.Threading.Tasks;
 namespace BashSoft_OOP.Core.Commands
 {
     /// <summary>
-    /// Initialize (fill) the database from a file by given name.
+    /// Initialize (fill) the database from a file by given filename.
     /// First we have to change current directory to file directory.
     /// </summary>
     /// <example>readfile {0_fileName}</example>
 
     public class ReadfileCommand : Command
     {
+        private const int argumentsNumber = 1;
+
         private IStudentsRepository studentsRepository;
         private IFilesystemManager filesystemManager;
 
@@ -23,7 +25,7 @@ namespace BashSoft_OOP.Core.Commands
             string[] arguments, 
             IStudentsRepository studentsRepository, 
             IFilesystemManager filesystemManager) 
-            : base(arguments)
+            : base(arguments, argumentsNumber)
         {
             this.studentsRepository = studentsRepository;
             this.filesystemManager = filesystemManager;

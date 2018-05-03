@@ -5,18 +5,20 @@ namespace BashSoft_OOP.Core.Commands
     using System;
 
     /// <summary>
-    /// Sort students from a given course in ascending or descending order, then take first n't of them or all
+    /// Sort students from a given course in ascending or descending order, then take first N't of them or all.
     /// </summary>
     /// <example>order {0_courseName} {1_ascending/descending} {2_(int)number/(string)all}</example>
 
     public class OrderCommand : Command
     {
+        private const int argumentsNumber = 3;
+
         private IStudentsRepository studentsRepository;
 
         protected OrderCommand(
             string[] arguments, 
             IStudentsRepository studentsRepository) 
-            : base(arguments)
+            : base(arguments, argumentsNumber)
         {
         }
 
@@ -38,8 +40,6 @@ namespace BashSoft_OOP.Core.Commands
 
                 take = course.Students.Count;
             }
-
-            this.
         }
     }
 }

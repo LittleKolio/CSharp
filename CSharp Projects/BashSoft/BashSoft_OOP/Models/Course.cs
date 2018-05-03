@@ -8,7 +8,7 @@
     public class Course : ICourse
     {
         public const int numberOfTasksOnExam = 5;
-        public const int maxScoreOnExam = 100;
+        //public const int maxScoreOnExam = 100;
 
         private string name;
         private Dictionary<string, IStudent> students;
@@ -36,12 +36,16 @@
 
         public void EnrollStudent(IStudent student)
         {
-            if (students.ContainsKey(student.Name))
+            //if (students.ContainsKey(student.Name))
+            //{
+            //    throw new InvalidOperationException(string.Format(
+            //        ExceptionMessages.data_Student_InCourse, student.Name, this.Name));
+            //}
+
+            if (!students.ContainsKey(student.Name))
             {
-                throw new InvalidOperationException(string.Format(
-                    ExceptionMessages.data_Student_InCourse, student.Name, this.Name));
+                this.students.Add(student.Name, student);
             }
-            this.students.Add(student.Name, student);
         }
     }
 }
