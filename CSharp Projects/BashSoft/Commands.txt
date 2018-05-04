@@ -11,6 +11,5 @@ order
 readfile dataNew.txt
 readfile dataOrderTest.txt
 
-Check number of arguments for commands in abstract Command
-Change exceptions for AddTestScorsByCourse in class Student
-Change EnrollInCourse not ot throw exception for class Student and Course
+Change ToString() in class Student and add CoursesToString()
+Change ToString() in class Course and add StudentsToString()

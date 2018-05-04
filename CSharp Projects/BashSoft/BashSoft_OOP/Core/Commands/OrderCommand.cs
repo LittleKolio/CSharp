@@ -3,6 +3,9 @@ namespace BashSoft_OOP.Core.Commands
 {
     using BashSoft_OOP.Interface;
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
     /// <summary>
     /// Sort students from a given course in ascending or descending order, then take first N't of them or all.
@@ -14,12 +17,19 @@ namespace BashSoft_OOP.Core.Commands
         private const int argumentsNumber = 3;
 
         private IStudentsRepository studentsRepository;
+        private ISorter studentSorter;
+        private IWriter consoleWriter;
 
-        protected OrderCommand(
+        public OrderCommand(
             string[] arguments, 
-            IStudentsRepository studentsRepository) 
+            IStudentsRepository studentsRepository,
+            ISorter studentSorter,
+            IWriter consoleWriter) 
             : base(arguments, argumentsNumber)
         {
+            this.studentsRepository = studentsRepository;
+            this.studentSorter = studentSorter;
+            this.consoleWriter = consoleWriter;
         }
 
         public override void Execute()
@@ -40,6 +50,15 @@ namespace BashSoft_OOP.Core.Commands
 
                 take = course.Students.Count;
             }
+
+            IList<IStudent> sortedStudents = this.studentSorter
+                .SortInterpreter(course, order, take);
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Course: {course.Name}")
+                .Append(course.StudentsToString(sortedStudents));
+
+            this.consoleWriter.WriteOneLineMessage(sb.ToString());
         }
     }
 }

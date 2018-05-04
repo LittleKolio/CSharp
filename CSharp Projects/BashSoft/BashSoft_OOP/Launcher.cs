@@ -41,6 +41,7 @@
             collection.AddSingleton<IFilesystemManager, FilesystemManager>();
 
             //Transient
+            collection.AddTransient<ISorter, RepositorySorter>();
             collection.AddTransient<ICommandInterpreter, CommandInterpreter>();
             collection.AddTransient<IEngine, Engine>();
 

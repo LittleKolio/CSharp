@@ -3,6 +3,7 @@
     using BashSoft_OOP.Interface;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
 
     public class Course : ICourse
@@ -46,6 +47,31 @@
             {
                 this.students.Add(student.Name, student);
             }
+        }
+
+        public string StudentsToString(IList<IStudent> students)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (IStudent student in students)
+            {
+                sb.Append($"    Student: {student.Name} / ")
+                    .AppendLine(student.CoursesToString(this.Name));
+            }
+
+            return sb.ToString().TrimEnd();
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"Course: {this.Name}")
+                .Append(
+                    this.StudentsToString(this.students.Values.ToList())
+                );
+
+            return sb.ToString();
         }
     }
 }
