@@ -101,7 +101,7 @@
         private void ProcessingInput(string input)
         {
             Match match = Regex.Match(input, 
-                Constants.InitializeRepository_Pattern);
+                Constants.Pattern_InitializeRepository);
 
             if (!match.Success)
                 return;

@@ -11,5 +11,7 @@
         void CreateDirectory(string directoryName);
 
         string CreateTextFile(string fileName, string extension);
+
+        void OpenFile(string fileName);
     }
 }

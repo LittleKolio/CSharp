@@ -41,8 +41,12 @@
             collection.AddSingleton<IFilesystemManager, FilesystemManager>();
 
             //Transient
+            collection.AddTransient<ISorter, RepositorySorter>();
             collection.AddTransient<ICommandInterpreter, CommandInterpreter>();
             collection.AddTransient<IEngine, Engine>();
+            collection.AddTransient<ITraverse, TraversingDirectory>();
+            collection.AddTransient<IFormat, FormatToPrint>();
+            collection.AddTransient<ICompareFiles, CompareFiles>();
 
             return collection.BuildServiceProvider();
         }

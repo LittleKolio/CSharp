@@ -3,6 +3,7 @@
     using BashSoft_OOP.Interface;
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -34,7 +35,7 @@
             if (!Directory.Exists(absolutePath))
             {
                 throw new ArgumentException(string.Format(
-                        ExceptionMessages.dir_DoseNotExist, 
+                        ExceptionMessages.dir_DoseNotExist,
                         Path.GetDirectoryName(absolutePath)));
             }
 
@@ -43,14 +44,16 @@
 
         public void ChangeDirectoryByRelativePath(string relativePath)
         {
-            if (!Directory.Exists(relativePath))
+            //Throw exception for incorect path format
+            string path = Path.GetFullPath(Path.Combine(currentDirectory, relativePath));
+
+            if (!Directory.Exists(path))
             {
-                throw new ArgumentException(
-                        ExceptionMessages.dir_DoseNotExist);
+                throw new ArgumentException(string.Format(
+                    ExceptionMessages.dir_DoseNotExist, Path.GetDirectoryName(path)));
             }
 
-            this.currentDirectory = Path.GetFullPath(
-                Path.Combine(currentDirectory, relativePath));
+            this.currentDirectory = path;
         }
 
         public void CreateDirectory(string directoryName)
@@ -97,6 +100,19 @@
                     ExceptionMessages.file_ForbiddenSymbols);
             }
             return path;
+        }
+
+        public void OpenFile(string fileName)
+        {
+            string filePath = Path.Combine(this.currentDirectory, fileName);
+
+            if (!File.Exists(filePath))
+            {
+                throw new ArgumentException(
+                    ExceptionMessages.file_DoseNotExist);
+            }
+
+            Process.Start(filePath);
         }
     }
 }

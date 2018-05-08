@@ -18,23 +18,25 @@
                     ExceptionMessages.data_Student_Requirements);
             }
 
-            List<IStudent> sortedStudents = new List<IStudent>();
+            IList<IStudent> sortedStudents = null;
 
             switch (order)
             {
                 case "ascending":
-                    sortedStudents = course.Students.OrderBy(s => 
-                        s.Value.GetTestScorsByCourse(course.Name))
-                        .Take(take)
+                    sortedStudents = course
+                        .Students
                         .Select(s => s.Value)
+                        .OrderBy(s => s.GetTestScorsByCourse(course.Name).Average())
+                        .Take(take)
                         .ToList();
                     break;
 
                 case "descending":
-                    sortedStudents = course.Students.OrderByDescending(s => 
-                        s.Value.GetTestScorsByCourse(course.Name))
-                        .Take(take)
+                    sortedStudents = course
+                        .Students
                         .Select(s => s.Value)
+                        .OrderByDescending(s => s.GetTestScorsByCourse(course.Name).Average())
+                        .Take(take)
                         .ToList();
                     break;
 

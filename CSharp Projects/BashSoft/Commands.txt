@@ -5,12 +5,13 @@ changedirectory ..\..\Resources
 createdirectory Test
 
 //order {0_courseName} {1_ascending/descending} {2_(int)number/(string)all}
-order
+order C#_Feb_2015 ascending all
 
 //readfile {0_fileName}
 readfile dataNew.txt
 readfile dataOrderTest.txt
 
-Check number of arguments for commands in abstract Command
-Change exceptions for AddTestScorsByCourse in class Student
-Change EnrollInCourse not ot throw exception for class Student and Course
+//traversedirectory {0_(int)depth}
+traversedirectory 2
+
+//

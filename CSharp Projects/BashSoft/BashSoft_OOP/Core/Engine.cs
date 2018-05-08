@@ -37,8 +37,7 @@
 
                 if (string.IsNullOrEmpty(input))
                 {
-                    this.writer.WriteException(
-                        ExceptionMessages.command_Null);
+                    this.writer.WriteException(ExceptionMessages.command_Null);
                     continue;
                 }
 
@@ -61,7 +60,7 @@
 
         private bool ShouldEnd(string input)
         {
-            return input.Equals(Constants.EndCommand,
+            return input.Equals(Constants.Command_End,
                 StringComparison.InvariantCultureIgnoreCase);
         }
     }

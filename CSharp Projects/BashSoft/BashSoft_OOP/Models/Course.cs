@@ -1,8 +1,10 @@
 ﻿namespace BashSoft_OOP
 {
     using BashSoft_OOP.Interface;
+    using StaticData;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
 
     public class Course : ICourse
@@ -46,6 +48,11 @@
             {
                 this.students.Add(student.Name, student);
             }
+        }
+
+        public override string ToString()
+        {
+            return $" Course: {this.Name}";
         }
     }
 }

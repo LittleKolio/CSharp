@@ -4,7 +4,7 @@ namespace BashSoft_OOP.Core.Commands
 {
     /// <summary>
     /// Change directory by given relative path.
-    /// If the path does not exist class FilesystemManager throws argument exception.
+    /// If the path does not exist FilesystemManager throws argument exception.
     /// </summary>
     /// <example>changedirectory {0_relativeDirectoryPath}</example>
 

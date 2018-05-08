@@ -23,7 +23,7 @@
 
             foreach (string exMessage in arguments)
             {
-                Console.WriteLine(exMessage);
+                this.WriteOneLineMessage(exMessage);
             }
 
             Console.ForegroundColor = currentColor;
@@ -31,15 +31,15 @@
 
         public void WriteMessage(params string[] arguments)
         {
-            Console.Write(string.Join(" ", arguments));
-        }
-
-        public void WriteOneLineMessage(params string[] arguments)
-        {
             foreach (string message in arguments)
             {
-                Console.WriteLine(message);
+                this.WriteOneLineMessage(message);
             }
+        }
+
+        public void WriteOneLineMessage(string message)
+        {
+            Console.WriteLine(message);
         }
     }
 }

@@ -1,16 +1,18 @@
 ﻿namespace BashSoft_OOP
 {
     using BashSoft_OOP.Interface;
+    using StaticData;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Text;
 
     /// <summary>
     /// One student is defined by name, courses he enrolled and test scores for the course.
     /// </summary>
 
-    public class Student : IStudent, IComparable<KeyValuePair<string, List<int>>>
+    public class Student : IStudent
     {
         private string name;
         private Dictionary<string, ICourse> courses;
@@ -35,7 +37,7 @@
                 this.name = value;
             }
         }
- 
+        
         public IReadOnlyDictionary<string, ICourse> Courses => this.courses;
 
         public void EnrollInCourse(ICourse course)
@@ -82,7 +84,7 @@
             this.testScorsByCourse[courseName].AddRange(scores);
         }
 
-        public KeyValuePair<string, List<int>> GetTestScorsByCourse(string courseName)
+        public List<int> GetTestScorsByCourse(string courseName)
         {
             if (!this.Courses.ContainsKey(courseName))
             {
@@ -90,15 +92,13 @@
                     ExceptionMessages.data_Student_NotInCourse, this.Name, courseName));
             }
 
-            return this.testScorsByCourse.FirstOrDefault(s => s.Key == courseName);
+            return this.testScorsByCourse
+                .FirstOrDefault(s => s.Key == courseName).Value;
         }
 
-        public int CompareTo(KeyValuePair<string, List<int>> other)
+        public override string ToString()
         {
-            double thisAverage = this.testScorsByCourse[other.Key].Average();
-            double otherAverage = other.Value.Average();
-
-            return thisAverage.CompareTo(otherAverage);
+            return $" Student: {this.Name}";
         }
     }
 }
