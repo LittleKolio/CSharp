@@ -1,6 +1,7 @@
 ﻿namespace BashSoft_OOP
 {
     using BashSoft_OOP.Interface;
+    using StaticData;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -36,7 +37,7 @@
                 this.name = value;
             }
         }
- 
+        
         public IReadOnlyDictionary<string, ICourse> Courses => this.courses;
 
         public void EnrollInCourse(ICourse course)
@@ -95,26 +96,9 @@
                 .FirstOrDefault(s => s.Key == courseName).Value;
         }
 
-        public string CoursesToString(string courseName)
-        {
-            List<int> testScores = this.GetTestScorsByCourse(courseName);
-            string testScoresToString = string.Join(" ", testScores);
-            double average = testScores.Average();
-
-            return $"Average: {average} ({testScoresToString})";
-        }
-
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder($"Student: {this.name}");
-
-            foreach (ICourse course in this.courses.Values)
-            {
-                sb.Append($"    Course: {course.Name} / ")
-                    .AppendLine(this.CoursesToString(course.Name));
-            }
-
-            return sb.ToString().TrimEnd();
+            return $" Student: {this.Name}";
         }
     }
 }

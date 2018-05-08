@@ -9,7 +9,5 @@
         IReadOnlyDictionary<string, IStudent> Students { get; }
 
         void EnrollStudent(IStudent student);
-
-        string StudentsToString(IList<IStudent> students);
     }
 }

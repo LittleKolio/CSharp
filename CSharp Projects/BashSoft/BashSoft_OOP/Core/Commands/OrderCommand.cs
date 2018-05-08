@@ -2,6 +2,7 @@
 namespace BashSoft_OOP.Core.Commands
 {
     using BashSoft_OOP.Interface;
+    using StaticData;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -18,17 +19,20 @@ namespace BashSoft_OOP.Core.Commands
 
         private IStudentsRepository studentsRepository;
         private ISorter studentSorter;
+        private IFormat formatToPrint;
         private IWriter consoleWriter;
 
         public OrderCommand(
             string[] arguments, 
             IStudentsRepository studentsRepository,
             ISorter studentSorter,
+            IFormat formatToPrint,
             IWriter consoleWriter) 
             : base(arguments, argumentsNumber)
         {
             this.studentsRepository = studentsRepository;
             this.studentSorter = studentSorter;
+            this.formatToPrint = formatToPrint;
             this.consoleWriter = consoleWriter;
         }
 
@@ -54,11 +58,9 @@ namespace BashSoft_OOP.Core.Commands
             IList<IStudent> sortedStudents = this.studentSorter
                 .SortInterpreter(course, order, take);
 
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"Course: {course.Name}")
-                .Append(course.StudentsToString(sortedStudents));
-
-            this.consoleWriter.WriteOneLineMessage(sb.ToString());
+            this.consoleWriter.WriteOneLineMessage(course.ToString());
+            this.consoleWriter.WriteOneLineMessage(
+                this.formatToPrint.StudentsToString(sortedStudents, course));
         }
     }
 }

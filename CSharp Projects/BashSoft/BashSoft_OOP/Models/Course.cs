@@ -1,6 +1,7 @@
 ﻿namespace BashSoft_OOP
 {
     using BashSoft_OOP.Interface;
+    using StaticData;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -49,29 +50,9 @@
             }
         }
 
-        public string StudentsToString(IList<IStudent> students)
-        {
-            StringBuilder sb = new StringBuilder();
-
-            foreach (IStudent student in students)
-            {
-                sb.Append($"    Student: {student.Name} / ")
-                    .AppendLine(student.CoursesToString(this.Name));
-            }
-
-            return sb.ToString().TrimEnd();
-        }
-
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-
-            sb.AppendLine($"Course: {this.Name}")
-                .Append(
-                    this.StudentsToString(this.students.Values.ToList())
-                );
-
-            return sb.ToString();
+            return $" Course: {this.Name}";
         }
     }
 }

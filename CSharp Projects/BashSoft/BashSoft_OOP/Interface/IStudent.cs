@@ -13,7 +13,5 @@
         void EnrollInCourse(ICourse course);
 
         void AddTestScorsByCourse(string courseName, params int[] scores);
-
-        string CoursesToString(string courseName);
     }
 }

@@ -5,11 +5,13 @@ changedirectory ..\..\Resources
 createdirectory Test
 
 //order {0_courseName} {1_ascending/descending} {2_(int)number/(string)all}
-order
+order C#_Feb_2015 ascending all
 
 //readfile {0_fileName}
 readfile dataNew.txt
 readfile dataOrderTest.txt
 
-Change ToString() in class Student and add CoursesToString()
-Change ToString() in class Course and add StudentsToString()
+//traversedirectory {0_(int)depth}
+traversedirectory 2
+
+//

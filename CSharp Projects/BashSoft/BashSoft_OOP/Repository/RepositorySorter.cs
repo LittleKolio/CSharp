@@ -27,6 +27,7 @@
                         .Students
                         .Select(s => s.Value)
                         .OrderBy(s => s.GetTestScorsByCourse(course.Name).Average())
+                        .Take(take)
                         .ToList();
                     break;
 
@@ -35,6 +36,7 @@
                         .Students
                         .Select(s => s.Value)
                         .OrderByDescending(s => s.GetTestScorsByCourse(course.Name).Average())
+                        .Take(take)
                         .ToList();
                     break;
 

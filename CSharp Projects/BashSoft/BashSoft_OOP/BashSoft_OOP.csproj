@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BashSoft_OOP</RootNamespace>
     <AssemblyName>BashSoft_OOP</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -54,18 +54,27 @@
     <Compile Include="Core\CommandInterpreter.cs" />
     <Compile Include="Core\Commands\ChangedirectoryCommand.cs" />
     <Compile Include="Core\Commands\Command.cs" />
+    <Compile Include="Core\Commands\ComparetwofilesCommand.cs" />
     <Compile Include="Core\Commands\CreatedirectoryCommand.cs" />
+    <Compile Include="Core\Commands\OpenfileCommand.cs" />
     <Compile Include="Core\Commands\OrderCommand.cs" />
     <Compile Include="Core\Commands\ReadfileCommand.cs" />
+    <Compile Include="Core\Commands\TraversedirectoryCommand.cs" />
     <Compile Include="Core\Engine.cs" />
+    <Compile Include="Interface\ICompareFiles.cs" />
     <Compile Include="Interface\IExecutable.cs" />
     <Compile Include="Interface\ICommandInterpreter.cs" />
     <Compile Include="Interface\IEngine.cs" />
+    <Compile Include="Interface\IFileWriter.cs" />
+    <Compile Include="Interface\IFormat.cs" />
     <Compile Include="Interface\IReader.cs" />
+    <Compile Include="Interface\ITraverse.cs" />
     <Compile Include="IO\ConsoleReader.cs" />
     <Compile Include="IO\FilesystemManager.cs" />
     <Compile Include="Interface\IFilesystemManager.cs" />
     <Compile Include="IO\FileWriter.cs" />
+    <Compile Include="IO\FormatToPrint.cs" />
+    <Compile Include="IO\CompareFiles.cs" />
     <Compile Include="IO\TraversingDirectory.cs" />
     <Compile Include="Interface\IWriter.cs" />
     <Compile Include="IO\ConsoleWriter.cs" />
