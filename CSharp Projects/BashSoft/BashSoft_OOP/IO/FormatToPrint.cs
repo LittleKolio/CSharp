@@ -17,7 +17,7 @@
             int count = 1;
             foreach (ICourse course in courses)
             {
-                List<int> testScores = student.GetTestScorsByCourse(course.Name);
+                List<int> testScores = student.GetTestScoresByCourse(course.Name);
                 string testScoresToString = string.Join(" ", testScores);
                 double average = testScores.Average();
 
@@ -42,7 +42,7 @@
             int count = 1;
             foreach (IStudent student in students)
             {
-                List<int> testScores = student.GetTestScorsByCourse(course.Name);
+                List<int> testScores = student.GetTestScoresByCourse(course.Name);
                 string testScoresToString = string.Join(" ", testScores);
                 double average = testScores.Average();
 

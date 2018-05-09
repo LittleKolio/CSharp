@@ -16,13 +16,13 @@
     {
         private string name;
         private Dictionary<string, ICourse> courses;
-        private Dictionary<string, List<int>> testScorsByCourse;
+        private Dictionary<string, List<int>> testScoresByCourse;
 
         public Student(string name)
         {
             this.Name = name;
             this.courses = new Dictionary<string, ICourse>();
-            this.testScorsByCourse = new Dictionary<string, List<int>>();
+            this.testScoresByCourse = new Dictionary<string, List<int>>();
         }
 
         public string Name
@@ -54,7 +54,7 @@
             }
         }
 
-        public void AddTestScorsByCourse(string courseName, params int[] scores)
+        public void AddTestScoresByCourse(string courseName, params int[] scores)
         {
             if (!this.Courses.ContainsKey(courseName))
             {
@@ -62,18 +62,18 @@
                     ExceptionMessages.data_Student_NotInCourse, this.Name, courseName));
             }
 
-            if (!this.testScorsByCourse.ContainsKey(courseName))
+            if (!this.testScoresByCourse.ContainsKey(courseName))
             {
-                this.testScorsByCourse.Add(courseName, new List<int>());
+                this.testScoresByCourse.Add(courseName, new List<int>());
             }
 
-            if (this.testScorsByCourse[courseName].Count == Course.numberOfTasksOnExam)
+            if (this.testScoresByCourse[courseName].Count == Course.numberOfTasksOnExam)
             {
                 throw new InvalidOperationException(
                     ExceptionMessages.data_Student_MaxNumberOfScores);
             }
 
-            int numberOfScoreRequired = Course.numberOfTasksOnExam - this.testScorsByCourse[courseName].Count;
+            int numberOfScoreRequired = Course.numberOfTasksOnExam - this.testScoresByCourse[courseName].Count;
 
             if (scores.Length > numberOfScoreRequired)
             {
@@ -81,10 +81,10 @@
                     ExceptionMessages.data_Student_InvalideNumberOfScores, numberOfScoreRequired, courseName));
             }
 
-            this.testScorsByCourse[courseName].AddRange(scores);
+            this.testScoresByCourse[courseName].AddRange(scores);
         }
 
-        public List<int> GetTestScorsByCourse(string courseName)
+        public List<int> GetTestScoresByCourse(string courseName)
         {
             if (!this.Courses.ContainsKey(courseName))
             {
@@ -92,7 +92,7 @@
                     ExceptionMessages.data_Student_NotInCourse, this.Name, courseName));
             }
 
-            return this.testScorsByCourse
+            return this.testScoresByCourse
                 .FirstOrDefault(s => s.Key == courseName).Value;
         }
 

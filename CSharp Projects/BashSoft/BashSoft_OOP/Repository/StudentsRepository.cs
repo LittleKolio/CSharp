@@ -11,6 +11,19 @@
 
     public class StudentsRepository : IStudentsRepository
     {
+        //private class CourseDto
+        //{
+        //    public string Name { get; set; }
+        //}
+
+        //private class StudentDto
+        //{
+        //    public string Name { get; set; }
+        //    public string Course { get; set; }
+        //    public List<int> Scores { get; set; }
+        //}
+
+
         //Dictionary<CourseName, CourseObject>
         private Dictionary<string, ICourse> courses;
 
@@ -132,7 +145,7 @@
             try
             {
                 student.EnrollInCourse(course);
-                student.AddTestScorsByCourse(courseName, scores);
+                student.AddTestScoresByCourse(courseName, scores);
             }
             catch (Exception ex)
             {
