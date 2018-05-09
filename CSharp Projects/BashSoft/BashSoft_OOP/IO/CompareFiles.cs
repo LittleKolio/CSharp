@@ -80,16 +80,23 @@
             out bool isMismatch
             )
         {
+            int mismatchesLength = Math.Max(fileOneLines.Length, fileTwoLines.Length);
             isMismatch = false;
-            string[] mismatches = new string[fileOneLines.Length];
+            string[] mismatches = new string[mismatchesLength];
 
             this.consoleWriter.WriteOneLineMessage("Comparing files...");
 
-            for (int index = 0; index < fileOneLines.Length; index++)
+            for (int index = 0; index < mismatchesLength; index++)
             {
                 string output = string.Empty;
-                string fileOneLine = fileOneLines[index];
-                string fileTwoLine = fileTwoLines[index];
+
+                string fileOneLine = index < fileOneLines.Length 
+                    ? fileOneLines[index] 
+                    : "NONE";
+
+                string fileTwoLine = index < fileTwoLines.Length 
+                    ? fileTwoLines[index]
+                    : "NONE";
 
                 if (!fileOneLine.Equals(fileTwoLine))
                 {
@@ -103,6 +110,7 @@
                 }
                 mismatches[index] = output;
             }
+
             return mismatches;
         }
 
