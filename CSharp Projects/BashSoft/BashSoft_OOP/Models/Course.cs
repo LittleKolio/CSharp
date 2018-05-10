@@ -12,7 +12,6 @@
         public const int numberOfTasksOnExam = 5;
         //public const int maxScoreOnExam = 100;
 
-        private string name;
         private Dictionary<string, IStudent> students;
 
         public Course(string name)
@@ -21,18 +20,7 @@
             this.students = new Dictionary<string, IStudent>();
         }
 
-        public string Name
-        {
-            get { return this.name; }
-            private set
-            {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentNullException();
-                }
-                this.name = value;
-            }
-        }
+        public string Name { get; }
 
         public IReadOnlyDictionary<string, IStudent> Students => this.students;
 

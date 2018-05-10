@@ -14,7 +14,6 @@
 
     public class Student : IStudent
     {
-        private string name;
         private Dictionary<string, ICourse> courses;
         private Dictionary<string, List<int>> testScoresByCourse;
 
@@ -25,18 +24,7 @@
             this.testScoresByCourse = new Dictionary<string, List<int>>();
         }
 
-        public string Name
-        {
-            get { return this.name; }
-            private set
-            {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentNullException();
-                }
-                this.name = value;
-            }
-        }
+        public string Name { get; }
         
         public IReadOnlyDictionary<string, ICourse> Courses => this.courses;
 

@@ -23,7 +23,6 @@
         //    public List<int> Scores { get; set; }
         //}
 
-
         //Dictionary<CourseName, CourseObject>
         private Dictionary<string, ICourse> courses;
 
