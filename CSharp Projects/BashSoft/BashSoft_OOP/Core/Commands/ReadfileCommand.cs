@@ -37,7 +37,7 @@ namespace BashSoft_OOP.Core.Commands
 
             string path = Path.Combine(this.filesystemManager.CurrentDirectory, fileName);
 
-            this.studentsRepository.ReadDataFromFile(path);
+            this.studentsRepository.ReadDataFile(path);
         }
     }
 }

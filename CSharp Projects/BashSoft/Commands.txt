@@ -14,3 +14,29 @@ readfile dataOrderTest.txt
 //traversedirectory {0_(int)depth}
 traversedirectory 2
 
+public static T ReadJsonFile(string fileName)
+{
+  if( File.Exists(fileName) )
+	{
+    var s = new JsonSerializerSettings { ConstructorHandlingFallback = CtorFallback };
+		
+    return (T)JsonConvert.DeserializeObject(File.ReadAllText(fileName), typeof(T), s);
+  }
+ 
+  return default(T);
+}
+ 
+// Create new object instance using default values for constructor parameters
+private static void CtorFallback(object sender, ConstructorHandlingFallbackEventArgs e) {
+   
+  List<object> args = new List<object>();
+	
+  foreach( var p in e.ObjectContract.Properties )
+	{
+    args.Add(p.PropertyType.IsValueType ? Activator.CreateInstance(p.PropertyType) : null);
+  }
+ 
+  e.Object = Activator.CreateInstance(e.ObjectContract.UnderlyingType, args.ToArray());
+ 
+  e.Handled = true;
+}

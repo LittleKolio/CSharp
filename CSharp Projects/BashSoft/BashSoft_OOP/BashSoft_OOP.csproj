@@ -62,6 +62,7 @@
     <Compile Include="Core\Commands\OpenfileCommand.cs" />
     <Compile Include="Core\Commands\OrderCommand.cs" />
     <Compile Include="Core\Commands\ReadfileCommand.cs" />
+    <Compile Include="Core\Commands\ReadjsonfileCommand.cs" />
     <Compile Include="Core\Commands\TraversedirectoryCommand.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Interface\ICompareFiles.cs" />
@@ -90,12 +91,15 @@
     <Compile Include="Interface\IStudentsRepository.cs" />
     <None Include="Repository\RepositoryFilter.cs" />
     <Compile Include="Interface\ISorter.cs" />
+    <Compile Include="Repository\JsonRepository.cs" />
     <Compile Include="Repository\RepositorySorter.cs" />
     <Compile Include="Repository\StudentsRepository.cs" />
     <Compile Include="StaticData\ExceptionMessages.cs" />
     <Compile Include="Tester\Tester.cs" />
     <Compile Include="StaticData\Constants.cs" />
     <Compile Include="Util\Utility.cs" />
+    <None Include="Resources\courses.json" />
+    <None Include="Resources\students.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

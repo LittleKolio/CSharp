@@ -1,0 +1,4 @@
+﻿[
+  { "student": "some1", "course": "C", "scores": [ 2, 2, 2, -1, -1 ] },
+  { "student": "some2", "course": "C", "scores": [ 3, 3, 0, -1, -1 ] }
+]

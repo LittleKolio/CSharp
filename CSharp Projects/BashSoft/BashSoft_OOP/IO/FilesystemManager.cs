@@ -35,8 +35,7 @@
             if (!Directory.Exists(absolutePath))
             {
                 throw new ArgumentException(string.Format(
-                        ExceptionMessages.dir_DoseNotExist,
-                        Path.GetDirectoryName(absolutePath)));
+                        ExceptionMessages.dir_DoseNotExist, Path.GetDirectoryName(absolutePath)));
             }
 
             this.currentDirectory = absolutePath;
@@ -59,15 +58,8 @@
         public void CreateDirectory(string directoryName)
         {
             string path = Path.Combine(currentDirectory, directoryName);
-            try
-            {
-                Directory.CreateDirectory(path);
-            }
-            catch
-            {
-                throw new ArgumentException(
-                    ExceptionMessages.dir_ForbiddenSymbols);
-            }
+
+            Directory.CreateDirectory(path);
 
             this.currentDirectory = path;
         }
@@ -90,15 +82,9 @@
         public string CreateTextFile(string fileName, string extension)
         {
             string path = Path.Combine(currentDirectory, fileName, extension);
-            try
-            {
-                File.CreateText(path);
-            }
-            catch
-            {
-                throw new ArgumentException(
-                    ExceptionMessages.file_ForbiddenSymbols);
-            }
+
+            File.CreateText(path);
+
             return path;
         }
 

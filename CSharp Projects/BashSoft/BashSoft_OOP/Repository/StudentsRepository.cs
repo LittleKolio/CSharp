@@ -3,26 +3,16 @@
     using BashSoft_OOP.Interface;
     using BashSoft_OOP.StaticData;
     using BashSoft_OOP.Util;
+    //
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Text.RegularExpressions;
 
+
     public class StudentsRepository : IStudentsRepository
     {
-        //private class CourseDto
-        //{
-        //    public string Name { get; set; }
-        //}
-
-        //private class StudentDto
-        //{
-        //    public string Name { get; set; }
-        //    public string Course { get; set; }
-        //    public List<int> Scores { get; set; }
-        //}
-
         //Dictionary<CourseName, CourseObject>
         private Dictionary<string, ICourse> courses;
 
@@ -64,9 +54,11 @@
             while (true)
             {
                 if (this.ShouldEnd(input))
+                {
                     break;
+                }
 
-                ProcessingInput(input);
+                ProcessingCustomFormat(input);
 
                 input = this.consoleReader.ReadLine();
             }
@@ -86,31 +78,32 @@
             }
         }
 
-        public void ReadDataFromFile(string path)
+        public void ReadDataFile(string path)
         {
-            if (!File.Exists(path))
+            string[] input = null;
+            try
             {
-                this.consoleWriter.WriteException(
-                    string.Format(ExceptionMessages.file_DoseNotExist, Path.GetFileName(path)));
-                return;
+                input = File.ReadAllLines(path);
+            }
+            catch (Exception ex)
+            {
+                this.consoleWriter.WriteException(ex.Message);
             }
 
             int prevCount = this.CoursesCount;
 
             this.consoleWriter.WriteOneLineMessage("Reading data...");
 
-            string[] input = File.ReadAllLines(path);
-
             for (int i = 0; i < input.Length; i++)
             {
-                ProcessingInput(input[i]);
+                ProcessingCustomFormat(input[i]);
             }
 
             this.IsDataImported(prevCount);
         }
 
         //Input format – {1_CourseName_CourseInstance}{WhiteSpaces}{2_Username}{WhiteSpaces}{3_Scores}
-        private void ProcessingInput(string input)
+        private void ProcessingCustomFormat(string input)
         {
             Match match = Regex.Match(input, 
                 Constants.Pattern_InitializeRepository);

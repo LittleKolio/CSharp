@@ -10,6 +10,6 @@
 
         void ReadDataFromConsole();
 
-        void ReadDataFromFile(string path);
+        void ReadDataFile(string path);
     }
 }
