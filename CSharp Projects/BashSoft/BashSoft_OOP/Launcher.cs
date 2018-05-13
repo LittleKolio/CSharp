@@ -37,7 +37,7 @@
             //Singleton
             collection.AddSingleton<IReader, ConsoleReader>();
             collection.AddSingleton<IWriter, ConsoleWriter>();
-            collection.AddSingleton<IStudentsRepository, StudentsRepository>();
+            collection.AddSingleton<IRepository, StudentsRepository>();
             collection.AddSingleton<IFilesystemManager, FilesystemManager>();
 
             //Transient

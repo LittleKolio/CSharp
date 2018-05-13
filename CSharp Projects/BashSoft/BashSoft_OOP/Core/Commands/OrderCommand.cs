@@ -17,14 +17,14 @@ namespace BashSoft_OOP.Core.Commands
     {
         private const int argumentsNumber = 3;
 
-        private IStudentsRepository studentsRepository;
+        private IRepository studentsRepository;
         private ISorter studentSorter;
         private IFormat formatToPrint;
         private IWriter consoleWriter;
 
         public OrderCommand(
             string[] arguments, 
-            IStudentsRepository studentsRepository,
+            IRepository studentsRepository,
             ISorter studentSorter,
             IFormat formatToPrint,
             IWriter consoleWriter) 

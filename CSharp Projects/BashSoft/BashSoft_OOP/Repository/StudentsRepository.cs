@@ -1,157 +1,44 @@
 ﻿namespace BashSoft_OOP
 {
-    using BashSoft_OOP.Interface;
-    using BashSoft_OOP.StaticData;
-    using BashSoft_OOP.Util;
-    //
+    using Interface;
     using System;
     using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Text.RegularExpressions;
 
-
-    public class StudentsRepository : IStudentsRepository
+    public class StudentsRepository : IRepository
     {
-        //Dictionary<CourseName, CourseObject>
         private Dictionary<string, ICourse> courses;
 
-        private IWriter consoleWriter;
-        private IReader consoleReader;
-
-        public StudentsRepository(IWriter consoleWriter, IReader consoleReader)
+        public StudentsRepository()
         {
             this.courses = new Dictionary<string, ICourse>();
-            this.consoleWriter = consoleWriter;
-            this.consoleReader = consoleReader;
         }
 
         public IReadOnlyDictionary<string, ICourse> Courses =>  this.courses;
 
-        public int CoursesCount => this.courses.Count;
+        public int Count => this.courses.Count;
+
+        public void AddCourse(ICourse course)
+        {
+            string courseName = course.Name;
+
+            if (this.courses.ContainsKey(courseName))
+            {
+                throw new InvalidOperationException(string.Format(
+                    ExceptionMessages.data_Cours_Exist, courseName));
+            }
+
+            this.courses.Add(courseName, course);
+        }
 
         public ICourse GetCourse(string courseName)
         {
             if (!this.courses.ContainsKey(courseName))
             {
-                this.consoleWriter.WriteException(string.Format(
+                throw new InvalidOperationException(string.Format(
                     ExceptionMessages.data_Cours_NotExist, courseName));
-
-                return null;
             }
 
             return this.courses[courseName];
         }
-
-        public void ReadDataFromConsole()
-        {
-            int prevCount = this.CoursesCount;
-
-            this.consoleWriter.WriteOneLineMessage("Reading data...");
-
-            string input = this.consoleReader.ReadLine();
-
-            while (true)
-            {
-                if (this.ShouldEnd(input))
-                {
-                    break;
-                }
-
-                ProcessingCustomFormat(input);
-
-                input = this.consoleReader.ReadLine();
-            }
-
-            this.IsDataImported(prevCount);
-        }
-
-        private void IsDataImported(int prevCount)
-        {
-            if (this.CoursesCount > prevCount)
-            {
-                this.consoleWriter.WriteOneLineMessage("Data imported.");
-            }
-            else
-            {
-                this.consoleWriter.WriteOneLineMessage("Nothing imported!");
-            }
-        }
-
-        public void ReadDataFile(string path)
-        {
-            string[] input = null;
-            try
-            {
-                input = File.ReadAllLines(path);
-            }
-            catch (Exception ex)
-            {
-                this.consoleWriter.WriteException(ex.Message);
-            }
-
-            int prevCount = this.CoursesCount;
-
-            this.consoleWriter.WriteOneLineMessage("Reading data...");
-
-            for (int i = 0; i < input.Length; i++)
-            {
-                ProcessingCustomFormat(input[i]);
-            }
-
-            this.IsDataImported(prevCount);
-        }
-
-        //Input format – {1_CourseName_CourseInstance}{WhiteSpaces}{2_Username}{WhiteSpaces}{3_Scores}
-        private void ProcessingCustomFormat(string input)
-        {
-            Match match = Regex.Match(input, 
-                Constants.Pattern_InitializeRepository);
-
-            if (!match.Success)
-                return;
-
-            string courseName = match.Groups[1].Value;
-            string studentName = match.Groups[2].Value;
-
-            int[] scores = null;
-
-            try
-            {
-                scores = Utility.SplitInput(match.Groups[3].Value, " ")
-                    .Select(int.Parse)
-                    .ToArray();
-            }
-            catch
-            {
-                this.consoleWriter.WriteException(
-                    string.Format(ExceptionMessages.data_Student_InvalidScores, studentName));
-            }
-
-            //if (scores.Length == 0)
-            //    return;
-
-            ICourse course = new Course(courseName);
-            IStudent student = new Student(studentName);
-
-            try
-            {
-                student.EnrollInCourse(course);
-                student.AddTestScoresByCourse(courseName, scores);
-            }
-            catch (Exception ex)
-            {
-                this.consoleWriter.WriteException(ex.Message);
-            }
-
-            if (!this.courses.ContainsKey(courseName))
-            {
-                this.courses.Add(courseName, course);
-            }
-
-            this.courses[courseName].EnrollStudent(student);
-        }
-
-        private bool ShouldEnd(string input) => string.IsNullOrEmpty(input);
     }
 }

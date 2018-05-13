@@ -13,10 +13,11 @@
 
         public ReadjsonfileCommand(
             string[] arguments,
-            IFilesystemManager filesystemManager) 
+            IFilesystemManager filesystemManager,
+            IWriter consoleWriter) 
             : base(arguments, argumentsNumber)
         {
-            this.jsonRepository = new JsonRepository();
+            this.jsonRepository = new JsonRepository(consoleWriter);
             this.filesystemManager = filesystemManager;
         }
 

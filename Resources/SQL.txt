@@ -844,6 +844,7 @@ contex.Users.Any(u => u.Username == username);
 				 User movie2 = (User)serializer.Deserialize(file, typeof(User));
 			}
 
+╟─├─├───────────────────────────────────────────────────────────────────┐
 		var json = @"{
 		'products': [
 			{
@@ -861,15 +862,34 @@ contex.Users.Any(u => u.Username == username);
 		int index = 1;
 
 		List<string> products = obj["products"]
-			.Select(c => string.Format(
-				"{0}. {1} ({2})",
-				index++, 
-				c["name"],
-				string.Join(", ", c["products"])
-			)
-		).toList();
+			.Select(c => string.Format("{0}. {1} ({2})",
+				index++, c["name"], string.Join(", ", c["products"])))
+			.toList();
 
-
+╟─├─├───────────────────────────────────────────────────────────────────┐
+		├ JArray
+		├───────────────────────────────────────────────────────────────────┘		
+		JArray arr = JArray.Parse(File.ReadAllText(filePath));
+		foreach (JObject obj in arr)
+		{
+			Console.WriteLine(obj["some"].ToString());
+		}
+		
+╟─├─├───────────────────────────────────────────────────────────────────┐
+		├ JsonTextReader
+		├───────────────────────────────────────────────────────────────────┘	
+		JsonTextReader reader = new JsonTextReader(File.OpenText(coursesPath));
+		while (reader.Read())
+		{
+			if (reader.Value != null)
+			{
+				Console.WriteLine(string.Format("Token: {0}, Value: {1}", reader.TokenType, reader.Value));
+			}
+			else
+			{
+				Console.WriteLine(string.Format("Token: {0}", reader.TokenType));
+			}
+		}
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	├─ Circular reference detected
 	├─┬───────────────────────────────────────────────────────────────────┘

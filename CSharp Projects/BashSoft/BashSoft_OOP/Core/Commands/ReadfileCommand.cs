@@ -18,12 +18,12 @@ namespace BashSoft_OOP.Core.Commands
     {
         private const int argumentsNumber = 1;
 
-        private IStudentsRepository studentsRepository;
+        private IRepository studentsRepository;
         private IFilesystemManager filesystemManager;
 
         public ReadfileCommand(
             string[] arguments, 
-            IStudentsRepository studentsRepository, 
+            IRepository studentsRepository, 
             IFilesystemManager filesystemManager) 
             : base(arguments, argumentsNumber)
         {

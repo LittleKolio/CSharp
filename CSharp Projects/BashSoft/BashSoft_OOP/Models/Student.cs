@@ -55,13 +55,13 @@
                 this.testScoresByCourse.Add(courseName, new List<int>());
             }
 
-            if (this.testScoresByCourse[courseName].Count == Course.numberOfTasksOnExam)
+            if (this.testScoresByCourse[courseName].Count == Course.NumberOfExams)
             {
                 throw new InvalidOperationException(
                     ExceptionMessages.data_Student_MaxNumberOfScores);
             }
 
-            int numberOfScoreRequired = Course.numberOfTasksOnExam - this.testScoresByCourse[courseName].Count;
+            int numberOfScoreRequired = Course.NumberOfExams - this.testScoresByCourse[courseName].Count;
 
             if (scores.Length > numberOfScoreRequired)
             {

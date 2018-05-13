@@ -3,20 +3,11 @@
     using System.Collections.Generic;
     using System.IO;
     using Newtonsoft.Json;
+    using Interface;
+    using Newtonsoft.Json.Linq;
 
     public class JsonRepository
     {
-        public class CourseDto
-        {
-            public CourseDto(string name)
-            {
-                this.Name = name;
-            }
-
-            //private string name;
-            public string Name { get; }
-        }
-
         public class StudentDto
         {
             [JsonProperty("student")]
@@ -25,9 +16,12 @@
             public List<int> Scores { get; set; }
         }
 
-        public JsonRepository()
+        private IWriter consoleWriter;
+
+        public JsonRepository(IWriter consoleWriter)
         {
-            this.coursesDto = new List<CourseDto>();
+            this.consoleWriter = consoleWriter;
+            this.coursesDto = new List<Course>();
             this.studentsDto = new List<StudentDto>();
         }
 
@@ -40,8 +34,26 @@
         public void ReadCourses(string coursesPath)
         {
             string courses = File.ReadAllText(coursesPath);
+            this.coursesDto = JsonConvert.DeserializeObject<List<Course>>(courses);
 
-            this.coursesDto = JsonConvert.DeserializeObject<List<CourseDto>>(courses);
+            //JArray arr = JArray.Parse(File.ReadAllText(coursesPath));
+            //foreach (JObject item in arr)
+            //{
+            //    this.consoleWriter.WriteOneLineMessage(item["course"].ToString());
+            //}
+
+            //JsonTextReader reader = new JsonTextReader(File.OpenText(coursesPath));
+            //while (reader.Read())
+            //{
+            //    if (reader.Value != null)
+            //    {
+            //        this.consoleWriter.WriteOneLineMessage(string.Format("Token: {0}, Value: {1}", reader.TokenType, reader.Value));
+            //    }
+            //    else
+            //    {
+            //        this.consoleWriter.WriteOneLineMessage(string.Format("Token: {0}", reader.TokenType));
+            //    }
+            //}
         }
 
         public void ReadStudents(string studentsPath)
@@ -49,6 +61,17 @@
             string students = File.ReadAllText(studentsPath);
 
             this.studentsDto = JsonConvert.DeserializeObject<List<StudentDto>>(students);
+        }
+
+        private void Settings()
+        {
+            JsonSerializerSettings settins = new JsonSerializerSettings
+            {
+                //ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+                //PreserveReferencesHandling = PreserveReferencesHandling.All,
+                Formatting = Formatting.Indented
+            };
         }
     }
 }

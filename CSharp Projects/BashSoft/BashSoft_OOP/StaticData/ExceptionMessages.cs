@@ -5,7 +5,8 @@
         public const string data_IsInitialized = "Data structure is already initialized!";
         public const string data_IsNotInitialized = "The data structure must be initialized first.";
         public const string data_Cours_NotExist = "Course: \"{0}\" does not exist in the data base!";
-        public const string data_Filter_Invalid = "Filter is not one of the following: excellent/average/poor";
+        public const string data_Cours_Exist = "Course: \"{0}\" already exist in the data base!";
+        //public const string data_Filter_Invalid = "Filter is not one of the following: excellent/average/poor";
         public const string data_Order_Invalid = "Order is not one of the following: ascending/descending";
         public const string data_Student_Requirements = "No student meets the requirements.";
         public const string data_Student_NotInCourse = "Student: \"{0}\" does not exist in this course: \"{1}\".";
