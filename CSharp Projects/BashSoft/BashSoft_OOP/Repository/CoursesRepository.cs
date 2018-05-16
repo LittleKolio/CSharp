@@ -1,14 +1,16 @@
-﻿namespace BashSoft_OOP
+﻿namespace BashSoft_OOP.Repository
 {
-    using Interface;
+    using Interfaces;
     using System;
     using System.Collections.Generic;
+    using Models.Interfaces;
+    using StaticData;
 
-    public class StudentsRepository : IRepository
+    public class CoursesRepository : IRepository
     {
         private Dictionary<string, ICourse> courses;
 
-        public StudentsRepository()
+        public CoursesRepository()
         {
             this.courses = new Dictionary<string, ICourse>();
         }

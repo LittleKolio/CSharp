@@ -1,8 +1,8 @@
 ﻿namespace BashSoft_OOP.Core
 {
-    using BashSoft_OOP.Interface;
+    using Interfaces;
+    using StaticData;
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Reflection;

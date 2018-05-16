@@ -1,11 +1,7 @@
-﻿namespace BashSoft_OOP
+﻿namespace BashSoft_OOP.IO
 {
-    using BashSoft_OOP.Interface;
+    using Interfaces;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class ConsoleWriter : IWriter
     {

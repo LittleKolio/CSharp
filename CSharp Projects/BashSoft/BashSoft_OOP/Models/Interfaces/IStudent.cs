@@ -1,4 +1,4 @@
-﻿namespace BashSoft_OOP.Interface
+﻿namespace BashSoft_OOP.Models.Interfaces
 {
     using System.Collections.Generic;
 
@@ -6,7 +6,7 @@
     {
         string Name { get; }
 
-        IReadOnlyDictionary<string, ICourse> Courses { get; }
+        Dictionary<string, List<int>> Courses { get; }
 
         List<int> GetTestScoresByCourse(string courseName);
 

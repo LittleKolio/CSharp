@@ -1,5 +1,22 @@
 ﻿[
-  { "course": "CSharp_Feb_2015" },
-  { "course": "CSharp" },
-  { "course": "CSharp" }
+  {
+    "course": "C#_Feb_2015",
+    "exams" : 5
+  },
+  {
+    "course": "C#_Jul_2016",
+    "exams": 5
+  },
+  {
+    "course": "JSApps_Dec_2014",
+    "exams": 5
+  },
+  {
+    "course": "DataStructures_Apr_2016",
+    "exams": 5
+  },
+  {
+    "course": "WebFundamentals_Oct_2015",
+    "exams": 5
+  }
 ]

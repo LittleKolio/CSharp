@@ -1,7 +1,8 @@
-﻿using BashSoft_OOP.Interface;
-
-namespace BashSoft_OOP.Core.Commands
+﻿namespace BashSoft_OOP.Core.Commands
 {
+    using Abstract;
+    using IO.Interfaces;
+
     /// <summary>
     /// Creates directory in the current by given name.
     /// First we have to change current directory to location where we want to create.

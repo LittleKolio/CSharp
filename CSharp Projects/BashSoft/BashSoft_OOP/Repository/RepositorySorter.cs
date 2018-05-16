@@ -1,10 +1,13 @@
-﻿namespace BashSoft_OOP
+﻿namespace BashSoft_OOP.Repository
 {
-    using BashSoft_OOP.Interface;
+    using Interfaces;
+    using Models.Interfaces;
+    using StaticData;
+    //
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    
+
     public class RepositorySorter : ISorter
     {
         public IList<IStudent> SortInterpreter(
@@ -25,7 +28,6 @@
                 case "ascending":
                     sortedStudents = course
                         .Students
-                        .Select(s => s.Value)
                         .OrderBy(s => s.GetTestScoresByCourse(course.Name).Average())
                         .Take(take)
                         .ToList();
@@ -34,7 +36,6 @@
                 case "descending":
                     sortedStudents = course
                         .Students
-                        .Select(s => s.Value)
                         .OrderByDescending(s => s.GetTestScoresByCourse(course.Name).Average())
                         .Take(take)
                         .ToList();

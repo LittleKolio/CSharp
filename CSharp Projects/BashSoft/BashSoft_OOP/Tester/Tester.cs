@@ -1,11 +1,8 @@
-﻿namespace BashSoft_OOP
+﻿namespace BashSoft_OOP.Tester
 {
+    using StaticData;
     using System;
-    using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class Tester
     {

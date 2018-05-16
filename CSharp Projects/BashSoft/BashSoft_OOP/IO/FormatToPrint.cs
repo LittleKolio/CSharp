@@ -1,12 +1,12 @@
 ﻿namespace BashSoft_OOP.IO
 {
-    using Interface;
+    using Interfaces;
+    using Models.Interfaces;
     using StaticData;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using System.Threading.Tasks;
 
     public class FormatToPrint : IFormat
     {

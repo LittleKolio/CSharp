@@ -1,14 +1,11 @@
-﻿namespace BashSoft_OOP
+﻿namespace BashSoft_OOP.IO
 {
-    using BashSoft_OOP.Interface;
+    using Interfaces;
+    using StaticData;
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.IO;
     using System.Linq;
-    using System.Text;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
 
     public class TraversingDirectory : ITraverse
     {

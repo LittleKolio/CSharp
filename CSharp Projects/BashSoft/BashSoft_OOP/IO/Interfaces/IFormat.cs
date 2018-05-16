@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace BashSoft_OOP.Interface
+﻿namespace BashSoft_OOP.IO.Interfaces
 {
+    using Models.Interfaces;
+    using System.Collections.Generic;
+
     public interface IFormat
     {
         string CoursesToString(List<ICourse> courses, IStudent student);

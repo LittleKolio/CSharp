@@ -1,13 +1,10 @@
-﻿using BashSoft_OOP.Interface;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BashSoft_OOP.Core.Commands
+﻿namespace BashSoft_OOP.Core.Commands
 {
+    using Abstract;
+    using IO.Interfaces;
+    using Repository.Interfaces;
+    using System.IO;
+
     /// <summary>
     /// Initialize (fill) the database from a file by given filename.
     /// First we have to change current directory to file directory.
@@ -18,16 +15,16 @@ namespace BashSoft_OOP.Core.Commands
     {
         private const int argumentsNumber = 1;
 
-        private IRepository studentsRepository;
+        private IProcessCustomFormat processCustomformat;
         private IFilesystemManager filesystemManager;
 
         public ReadfileCommand(
-            string[] arguments, 
-            IRepository studentsRepository, 
+            string[] arguments,
+            IProcessCustomFormat processCustomformat, 
             IFilesystemManager filesystemManager) 
             : base(arguments, argumentsNumber)
         {
-            this.studentsRepository = studentsRepository;
+            this.processCustomformat = processCustomformat;
             this.filesystemManager = filesystemManager;
         }
 
@@ -37,7 +34,7 @@ namespace BashSoft_OOP.Core.Commands
 
             string path = Path.Combine(this.filesystemManager.CurrentDirectory, fileName);
 
-            this.studentsRepository.ReadDataFile(path);
+            this.processCustomformat.ReadDataFile(path);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace BashSoft_OOP.Interface
+﻿namespace BashSoft_OOP.Core.Interfaces
 {
     public interface IEngine
     {

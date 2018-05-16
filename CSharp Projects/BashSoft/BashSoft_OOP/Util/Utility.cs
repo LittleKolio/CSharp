@@ -1,5 +1,6 @@
 ﻿namespace BashSoft_OOP.Util
 {
+    using StaticData;
     using System;
 
     public static class Utility

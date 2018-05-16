@@ -1,12 +1,13 @@
-﻿
-namespace BashSoft_OOP.Core.Commands
+﻿namespace BashSoft_OOP.Core.Commands
 {
-    using BashSoft_OOP.Interface;
+    using Abstract;
     using StaticData;
+    using IO.Interfaces;
+    using Models.Interfaces;
+    using Repository.Interfaces;
+    //
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// Sort students from a given course in ascending or descending order, then take first N't of them or all.

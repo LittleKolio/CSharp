@@ -1,13 +1,9 @@
 ﻿namespace BashSoft_OOP.IO
 {
-    using Interface;
+    using Interfaces;
     using StaticData;
     using System;
-    using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class CompareFiles : ICompareFiles
     {

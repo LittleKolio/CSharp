@@ -1,4 +1,4 @@
-﻿namespace BashSoft_OOP
+﻿namespace BashSoft_OOP.Repository
 {
     using System;
     using System.Collections.Generic;

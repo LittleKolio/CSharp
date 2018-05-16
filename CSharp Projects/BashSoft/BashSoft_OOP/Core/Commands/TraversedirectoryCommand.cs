@@ -1,8 +1,10 @@
-﻿using BashSoft_OOP.Interface;
-using System;
-
-namespace BashSoft_OOP.Core.Commands
+﻿namespace BashSoft_OOP.Core.Commands
 {
+    using Abstract;
+    using IO.Interfaces;
+    using StaticData;
+    using System;
+
     /// <summary>
     /// Traversing current directory by given depth.
     /// We get current directory from FilesystemManager and only add dept as input.
@@ -35,7 +37,7 @@ namespace BashSoft_OOP.Core.Commands
             if (!int.TryParse(base.Arguments[0], out depth))
             {
                 throw new ArgumentException(string.Format(
-                        ExceptionMessages.params_InvalidParameter, base.Arguments[0]));
+                    ExceptionMessages.params_InvalidParameter, base.Arguments[0]));
             }
 
             this.traverse.Traversing(currentDirectory, depth);

@@ -1,6 +1,7 @@
-﻿namespace BashSoft_OOP.Core.Commands
+﻿namespace BashSoft_OOP.Core.Abstract
 {
-    using BashSoft_OOP.Interface;
+    using Interfaces;
+    using StaticData;
     using System;
 
     public abstract class Command : IExecutable

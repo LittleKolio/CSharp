@@ -1,17 +1,16 @@
 ﻿namespace BashSoft_OOP.Repository
 {
-    using Interface;
+    using Interfaces;
+    using IO.Interfaces;
+    using Models.Interfaces;
     using StaticData;
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Text;
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
     using Util;
 
-    public class ProcessCustomFormat
+    public class ProcessCustomFormat : IProcessCustomFormat
     {
         private IRepository repository;
         private IWriter consoleWriter;

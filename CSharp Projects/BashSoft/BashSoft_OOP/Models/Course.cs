@@ -1,12 +1,8 @@
 ﻿namespace BashSoft_OOP
 {
-    using BashSoft_OOP.Interface;
-    using Newtonsoft.Json;
-    using StaticData;
-    using System;
+    using Models.Interfaces;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
 
     public class Course : ICourse
     {
@@ -21,22 +17,14 @@
             this.students = new Dictionary<string, IStudent>();
         }
 
-        [JsonProperty("course")]
         public string Name { get; }
 
-        [JsonProperty("exams")]
         public int NumberOfExams { get; }
 
-        public IReadOnlyDictionary<string, IStudent> Students => this.students;
+        public IReadOnlyList<IStudent> Students => this.students.Values.ToList();
 
         public void EnrollStudent(IStudent student)
         {
-            //if (students.ContainsKey(student.Name))
-            //{
-            //    throw new InvalidOperationException(string.Format(
-            //        ExceptionMessages.data_Student_InCourse, student.Name, this.Name));
-            //}
-
             if (!students.ContainsKey(student.Name))
             {
                 this.students.Add(student.Name, student);

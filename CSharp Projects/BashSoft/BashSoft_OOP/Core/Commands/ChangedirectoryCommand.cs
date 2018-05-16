@@ -1,7 +1,8 @@
-﻿using BashSoft_OOP.Interface;
-
-namespace BashSoft_OOP.Core.Commands
+﻿namespace BashSoft_OOP.Core.Commands
 {
+    using Abstract;
+    using IO.Interfaces;
+
     /// <summary>
     /// Change directory by given relative path.
     /// If the path does not exist FilesystemManager throws argument exception.

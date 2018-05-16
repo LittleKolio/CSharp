@@ -1,10 +1,10 @@
 ﻿namespace BashSoft_OOP.Core
 {
     using System;
-    using System.Linq;
-    using BashSoft_OOP.Interface;
-    using BashSoft_OOP.StaticData;
-    using BashSoft_OOP.Util;
+    using StaticData;
+    using Util;
+    using Interfaces;
+    using IO.Interfaces;
 
     public class Engine : IEngine
     {

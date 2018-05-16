@@ -1,14 +1,8 @@
 ﻿namespace BashSoft_OOP.Core.Commands
 {
-    using Interface;
-    using IO;
-    using StaticData;
-    using System;
-    using System.Collections.Generic;
+    using Abstract;
+    using IO.Interfaces;
     using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
 
     public class ComparetwofilesCommand : Command

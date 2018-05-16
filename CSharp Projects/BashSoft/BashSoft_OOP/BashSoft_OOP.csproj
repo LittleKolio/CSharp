@@ -56,7 +56,7 @@
   <ItemGroup>
     <Compile Include="Core\CommandInterpreter.cs" />
     <Compile Include="Core\Commands\ChangedirectoryCommand.cs" />
-    <Compile Include="Core\Commands\Command.cs" />
+    <Compile Include="Core\Abstract\Command.cs" />
     <Compile Include="Core\Commands\ComparetwofilesCommand.cs" />
     <Compile Include="Core\Commands\CreatedirectoryCommand.cs" />
     <Compile Include="Core\Commands\OpenfileCommand.cs" />
@@ -65,36 +65,39 @@
     <Compile Include="Core\Commands\ReadjsonfileCommand.cs" />
     <Compile Include="Core\Commands\TraversedirectoryCommand.cs" />
     <Compile Include="Core\Engine.cs" />
-    <Compile Include="Interface\ICompareFiles.cs" />
-    <Compile Include="Interface\IExecutable.cs" />
-    <Compile Include="Interface\ICommandInterpreter.cs" />
-    <Compile Include="Interface\IEngine.cs" />
-    <Compile Include="Interface\IFileWriter.cs" />
-    <Compile Include="Interface\IFormat.cs" />
-    <Compile Include="Interface\IReader.cs" />
-    <Compile Include="Interface\ITraverse.cs" />
+    <Compile Include="IO\Interfaces\ICompareFiles.cs" />
+    <Compile Include="Core\Interfaces\IExecutable.cs" />
+    <Compile Include="Core\Interfaces\ICommandInterpreter.cs" />
+    <Compile Include="Core\Interfaces\IEngine.cs" />
+    <Compile Include="IO\Interfaces\IFormat.cs" />
+    <Compile Include="Repository\Interfaces\IProcessJsonFormat.cs" />
+    <Compile Include="IO\Interfaces\IReader.cs" />
+    <Compile Include="IO\Interfaces\ITraverse.cs" />
     <Compile Include="IO\ConsoleReader.cs" />
     <Compile Include="IO\FilesystemManager.cs" />
-    <Compile Include="Interface\IFilesystemManager.cs" />
-    <Compile Include="IO\FileWriter.cs" />
+    <Compile Include="IO\Interfaces\IFilesystemManager.cs" />
     <Compile Include="IO\FormatToPrint.cs" />
     <Compile Include="IO\CompareFiles.cs" />
     <Compile Include="IO\TraversingDirectory.cs" />
-    <Compile Include="Interface\IWriter.cs" />
+    <Compile Include="IO\Interfaces\IWriter.cs" />
     <Compile Include="IO\ConsoleWriter.cs" />
     <Compile Include="Launcher.cs" />
     <Compile Include="Models\Course.cs" />
-    <Compile Include="Interface\ICourse.cs" />
-    <Compile Include="Interface\IStudent.cs" />
+    <Compile Include="Models\Interfaces\ICourse.cs" />
+    <Compile Include="Models\Interfaces\IStudent.cs" />
+    <Compile Include="Models\CourseDto.cs" />
+    <Compile Include="Models\DtoMapper.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudentDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Interface\IRepository.cs" />
+    <Compile Include="Repository\Interfaces\IRepository.cs" />
     <None Include="Repository\RepositoryFilter.cs" />
-    <Compile Include="Interface\ISorter.cs" />
-    <Compile Include="Repository\JsonRepository.cs" />
+    <Compile Include="Repository\Interfaces\ISorter.cs" />
+    <Compile Include="Repository\Interfaces\IProcessCustomFormat.cs" />
+    <Compile Include="Repository\ProcessJsonFormat.cs" />
     <Compile Include="Repository\ProcessCustomFormat.cs" />
     <Compile Include="Repository\RepositorySorter.cs" />
-    <Compile Include="Repository\StudentsRepository.cs" />
+    <Compile Include="Repository\CoursesRepository.cs" />
     <Compile Include="StaticData\ExceptionMessages.cs" />
     <Compile Include="Tester\Tester.cs" />
     <Compile Include="StaticData\Constants.cs" />
@@ -105,9 +108,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

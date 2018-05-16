@@ -1,4 +1,4 @@
-﻿namespace BashSoft_OOP.Interface
+﻿namespace BashSoft_OOP.Models.Interfaces
 {
     using System.Collections.Generic;
 
@@ -6,7 +6,9 @@
     {
         string Name { get; }
 
-        IReadOnlyDictionary<string, IStudent> Students { get; }
+        int NumberOfExams { get; }
+
+        IReadOnlyList<IStudent> Students { get; }
 
         void EnrollStudent(IStudent student);
     }

@@ -1,5 +1,6 @@
-﻿namespace BashSoft_OOP.Interface
+﻿namespace BashSoft_OOP.Repository.Interfaces
 {
+    using Models.Interfaces;
     using System.Collections.Generic;
 
     public interface IRepository

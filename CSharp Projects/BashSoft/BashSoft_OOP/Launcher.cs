@@ -1,16 +1,23 @@
 ﻿namespace BashSoft_OOP
 {
-    using BashSoft_OOP.Interface;
-    using BashSoft_OOP.IO;
-    using BashSoft_OOP.Core;
+    //
+    using IO;
+    using Core;
+    using Repository;
+    using Core.Interfaces;
+    using IO.Interfaces;
+    using Repository.Interfaces;
+
+    //
     using System;
     using Microsoft.Extensions.DependencyInjection;
+
 
     public class Launcher
     {
         public static void Main()
         {
-
+            #region Object Initialization
             ////IO
             //IWriter consoleWriter = new ConsoleWriter();
             //IReader consoleReader = new ConsoleReader();
@@ -22,6 +29,7 @@
             //IFilesystemManager filesystemManager = new FilesystemManager();
 
             //IEngine engine = new Engine(commandInterpreter, filesystemManager, consoleWriter, consoleReader);
+            #endregion
 
             IServiceProvider serviceProvider = ConfigureService();
 
@@ -37,7 +45,7 @@
             //Singleton
             collection.AddSingleton<IReader, ConsoleReader>();
             collection.AddSingleton<IWriter, ConsoleWriter>();
-            collection.AddSingleton<IRepository, StudentsRepository>();
+            collection.AddSingleton<IRepository, CoursesRepository>();
             collection.AddSingleton<IFilesystemManager, FilesystemManager>();
 
             //Transient
@@ -47,6 +55,7 @@
             collection.AddTransient<ITraverse, TraversingDirectory>();
             collection.AddTransient<IFormat, FormatToPrint>();
             collection.AddTransient<ICompareFiles, CompareFiles>();
+            collection.AddTransient<IProcessJsonFormat, ProcessJsonFormat>();
 
             return collection.BuildServiceProvider();
         }

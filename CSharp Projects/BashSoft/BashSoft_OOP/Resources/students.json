@@ -1,4 +1,62 @@
 ﻿[
-  { "student": "some1", "course": "C", "scores": [ 2, 2, 2, -1, -1 ] },
-  { "student": "some2", "course": "C", "scores": [ 3, 3, 0, -1, -1 ] }
+  {
+    "student": "Kiko23_4144",
+    "course": "C#_Feb_2015",
+    "scores": [ 2, 2, 2, -1, -1 ]
+  },
+  {
+    "student": "Kiko23_4144",
+    "course": "JSApps_Dec_2014",
+    "scores": [ 34, 55, 7, 34, 13 ]
+  },
+  {
+    "student": "Sten16_96",
+    "course": "JSApps_Dec_2014",
+    "scores": [ 3, 3, 0, -1, -1 ]
+  },
+  {
+    "student": "Sten16_96",
+    "course": "WebFundamentals_Oct_2015",
+    "scores": [ 34, 55, 66, -1, -1 ]
+  },
+  {
+    "student": "NiK68_0192",
+    "course": "JSApps_Dec_2014",
+    "scores": [ 3, 3, 0, -1, -1 ]
+  },
+  {
+    "student": "RSV21_2231",
+    "course": "JSApps_Dec_2014",
+    "scores": [ 3, 3, 0, -1, -1 ]
+  },
+  {
+    "student": "Kiko23_4144",
+    "course": "JSApps_Dec_2014",
+    "scores": [ 3, 3, 0, -1, -1 ]
+  },
+  {
+    "student": "Ivo42_230",
+    "course": "JSApps_Dec_2014",
+    "scores": [ 3, 3, 0, -1, -1 ]
+  },
+  {
+    "student": "Desi12_2001",
+    "course": "JSApps_Dec_2014",
+    "scores": [ 3, 3, 0, -1, -1 ]
+  },
+  {
+    "student": "Ivan23_923",
+    "course": "JSApps_Dec_2014",
+    "scores": [ 3, 3, 0, -1, -1 ]
+  },
+  {
+    "student": "Rdsauja16_23",
+    "course": "JSApps_Dec_2014",
+    "scores": [ 3, 3, 0, -1, -1 ]
+  },
+  {
+    "student": "Ruja16_23",
+    "course": "JSApps_Dec_2014",
+    "scores": [ 3, 3, 0, -1, -1 ]
+  }
 ]

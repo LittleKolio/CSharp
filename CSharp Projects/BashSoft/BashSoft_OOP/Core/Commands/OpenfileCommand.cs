@@ -1,8 +1,8 @@
-﻿using BashSoft_OOP.Interface;
-using System;
-
-namespace BashSoft_OOP.Core.Commands
+﻿namespace BashSoft_OOP.Core.Commands
 {
+    using Abstract;
+    using IO.Interfaces;
+
     /// <summary>
     /// Opens a file with default program for windows.
     /// First we have to change current directory to location of the file.

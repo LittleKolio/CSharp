@@ -1,24 +1,25 @@
 ﻿namespace BashSoft_OOP.Core.Commands
 {
-    using BashSoft_OOP.Interface;
-    using BashSoft_OOP.Repository;
+    using Abstract;
+    using IO.Interfaces;
+    using Repository.Interfaces;
     using System.IO;
 
     public class ReadjsonfileCommand : Command
     {
         private const int argumentsNumber = 2;
 
-        private JsonRepository jsonRepository;
         private IFilesystemManager filesystemManager;
+        private IProcessJsonFormat processJsonFormat;
 
         public ReadjsonfileCommand(
             string[] arguments,
             IFilesystemManager filesystemManager,
-            IWriter consoleWriter) 
+            IProcessJsonFormat processJsonFormat) 
             : base(arguments, argumentsNumber)
         {
-            this.jsonRepository = new JsonRepository(consoleWriter);
             this.filesystemManager = filesystemManager;
+            this.processJsonFormat = processJsonFormat;
         }
 
         public override void Execute()
@@ -29,11 +30,11 @@
             switch (type)
             {
                 case "students":
-                    this.jsonRepository.ReadStudents(path);
+                    this.processJsonFormat.ReadStudentsFromFile(path);
                     break;
 
                 case "courses":
-                    this.jsonRepository.ReadCourses(path);
+                    this.processJsonFormat.ReadCoursesFromFile(path);
                     break;
             }
         }
