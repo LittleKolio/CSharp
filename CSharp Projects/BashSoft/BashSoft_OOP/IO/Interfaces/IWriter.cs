@@ -8,6 +8,7 @@
         void WriteMessage(params string[] arguments);
         void WriteOneLineMessage(string message);
         void WriteException(params string[] arguments);
+        void WriteAndWait(string message);
 
         //File
         //void WriteMessage(string message, string path);

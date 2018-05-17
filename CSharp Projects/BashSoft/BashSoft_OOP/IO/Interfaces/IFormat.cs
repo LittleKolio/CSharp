@@ -7,5 +7,6 @@
     {
         string CoursesToString(List<ICourse> courses, IStudent student);
         string StudentsToString(IList<IStudent> students, ICourse course);
+        //string Box(string type, params string[] str);
     }
 }

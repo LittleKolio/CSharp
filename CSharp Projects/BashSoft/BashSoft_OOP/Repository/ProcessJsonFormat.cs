@@ -30,6 +30,8 @@
             //    this.consoleWriter.WriteOneLineMessage(item["course"].ToString());
             //}
 
+            int prevCount = this.repository.Count;
+
             JsonTextReader reader = new JsonTextReader(File.OpenText(coursesPath));
             while (reader.Read())
             {
@@ -46,6 +48,8 @@
                     this.repository.AddCourse(course);
                 }
             }
+
+            this.IsCoursesImported(prevCount);
         }
 
         public void ReadStudentsFromFile(string studentsPath)
@@ -71,6 +75,20 @@
 
                     course.EnrollStudent(student);
                 }
+            }
+
+            this.consoleWriter.WriteOneLineMessage("Students imported.");
+        }
+
+        private void IsCoursesImported(int prevCount)
+        {
+            if (this.repository.Count > prevCount)
+            {
+                this.consoleWriter.WriteOneLineMessage("Courses imported.");
+            }
+            else
+            {
+                this.consoleWriter.WriteOneLineMessage("Nothing imported!");
             }
         }
     }

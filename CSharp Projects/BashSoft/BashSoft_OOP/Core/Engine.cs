@@ -10,6 +10,7 @@
     {
         private ICommandInterpreter commandInterpreter;
         private IFilesystemManager filesystemManager;
+        private IFormat formatToPrint;
 
         private IWriter writer;
         private IReader reader;
@@ -17,11 +18,13 @@
         public Engine(
             ICommandInterpreter commandInterpreter,
             IFilesystemManager filesystemManager,
+            IFormat formatToPrint,
             IWriter writer,
             IReader reader)
         {
             this.commandInterpreter = commandInterpreter;
             this.filesystemManager = filesystemManager;
+            this.formatToPrint = formatToPrint;
             this.writer = writer;
             this.reader = reader;
         }
@@ -30,8 +33,9 @@
         {
             while (true)
             {
-                this.writer.WriteMessage(
-                    $"{this.filesystemManager.CurrentDirectory}> ");
+                this.writer.WriteMessage(this.filesystemManager.CurrentDirectory);
+
+                this.writer.WriteAndWait("command: ");
 
                 string input = this.reader.ReadLine();
 

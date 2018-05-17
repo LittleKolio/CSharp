@@ -1,99 +1,81 @@
 ﻿namespace BashSoft_OOP.Repository
 {
+    using Interfaces;
+    using Models.Interfaces;
+    using StaticData;
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    public class RepositoryFilter
+    public class RepositoryFilter : IFilter
     {
-        //public Dictionary<string, List<int>> FilterInterpreter(
-        //    Dictionary<string, List<int>> course,
-        //    string filter, 
-        //    string take)
-        //{
-        //    int numberOfStudents;
-        //    bool isNumber = int.TryParse(take, out numberOfStudents);
-        //    if (!isNumber)
-        //    {
-        //        numberOfStudents = course.Count;
-        //    }
+        private Dictionary<string, Func<double, bool>> filterFunctions = new Dictionary<string, Func<double, bool>>
+        {
+            { "excellent", mark => mark >= 5.0 },
+            { "average", mark => mark < 5.0 && mark >= 3.5 },
+            { "poor", mark => mark < 3.5 }
+        };
 
-        //    Dictionary<string, List<int>> filteredStudents
-        //        = new Dictionary<string, List<int>>();
+        public IList<IStudent> FilterInterpreter(
+            ICourse course,
+            string filter,
+            int take)
+        {
+            if (course.Students.Count == 0)
+            {
+                throw new InvalidOperationException(string.Format(
+                    ExceptionMessages.data_Student_NoStudents, course.Name));
+            }
 
-        //    switch (filter)
-        //    {
-        //        case "excellent":
-        //            filteredStudents = FilterByScoreAndTake(
-        //            course, ExcellentFilter, numberOfStudents);
-        //            break;
+            if (!filterFunctions.ContainsKey(filter))
+            {
+                throw new ArgumentException(
+                    ExceptionMessages.data_Filter_Invalid);
 
-        //        case "average":
-        //            filteredStudents = FilterByScoreAndTake(
-        //            course, AverageFilter, numberOfStudents);
-        //            break;
+            }
 
-        //        case "poor":
-        //            filteredStudents = FilterByScoreAndTake(
-        //            course, PoorFilter, numberOfStudents);
-        //            break;
+            IList<IStudent> filteredStudents = null;
 
-        //        default: ConsoleWriter.WriteException(
-        //            ExceptionMessages.data_Filter_Invalid);
-        //            break;
-        //    }
+            filteredStudents = FilterByScoreAndTake(
+                course, this.filterFunctions[filter], take);
 
-        //    if (filteredStudents.Count == 0)
-        //    {
-        //        ConsoleWriter.WriteOneLineMessage(
-        //            ExceptionMessages.data_Student_Requirements);
-        //    }
+            if (filteredStudents.Count == 0)
+            {
+                throw new NullReferenceException(
+                    ExceptionMessages.data_Student_Requirements);
+            }
 
-        //    return filteredStudents;
-        //}
-        //private Dictionary<string, List<int>> FilterByScoreAndTake(
-        //    Dictionary<string, List<int>> course,
-        //    Predicate<double> filter, 
-        //    int numberOfStudents)
-        //{
-        //    Dictionary<string, List<int>> filteredStudents 
-        //        = new Dictionary<string, List<int>>();
+            return filteredStudents;
+        }
 
-        //    int count = 0;
-        //    foreach (KeyValuePair<string, List<int>> student in course)
-        //    {
-        //        if (count == numberOfStudents)
-        //        {
-        //            break;
-        //        }
+        private IList<IStudent> FilterByScoreAndTake(
+            ICourse course,
+            Func<double, bool> filter,
+            int take)
+        {
+            IList<IStudent> filteredStudents = null;
 
-        //        double mark = Average(student.Value);
-        //        if (filter(mark))
-        //        {
-        //            filteredStudents.Add(student.Key, student.Value);
-        //            count++;
-        //        }
-        //    }
+            int count = 0;
+            foreach (IStudent student in course.Students)
+            {
+                if (count == take)
+                {
+                    break;
+                }
 
-        //    return filteredStudents;
-        //}
+                double mark = student
+                    .GetTestScoresByCourse(course.Name)
+                    .Where(m => m > -1)
+                    .Average();
 
-        //private bool ExcellentFilter(double mark)
-        //{
-        //    return mark >= 5.0;
-        //}
-        //private bool AverageFilter(double mark)
-        //{
-        //    return mark < 5.0 && mark >= 3.5;
-        //}
-        //private bool PoorFilter(double mark)
-        //{
-        //    return mark < 3.5;
-        //}
-        //private double Average(List<int> scores)
-        //{
-        //    double percentTotalScore = scores.Average() / 100;
-        //    return percentTotalScore * 4 + 2;
-        //}
+                if (filter(mark))
+                {
+                    filteredStudents.Add(student);
+                    count++;
+                }
+            }
+
+            return filteredStudents;
+        }
     }
 }

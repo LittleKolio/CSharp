@@ -95,32 +95,6 @@
         //                }
         //            } break;
 
-        //        //filter courseName poor/average/excellent 2/10/42/all
-        //        //filter students from а given course by a given filter option
-        //        //and add quantity of students to take
-        //        case "filter":
-        //            {
-        //                if (CheckNumberOfParameters(3, tokens.Length))
-        //                {
-        //                    string courseName = tokens[0];
-        //                    string filter = tokens[1];
-        //                    string take = tokens[2];
-
-        //                    Dictionary<string, List<int>> course = this.studentsRepository.GetCourse(courseName);
-
-        //                    Dictionary<string, List<int>> filteredStudents
-        //                        = this.repositoryFilter.FilterInterpreter(course, filter, take);
-
-        //                    if (filteredStudents.Count > 0)
-        //                    {
-        //                        foreach (KeyValuePair<string, List<int>> student in filteredStudents)
-        //                        {
-        //                            ConsoleWriter.PrintStudent(student);
-        //                        }
-        //                    }
-        //                }
-        //            } break;
-
         //        //download pathOfFile
         //        //download a file
         //        case "download": break;

@@ -37,5 +37,10 @@
         {
             Console.WriteLine(message);
         }
+
+        public void WriteAndWait(string message)
+        {
+            Console.Write(message);
+        }
     }
 }

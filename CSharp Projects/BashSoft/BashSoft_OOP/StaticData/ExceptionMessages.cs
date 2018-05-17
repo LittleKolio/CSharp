@@ -6,13 +6,13 @@
         public const string data_IsNotInitialized = "The data structure must be initialized first.";
         public const string data_Cours_NotExist = "Course: \"{0}\" does not exist in the data base!";
         public const string data_Cours_Exist = "Course: \"{0}\" already exist in the data base!";
-        //public const string data_Filter_Invalid = "Filter is not one of the following: excellent/average/poor";
+        public const string data_Filter_Invalid = "Filter is not one of the following: excellent/average/poor";
         public const string data_Order_Invalid = "Order is not one of the following: ascending/descending";
         public const string data_Student_Requirements = "No student meets the requirements.";
+        public const string data_Student_NoStudents = "There is no student in course: \"{0}\".";
         public const string data_Student_NotInCourse = "Student: \"{0}\" does not exist in this course: \"{1}\".";
         public const string data_Student_InvalidScores = "Student: \"{0}\" has invalid scores.";
-        public const string data_Student_NumberOfScores = "Maximum number of scores is {0}.";
-        //public const string data_Student_InvalideNumberOfScores = "Only {0} number of scores left for \"{1}\" course.";
+        public const string data_Student_NumberOfScores = "Number of scores must be {0}.";
 
         public const string file_DoseNotExist = "File: \"{0}\" does not exist!";
         public const string file_DontHaveAccess = "You don't have access to tose file!";

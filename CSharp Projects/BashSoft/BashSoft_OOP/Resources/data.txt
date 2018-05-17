@@ -1,115 +1,71 @@
-C#_Feb_2015 Kiko23_4144 69
-JSApps_Dec_2014 Ivo42_230 17
-C#_Jul_2016 Kiko23_4144 94
-JSApps_Dec_2014 Sten16_96 41
-C#_Feb_2015 Desi12_2001 77
-WebFundamentals_Oct_2015 Ivo42_230 28
-DataStructures_Apr_2016 Ivan23_923 94
-C#_July_2016 Rdsauja16_23 71
-JSApps_Dec_2014 NiK68_0192 1
-Unity_Jan_2016 Sten16_96 56
-unity_Jan_2016 Sten16_96 53
-JSApps_Dec_2014 Stan21_23 46
-C#_Feb_2015 NiK68_0192 53
-DataStructures_Apr_2016 Stan21_23 93
-WebFundamentals_Oct_2015 Desi12_2001 81
-Java_May_2015 Ivo12_2341 77
-C#_Feb_15 Sten16_96 12
-C#_Feb_2015 Desi12_2001 93
-WebFundamentals_Oct_2015 Kiko23_4144 87
-C#_Jul_2016 Stan21_23 20
-DataStructures_Apr_2016 RSV21_2231 58
-DataStructures_Apr_2016 RSV21_2231 83
-WebFundamentals_Oct_2015 Kiko23_4144 87
-C#_Feb_2015 Ivo42_230 72
-C#_Feb_2015 NiK68_0192 1
-DataStructures_Apr_2016 RSV21_2231 19
-WebFundamentals_Oct_2015 Ivo42_230 66
-C#_Feb_2015 Stan21_23 52
-Unity_Jan_2016 Ruja16_23 81
-C#_Feb_2015 Stan21_23 23
-JSApps_Dec_2014 Sten16_96 97
-C#_Jul_2016 Ivo12_2341 69
-C#_Feb_2015 Stan21_23 85
-C#_Feb_15 Idsavo12_2341 20
-C#_Feb_2015 RSV21_2231 89
-C#_Jul_2016 Ivan23_923 91
-C#_Feb_2015 Ivo12_2341 65
-WebFundamentals_Oct_2015 Ivan23_923 97
-Unity_Jan_2016 Stan21_23 67
-Java_May_2015 Iv 2an23_923 66
-Java_May_2015 Stan21_23 45
-JSApps_Dec_2014 Desi12_2001 85
-C#_Feb_15 Sten16_96 12
-Java_May_2015 RSV21_42231 41
-JSApps_Dec_2014 Ivan23_923 94
-Unity_Jan_2016 Ruja16_23 57
-Java_May_2015 Idsavo12_2341 25
-Unity_Jan_2016 Ivo12_2341 86
-WebFundamentals_Oct_2015 Ivo42_230 87
-WebFundamentals_Oct_2015 NiK68_0192 40
-JSApps_Dec_2014 Ivo12_2341 8
-C#_Feb_2015 Ivan23_923 10
-Unity_Jan_2016 RSV21_2231 21
-WebFundamentals_Oct_2015 Ruja16_23 17
-C#_July_2016 Ivdo42_230 48
-C#_Feb_15 Ivdo42_230 8
-C#_Feb_2015 Ivan23_923 63
-C#_Jul_2016 RSV21_2231 79
-WebFundamentals_Oct_2015 Stan21_23 57
-C#_Jul_2016 Sten16_96 44
-Java_May_2015 RSV21_42231 12
-Java_May_2015 Sten16_96 29
-C#_Feb_2015 Ivo12_2341 8
-WebFundamentals_Oct_2015 RSV21_2231 41
-JSApps_Dec_2014 Sten16_96 49
-JSApps_Dec_2014 Stan21_23 43
-Unity_Jan_2016 Ivo42_230 36
-JSApps_Dec_2014 Ruja16_23 96
-JSApps_Dec_2014 Ivan23_923 13
-C#_Feb_15 Rdsauja16_23 40
-C#_Jul_2016 RSV21_2231 64
-Java_May_2015 Kiko23_4144 4
-DataStructures_Apr_2016 Ruja16_23 4
-Unity_Jan_2016 Ruja16_23 56
-C#_Jul_2016 Sten16_96 59
-unity_Jan_2016 RSV21_42231 14
-Java_May_2015 Desi12_2001 15
-C#_July_2016 Stan21_23 76
-Java_May_2015 RSV21_2231 37
-DataStructures_Apr_2016 Stan21_23 8
-C#_Jul_2016 Ivo12_2341 93
-WebFundamentals_oct_2015 RSV21_42231 58
-JSApps_Dec_2014 Ivan23_923 30
-C#_Jul_2016 Desi12_2001 57
-DataStructures_Apr_2016 Ivo12_2341 68
-C#_Jul_2016 Ruja16_23 13
-Unity_Jan_2016 Ruja16_23 51
-WebFundamentals_Oct_2015 Ivan23_923 42
-DataStructures_Apr_2016 NiK68_019222 6
-DataStructures_Apr_2016 RSV21_2231 38
-C#_Feb_2015 Stan21_23 92
-JSApps_Dec_2014 Ivo12_2341 29
-DataStructures_Apr_2016 Sten16_96 39
-WebFundamentals_Oct_2015 Sten16_96 0
-C#_Feb_15 Idsavo12_2341 2
-JSApps_Dec_2014 Ivan23_923 68
-C#_July_2016 Rdsauja16_23 4
-WebFundamentals_oct_2015 Iv 2an23_923 80
-DataStructures_Apr_2016 Ivo42_230 6
-DataStructures_Apr_2016 Kiko23_4144 60
-JSApps_Dec_2014 Ruja16_23 38
-Java_May_2015 Desi12_2001 56
-C#_Jul_2016 Ivo12_2341 63
-JSApps_Dec_2014 Ivo42_230 11
-C#_Feb_2015 Ivan23_923 93
-C#_Feb_2015 Kiko23_4144 30
-Java_May_2015 Kiko23_4144 33
-DataStructures_Apr_2016 Ivo12_2341 47
-C#_Jul_2016 NiK68_0192 96
-C#_Jul_2016 Ivo42_230 47
-JSApps_Dec_2014 Stan21_23 61
-JSApps_Dec_2014 Kiko23_4144 3
+C#_Feb_2015 Kiko23_4144 69 87 4 -1 -1
+JSApps_Dec_2014 Ivo42_230 17 28 66 72 -1
+JSApps_Dec_2014 Sten16_96 41 53 56 60 -1
+C#_Feb_2015 Desi12_2001 77 -1 -1 -1 -1
+WebFundamentals_Oct_2015 Ivo42_230 28 0 34 44 33
+DataStructures_Apr_2016 Ivan23_923 94 80 90 87 0
+C#_July_2016 Rdsauja16_23 71 65 44 -1 -1
+JSApps_Dec_2014 NiK68_0192 1 33 22 0 33
+Unity_Jan_2016 Sten16_96 56 33 77 33 -1
+JSApps_Dec_2014 Stan21_23 46 45 67 0 0
+C#_Feb_2015 NiK68_0192 53 44 34 0 23
+DataStructures_Apr_2016 Stan21_23 93 0 66 -1 -1
+WebFundamentals_Oct_2015 Desi12_2001 81 0 0 54 88
+Java_May_2015 Ivo12_2341 77 45 99 99 100
+C#_Feb_15 Sten16_96 12 44 23 33 0
+C#_Jul_2016 Stan21_23 20 34 55 88 100
+DataStructures_Apr_2016 RSV21_2231 58 55 88 0 -1 -1
+C#_Feb_2015 Ivo42_230 72 55 100 66 0
+C#_Feb_2015 Stan21_23 52 66 90 89 98
+Unity_Jan_2016 Ruja16_23 81 44 23 77 0
+C#_Jul_2016 Ivo12_2341 69 44 22 -1 -1
+C#_Feb_15 Idsavo12_2341 20 55 0 55 67 89
+C#_Feb_2015 RSV21_2231 89 33 42 54 44
+C#_Jul_2016 Ivan23_923 91 38 39 57 44
+C#_Feb_2015 Ivo12_2341 65 44 55 77 33
+WebFundamentals_Oct_2015 Ivan23_923 97 0 0 0 0
+Unity_Jan_2016 Stan21_23 67 33 55 77 99
+Java_May_2015 Stan21_23 45 55 33 0 77
+JSApps_Dec_2014 Desi12_2001 85 55 90 44 0
+Java_May_2015 RSV21_42231 41 34 66 28 67
+JSApps_Dec_2014 Ivan23_923 94 44 -1 -1 -1
+Java_May_2015 Idsavo12_2341 25 44 77 0 77
+Unity_Jan_2016 Ivo12_2341 0 44 87 0 34
+WebFundamentals_Oct_2015 NiK68_0192 40 43 55 67 23
+C#_Feb_2015 Ivan23_923 10 23 54 29 44
+Unity_Jan_2016 RSV21_2231 21 12 25 0 33
+WebFundamentals_Oct_2015 Ruja16_23 17 23 54 66 78
+C#_July_2016 Ivdo42_230 48 44 66 0 56
+C#_Feb_15 Ivdo42_230 8 23 55 -1 -1
+C#_Jul_2016 RSV21_2231 79 45 77 89 88
+WebFundamentals_Oct_2015 Stan21_23 57 45 66 0 88
+C#_Jul_2016 Sten16_96 44 0 0 90 90
+Java_May_2015 Sten16_96 29 44 55 0 77
+WebFundamentals_Oct_2015 RSV21_2231 41 45 78 99 100
+JSApps_Dec_2014 Sten16_96 49 23 12 0 -1
+Unity_Jan_2016 Ivo42_230 36 12 34 82 91
+JSApps_Dec_2014 Ruja16_23 96 72 88 94 56
+C#_Feb_15 Rdsauja16_23 40 45 77 80 12
+DataStructures_Apr_2016 Ruja16_23 4 12 44 8 0
+Unity_Jan_2016 RSV21_42231 14 29 33 0 100
+Java_May_2015 Desi12_2001 15 23 65 92 55
+Java_May_2015 RSV21_2231 37 33 12 45 82
+DataStructures_Apr_2016 Stan21_23 8 33 7 45 -1
+WebFundamentals_oct_2015 RSV21_42231 58 33 91 44 0
+C#_Jul_2016 Desi12_2001 57 33 22 72 60
+DataStructures_Apr_2016 Ivo12_2341 68 38 36 58 99
+C#_Jul_2016 Ruja16_23 13 34 -1 -1 -1
+DataStructures_Apr_2016 NiK68_019222 6 10 27 74 -1
+JSApps_Dec_2014 Ivo12_2341 29 50 33 66 0
+DataStructures_Apr_2016 Sten16_96 39 45 61 0 0
+WebFundamentals_Oct_2015 Sten16_96 0 19 31 58 99
+DataStructures_Apr_2016 Ivo42_230 6 29 0 34 66
+JSApps_Dec_2014 Ruja16_23 38 59 33 0 0
+Java_May_2015 Kiko23_4144 33 18 33 97 55
+C#_Jul_2016 NiK68_0192 96 72 85 89 94
+C#_Jul_2016 Ivo42_230 47 54 77 99 15
+JSApps_Dec_2014 Kiko23_4144 3 47 30 49 79
+
 Java_May_2015 Rdsauja16_23 89
 C#_Jul_2016 Sten16_96 69
 C#_Jul_2016 Desi12_2001 93

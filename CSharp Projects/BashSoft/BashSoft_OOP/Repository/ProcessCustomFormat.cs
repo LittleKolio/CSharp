@@ -7,21 +7,25 @@
     using System;
     using System.IO;
     using System.Linq;
+    using System.Text;
     using System.Text.RegularExpressions;
     using Util;
 
     public class ProcessCustomFormat : IProcessCustomFormat
     {
         private IRepository repository;
+        private IFormat formatToPrint;
         private IWriter consoleWriter;
         private IReader consoleReader;
 
         public ProcessCustomFormat(
-            IRepository repository, 
+            IRepository repository,
+            IFormat formatToPrint, 
             IWriter consoleWriter, 
             IReader consoleReader)
         {
             this.repository = repository;
+            this.formatToPrint = formatToPrint;
             this.consoleReader = consoleReader;
             this.consoleWriter = consoleWriter;
         }
@@ -48,10 +52,7 @@
 
             while (true)
             {
-                if (this.ShouldEnd(input))
-                {
-                    break;
-                }
+                if (this.ShouldEnd(input)) { break; }
 
                 ProcessingCustomFormat(input);
 
@@ -65,71 +66,76 @@
 
         public void ReadDataFile(string path)
         {
-            string[] input = null;
-            try
-            {
-                input = File.ReadAllLines(path);
-            }
-            catch (Exception ex)
-            {
-                this.consoleWriter.WriteException(ex.Message);
-            }
-
             int prevCount = this.repository.Count;
 
-            this.consoleWriter.WriteOneLineMessage("Reading data...");
+            StringBuilder sb = new StringBuilder();
 
-            for (int i = 0; i < input.Length; i++)
+            using (StreamReader reader = new StreamReader(path))
             {
-                ProcessingCustomFormat(input[i]);
+                this.consoleWriter.WriteOneLineMessage("Reading data...");
+
+                int count = 1;
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    try
+                    {
+                        ProcessingCustomFormat(line);
+                    }
+                    catch (Exception ex)
+                    {
+                        sb.AppendLine($"Line {count}: " + ex.Message);
+                    }
+
+                    count++;
+                }
+            }
+
+            if (sb.Length != 0)
+            {
+                this.consoleWriter.WriteException(
+                    sb.ToString().TrimEnd());
             }
 
             this.IsDataImported(prevCount);
         }
 
-        //Input format – {0_CourseName_CourseInstance} {1_Username} {2_Scores}
+        //{0_CourseName_CourseInstance} {1_numberOfExams} {2_Username} {3_Scores}
         private void ProcessingCustomFormat(string input)
         {
             Match match = Regex.Match(input,
                 Constants.Pattern_InitializeRepository);
 
-            if (!match.Success)
-                return;
+            if (!match.Success) { return; }
 
             string courseName = match.Groups[1].Value;
-            string studentName = match.Groups[2].Value;
+            int numberOfExams = int.Parse(match.Groups[2].Value);
+            string studentName = match.Groups[3].Value;
 
             int[] scores = null;
 
             try
             {
-                scores = Utility.SplitInput(match.Groups[3].Value, " ")
+                scores = Utility.SplitInput(match.Groups[4].Value, " ")
                     .Select(int.Parse)
                     .ToArray();
             }
             catch
             {
-                this.consoleWriter.WriteException(
-                    string.Format(ExceptionMessages.data_Student_InvalidScores, studentName));
+                throw new ArgumentException(string.Format(
+                    ExceptionMessages.data_Student_InvalidScores, studentName));
             }
 
             //if (scores.Length == 0)
             //    return;
 
-            ICourse course = new Course(courseName, 5);
+            ICourse course = new Course(courseName, numberOfExams);
             IStudent student = new Student(studentName);
+            student.EnrollInCourse(course);
+            student.AddTestScoresByCourse(courseName, scores);
+            course.EnrollStudent(student);
 
-            try
-            {
-                student.EnrollInCourse(course);
-                student.AddTestScoresByCourse(courseName, scores);
-                course.EnrollStudent(student);
-                this.repository.AddCourse(course);
-            }
-            catch (Exception ex)
-            {
-                this.consoleWriter.WriteException(ex.Message);
-            }
+            this.repository.AddCourse(course);
         }
     }
 }

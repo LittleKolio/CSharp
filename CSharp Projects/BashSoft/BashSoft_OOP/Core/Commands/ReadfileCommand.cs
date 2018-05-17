@@ -30,9 +30,7 @@
 
         public override void Execute()
         {
-            string fileName = base.Arguments[0];
-
-            string path = Path.Combine(this.filesystemManager.CurrentDirectory, fileName);
+            string path = Path.Combine(this.filesystemManager.CurrentDirectory, base.Arguments[0]);
 
             this.processCustomformat.ReadDataFile(path);
         }
