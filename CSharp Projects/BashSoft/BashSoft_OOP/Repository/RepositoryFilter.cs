@@ -65,7 +65,6 @@
 
                 double mark = student
                     .GetTestScoresByCourse(course.Name)
-                    .Where(m => m > -1)
                     .Average();
 
                 if (filter(mark))

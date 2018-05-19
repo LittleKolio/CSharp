@@ -28,10 +28,7 @@
                 case "ascending":
                     sortedStudents = course
                         .Students
-                        .OrderBy(s => s.GetTestScoresByCourse(course.Name)
-                            .Where(m => m > -1)
-                            .Average()
-                        )
+                        .OrderBy(s => s.GetTestScoresByCourse(course.Name).Average())
                         .Take(take)
                         .ToList();
                     break;
@@ -39,10 +36,7 @@
                 case "descending":
                     sortedStudents = course
                         .Students
-                        .OrderByDescending(s => s.GetTestScoresByCourse(course.Name)
-                            .Where(m => m > -1)
-                            .Average()
-                        )
+                        .OrderByDescending(s => s.GetTestScoresByCourse(course.Name).Average())
                         .Take(take)
                         .ToList();
                     break;

@@ -11,5 +11,9 @@
         IReadOnlyList<IStudent> Students { get; }
 
         void EnrollStudent(IStudent student);
+
+        void RemoveStudent(string studentName);
+
+        IStudent GetStudent(string studentName);
     }
 }

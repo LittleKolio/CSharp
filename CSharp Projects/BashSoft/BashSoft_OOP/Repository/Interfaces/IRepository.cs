@@ -11,6 +11,8 @@
 
         void AddCourse(ICourse course);
 
+        void RemoveCourse(string courseName);
+
         ICourse GetCourse(string courseName);
     }
 }

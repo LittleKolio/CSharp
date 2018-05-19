@@ -2,7 +2,7 @@
 {
     public static class Constants
     {
-        public const string Pattern_InitializeRepository = @"([A-Z][a-zA-Z#\+]*_[A-Z][a-z]{2}_\d{4})\s+(\d+)\s+([A-Za-z]+\d{2}_\d{2,4})\s+([\s0-9]+)";
+        public const string Pattern_InitializeRepository = @"([A-Z][a-zA-Z#\+]*_[A-Z][a-z]{2}_\d{4})\s+([A-Za-z]+\d{2}_\d{2,4})\s+([\s0-9]+)$";
 
         public const string Command_End = "quit";
 
@@ -14,5 +14,8 @@
         public const string File_MismatchFileName = "Mismatches.txt";
 
         public const int Padding_Name = 15;
+
+        public const int Course_NumberOfExams = 5;
+        public const int Course_MaxScoreOnExam = 100;
     }
 }

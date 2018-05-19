@@ -71,43 +71,20 @@
         //{
         //    switch (cmd)
         //    {
-
-        //        //cmp absolutePath1 absolutePath2
         //        //comparing two files by given two absolute paths
-        //        case "cmp":
-        //            {
-        //                if (CheckNumberOfParameters(2, tokens.Length))
-        //                {
-        //                    string filePath1 = tokens[0];
-        //                    string filePath2 = tokens[1];
-        //                    this.ioManager.CompareTwoFiles(filePath1, filePath2);
-        //                }
-        //            } break;
+        //        case "": break;
 
-        //        //changeDirAbs absolutePath
         //        //change the current directory by an absolute path
-        //        case "changeDirAbs":
-        //            {
-        //                if (CheckNumberOfParameters(1, tokens.Length))
-        //                {
-        //                    string absolutPath = tokens[0];
-        //                    FilesystemManager.ChangeDirectory(absolutPath);
-        //                }
-        //            } break;
+        //        case "": break;
 
-        //        //download pathOfFile
         //        //download a file
-        //        case "download": break;
+        //        case "": break;
 
-        //        //downloadAsynch pathOfFile
         //        //download file asynchronously
         //        case "downloadAsynch": break;
 
         //        //help
-        //        case "help": break;
-
-        //        default:
-        //            break;
+        //        case "": break;
         //    }
         //}
     }

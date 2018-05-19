@@ -58,14 +58,14 @@
                     this.Name, courseName));
             }
 
-            if (scores.Length != this.courses[courseName].Course.NumberOfExams)
+            if (scores.Length > this.courses[courseName].Course.NumberOfExams)
             {
-                throw new InvalidOperationException(string.Format(
+                throw new ArgumentException(string.Format(
                     ExceptionMessages.data_Student_NumberOfScores, 
                     this.courses[courseName].Course.NumberOfExams));
             }
 
-            this.courses[courseName].TestScores.AddRange(scores);
+            this.courses[courseName].TestScores = new List<int>(scores);
         }
 
         public List<int> GetTestScoresByCourse(string courseName)

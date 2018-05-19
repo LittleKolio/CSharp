@@ -23,13 +23,21 @@
         {
             string courseName = course.Name;
 
-            if (this.courses.ContainsKey(courseName))
+            if (!this.courses.ContainsKey(courseName))
+            {
+                this.courses.Add(courseName, course);
+            }
+        }
+
+        public void RemoveCourse(string courseName)
+        {
+            if (!this.courses.ContainsKey(courseName))
             {
                 throw new InvalidOperationException(string.Format(
-                    ExceptionMessages.data_Cours_Exist, courseName));
+                    ExceptionMessages.data_Cours_NotExist, courseName));
             }
 
-            this.courses.Add(courseName, course);
+            this.courses.Remove(courseName);
         }
 
         public ICourse GetCourse(string courseName)

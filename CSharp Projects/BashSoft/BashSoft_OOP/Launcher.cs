@@ -57,6 +57,7 @@
             collection.AddTransient<ICompareFiles, CompareFiles>();
             collection.AddTransient<IProcessJsonFormat, ProcessJsonFormat>();
             collection.AddTransient<IProcessCustomFormat, ProcessCustomFormat>();
+            collection.AddTransient<IFilter, RepositoryFilter>();
 
             return collection.BuildServiceProvider();
         }

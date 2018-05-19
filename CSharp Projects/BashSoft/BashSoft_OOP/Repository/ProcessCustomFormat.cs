@@ -70,12 +70,14 @@
 
             StringBuilder sb = new StringBuilder();
 
+            this.consoleWriter.WriteOneLineMessage("Reading data...");
+
             using (StreamReader reader = new StreamReader(path))
             {
-                this.consoleWriter.WriteOneLineMessage("Reading data...");
-
                 int count = 1;
+
                 string line;
+
                 while ((line = reader.ReadLine()) != null)
                 {
                     try
@@ -100,7 +102,7 @@
             this.IsDataImported(prevCount);
         }
 
-        //{0_CourseName_CourseInstance} {1_numberOfExams} {2_Username} {3_Scores}
+        //{0_CourseName_CourseInstance} {1_Username} {2_Scores}
         private void ProcessingCustomFormat(string input)
         {
             Match match = Regex.Match(input,
@@ -109,27 +111,14 @@
             if (!match.Success) { return; }
 
             string courseName = match.Groups[1].Value;
-            int numberOfExams = int.Parse(match.Groups[2].Value);
-            string studentName = match.Groups[3].Value;
+            string studentName = match.Groups[2].Value;
+            int[] scores = Utility.SplitInput(match.Groups[3].Value, " ")
+                .Select(int.Parse)
+                .ToArray();
 
-            int[] scores = null;
+            //if (scores.Length == 0) { return; }
 
-            try
-            {
-                scores = Utility.SplitInput(match.Groups[4].Value, " ")
-                    .Select(int.Parse)
-                    .ToArray();
-            }
-            catch
-            {
-                throw new ArgumentException(string.Format(
-                    ExceptionMessages.data_Student_InvalidScores, studentName));
-            }
-
-            //if (scores.Length == 0)
-            //    return;
-
-            ICourse course = new Course(courseName, numberOfExams);
+            ICourse course = new Course(courseName);
             IStudent student = new Student(studentName);
             student.EnrollInCourse(course);
             student.AddTestScoresByCourse(courseName, scores);

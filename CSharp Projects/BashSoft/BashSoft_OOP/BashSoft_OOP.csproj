@@ -64,6 +64,7 @@
     <Compile Include="Core\Commands\OrderCommand.cs" />
     <Compile Include="Core\Commands\ReadfileCommand.cs" />
     <Compile Include="Core\Commands\ReadjsonfileCommand.cs" />
+    <Compile Include="Core\Commands\RemoveCommand.cs" />
     <Compile Include="Core\Commands\TraversedirectoryCommand.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="IO\Interfaces\ICompareFiles.cs" />
