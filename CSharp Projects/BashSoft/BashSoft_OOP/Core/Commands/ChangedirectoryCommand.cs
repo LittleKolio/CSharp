@@ -7,7 +7,7 @@
     /// Change directory by given relative path.
     /// If the path does not exist FilesystemManager throws argument exception.
     /// </summary>
-    /// <example>changedirectory {0_relativeDirectoryPath}</example>
+    /// <example>changedirectory {0_(string)relativeDirectoryPath}</example>
 
     public class ChangedirectoryCommand : Command
     {

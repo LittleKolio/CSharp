@@ -6,19 +6,18 @@
     using System.IO;
 
     /// <summary>
-    /// Initialize (fill) the database from a file by given filename.
-    /// First we have to change current directory to file directory.
+    /// Initialize (fill) of the database through text file in current directory.
     /// </summary>
     /// <example>readfile {0_fileName}</example>
 
-    public class ReadfileCommand : Command
+    public class ReadtxtCommand : Command
     {
         private const int argumentsNumber = 1;
 
         private IProcessCustomFormat processCustomformat;
         private IFilesystemManager filesystemManager;
 
-        public ReadfileCommand(
+        public ReadtxtCommand(
             string[] arguments,
             IProcessCustomFormat processCustomformat, 
             IFilesystemManager filesystemManager) 

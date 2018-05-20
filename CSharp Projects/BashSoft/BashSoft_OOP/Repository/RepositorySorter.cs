@@ -42,8 +42,8 @@
                     break;
 
                 default:
-                    throw new ArgumentException(
-                        ExceptionMessages.data_Order_Invalid);
+                    throw new ArgumentException(string.Format(
+                        ExceptionMessages.data_Order_Invalid, order));
             }
 
             return sortedStudents;

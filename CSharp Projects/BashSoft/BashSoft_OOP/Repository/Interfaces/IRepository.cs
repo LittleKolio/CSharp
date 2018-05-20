@@ -5,7 +5,7 @@
 
     public interface IRepository
     {
-        IReadOnlyDictionary<string, ICourse> Courses { get; }
+        IReadOnlyList<ICourse> Courses { get; }
 
         int Count { get; }
 

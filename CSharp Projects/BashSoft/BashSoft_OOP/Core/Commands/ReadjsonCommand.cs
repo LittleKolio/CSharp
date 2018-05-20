@@ -5,14 +5,19 @@
     using Repository.Interfaces;
     using System.IO;
 
-    public class ReadjsonfileCommand : Command
+    /// <summary>
+    /// Initialize (fill) of the database through JSON file in current directory.
+    /// </summary>
+    /// <example>readjson {0_(string)courses/students} {1_(string)fileName}</example>
+
+    public class ReadjsonCommand : Command
     {
         private const int argumentsNumber = 2;
 
         private IFilesystemManager filesystemManager;
         private IProcessJsonFormat processJsonFormat;
 
-        public ReadjsonfileCommand(
+        public ReadjsonCommand(
             string[] arguments,
             IFilesystemManager filesystemManager,
             IProcessJsonFormat processJsonFormat) 

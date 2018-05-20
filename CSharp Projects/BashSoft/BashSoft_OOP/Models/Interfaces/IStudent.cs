@@ -10,7 +10,7 @@
 
         List<int> GetTestScoresByCourse(string courseName);
 
-        void EnrollInCourse(ICourse course);
+        void AddCourse(ICourse course);
 
         void AddTestScoresByCourse(string courseName, params int[] scores);
     }

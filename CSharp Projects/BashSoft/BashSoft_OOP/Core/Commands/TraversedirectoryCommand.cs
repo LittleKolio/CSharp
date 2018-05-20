@@ -6,11 +6,9 @@
     using System;
 
     /// <summary>
-    /// Traversing current directory by given depth.
-    /// We get current directory from FilesystemManager and only add dept as input.
-    /// Traversing uses breadth-first.
+    /// Traversing current directory with breadth-first search by given depth.
     /// </summary>
-    /// <example>traversedirectory {0_depth}</example>
+    /// <example>traversedirectory {0_(int)depth}</example>
 
     public class TraversedirectoryCommand : Command
     {

@@ -69,11 +69,11 @@
 
                     ICourse course = this.repository.GetCourse(dto.Course);
 
-                    student.EnrollInCourse(course);
+                    student.AddCourse(course);
 
                     student.AddTestScoresByCourse(dto.Course, dto.Scores);
 
-                    course.EnrollStudent(student);
+                    course.AddStudent(student);
                 }
             }
 

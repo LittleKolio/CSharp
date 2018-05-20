@@ -4,6 +4,11 @@
     using IO.Interfaces;
     using System.IO;
 
+    /// <summary>
+    /// Compares two files line by line.
+    /// Result is new file Mismatches.txt in the current directory.
+    /// </summary>
+    /// <example>comparetwofiles {0_(string)file1Name} {1_(string)file2Name}</example>
 
     public class ComparetwofilesCommand : Command
     {

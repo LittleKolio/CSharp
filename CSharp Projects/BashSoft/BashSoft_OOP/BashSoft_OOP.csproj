@@ -62,11 +62,14 @@
     <Compile Include="Core\Commands\FilterCommand.cs" />
     <Compile Include="Core\Commands\OpenfileCommand.cs" />
     <Compile Include="Core\Commands\OrderCommand.cs" />
-    <Compile Include="Core\Commands\ReadfileCommand.cs" />
-    <Compile Include="Core\Commands\ReadjsonfileCommand.cs" />
-    <Compile Include="Core\Commands\RemoveCommand.cs" />
+    <Compile Include="Core\Commands\PrintCommand.cs" />
+    <Compile Include="Core\Commands\ReadtxtCommand.cs" />
+    <Compile Include="Core\Commands\ReadjsonCommand.cs" />
+    <Compile Include="Core\Commands\RemovestudentCommand.cs" />
+    <Compile Include="Core\Commands\RemovecourseCommand.cs" />
     <Compile Include="Core\Commands\TraversedirectoryCommand.cs" />
     <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\Commands\HelpCommand.cs" />
     <Compile Include="IO\Interfaces\ICompareFiles.cs" />
     <Compile Include="Core\Interfaces\IExecutable.cs" />
     <Compile Include="Core\Interfaces\ICommandInterpreter.cs" />
@@ -102,9 +105,7 @@
     <Compile Include="Repository\RepositorySorter.cs" />
     <Compile Include="Repository\CoursesRepository.cs" />
     <Compile Include="StaticData\ExceptionMessages.cs" />
-    <Compile Include="Tester\Tester.cs" />
     <Compile Include="StaticData\Constants.cs" />
-    <Compile Include="Util\Utility.cs" />
     <None Include="Resources\courses.json" />
     <None Include="Resources\students.json" />
   </ItemGroup>

@@ -11,6 +11,14 @@
     using System.Text;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Returns list of students from given course who average score is:
+    /// - poor when score is below 3.5
+    /// - average when score is between 3.5 and 5
+    /// - excellent  when score is above 5
+    /// </summary>
+    /// <example>filter {0_(string)courseName} {1_(string)poor/average/excellent} {2_(int)number/(string)all}</example>
+
     public class FilterCommand : Command
     {
         private const int argumentsNumber = 3;

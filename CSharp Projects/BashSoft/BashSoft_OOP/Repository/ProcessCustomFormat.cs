@@ -112,19 +112,35 @@
 
             string courseName = match.Groups[1].Value;
             string studentName = match.Groups[2].Value;
-            int[] scores = Utility.SplitInput(match.Groups[3].Value, " ")
+            int[] scores = this.SplitInput(match.Groups[3].Value, " ")
                 .Select(int.Parse)
                 .ToArray();
 
             //if (scores.Length == 0) { return; }
 
-            ICourse course = new Course(courseName);
-            IStudent student = new Student(studentName);
-            student.EnrollInCourse(course);
-            student.AddTestScoresByCourse(courseName, scores);
-            course.EnrollStudent(student);
+            if (!this.repository.Courses.Any(c => c.Name == courseName))
+            {
+                this.repository.AddCourse(new Course(courseName));
+            }
 
-            this.repository.AddCourse(course);
+            ICourse course = this.repository.GetCourse(courseName);
+
+            if (!course.Students.Any(s => s.Name == studentName))
+            {
+                IStudent newStudent = new Student(studentName);
+                newStudent.AddCourse(course);
+                course.AddStudent(newStudent);
+            }
+
+            IStudent student = course.GetStudent(studentName);
+
+            student.AddTestScoresByCourse(courseName, scores);
+        }
+
+        public string[] SplitInput(string input, string delimiter)
+        {
+            return input.Split(delimiter.ToCharArray(),
+                StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }

@@ -24,7 +24,7 @@
 
         public IReadOnlyList<IStudent> Students => this.students.Values.ToList();
 
-        public void EnrollStudent(IStudent student)
+        public void AddStudent(IStudent student)
         {
             if (!students.ContainsKey(student.Name))
             {

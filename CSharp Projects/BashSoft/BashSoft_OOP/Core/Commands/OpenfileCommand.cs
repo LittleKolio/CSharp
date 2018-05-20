@@ -4,9 +4,9 @@
     using IO.Interfaces;
 
     /// <summary>
-    /// Opens a file with default program for windows.
-    /// First we have to change current directory to location of the file.
+    /// Opens a file from current directory with default program for windows.
     /// </summary>
+    /// <example>openfile {0_(string)fileName}</example>
 
     public class OpenfileCommand : Command
     {

@@ -1,4 +1,6 @@
-﻿namespace BashSoft_OOP.StaticData
+﻿using System.Collections.Generic;
+
+namespace BashSoft_OOP.StaticData
 {
     public static class Constants
     {
@@ -13,9 +15,15 @@
         public const string File_IdenticalFiles = "Files are identical. There are no mismatches.";
         public const string File_MismatchFileName = "Mismatches.txt";
 
-        public const int Padding_Name = 15;
-
         public const int Course_NumberOfExams = 5;
         public const int Course_MaxScoreOnExam = 100;
+
+        public const string Remove_Course = "Course: \"{0}\" was removed.";
+        public const string Remove_Student = "Student: \"{0}\" was removed.";
+
+        public readonly static Dictionary<string , List<string>> Help = new Dictionary<string, List<string>>()
+        {
+            { "sd", new List<string>() { " ", " "} }
+        };
     }
 }

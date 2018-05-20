@@ -48,7 +48,7 @@
                 if (this.ShouldEnd(input))
                     break;
 
-                string[] arguments = Utility.SplitInput(input, " ");
+                string[] arguments = this.SplitInput(input, " ");
 
                 try
                 {
@@ -66,6 +66,12 @@
         {
             return input.Equals(Constants.Command_End,
                 StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        public string[] SplitInput(string input, string delimiter)
+        {
+            return input.Split(delimiter.ToCharArray(),
+                StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }

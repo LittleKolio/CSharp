@@ -5,6 +5,8 @@
     using System.Collections.Generic;
     using Models.Interfaces;
     using StaticData;
+    using System.Linq;
+    using System.Text;
 
     public class CoursesRepository : IRepository
     {
@@ -15,7 +17,7 @@
             this.courses = new Dictionary<string, ICourse>();
         }
 
-        public IReadOnlyDictionary<string, ICourse> Courses =>  this.courses;
+        public IReadOnlyList<ICourse> Courses =>  this.courses.Values.ToList();
 
         public int Count => this.courses.Count;
 
@@ -49,6 +51,18 @@
             }
 
             return this.courses[courseName];
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (ICourse course in this.courses.Values)
+            {
+                sb.AppendLine(course.Name);
+            }
+
+            return sb.ToString().TrimEnd();
         }
     }
 }

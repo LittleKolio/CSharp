@@ -10,7 +10,7 @@
 
         IReadOnlyList<IStudent> Students { get; }
 
-        void EnrollStudent(IStudent student);
+        void AddStudent(IStudent student);
 
         void RemoveStudent(string studentName);
 

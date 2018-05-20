@@ -7,6 +7,11 @@
     using System.Linq;
     using System.Reflection;
 
+    /// <summary>
+    /// Using reflection we find the type name who match the input and return executable (interface) of that command.
+    /// We using ServiceProvider for constructor injection to create instance of the command.
+    /// </summary>
+
     public class CommandInterpreter : ICommandInterpreter
     {
         private IServiceProvider serviceProvider;
@@ -71,8 +76,6 @@
         //{
         //    switch (cmd)
         //    {
-        //        //comparing two files by given two absolute paths
-        //        case "": break;
 
         //        //change the current directory by an absolute path
         //        case "": break;

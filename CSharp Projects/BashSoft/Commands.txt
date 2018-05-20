@@ -14,9 +14,9 @@ readfile dataOrderTest.txt
 //traversedirectory {0_(int)depth}
 traversedirectory 2
 
-//readjsonfile {0_courses/students} {1_fileName}
-readjsonfile courses courses.json
-readjsonfile students students.json
+//readjson {0_courses/students} {1_fileName}
+readjson courses courses.json
+readjson students students.json
 
 //filter {0_courseName} {1_poor/average/excellent} {2_(int)number/(string)all}
 filter 

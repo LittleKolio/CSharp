@@ -10,7 +10,7 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// Sort students from a given course in ascending or descending order, then take first N't of them or all.
+    /// Returns list of students from given course sorted in ascending or descending order.
     /// </summary>
     /// <example>order {0_courseName} {1_ascending/descending} {2_(int)number/(string)all}</example>
 

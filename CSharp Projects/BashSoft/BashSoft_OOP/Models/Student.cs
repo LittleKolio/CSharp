@@ -39,7 +39,7 @@
             this.courses.Values
             .ToDictionary(s => s.Course.Name, s => s.TestScores);
 
-        public void EnrollInCourse(ICourse course)
+        public void AddCourse(ICourse course)
         {
             if (!this.courses.ContainsKey(course.Name))
             {

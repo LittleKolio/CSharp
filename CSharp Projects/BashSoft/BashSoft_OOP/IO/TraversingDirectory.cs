@@ -20,7 +20,8 @@
         /// Breadth-first traversal using Queue, no DirectoryInfo!
         /// </summary>
         /// <remarks>
-        /// It is too time-consuming to test every folder to determine whether wee have permision to open it. Therefore, just enclose that part of the code in try/catch block.
+        /// It is too time-consuming to test every folder to determine whether wee have permision to open it.
+        /// Therefore, just enclose that part of the code in try/catch block.
         /// </remarks>
         public void Traversing(string path, int down = 3)
         {
