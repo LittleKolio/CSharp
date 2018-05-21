@@ -8,7 +8,7 @@
     /// <summary>
     /// Initialize (fill) of the database through text file in current directory.
     /// </summary>
-    /// <example>readfile {0_fileName}</example>
+    /// <example>readfile {0_(string)fileName}</example>
 
     public class ReadtxtCommand : Command
     {

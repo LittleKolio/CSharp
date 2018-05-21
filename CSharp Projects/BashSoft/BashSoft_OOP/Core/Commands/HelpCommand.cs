@@ -3,6 +3,8 @@
     using System;
     using Abstract;
     using IO.Interfaces;
+    using System.Collections.Generic;
+    using StaticData;
 
     public class HelpCommand : Command
     {
@@ -20,7 +22,7 @@
 
         public override void Execute()
         {
-            throw new NotImplementedException();
+            this.consoleWriter.WriteHelp(HelpInfo.Commands);
         }
     }
 }

@@ -8,6 +8,8 @@ namespace BashSoft_OOP.StaticData
 
         public const string Command_End = "quit";
 
+        public const int Padding_Name = 18;
+
         public const string Format_ListOfCourses = "{0}{1}Course: {2} | Average: {3:00.0} ({4})";
         public const string Format_ListOfStudents = "{0}{1}Student: {2} | Average: {3:00.0} ({4})";
         public const string Format_MismatchFiles = "Line {0}{1} fileTwo: \"{2}\", fileOne: \"{3}\"";
@@ -20,10 +22,5 @@ namespace BashSoft_OOP.StaticData
 
         public const string Remove_Course = "Course: \"{0}\" was removed.";
         public const string Remove_Student = "Student: \"{0}\" was removed.";
-
-        public readonly static Dictionary<string , List<string>> Help = new Dictionary<string, List<string>>()
-        {
-            { "sd", new List<string>() { " ", " "} }
-        };
     }
 }

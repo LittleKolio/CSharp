@@ -106,6 +106,7 @@
     <Compile Include="Repository\CoursesRepository.cs" />
     <Compile Include="StaticData\ExceptionMessages.cs" />
     <Compile Include="StaticData\Constants.cs" />
+    <Compile Include="StaticData\HelpInfo.cs" />
     <None Include="Resources\courses.json" />
     <None Include="Resources\students.json" />
   </ItemGroup>

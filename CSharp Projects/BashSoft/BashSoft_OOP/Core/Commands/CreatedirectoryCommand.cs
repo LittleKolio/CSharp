@@ -5,7 +5,6 @@
 
     /// <summary>
     /// Creates directory in the current by given name.
-    /// First we have to change current directory to location where we want to create.
     /// </summary>
     /// <example>createdirectory {0_(string)directoryName}</example>
 

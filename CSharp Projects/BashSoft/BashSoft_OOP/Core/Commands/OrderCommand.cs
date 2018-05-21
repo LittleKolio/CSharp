@@ -12,7 +12,7 @@
     /// <summary>
     /// Returns list of students from given course sorted in ascending or descending order.
     /// </summary>
-    /// <example>order {0_courseName} {1_ascending/descending} {2_(int)number/(string)all}</example>
+    /// <example>order {0_(string)courseName} {1_(string)ascending/descending} {2_(int)number/(string)all}</example>
 
     public class OrderCommand : Command
     {

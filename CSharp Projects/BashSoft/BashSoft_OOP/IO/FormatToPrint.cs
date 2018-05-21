@@ -59,23 +59,5 @@
 
             return sb.ToString().TrimEnd();
         }
-
-        //public string Box(string type, params string[] str)
-        //{
-        //    StringBuilder sb = new StringBuilder();
-
-        //    sb.AppendFormat("┌{0}{1}┐" + Environment.NewLine,
-        //        type, new string('─', str[0].Length - type.Length));
-
-        //    for (int i = 0; i < str.Length; i++)
-        //    {
-        //        sb.AppendFormat("│{0}│" + Environment.NewLine, str[i]);
-        //    }
-
-        //    sb.AppendFormat("└{0}┘" + Environment.NewLine, 
-        //        new string('─', str[str.Length - 1].Length));
-
-        //    return sb.ToString().TrimEnd();
-        //}
     }
 }
