@@ -22,7 +22,7 @@
             {
                 if (value.Length != this.argumentsNumber)
                 {
-                    throw new ArgumentOutOfRangeException(string.Format(
+                    throw new IndexOutOfRangeException(string.Format(
                         ExceptionMessages.params_InvalidNumber, argumentsNumber));
                 }
 
