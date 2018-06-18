@@ -1,1 +1,5 @@
-Console application
+BashSoft_OOP
+
+It is console application. A student data repository for their courses and results.
+
+The first row is the current directory we work with. This is the location of the executable file.
