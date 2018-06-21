@@ -1,23 +1,23 @@
-# BashSoft_OOP
+#BashSoft_OOP
 
 It is console application. A student data repository for their courses and results.
-
 The first row is the current directory we work with. This is the location of the executable file.
 
-Steps
+##Steps
 
-1. Fill in the database. We will do this by reading a text file.
+Fill in the database. We will do this by reading a text file.
 
-1.1 Set the directory where the file is with command:
+1. Set the directory where the file is with command:
 	changedirectory {0_(string)relativeDirectoryPath}
-	
-1.2.1 If the file is in JSON format use command:
-	readjson {0_(string)courses/students} {1_(string)fileName}
-	
-1.2.2 If the file is in custom format use command:
-	readtxt {0_(string)fileName}
 
-Commands
+2. Read file.
+	* If the file is in JSON format use command:
+		readjson {0_(string)courses/students} {1_(string)fileName}
+	
+	* If the file is in custom format use command:
+		readtxt {0_(string)fileName}
+
+##Commands
 
 changedirectory {0_(string)relativeDirectoryPath}
 Enter relative path.
