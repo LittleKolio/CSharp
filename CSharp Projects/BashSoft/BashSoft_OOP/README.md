@@ -1,6 +1,7 @@
 # BashSoft_OOP
 
-It is console application. A student data repository for their courses and results.
+It is console application. A student data repository for their courses and results.  
+![start](https://user-images.githubusercontent.com/18748534/41707918-ed770a12-7547-11e8-9d9c-2165acf427f7.jpg)  
 The first row is the current directory we work with. This is the location of the executable file.
 
 ## Steps
