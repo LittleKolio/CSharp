@@ -1,5 +1,6 @@
 
 The first line is current directory we are working with. It is the location of the executable file.
+second line
 
 changedirectory
 -> Enter relative path.
