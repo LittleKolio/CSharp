@@ -56,7 +56,10 @@
                 }
                 catch (Exception ex)
                 {
-                    this.writer.WriteException(ex.Message);
+                    string message = ex.InnerException != null
+                        ? ex.InnerException.Message
+                        : ex.Message;
+                    this.writer.WriteException(message);
                 }
             }
         }
