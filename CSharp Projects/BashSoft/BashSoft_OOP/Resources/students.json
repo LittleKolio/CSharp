@@ -2,61 +2,212 @@
   {
     "student": "Kiko23_4144",
     "course": "C#_Feb_2015",
-    "scores": [ 2, 2, 2 ]
-  },
-  {
-    "student": "Kiko23_4144",
-    "course": "JSApps_Dec_2014",
-    "scores": [ 34, 55, 7, 34, 13 ]
-  },
-  {
-    "student": "Sten16_96",
-    "course": "JSApps_Dec_2014",
-    "scores": [ 3, 3, 0 ]
-  },
-  {
-    "student": "Sten16_96",
-    "course": "WebFundamentals_Oct_2015",
-    "scores": [ 34, 55, 66 ]
-  },
-  {
-    "student": "NiK68_0192",
-    "course": "JSApps_Dec_2014",
-    "scores": [ 3, 3, 0 ]
-  },
-  {
-    "student": "RSV21_2231",
-    "course": "JSApps_Dec_2014",
-    "scores": [ 3, 3, 0 ]
-  },
-  {
-    "student": "Kiko23_4144",
-    "course": "JSApps_Dec_2014",
-    "scores": [ 3, 3, 0, 3 ]
-  },
-  {
-    "student": "Ivo42_230",
-    "course": "JSApps_Dec_2014",
-    "scores": [ 3, 3, 0 ]
+    "scores": [ 69, 87, 4 ]
   },
   {
     "student": "Desi12_2001",
-    "course": "JSApps_Dec_2014",
-    "scores": [ 3, 3, 0 ]
+    "course": "C#_Feb_2015",
+    "scores": [ 77 ]
   },
   {
-    "student": "Ivan23_923",
-    "course": "JSApps_Dec_2014",
-    "scores": [ 3, 3, 0, 3 ]
+    "student": "NiK68_0192",
+    "course": "C#_Feb_2015",
+    "scores": [ 53, 44, 34, 0, 23 ]
   },
   {
-    "student": "Rdsauja16_23",
+    "student": "Sten16_96",
+    "course": "C#_Feb_2015",
+    "scores": [ 12, 44, 23, 33, 0 ]
+  },
+  {
+    "student": "Ivo42_230",
+    "course": "C#_Feb_2015",
+    "scores": [ 72, 55, 100, 66, 0 ]
+  },
+  {
+    "student": "Stan21_23",
+    "course": "C#_Feb_2015",
+    "scores": [ 52, 66, 90, 89, 98 ]
+  },
+  {
+    "student": "Kiko23_4144",
     "course": "JSApps_Dec_2014",
-    "scores": [ 3, 3, 0  ]
+    "scores": [ 3, 47, 30, 49, 79 ]
+  },
+  {
+    "student": "Sten16_96",
+    "course": "JSApps_Dec_2014",
+    "scores": [ 41, 53, 56, 60 ]
+  },
+
+  {
+    "student": "NiK68_0192",
+    "course": "JSApps_Dec_2014",
+    "scores": [ 1, 33, 22, 0, 33 ]
   },
   {
     "student": "Ruja16_23",
     "course": "JSApps_Dec_2014",
-    "scores": [ 3, 3, 0, 0 ]
+    "scores": [ 38, 59, 33, 0, 0 ]
+  },
+  {
+    "student": "Ivo42_230",
+    "course": "JSApps_Dec_2014",
+    "scores": [ 17, 28, 66, 72 ]
+  },
+  {
+    "student": "Stan21_23",
+    "course": "JSApps_Dec_2014",
+    "scores": [ 46, 45, 67, 0, 0 ]
+  },
+  {
+    "student": "Desi12_2001",
+    "course": "JSApps_Dec_2014",
+    "scores": [ 85, 55, 90, 44, 0 ]
+  },
+  {
+    "student": "Ivan23_923",
+    "course": "JSApps_Dec_2014",
+    "scores": [ 94, 44 ]
+  },
+  {
+    "student": "Ivo42_230",
+    "course": "WebFundamentals_Oct_2015",
+    "scores": [ 28, 0, 34, 44, 33 ]
+  },
+  {
+    "student": "Desi12_2001",
+    "course": "WebFundamentals_Oct_2015",
+    "scores": [ 81, 0, 0, 54, 88 ]
+  },
+  {
+    "student": "Ivan23_923",
+    "course": "WebFundamentals_Oct_2015",
+    "scores": [ 97, 0, 0, 0, 0 ]
+  },
+  {
+    "student": "NiK68_0192",
+    "course": "WebFundamentals_Oct_2015",
+    "scores": [ 40, 43, 55, 67, 23 ]
+  },
+  {
+    "student": "Ruja16_23",
+    "course": "WebFundamentals_Oct_2015",
+    "scores": [ 17, 23, 54, 66, 78 ]
+  },
+  {
+    "student": "Stan21_23",
+    "course": "WebFundamentals_Oct_2015",
+    "scores": [ 57, 45, 66, 0, 88 ]
+  },
+  {
+    "student": "RSV21_2231",
+    "course": "WebFundamentals_Oct_2015",
+    "scores": [ 41, 45, 78, 99, 100 ]
+  },
+  {
+    "student": "Ivan23_923",
+    "course": "DataStructures_Apr_2016",
+    "scores": [ 94, 80, 90, 87, 0 ]
+  },
+  {
+    "student": "Stan21_23",
+    "course": "DataStructures_Apr_2016",
+    "scores": [ 93, 0, 66 ]
+  },
+  {
+    "student": "RSV21_2231",
+    "course": "DataStructures_Apr_2016",
+    "scores": [ 58, 55, 88, 0 ]
+  },
+  {
+    "student": "Ruja16_23",
+    "course": "DataStructures_Apr_2016",
+    "scores": [ 4, 12, 44, 8, 0 ]
+  },
+  {
+    "student": "Stan21_23",
+    "course": "DataStructures_Apr_2016",
+    "scores": [ 8, 33, 7, 45 ]
+  },
+  {
+    "student": "Ivo12_2341",
+    "course": "DataStructures_Apr_2016",
+    "scores": [ 68, 38, 36, 58, 99 ]
+  },
+  {
+    "student": "Sten16_96",
+    "course": "DataStructures_Apr_2016",
+    "scores": [ 39, 45, 61, 0, 0 ]
+  },
+  {
+    "student": "Sten16_96",
+    "course": "Unity_Jan_2016",
+    "scores": [ 56, 33, 77, 33 ]
+  },
+  {
+    "student": "Ruja16_23",
+    "course": "Unity_Jan_2016",
+    "scores": [ 81, 44, 23, 77, 0 ]
+  },
+  {
+    "student": "Stan21_23",
+    "course": "Unity_Jan_2016",
+    "scores": [ 67, 33, 55, 77, 99 ]
+  },
+  {
+    "student": "Ivo12_2341",
+    "course": "Unity_Jan_2016",
+    "scores": [ 0, 44, 87, 0, 34 ]
+  },
+  {
+    "student": "RSV21_2231",
+    "course": "Unity_Jan_2016",
+    "scores": [ 21, 12, 25, 0, 33 ]
+  },
+  {
+    "student": "Ivo42_230",
+    "course": "Unity_Jan_2016",
+    "scores": [ 36, 12, 34, 82, 91 ]
+  },
+  {
+    "student": "Ivo12_2341",
+    "course": "Java_May_2015",
+    "scores": [ 77, 45, 99, 99, 100 ]
+  },
+  {
+    "student": "Stan21_23",
+    "course": "Java_May_2015",
+    "scores": [ 45, 55, 33, 0, 77 ]
+  },
+  {
+    "student": "RSV21_42231",
+    "course": "Java_May_2015",
+    "scores": [ 41, 34, 66, 28, 67 ]
+  },
+  {
+    "student": "Idsavo12_2341",
+    "course": "Java_May_2015",
+    "scores": [ 25, 44, 77, 0, 77 ]
+  },
+  {
+    "student": "Sten16_96",
+    "course": "Java_May_2015",
+    "scores": [ 29, 44, 55, 0, 77 ]
+  },
+  {
+    "student": "Desi12_2001",
+    "course": "Java_May_2015",
+    "scores": [ 15, 23, 65, 92, 55 ]
+  },
+  {
+    "student": "RSV21_2231",
+    "course": "Java_May_2015",
+    "scores": [ 37, 33, 12, 45, 82 ]
+  },
+  {
+    "student": "Kiko23_4144",
+    "course": "Java_May_2015",
+    "scores": [ 33, 18, 33, 97, 55 ]
   }
 ]

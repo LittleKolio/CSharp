@@ -1,7 +1,7 @@
 ﻿[
   {
     "course": "C#_Feb_2015",
-    "exams" : 5
+    "exams": 5
   },
   {
     "course": "C#_Jul_2016",
@@ -17,6 +17,14 @@
   },
   {
     "course": "WebFundamentals_Oct_2015",
+    "exams": 5
+  },
+  {
+    "course": "Unity_Jan_2016",
+    "exams": 5
+  },
+  {
+    "course": "Java_May_2015",
     "exams": 5
   }
 ]
