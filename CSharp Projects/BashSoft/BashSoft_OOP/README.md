@@ -10,10 +10,14 @@ Fill in the database. We will do this by reading a text file.
 
 1. Set the directory where the file is with command:  
 	**changedirectory {0_(string)relativeDirectoryPath}**
+	I put all the necessary files in the same place as the exe file.
+	So maybe changing the directory is not needed.
 
 2. Read file.
 - If the file is in JSON format use command:  
 	**readjson {0_(string)courses/students} {1_(string)fileName}**
+	I put one file for courses and one for students.
+	So the command must be called two times.
 	
 - If the file is in custom format use command:  
 	**readtxt {0_(string)fileName}**
