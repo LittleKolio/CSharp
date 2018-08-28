@@ -33,7 +33,9 @@
 				├───────────────────────────────────────────────────────────────┘
 				├─┬─────────────────────────────────────────────────────────────┐
 
-
+╔═══════════════════════════════════════════════════════════════════════╗
+║ SQL
+╠═══════════════════════════════════════════════════════════════════════╝
 SELECT *
 FROM table;
 * = всичко
@@ -115,7 +117,12 @@ WHERE column = num;
 		'something', 
 		'something'
 		);
-		
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║ CodeFirst
+╠═══════════════════════════════════════════════════════════════════════╝
+╟─ CodeFirst maps your classes to tables using a set of conventions. Classes can be customized using Annotations and the Fluent API. Custom names of objects (columns, tables, etc.) in the DB. Validation and data types. Fix complicated entity relationships.
+
 ╟─┬─────────────────────────────────────────────────────────────────────┐
 	│ Migration
 	├─┬───────────────────────────────────────────────────────────────────┘
@@ -123,22 +130,195 @@ WHERE column = num;
 		add-migration <name> -ignorechanges
 		update-database –targetmigration: <name>
 
-╟─┬─────────────────────────────────────────────────────────────────────┐
+╟─┬─────────────────────────────────────────────────────────Annotations─┐
 	│ Annotations
 	├─┬───────────────────────────────────────────────────────────────────┘
 		using System.ComponentModel.DataAnnotations;
 
-		[SqlDefaultValue(DefaultValue = "getutcdate()")]
+╟─├─┬───────────────────────────────────────────────────────Annotations─┐
+		│ Primary Key
+		├───────────────────────────────────────────────────────────────────┘
+		├─ Entity Framework look for a property named "Id"/"ID" or one that combines the class name and "Id", such as "BlogId". The property will map to a primary key column in the database.
 		
-		[Column(TypeName = "name")]
+		├─ specify which property is will map to a primary key column
+		├─┬─────────────────────────────────────────────────────────────────┐
+			public class Blog
+			{
+				[Key] 
+				public int PrimaryTrackingKey { get; set; }
+				...
+			}
+			
+╟─├─┬───────────────────────────────────────────────────────Annotations─┐
+		│ Composite Keys
+		├───────────────────────────────────────────────────────────────────┘
+		├─ Entity Framework requires you to define an order of the key properties. You can do this using the Column annotation to specify an order.
+		├─┬─────────────────────────────────────────────────────────────────┐
+			public class Passport
+			{
+				[Key]
+				[Column(Order=1)]
+				public int PassportNumber { get; set; }
+				
+				[Key]
+				[Column(Order = 2)]
+				public string IssuingCountry { get; set; }
+				...
+			}
+			
+╟─├─┬───────────────────────────────────────────────────────Annotations─┐
+		│ Composite Foreign Keys
+		├───────────────────────────────────────────────────────────────────┘
+		├─ ???
+		├─┬─────────────────────────────────────────────────────────────────┐
+			public class PassportStamp
+			{
+				[Key]
+				public int StampId { get; set; }
 
-╟─├─┬───────────────────────────────────────────────────────────────────┐
-		│ custom annotation
+				[ForeignKey("Passport")]
+				[Column(Order = 1)]
+				public int PassportNumber { get; set; }
+
+				[ForeignKey("Passport")]
+				[Column(Order = 2)]
+				public string IssuingCountry { get; set; }
+			}
+		
+╟─├─┬───────────────────────────────────────────────────────Annotations─┐
+		│ Required
+		├───────────────────────────────────────────────────────────────────┘
+		├─ Adding Required to the property will force EF (and MVC) to ensure that the property has data in it.
+		
+╟─├─┬───────────────────────────────────────────────────────Annotations─┐
+		│ MaxLength and MinLength
+		├─┬─────────────────────────────────────────────────────────────────┘
+	    [MaxLength(10, ErrorMessage="BloggerName must be 10 characters or less"),MinLength(5)]
+			public string Name { get; set; }
+
+╟─├─┬───────────────────────────────────────────────────────Annotations─┐
+		│ NotMapped
+		├───────────────────────────────────────────────────────────────────┘
+		├─ You can mark any properties that do not map to the database with the NotMapped annotation
+		
+╟─├─┬───────────────────────────────────────────────────────Annotations─┐
+		│ ComplexType
+		├───────────────────────────────────────────────────────────────────┘
+		├─ It’s not uncommon to describe your domain entities across a set of classes to describe a complete entity. For example, you may add a class called BlogDetails to your model.
+		├─┬─────────────────────────────────────────────────────────────────┐
+			[ComplexType]
+			public class BlogDetails
+			{
+				public DateTime? DateCreated { get; set; }
+
+				[MaxLength(250)]
+				public string Description { get; set; }
+			}
+		├───────────────────────────────────────────────────────────────────┐
+		├─ BlogDetails does not have any type of key property. In domain driven design, BlogDetails is referred to as a value object. Entity Framework refers to value objects as complex types.  Complex types cannot be tracked on their own.
+		
+		├─┬─────────────────────────────────────────────────────────────────┐
+			public class Blog
+			{
+				public BlogDetails BlogDetail { get; set; }
+			}
+		├───────────────────────────────────────────────────────────────────┐
+		├─ As a property in the Blog class, BlogDetails it will be tracked as part of a Blog object. 
+
+╟─├─┬───────────────────────────────────────────────────────Annotations─┐
+		│ ConcurrencyCheck
+		├───────────────────────────────────────────────────────────────────┘
+		├─ When SaveChanges is called, THE KEY AND THE ORIGINAL VALUE will be used to locate the correct data/cell (by filtering). If someone has changed the the original value in the meantime, this update will fail and you’ll get a DbUpdateConcurrencyException that you'll need to handle.
+		
+		├─┬─────────────────────────────────────────────────────────────────┐
+			[ConcurrencyCheck, MaxLength(10, ErrorMessage="BloggerName must be 10 characters or less"),MinLength(5)]
+			public string BloggerName { get; set; }
+
+╟─├─┬───────────────────────────────────────────────────────Annotations─┐
+		│ TimeStamp
+		├───────────────────────────────────────────────────────────────────┘
+		├─ Code first will treat Timestamp properties the same as ConcurrencyCheck properties, but it will also ensure that the database field that code first generates is non-nullable. You can only have one timestamp property in a given class. The property type should be a byte array.
+		
+		├─┬─────────────────────────────────────────────────────────────────┐
+			[Timestamp]
+			public Byte[] TimeStamp { get; set; }
+			
+╟─├─┬───────────────────────────────────────────────────────Annotations─┐
+		│ Table and Column
+		├───────────────────────────────────────────────────────────────────┘
+		├─ My class is named Blog and by convention, code first presumes this will map to a table named Blogs. If that's not the case you can specify the name of the table with the Table attribute.
+		
+		├─┬─────────────────────────────────────────────────────────────────┐
+			[Table("InternalBlogs")]
+			public class Blog
+		
+		├───────────────────────────────────────────────────────────────────┐
+		├─ The Column annotation is a more adept in specifying the attributes of a mapped column. You can stipulate a name, data type or even the order in which a column appears in the table.
+		
+		├─┬─────────────────────────────────────────────────────────────────┐
+			[Column(“BlogDescription", TypeName="ntext")]
+			public String Description {get;set;}
+			
+╟─├─┬───────────────────────────────────────────────────────Annotations─┐
+		│ DatabaseGenerated
+		├───────────────────────────────────────────────────────────────────┘
+		├─ If you're mapping your Code First classes to tables that contain computed columns, you don't want Entity Framework to try to update those columns. But you do want EF to return those values from the database after you've inserted or updated data.
+		
+		├─┬─────────────────────────────────────────────────────────────────┐
+	    [DatabaseGenerated(DatabaseGenerationOption.Computed)]
+			public DateTime DateCreated { get; set; }
+		
+		├───────────────────────────────────────────────────────────────────┐
+		├─ You can use database generated on byte or timestamp columns when code first is generating the database, otherwise you should only use this when pointing to existing databases because code first won't be able to determine the formula for the computed column.
+		
+╟─├─┬───────────────────────────────────────────────────────Annotations─┐
+		│ ForeignKey (Relationship Attributes)
+		├─┬─────────────────────────────────────────────────────────────────┘
+			public class Post
+			{
+				...
+				public int BlogId { get; set; }
+				[ForeignKey("BlogId")]
+				public Blog Blog { get; set; }
+				...
+			}
+			
+╟─├─┬───────────────────────────────────────────────────────Annotations─┐
+		│ InverseProperty (Relationship Attributes)
+		├───────────────────────────────────────────────────────────────────┘
+		├─ The InverseProperty is used when you have multiple relationships between classes.
+		
+		├───────────────────────────────────────────────────────────────────┐
+		├─ In the Post class, you may want to keep track of who wrote a blog post as well as who edited it.
+		├─┬─────────────────────────────────────────────────────────────────┐
+			public class Post
+			{
+				...
+				public Person CreatedBy { get; set; }
+				public Person UpdatedBy { get; set; }
+				...
+			}
+			
+		├───────────────────────────────────────────────────────────────────┐
+		├─ We also need to add in the Person class referenced by these properties.
+		├─┬─────────────────────────────────────────────────────────────────┐
+			public class Person
+			{
+				...
+				[InverseProperty("CreatedBy")]
+				public List<Post> PostsWritten { get; set; }
+
+				[InverseProperty("UpdatedBy")]
+				public List<Post> PostsUpdated { get; set; }
+				...
+			}
+		
+╟─├─┬───────────────────────────────────────────────────────Annotations─┐
+		│ Custom Annotation
 		├─┬─────────────────────────────────────────────────────────────────┘
 			[Tag]
 		
-			public class TagAttribute
-				: ValidationAttribute
+			public class TagAttribute : ValidationAttribute
 			{
 				public override bool IsValid(object value)
 				{
@@ -149,11 +329,10 @@ WHERE column = num;
 				}
 			}
 			
-		├─┬─────────────────────────────────────────────────────────────────┘
+		├─┬─────────────────────────────────────────────────────────────────┐
 			[CustomMinLength(MinLength = 20)]
 			
-			public class CustomMinLengthAttribute
-				: ValidationAttribute
+			public class CustomMinLengthAttribute : ValidationAttribute
 			{
 				public int MinLength { get; set; }
 
@@ -166,73 +345,223 @@ WHERE column = num;
 				}
 			}
 
-╟─├─┬───────────────────────────────────────────────────────────────────┐
-		│ DbEntityValidationException
-		├─┬─────────────────────────────────────────────────────────────────┘
-		
-			try
+╟─┬─────────────────────────────────────────────────────────────────────┐
+	│ DbEntityValidationException
+	├─┬───────────────────────────────────────────────────────────────────┘
+		try
+		{
+			context.SaveChanges();
+		}
+		catch (DbEntityValidationException ex)
+		{
+			foreach (var eve in ex.EntityValidationErrors)
 			{
-				context.SaveChanges();
-			}
-			catch (DbEntityValidationException ex)
-			{
-				foreach (var eve in ex.EntityValidationErrors)
+				Console.WriteLine(
+					"Entity of type {0} in state {1} has the following validation errors:",
+					eve.Entry.Entity.GetType().Name, // annotation name
+					eve.Entry.State);
+					
+				foreach (var ve in eve.ValidationErrors)
 				{
 					Console.WriteLine(
-						"Entity of type {0} in state {1} has the following validation errors:",
-						eve.Entry.Entity.GetType().Name, // annotation name
-						eve.Entry.State);
-						
-					foreach (var ve in eve.ValidationErrors)
-					{
-						Console.WriteLine(
-							"- Property: {0}, Error: {1}",
-							ve.PropertyName, // prop name
-							ve.ErrorMessage);
-					}
+						"- Property: {0}, Error: {1}",
+						ve.PropertyName, // prop name
+						ve.ErrorMessage);
 				}
 			}
-
-
-
-
-
+		}
+		
 ╟─┬─────────────────────────────────────────────────────────────────────┐
-	│ Fluent API (Model Builder)
+	│ DbSet properties with DbContext
 	├─────────────────────────────────────────────────────────────────────┘
-	├─ CodeFirst maps your classes to tables using a set of conventions. Classes can be customized using annotations and the Fluent API. Custom names of objects (columns, tables, etc.) in the DB. Validation and data types. Fix complicated entity relationships.
-
+	├─ The common case shown in Code First examples is to have a DbContext with public automatic DbSet properties for the entity types of your model.
+	├─┬───────────────────────────────────────────────────────────────────┐
+		public class BloggingContext : DbContext
+		{
+			public virtual DbSet<Blog> Blogs { get; set; }
+			public virtual DbSet<Post> Posts { get; set; }
+		}
+		├───────────────────────────────────────────────────────────────────┐
+		├─ VIRTUAL 
+		
 ╟─├─┬───────────────────────────────────────────────────────────────────┐
-		│ unique index (Model Builder)
+		│ IDbSet (mocks or fakes)
+		├───────────────────────────────────────────────────────────────────┘
+		├─ There are situations, such as when creating mocks or fakes, where it is more useful to declare your set properties using an interface.
+		├─┬─────────────────────────────────────────────────────────────────┐
+			public class BloggingContext : DbContext
+			{
+				public IDbSet<Blog> Blogs { get; set; }
+				public IDbSet<Post> Posts { get; set; }
+			}
+			
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ Read-only Set
+		├─┬─────────────────────────────────────────────────────────────────┘
+			public class BloggingContext : DbContext
+			{
+				public DbSet<Blog> Blogs { get {return Set<Blog>();} }
+				public DbSet<Post> Posts { get {return Set<Post>();} }
+			}
+
+╟─┬───────────────────────────────────────────────────────────FluentAPI─┐
+	│ Fluent API
+	├─────────────────────────────────────────────────────────────────────┘
+	├─ When configuring a relationship with the fluent API, you start with the EntityTypeConfiguration instance and then use the HasRequired, HasOptional, or HasMany method to specify the type of relationship this entity participates in.
+	
+	├─ We configured all the domain classes using Fluent-API in the OnModelCreating() method. However, it becomes hard to maintain if you configure a large number of domain classes in the OnModelCreating. EF 6 allows you to create a separate class for each entity and place all the configurations related to an entity.
+	
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		public class StudentConfiguration : EntityTypeConfiguration<Student>
+		{
+			public StudentConfiguration()
+			{
+				this.ToTable("StudentInfo");
+						
+				this.HasKey<int>(s => s.StudentKey);
+			}
+		}
+
+		public class NameContext: DbContext 
+		{
+			public NameContext(): base() {}
+
+			public virtual DbSet<Student> Students { get; set; }
+			
+			protected override void OnModelCreating(DbModelBuilder modelBuilder)
+			{
+				// Moved all Student related configuration to StudentConfiguration class
+				
+				modelBuilder.Configurations.Add(new StudentConfiguration());
+			}
+		}
+╟─├─┬─────────────────────────────────────────────────────────FluentAPI─┐
+		│ One-to–Zero or One (Required-to-Optional)
+		├───────────────────────────────────────────────────────────────────┘
+		├─ Configure the primary key for the OfficeAssignment
+		├─┬─────────────────────────────────────────────────────────────────┐
+			modelBuilder.Entity<OfficeAssignment>()
+				.HasKey(t => t.InstructorID);
+
+		├─ Map one-to-zero or one relationship
+		├─┬─────────────────────────────────────────────────────────────────┐
+			modelBuilder.Entity<OfficeAssignment>()
+				.HasRequired(t => t.Instructor)
+				.WithOptional(t => t.OfficeAssignment);
+				
+╟─├─┬─────────────────────────────────────────────────────────FluentAPI─┐
+		│ One-to–One (Both Ends Are Required)
+		├───────────────────────────────────────────────────────────────────┘
+		├─ Configure the primary key for the OfficeAssignment
+		├─┬─────────────────────────────────────────────────────────────────┐
+			modelBuilder.Entity<OfficeAssignment>()
+				.HasKey(t => t.InstructorID);
+
+			modelBuilder.Entity<Instructor>()
+				.HasRequired(t => t.OfficeAssignment)
+				.WithRequiredPrincipal(t => t.Instructor);
+				
+╟─├─┬─────────────────────────────────────────────────────────FluentAPI─┐
+		│ Many-to-Many
+		├─┬─────────────────────────────────────────────────────────────────┘
+			modelBuilder.Entity<Course>()
+				.HasMany(t => t.Instructors)
+				.WithMany(t => t.Courses)
+			├─────────────────────────────────────────────────────────────────┘
+			├─ As a result the CourseInstructor table is created with Course_CourseID and Instructor_InstructorID columns.
+			
+		├─┬─────────────────────────────────────────────────────────────────┐
+			modelBuilder.Entity<Course>()
+				.HasMany(t => t.Instructors)
+				.WithMany(t => t.Courses)
+				.Map(m =>
+				{
+						m.ToTable("CourseInstructor");
+						m.MapLeftKey("CourseID");
+						m.MapRightKey("InstructorID");
+				});
+			├─────────────────────────────────────────────────────────────────┘
+			├─ f you want to specify the join table name and the names of the columns in the table you need to do additional configuration by using the Map method.
+			
+╟─├─┬─────────────────────────────────────────────────────────FluentAPI─┐
+		│ Many-to-Many Custom TABLE WITH ADDITIONAL PROP 
+		├───────────────────────────────────────────────────────────────────┘
+		├─ It s not possible to create a many-to-many relationship with a customized join table. To work with such a join table with additional properties you will have to create actually two one-to-many relationships.
+		
+		├─ Relationships
+		├─┬─────────────────────────────────────────────────────────────────┐
+			builder.Entity<User>()
+				.HasKey(q => q.UserID);
+				
+			builder.Entity<Email>()
+				.HasKey(q => q.EmailID);
+				
+			builder.Entity<UserEmail>()
+				.HasKey(q => new { 
+						q.UserID, q.EmailID
+				});
+
+			builder.Entity<UserEmail>()
+				.HasRequired(t => t.Email)
+				.WithMany(t => t.UserEmails)
+				.HasForeignKey(t => t.EmailID)
+
+			builder.Entity<UserEmail>()
+				.HasRequired(t => t.User)
+				.WithMany(t => t.UserEmails)
+				.HasForeignKey(t => t.UserID)
+				
+		├─ Models
+		├─┬─────────────────────────────────────────────────────────────────┐
+			public class User {
+				public int UserID { get; set; }
+				public string Username { get; set; }
+				public string Password { get; set; }
+
+				public ICollection<UserEmail> UserEmails { get; set; }
+			}
+
+			public class Email {
+				public int EmailID { get; set; }
+				public string Address { get; set; }
+
+				public ICollection<UserEmail> UserEmails { get; set; }
+			}
+
+			public class UserEmail {
+				public int UserID { get; set; }
+				public User User { get; set; }
+				
+				public int EmailID { get; set; }
+				public Email Email { get; set; }
+				
+				public bool IsPrimary { get; set; }
+			}
+				
+╟─├─┬─────────────────────────────────────────────────────────FluentAPI─┐
+		│ One Navigation Property
+		├─┬─────────────────────────────────────────────────────────────────┘
+			
+			
+╟─├─┬───────────────────────────────────────────────────────────────────┐
+		│ unique index
 		├─┬─────────────────────────────────────────────────────────────────┘
 			using System.Data.Entity.ModelConfiguration;
 			using System.Data.Entity.Infrastructure.Annotations;
 			using System.ComponentModel.DataAnnotations.Schema;
 			
-			public class ModelNameConfig
-				: EntityTypeConfiguration<ModelName>
+			public class ModelNameConfig : EntityTypeConfiguration<ModelName>
 			{
 				modelBuilder.Entity<ModelName>() 
 					.Property(m => m.PropName)
 					.HasColumnAnnotation(
-							IndexAnnotation.AnnotationName, 
-							new IndexAnnotation(
-									new IndexAttribute("IX_ModelName_PropName", 1) { IsUnique = true }));
+						IndexAnnotation.AnnotationName, 
+						new IndexAnnotation(
+							new IndexAttribute("IX_ModelName_PropName", 1) { IsUnique = true }));
 			}
 			
-			
 ╟─├─┬───────────────────────────────────────────────────────────────────┐
-		│ unique index (Model Builder)
-		├─┬─────────────────────────────────────────────────────────────────┘
-			using System.Data.Entity.ModelConfiguration;
-
-			public class UserConfig
-				: EntityTypeConfiguration
-			{
-				public 
-			}
-╟─├─┬───────────────────────────────────────────────────────────────────┐
-		│ unique index (Model Builder)
+		│ ooo (Model Builder)
 		├─┬─────────────────────────────────────────────────────────────────┘
 			using System.Data.Entity.ModelConfiguration;
 			
@@ -242,7 +571,7 @@ WHERE column = num;
 				public UserConfig()
 				{
 					// тази връзка е едностранна
-					// userA има приятел userB но той нама проятел userA
+					// userA има приятел userB но той нама приятел userA
 					this.HasMany(u => u.Friends)
 						.WithMany();
 						.Map(u =>
@@ -312,8 +641,8 @@ WHERE column = num;
 						 .First(p => p.EmployeeID == id);
 			 }
 		}
-		└─┬─────────────────────────────────────────────────────────────────┘
-			├─██ когато using(){} приключи context изчезва и всички entity-та на тази инстанция стават detached
+		├───────────────────────────────────────────────────────────────────┘
+		├─██ когато using(){} приключи context изчезва и всички entity-та на тази инстанция стават detached
 		
 		├─┬─────────────────────────────────────────────────────────────────┐
 			static void Main()
@@ -399,17 +728,6 @@ WHERE column = num;
 	├─ Enabling "first wins" strategy for certain property in EF
 	└─┬───────────────────────────────────────────────────────────────────┘
 		oncurrencyMode=Fixed // in DBfirst project
-		
-		[ConcurrencyCheck]
-		└─┬─────────────────────────────────────────────────────────────────┘
-			├─ annotation in codefirst. На втория опит за запис хвърлягрешка.
-			├─ 
-				using (var context = new DBContext()) {	}
-╟─┬─────────────────────────────────────────────────────────────────────┐
-	│Cascade Operations
-	├─────────────────────────────────────────────────────────────────────┘
-	
-
 
 ╔═══════════════════════════════════════════════════════════════════════╗
 ║ Project Organization
