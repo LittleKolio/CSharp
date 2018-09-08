@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Import\students.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\University.Data\University.Data.csproj">

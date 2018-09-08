@@ -1,0 +1,28 @@
+﻿[
+  {
+    "studentName": "aa",
+    "courses": [
+      {
+        "courseName": "ww",
+        "InternalScoreList": "1;2;3"
+      },
+      {
+        "courseName": "ee",
+        "InternalScoreList": "10;20;30"
+      }
+    ]
+  },
+  {
+    "studentName": "bb",
+    "courses": [
+      {
+        "courseName": "ww",
+        "InternalScoreList": "4;5;6"
+      },
+      {
+        "courseName": "ee",
+        "InternalScoreList": "40;50;60"
+      }
+    ]
+  }
+]

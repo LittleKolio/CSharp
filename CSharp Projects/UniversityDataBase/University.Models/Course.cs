@@ -7,6 +7,7 @@
         public Course()
         {
             this.Scores = new HashSet<Score>();
+            this.IsDeleted = false;
         }
 
         public int Id { get; set; }

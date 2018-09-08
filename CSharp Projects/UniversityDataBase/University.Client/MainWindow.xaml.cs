@@ -23,11 +23,18 @@ namespace University.Client
         public MainWindow()
         {
             InitializeComponent();
+
+            //this.DataContext
         }
 
-        private void OnWindowSizeChange(object sender, SizeChangedEventArgs e)
+        //private void OnWindowSizeChange(object sender, SizeChangedEventArgs e)
+        //{
+        //    this.child_tag.Width = this.parent_tag.ActualWidth;
+        //}
+
+        private void saveButton_Click(object sender, RoutedEventArgs e)
         {
-            //this.child_tag.Width = this.parent_tag.ActualWidth;
+
         }
     }
 }
