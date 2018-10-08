@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -10,8 +11,9 @@
     {
         public static void Initializer()
         {
-            ProductsContext context = new ProductsContext();
-            using (context)
+            //Database.Delete("ProductsContext");
+
+            using (ProductsContext context = new ProductsContext())
             {
                 context.Database.Initialize(true);
             }

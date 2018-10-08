@@ -14,8 +14,23 @@
     {
         static void Main(string[] args)
         {
-            Init.Initializer();
+            //Init.Initializer();
 
+            using (ProductsContext context = new ProductsContext())
+            {
+                List<Product> products = context.Products.ToList();
+
+                ProductStock storage = products
+                    .FirstOrDefault()
+                    .ProductsStocks
+                    .FirstOrDefault();
+
+                Console.WriteLine();
+            }
+        }
+
+        private static void Filtration()
+        {
             string query = "SELECT * FROM Clients WHERE Name LIKE @nameParam";
             SqlParameter nameParam = new SqlParameter("@nameParam", "tartei");
 
@@ -23,6 +38,8 @@
 
             List<Client> cients;
 
+
+            //we ca
             ProductsContext context = new ProductsContext();
             using (context)
             {
