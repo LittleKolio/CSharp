@@ -1,7 +1,32 @@
 ﻿[
   {
-    "name": "",
-    "description": "",
-    "cost": 12.1
+    "name": "Samsung 860 EVO 250GB",
+    "description": "SSD/SATA III/2.5\"",
+    "cost": 149.99
+  },
+  {
+    "name": "HP LaserJet Pro MFP M426fdw",
+    "description": "монохромен лазерен принтер/копир/скенер/факс",
+    "cost": 729.87
+  },
+  {
+    "name": "Fujitsu ESPRIMO P557 Tower",
+    "description": "Kaby Lake Intel Core i5-7400 3.0/3.5 GHz/8GB DDR4/1TB HDD/4x USB 3.1/Windows 10",
+    "cost": 1135
+  },
+  {
+    "name": "GoPro HERO7 Silver",
+    "description": "камера за екстремен спорт/4K@30fps/2\" (5.08 cm) мулти-тъч сензорен дисплей/microSD/USB (Type-С)/Wi-Fi/Bluetooth/GPS",
+    "cost": 669.02
+  },
+  {
+    "name": "Philips HR3752/00",
+    "description": "блендер 1.8 л. вместимост/2 скорости/бутон за смутита с вакуум/1400W/инокс",
+    "cost": 669.02
+  },
+  {
+    "name": "Dell Inspiron G5 5587",
+    "description": "Coffee Lake Core i5-8300H 2.3/4.0 GHz/15.6\" (39.62 cm)/Full HD Anti-Glare IPS/GeForce GTX 1050 Ti(HDMI)/8GB DDR4/1TB HDD+128GB M.2/1x USB 3.1 C/2x USB 3.1/Ubuntu",
+    "cost": 669.02
   }
 ]

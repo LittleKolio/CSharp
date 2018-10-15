@@ -77,7 +77,11 @@
     <None Include="App.config" />
     <None Include="Import\Clients.json" />
     <None Include="Import\Products.json" />
+    <None Include="Import\Storages.json" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
