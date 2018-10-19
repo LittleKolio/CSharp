@@ -14,19 +14,9 @@
     {
         static void Main(string[] args)
         {
-            //Init.Initializer();
+            Init.Initializer();
 
-            using (ProductsContext context = new ProductsContext())
-            {
-                List<Product> products = context.Products.ToList();
-
-                ProductStock storage = products
-                    .FirstOrDefault()
-                    .ProductsStocks
-                    .FirstOrDefault();
-
-                Console.WriteLine();
-            }
+            Console.ReadKey();
         }
 
         private static void Filtration()

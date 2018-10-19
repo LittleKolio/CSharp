@@ -12,10 +12,13 @@ namespace Products.Data
         public ProductsContext()
             : base("name=ProductsContext")
         {
-            //Database.SetInitializer(
-            //        //new MigrateDatabaseToLatestVersion<ProductsContext, Configuration>()
-            //        //new DropCreateDatabaseAlways<ProductsContext>()
-            //    );
+            Database.SetInitializer(
+                //new MigrateDatabaseToLatestVersion<ProductsContext, Configuration>()
+                //new DropCreateDatabaseAlways<ProductsContext>()
+                new ProductsInitializer()
+            );
+
+
         }
 
         public virtual DbSet<Client> Clients { get; set; }
