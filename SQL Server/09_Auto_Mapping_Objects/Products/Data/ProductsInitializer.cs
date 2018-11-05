@@ -12,6 +12,13 @@
 
     public class ProductsInitializer : DropCreateDatabaseAlways<ProductsContext>
     {
+        //private Random rnd;
+
+        //public ProductsInitializer()
+        //{
+        //    this.rnd = new Random();
+        //}
+
         protected override void Seed(ProductsContext context)
         {
             AddEntities(context);
@@ -39,20 +46,31 @@
 
         private void AddConectionBetweenEntitiesInDB(ProductsContext context)
         {
-            Storage storage = context.Storages.FirstOrDefault(s => s.Name == "Storage1");
-            Product product = context.Products.FirstOrDefault(p => p.Name == "HP LaserJet Pro MFP M426fdw");
+            //Storage storage = context.Storages.FirstOrDefault(s => s.Name == "Storage1");
+            //Product product = context.Products.FirstOrDefault(p => p.Name == "HP LaserJet Pro MFP M426fdw");
 
-            ProductStock productStock = new ProductStock
-            {
-                Product = product,
-                Storage = storage,
-                Quantity = 3
-            };
+            //ProductStock productStock = new ProductStock
+            //{
+            //    Product = products,
+            //    Storage = storage,
+            //    Quantity = 3
+            //};
 
-            context.ProductsStocks.Add(productStock);
-            storage.ProductsStocks.Add(productStock);
-            product.ProductsStocks.Add(productStock);
+            //context.ProductsStocks.Add(productStock);
 
+            List<Storage> storages = context.Storages.ToList();
+            List<Product> products = context.Products.ToList();
+
+            Random rnd = new Random(products.Count);
+
+            List<ProductStock> productStocks = new List<ProductStock>(products.Count);
+
+            //foreach (ProductStock p in productStocks)
+            //{
+            //    p.Product = products.ElementAt(rnd.Next());
+            //    p.Storage = 
+            //}
+            
             context.SaveChanges();
         }
     }
