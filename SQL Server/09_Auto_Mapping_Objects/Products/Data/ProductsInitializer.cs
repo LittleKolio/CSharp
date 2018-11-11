@@ -12,18 +12,20 @@
 
     public class ProductsInitializer : DropCreateDatabaseAlways<ProductsContext>
     {
-        //private Random rnd;
+        private const int NUMBER = 20;
+        private Random rnd;
 
-        //public ProductsInitializer()
-        //{
-        //    this.rnd = new Random();
-        //}
+        public ProductsInitializer()
+        {
+            this.rnd = new Random();
+        }
 
         protected override void Seed(ProductsContext context)
         {
             AddEntities(context);
 
-            AddConectionBetweenEntitiesInDB(context);
+            AddConectionProductStock(context);
+            AddConectionOrderProduct(context);
 
             base.Seed(context);
         }
@@ -41,37 +43,104 @@
             context.Storages.AddRange(
                 JsonConvert.DeserializeObject<IEnumerable<Storage>>(storagesJSON));
 
+
+
             context.SaveChanges();
         }
 
-        private void AddConectionBetweenEntitiesInDB(ProductsContext context)
+        private void AddConectionProductStock(ProductsContext context)
         {
-            //Storage storage = context.Storages.FirstOrDefault(s => s.Name == "Storage1");
-            //Product product = context.Products.FirstOrDefault(p => p.Name == "HP LaserJet Pro MFP M426fdw");
+            Product p;
+            Storage s;
+            int q;
+            ProductStock isNewProductStock;
 
-            //ProductStock productStock = new ProductStock
-            //{
-            //    Product = products,
-            //    Storage = storage,
-            //    Quantity = 3
-            //};
-
-            //context.ProductsStocks.Add(productStock);
+            List<ProductStock> productStocks = new List<ProductStock>();
+            int iterations = rnd.Next(NUMBER);
 
             List<Storage> storages = context.Storages.ToList();
             List<Product> products = context.Products.ToList();
 
-            Random rnd = new Random(products.Count);
 
-            List<ProductStock> productStocks = new List<ProductStock>(products.Count);
+            for (int i = 0; i < iterations; i++)
+            {
+                p = products.ElementAt(this.rnd.Next(NUMBER) % products.Count);
+                s = storages.ElementAt(this.rnd.Next(NUMBER) % storages.Count);
+                q = rnd.Next(NUMBER);
 
-            //foreach (ProductStock p in productStocks)
-            //{
-            //    p.Product = products.ElementAt(rnd.Next());
-            //    p.Storage = 
-            //}
-            
+                isNewProductStock = productStocks
+                    .FirstOrDefault(ps => 
+                        ps.Product.Name == p.Name && 
+                        ps.Storage.Name == s.Name);
+
+                if (isNewProductStock == null)
+                {
+                    isNewProductStock = new ProductStock
+                    {
+                        Product = p,
+                        Storage = s
+                    };
+
+                    productStocks.Add(isNewProductStock);
+                }
+
+                isNewProductStock.Quantity += q;
+            }
+
+            context.ProductsStocks.AddRange(productStocks);
             context.SaveChanges();
+        }
+
+        private void AddConectionOrderProduct(ProductsContext context)
+        {
+            //Product p;
+            //int q;
+            //Order isNewOrder;
+            //Client c;
+
+            //List<Client> clients = context.Clients.ToList();
+
+            List<Order> orders = new List<Order>();
+            int iterations = rnd.Next(NUMBER);
+
+            for (int i = 0; i < iterations; i++)
+            {
+                orders.Add(new Order());
+            }
+            context.Orders.AddRange(orders);
+
+            //List<Product> products = context
+            //    .ProductsStocks
+            //    .Select(ps => ps.Product)
+            //    .ToList();
+
+            //for (int i = 0; i < iterations; i++)
+            //{
+            //    p = products.ElementAt(this.rnd.Next(NUMBER) % products.Count);
+            //    q = rnd.Next(NUMBER);
+
+            //    isNewOrder = orders
+            //        .FirstOrDefault(o => 
+            //            o.OrdersProducts.Count() == q &&
+            //            o.OrdersProducts.Select(op => op.Product).
+            //        );
+
+            //    if (isNewProductStock == null)
+            //    {
+            //        isNewProductStock = new ProductStock
+            //        {
+            //            Product = p,
+            //            Storage = s
+            //        };
+
+            //        productStocks.Add(isNewProductStock);
+            //    }
+
+            //    isNewProductStock.Quantity += q;
+            //}
+
+            //context.Orders.AddRange(orders);
+            //context.SaveChanges();
         }
     }
 }

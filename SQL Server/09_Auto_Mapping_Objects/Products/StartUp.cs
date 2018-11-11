@@ -16,15 +16,19 @@
         {
             Init.Initializer();
 
+            Storage st;
+
             using (ProductsContext cxt = new ProductsContext())
             {
-                Product product = cxt.Products.FirstOrDefault(p => p.Name == "HP LaserJet Pro MFP M426fdw");
-
-                ProductStock productStock = product.ProductsStocks.First();
-
-                Console.WriteLine(productStock.Storage.Name + " - " + productStock.Quantity);
-                Console.ReadKey();
+                st = cxt.Products
+                    .FirstOrDefault()
+                    .ProductsStocks
+                    .FirstOrDefault()
+                    .Storage;
             }
+
+            Console.WriteLine(st.Name);
+            Console.ReadKey();
         }
 
         private static void Filtration()
